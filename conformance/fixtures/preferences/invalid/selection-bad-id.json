@@ -1,0 +1,30 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-006"
+  ],
+  "description": "The selection id must be a theme identifier.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": {
+        "id": "Not An Id"
+      },
+      "previous": null,
+      "values": {}
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-006",
+        "location": {
+          "document": "preferences",
+          "pointer": "/selection"
+        }
+      }
+    ]
+  }
+}
