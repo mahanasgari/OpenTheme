@@ -1,0 +1,28 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-007"
+  ],
+  "description": "values must be an object.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": []
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-007",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values"
+        }
+      }
+    ]
+  }
+}
