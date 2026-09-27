@@ -1,0 +1,154 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-INH-001"
+  ],
+  "description": "Valid child extends a supplied base (base-first merge).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.child",
+      "version": "1.0.0",
+      "name": "Child",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "extends": {
+        "id": "org.example.base",
+        "version": "^1.0.0"
+      },
+      "tokens": {
+        "color": {
+          "accent": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.1,
+                0.5,
+                0.3
+              ]
+            }
+          }
+        }
+      }
+    },
+    "bases": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.base",
+          "version": "1.0.0",
+          "name": "Base Theme",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "tokens": {
+            "color": {
+              "accent": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [
+                    0.2,
+                    0.4,
+                    0.8
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
