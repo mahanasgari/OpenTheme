@@ -1,0 +1,89 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-005"
+  ],
+  "description": "A literal composite member is bounded like a token of its type: fontWeight 1500 is out of range.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "brand": {
+          "caption": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": [
+                "system-ui",
+                "sans-serif"
+              ],
+              "fontSize": {
+                "value": 12,
+                "unit": "px"
+              },
+              "fontWeight": 1500
+            }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/brand/caption/$value"
+        }
+      }
+    ]
+  }
+}
