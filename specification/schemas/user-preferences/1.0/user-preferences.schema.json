@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/user-preferences/1.0/user-preferences.schema.json",
+  "title": "OpenTheme User Preferences Document",
+  "description": "One scope's personalization, stored separately from every theme (chapter 18). Document-level constraints are errors that make the document unusable. Whether each value is a permitted literal is a separate value-level check (#/$defs/permittedLiteral, OT-PREF-008 warning); it is deliberately not enforced by this schema so that one bad value never discards the others. Limits: 65536 bytes before parsing and nesting depth 8 (OT-PREF-002).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["openthemePreferences", "selection", "previous", "values"],
+  "x-opentheme-code": "OT-PREF-005",
+  "x-opentheme-rule": "R-PREF-005",
+  "properties": {
+    "openthemePreferences": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "description": "Format version as MAJOR.MINOR. A reader of M.N accepts M.0 through M.N; anything else is unsupported (OT-PREF-004).",
+      "examples": ["1.0"],
+      "x-opentheme-code": "OT-PREF-003",
+      "x-opentheme-rule": "R-PREF-003"
+    },
+    "selection": {
+      "description": "The user's selected theme, or null when the user has not chosen one.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id"],
+          "properties": {
+            "id": { "$ref": "#/$defs/themeId" },
+            "version": { "$ref": "#/$defs/version" }
+          }
+        }
+      ],
+      "examples": [{ "id": "org.opentheme.aurora" }, null],
+      "x-opentheme-code": "OT-PREF-006",
+      "x-opentheme-rule": "R-PREF-006"
+    },
+    "previous": {
+      "description": "The last theme applied with fallback \"none\", or null.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version"],
+          "properties": {
+            "id": { "$ref": "#/$defs/themeId" },
+            "version": { "$ref": "#/$defs/version" }
+          }
+        }
+      ],
+      "examples": [{ "id": "org.opentheme.aurora", "version": "1.0.0" }, null],
+      "x-opentheme-code": "OT-PREF-006",
+      "x-opentheme-rule": "R-PREF-006"
+    },
+    "values": {
+      "type": "object",
+      "maxProperties": 512,
+      "propertyNames": { "$ref": "#/$defs/pointId" },
+      "additionalProperties": true,
+      "description": "Customization point id to value. Values should be permitted literals (#/$defs/permittedLiteral); an entry that is not produces OT-PREF-008, is ignored when compiling, and is kept as stored.",
+      "examples": [{ "std.accent": { "colorSpace": "srgb", "components": [0.9, 0.3, 0.1] }, "std.text-size": 1.2 }],
+      "x-opentheme-code": "OT-PREF-007",
+      "x-opentheme-rule": "R-PREF-007"
+    },
+    "$extensions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+$"
+      },
+      "additionalProperties": true,
+      "description": "Reverse-domain namespaced data preserved but never interpreted (chapter 15).",
+      "examples": [{ "com.example.sync": { "revision": 3 } }],
+      "x-opentheme-code": "OT-PREF-005",
+      "x-opentheme-rule": "R-PREF-005"
+    }
+  },
+  "$defs": {
+    "themeId": {
+      "type": "string",
+      "maxLength": 128,
+      "oneOf": [
+        { "pattern": "^uid\\.[a-z2-7]{26}$" },
+        { "pattern": "^(?!uid\\.)[a-z][a-z0-9-]{0,62}(\\.[a-z0-9][a-z0-9-]{0,62}){1,7}$" }
+      ],
+      "description": "Theme identifier, as in the theme metadata schema (chapter 02).",
+      "examples": ["org.opentheme.aurora"],
+      "x-opentheme-code": "OT-PREF-006",
+      "x-opentheme-rule": "R-PREF-006"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+      "description": "Semantic version 2.0.0 string.",
+      "examples": ["1.0.0"],
+      "x-opentheme-code": "OT-PREF-006",
+      "x-opentheme-rule": "R-PREF-006"
+    },
+    "pointId": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^(std\\.)?[a-z][a-z0-9-]*$",
+      "description": "Customization point id: std.<name> or a theme-local [a-z][a-z0-9-]* id (chapter 09).",
+      "examples": ["std.accent", "brand-tint"],
+      "x-opentheme-code": "OT-PREF-007",
+      "x-opentheme-rule": "R-PREF-007"
+    },
+    "permittedLiteral": {
+      "description": "Value-level check (not applied by this schema): a finite number, a boolean, a string of at most 256 characters without control characters, or a color value.",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "boolean" },
+        {
+          "type": "string",
+          "maxLength": 256,
+          "pattern": "^[^\\u0000-\\u001F\\u007F-\\u009F\\u202A-\\u202E\\u2066-\\u2069]*$"
+        },
+        { "$ref": "../../1.0/defs/tokens.schema.json#/$defs/color" }
+      ],
+      "examples": [1.2, "dark", { "colorSpace": "srgb", "components": [0.9, 0.3, 0.1] }],
+      "x-opentheme-code": "OT-PREF-008",
+      "x-opentheme-rule": "R-PREF-008"
+    }
+  },
+  "examples": [
+    {
+      "openthemePreferences": "1.0",
+      "selection": { "id": "org.opentheme.aurora" },
+      "previous": { "id": "org.opentheme.aurora", "version": "1.0.0" },
+      "values": { "std.color-scheme": "dark", "std.text-size": 1.2 }
+    }
+  ]
+}
