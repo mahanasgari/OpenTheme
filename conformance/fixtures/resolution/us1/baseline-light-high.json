@@ -1,0 +1,51 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-003",
+    "R-A11Y-001"
+  ],
+  "description": "Specification baseline in light/high; accessibility passes.",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/baseline/org.opentheme.baseline.opentheme.json"
+    },
+    "host": {
+      "$file": "specification/hosts/com.example.notes.opentheme-host.json"
+    },
+    "selection": {
+      "id": "org.opentheme.baseline"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "high",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.baseline",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.baseline",
+      "applied.fallback": "none",
+      "context.colorScheme": "light",
+      "context.contrast": "high",
+      "accessibility.complete": true
+    },
+    "diagnostics": []
+  }
+}
