@@ -1,0 +1,28 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-002"
+  ],
+  "description": "A document of exactly 65536 bytes is within the limit and usable.",
+  "input": {
+    "document": {
+      "generate": {
+        "generator": "pad-bytes",
+        "params": {
+          "base": {
+            "openthemePreferences": "1.0",
+            "selection": null,
+            "previous": null,
+            "values": {}
+          },
+          "bytes": 65536
+        }
+      }
+    }
+  },
+  "expect": {
+    "usable": true,
+    "values": {},
+    "diagnostics": []
+  }
+}
