@@ -1,0 +1,156 @@
+{
+  "kind": "compare-versions",
+  "rules": [
+    "R-VER-001"
+  ],
+  "description": "Narrowing constraints is breaking.",
+  "input": {
+    "old": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "customization": {
+        "points": [
+          {
+            "id": "local-n",
+            "type": "number",
+            "target": [
+              "radius.factor"
+            ],
+            "constraints": {
+              "range": {
+                "min": 0,
+                "max": 2,
+                "step": 0.1
+              }
+            },
+            "default": 1
+          }
+        ]
+      }
+    },
+    "new": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "customization": {
+        "points": [
+          {
+            "id": "local-n",
+            "type": "number",
+            "target": [
+              "radius.factor"
+            ],
+            "constraints": {
+              "range": {
+                "min": 0.5,
+                "max": 1.5,
+                "step": 0.1
+              }
+            },
+            "default": 1
+          }
+        ]
+      }
+    }
+  },
+  "expect": {
+    "classification": "breaking",
+    "reasons": [
+      {
+        "kind": "constraints-narrowed",
+        "detail": "local-n"
+      }
+    ]
+  }
+}
