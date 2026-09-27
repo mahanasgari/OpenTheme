@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/resolution-input.schema.json",
+  "title": "OpenTheme Resolution Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "selection",
+    "platform",
+    "environment",
+    "preferences",
+    "policy"
+  ],
+  "properties": {
+    "selection": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "description": "User-selected theme.",
+      "examples": [
+        {
+          "id": "org.opentheme.aurora",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "previous": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "version"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "description": "Last valid applied theme, or null.",
+      "examples": [
+        null
+      ]
+    },
+    "themes": {
+      "type": "array",
+      "description": "Available theme documents. Trust is assigned by the host to each document entry, never read from the document and never keyed by identifier (FR-010, FR-068). Base themes for inheritance are resolved from this same list (FR-048).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "trust",
+          "document"
+        ],
+        "properties": {
+          "trust": {
+            "enum": [
+              "trusted",
+              "untrusted"
+            ],
+            "description": "Host-assigned trust for this document instance, based on how the host obtained it.",
+            "examples": [
+              "untrusted"
+            ]
+          },
+          "document": {
+            "type": "object",
+            "description": "Inline theme document or $file reference.",
+            "examples": [
+              {
+                "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+              }
+            ]
+          }
+        }
+      },
+      "examples": [
+        [
+          {
+            "trust": "trusted",
+            "document": {
+              "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+            }
+          }
+        ]
+      ]
+    },
+    "theme": {
+      "description": "Shorthand for one additional `themes` entry with trust `trusted`, supplied by the host. Its trust comes from the member it is placed in, never from its content.",
+      "examples": [
+        {
+          "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+        }
+      ]
+    },
+    "host": {
+      "description": "Host declaration or null.",
+      "examples": [
+        null
+      ]
+    },
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "colorScheme",
+        "contrast",
+        "forcedColors",
+        "reducedMotion",
+        "textScale"
+      ],
+      "properties": {
+        "colorScheme": {
+          "enum": [
+            "light",
+            "dark",
+            "no-preference"
+          ]
+        },
+        "contrast": {
+          "enum": [
+            "standard",
+            "high"
+          ]
+        },
+        "forcedColors": {
+          "type": "boolean"
+        },
+        "reducedMotion": {
+          "type": "boolean"
+        },
+        "textScale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sizeClass",
+        "locale",
+        "direction"
+      ],
+      "properties": {
+        "sizeClass": {
+          "enum": [
+            "compact",
+            "medium",
+            "expanded"
+          ]
+        },
+        "locale": {
+          "type": "string",
+          "description": "BCP 47 language tag."
+        },
+        "direction": {
+          "enum": [
+            "ltr",
+            "rtl"
+          ]
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Map from customization point id to value."
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "availableThemes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultTheme": {
+          "type": "string"
+        },
+        "permittedPoints": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "allowedColorSchemes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "locks": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "protected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accessibilityFloor": {
+          "enum": [
+            "wcag22-aa",
+            "relaxed"
+          ]
+        }
+      }
+    }
+  }
+}
