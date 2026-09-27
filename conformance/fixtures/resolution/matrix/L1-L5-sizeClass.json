@@ -1,0 +1,140 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-001"
+  ],
+  "description": "Layer-pair L1-L5 for dimension sizeClass: exactly one expected context value (FR-058).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Matrix",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light",
+          "dark"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "dark": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.92,
+              0.92,
+              0.94
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.7,
+              0.12,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "customization": {
+        "points": [
+          {
+            "id": "std.color-scheme"
+          },
+          {
+            "id": "std.contrast"
+          },
+          {
+            "id": "std.motion"
+          },
+          {
+            "id": "std.density"
+          }
+        ]
+      }
+    },
+    "selection": {
+      "id": "uid.abcdefghijklmnopqrstuv2345"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "compact",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "uid.abcdefghijklmnopqrstuv2345",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline",
+      "permittedPoints": {
+        "std.color-scheme": {},
+        "std.contrast": {},
+        "std.motion": {},
+        "std.density": {}
+      }
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.fallback": "none",
+      "context.sizeClass": "compact"
+    },
+    "diagnostics": []
+  }
+}
