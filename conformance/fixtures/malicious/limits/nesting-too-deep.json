@@ -1,0 +1,29 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-LIM-002"
+  ],
+  "description": "Nesting depth 17 exceeds limit (OT-LIM-002).",
+  "input": {
+    "theme": {
+      "generate": {
+        "generator": "nest-depth",
+        "params": {
+          "depth": 17
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-LIM-002",
+        "location": {
+          "document": "theme",
+          "pointer": "/"
+        }
+      }
+    ]
+  }
+}
