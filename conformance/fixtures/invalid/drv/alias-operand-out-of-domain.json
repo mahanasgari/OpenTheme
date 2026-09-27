@@ -1,0 +1,117 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DRV-004"
+  ],
+  "description": "An aliased operand whose value (2) is outside the ratio's domain [0, 1] is OT-DRV-004 at the operand (chapter 04).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light",
+          "dark"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "dark": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1,
+              0.1,
+              0.12
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.93,
+              0.93,
+              0.95
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.7,
+              0.13,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "brand": {
+          "k": {
+            "$type": "number",
+            "$value": 2
+          },
+          "mixed": {
+            "$type": "color",
+            "$derive": {
+              "op": "color.mix",
+              "args": {
+                "color": "{seed.accent}",
+                "toward": "{seed.background}",
+                "ratio": "{brand.k}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DRV-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/brand/mixed/$derive/args/ratio"
+        }
+      }
+    ]
+  }
+}
