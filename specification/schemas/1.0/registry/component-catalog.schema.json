@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/registry/component-catalog.schema.json",
+  "type": "object",
+  "required": ["version", "catalog", "contracts"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "description": "Specification version.", "examples": ["1.0.0-draft.1"] },
+    "catalog": { "type": "string" },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "version", "description", "example", "parts", "states", "properties", "defaults", "pairs", "interactiveParts"],
+        "properties": {
+          "id": { "type": "string" },
+          "version": { "type": "string" },
+          "description": { "type": "string", "minLength": 1 },
+          "example": true,
+          "parts": { "type": "array", "items": { "type": "string" } },
+          "states": { "type": "array", "items": { "type": "string" } },
+          "variants": { "type": "object" },
+          "properties": { "type": "object" },
+          "defaults": { "type": "object" },
+          "pairs": { "type": "array" },
+          "interactiveParts": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
