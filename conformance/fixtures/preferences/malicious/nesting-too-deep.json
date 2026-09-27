@@ -1,0 +1,45 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-002"
+  ],
+  "description": "A value deeper than depth 8 (top-level object at depth 0) is rejected during tokenization.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {},
+      "$extensions": {
+        "com.example.deep": {
+          "a": {
+            "a": {
+              "a": {
+                "a": {
+                  "a": {
+                    "a": {
+                      "a": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-002",
+        "location": {
+          "document": "preferences",
+          "pointer": ""
+        }
+      }
+    ]
+  }
+}
