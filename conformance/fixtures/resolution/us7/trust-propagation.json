@@ -1,0 +1,76 @@
+{
+  "kind": "resolve",
+  "rules": ["R-INH-001", "R-SEC-001"],
+  "description": "Trusted child of an untrusted base yields applied.trust untrusted (FR-048).",
+  "input": {
+    "themes": [
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.untrusted-base",
+          "version": "1.0.0",
+          "name": "Untrusted Base",
+          "provenance": { "origin": "imported" },
+          "compatibility": { "catalog": "1.0" },
+          "colorSchemes": { "supported": ["light"], "default": "light" },
+          "seeds": {
+            "light": {
+              "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+              "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+              "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+            },
+            "fontFamily": ["Inter", "system-ui", "sans-serif"]
+          }
+        }
+      },
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.trusted-child",
+          "version": "1.0.0",
+          "name": "Trusted Child",
+          "provenance": { "origin": "user-created" },
+          "compatibility": { "catalog": "1.0" },
+          "extends": { "id": "org.example.untrusted-base", "version": "^1.0.0" },
+          "colorSchemes": { "supported": ["light"], "default": "light" },
+          "seeds": {
+            "light": {
+              "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+              "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+              "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+            },
+            "fontFamily": ["Inter", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    ],
+    "selection": { "id": "org.example.trusted-child" },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": { "sizeClass": "expanded", "locale": "en", "direction": "ltr" },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.example.trusted-child",
+        "org.example.untrusted-base",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.example.trusted-child",
+      "applied.fallback": "none",
+      "applied.trust": "untrusted"
+    }
+  }
+}
