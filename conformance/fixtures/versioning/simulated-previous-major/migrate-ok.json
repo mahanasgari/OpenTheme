@@ -1,0 +1,120 @@
+{
+  "kind": "migrate",
+  "profile": "simulated-previous-major",
+  "rules": [
+    "R-VER-003",
+    "R-VER-004"
+  ],
+  "description": "Previous major migrates with VER-003 and lossy VER-004.",
+  "input": {
+    "theme": {
+      "opentheme": "0.9",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "legacyField": "drop-me",
+      "tokens": {
+        "color": {
+          "old-surface": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.98,
+                0.97,
+                0.95
+              ]
+            }
+          }
+        }
+      }
+    },
+    "manifest": {
+      "from": "0.x",
+      "to": "1.0",
+      "operations": [
+        {
+          "op": "rename-path",
+          "from": "color.old-surface",
+          "to": "color.surface.base"
+        },
+        {
+          "op": "drop-member",
+          "at": "/legacyField",
+          "lossy": true
+        }
+      ]
+    },
+    "profile": "simulated-previous-major"
+  },
+  "expect": {
+    "migrated": true,
+    "document": {
+      "opentheme": "1.0"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-VER-004",
+        "severity": "warning",
+        "location": {
+          "document": "theme",
+          "pointer": "/legacyField"
+        },
+        "rule": "R-VER-004"
+      },
+      {
+        "code": "OT-VER-003",
+        "severity": "info",
+        "location": {
+          "document": "theme",
+          "pointer": "/opentheme"
+        },
+        "rule": "R-VER-003"
+      }
+    ]
+  }
+}
