@@ -1,0 +1,74 @@
+{
+  "kind": "canonicalize",
+  "rules": [
+    "R-CAN-001"
+  ],
+  "description": "Member order and formatting do not change canonical bytes or integrity (FR-069).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ],
+            "alpha": 1,
+            "hex": "#FAF8F2"
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "$extensions": {
+        "com.example.tool": {
+          "state": 1,
+          "nested": {
+            "a": true
+          }
+        }
+      },
+      "integrity": "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    }
+  },
+  "expect": {
+    "canonical": "{\"$extensions\":{\"com.example.tool\":{\"nested\":{\"a\":true},\"state\":1}},\"colorSchemes\":{\"default\":\"light\",\"supported\":[\"light\"]},\"compatibility\":{\"catalog\":\"1.0\"},\"id\":\"uid.abcdefghijklmnopqrstuv2345\",\"name\":\"Quiet Paper\",\"opentheme\":\"1.0\",\"provenance\":{\"origin\":\"user-created\"},\"seeds\":{\"fontFamily\":[\"system-ui\",\"sans-serif\"],\"light\":{\"accent\":{\"colorSpace\":\"oklch\",\"components\":[0.55,0.15,250]},\"background\":{\"colorSpace\":\"srgb\",\"components\":[0.98,0.97,0.95]},\"foreground\":{\"colorSpace\":\"srgb\",\"components\":[0.12,0.12,0.14]}}},\"version\":\"1.0.0\"}",
+    "integrity": "sha256-k0z3TU0o+9G2YtqVoRprIciBHz5zgAe4la1k9zzlJdo="
+  }
+}
