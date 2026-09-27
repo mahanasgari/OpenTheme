@@ -1,0 +1,80 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-CTX-001"
+  ],
+  "description": "Condition outside the five context dimensions (FR-066).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "contexts": [
+        {
+          "when": {
+            "user.role": "admin"
+          },
+          "tokens": {}
+        }
+      ]
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-CTX-001",
+        "location": {
+          "document": "theme",
+          "pointer": "/contexts/0/when/user.role"
+        }
+      }
+    ]
+  }
+}
