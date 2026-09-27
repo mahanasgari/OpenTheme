@@ -1,0 +1,16 @@
+{
+  "kind": "accessibility-report",
+  "rules": [
+    "R-A11Y-003"
+  ],
+  "description": "The reference theme Aurora meets every standard-contrast threshold: the report is empty (FR-064).",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
