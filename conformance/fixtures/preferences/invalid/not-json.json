@@ -1,0 +1,23 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-001"
+  ],
+  "description": "Text that is not well-formed JSON is unusable.",
+  "input": {
+    "document": "{\"openthemePreferences\": \"1.0\","
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-001",
+        "location": {
+          "document": "preferences",
+          "pointer": ""
+        }
+      }
+    ]
+  }
+}
