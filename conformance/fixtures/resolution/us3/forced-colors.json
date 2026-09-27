@@ -1,0 +1,170 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-A11Y-001"
+  ],
+  "description": "Forced colors map semantic colors to system roles (scenario 5).",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.us3",
+          "version": "1.0.0",
+          "name": "Harbor",
+          "description": "A calm shell with open spacing.",
+          "localized": {
+            "fa": {
+              "name": "بندر",
+              "description": "پوسته‌ای آرام با فاصله‌گذاری دلباز."
+            },
+            "fa-IR": {
+              "name": "بندر",
+              "description": "پوسته‌ای آرام با فاصله‌گذاری دلباز."
+            }
+          },
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light",
+              "dark"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "dark": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.92,
+                  0.92,
+                  0.94
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.7,
+                  0.12,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "customization": {
+            "points": [
+              {
+                "id": "std.accent"
+              },
+              {
+                "id": "std.color-scheme"
+              },
+              {
+                "id": "std.contrast"
+              },
+              {
+                "id": "std.text-size"
+              },
+              {
+                "id": "std.density"
+              },
+              {
+                "id": "std.corner-roundness"
+              },
+              {
+                "id": "std.motion"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.example.us3"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": true,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.example.us3",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline",
+      "permittedPoints": {
+        "std.color-scheme": {},
+        "std.contrast": {},
+        "std.motion": {},
+        "std.density": {},
+        "std.text-size": {}
+      }
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "context.forcedColors": true,
+      "tokens.color.surface.base": {
+        "system": "canvas"
+      },
+      "tokens.color.text.primary": {
+        "system": "canvas-text"
+      }
+    }
+  }
+}
