@@ -1,0 +1,17 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001",
+    "R-CUS-001"
+  ],
+  "description": "Official reference theme graphite validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.graphite.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
