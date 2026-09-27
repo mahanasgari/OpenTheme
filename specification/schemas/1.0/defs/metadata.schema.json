@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/defs/metadata.schema.json",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "maxLength": 128,
+      "oneOf": [
+        {
+          "pattern": "^uid\\.[a-z2-7]{26}$"
+        },
+        {
+          "pattern": "^(?!uid\\.)[a-z][a-z0-9-]{0,62}(\\.[a-z0-9][a-z0-9-]{0,62}){1,7}$"
+        }
+      ],
+      "x-opentheme-code": "OT-META-001",
+      "x-opentheme-rule": "R-META-001",
+      "description": "Reverse-domain id or uid. + 26 lowercase base32 chars",
+      "examples": [
+        "org.opentheme.aurora",
+        "uid.abcdefghijklmnopqrstuv2345"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+      "x-opentheme-code": "OT-META-003",
+      "x-opentheme-rule": "R-META-003",
+      "description": "Semantic version 2.0.0 string",
+      "examples": [
+        "1.0.0"
+      ]
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^(?!.*(@|https?://|www\\.)).+$",
+          "description": "Plain text author name; no URLs or email addresses",
+          "examples": [
+            "OpenTheme Project"
+          ]
+        }
+      }
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "x-opentheme-code": "OT-META-007",
+      "x-opentheme-rule": "R-META-007",
+      "description": "SPDX license expression",
+      "examples": [
+        "LicenseRef-OpenTheme-Pending",
+        "Apache-2.0"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "origin"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "enum": [
+            "specification-baseline",
+            "prebuilt",
+            "developer-authored",
+            "user-created",
+            "imported",
+            "ai-generated",
+            "ai-assisted"
+          ]
+        },
+        "lineage": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "version"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "version": {
+                "$ref": "#/$defs/version"
+              }
+            }
+          },
+          "description": "Ordered list of { id, version } … up to 32 entries"
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "catalog": {
+          "type": "string",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$",
+          "description": "MAJOR.MINOR catalog version",
+          "examples": [
+            "1.0"
+          ]
+        },
+        "extensions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "map from namespace to version"
+        }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32
+      },
+      "description": "up to 16 plain-text items of up to 32 characters each",
+      "examples": [
+        [
+          "calm",
+          "cool"
+        ]
+      ]
+    }
+  }
+}
