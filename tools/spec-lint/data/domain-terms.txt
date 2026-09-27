@@ -1,0 +1,15 @@
+# Domain-specific terms forbidden in the core specification (FR-088).
+# Host/example namespaces under specification/hosts and specification/examples are allowlisted.
+nisha
+spotify
+instagram
+whatsapp
+telegram
+tiktok
+facebook
+twitter
+reddit
+discord
+slack
+notion
+figma
