@@ -1,0 +1,152 @@
+{
+  "opentheme": "1.0",
+  "id": "org.opentheme.aurora",
+  "version": "1.0.0",
+  "name": "Aurora",
+  "description": "Cool, airy reference theme with soft elevation and a blue-violet accent.",
+  "author": { "name": "OpenTheme Project" },
+  "license": "LicenseRef-OpenTheme-Pending",
+  "provenance": { "origin": "prebuilt" },
+  "compatibility": {
+    "catalog": "1.0",
+    "extensions": { "com.example.notes": "1.0" }
+  },
+  "colorSchemes": {
+    "supported": ["light", "dark"],
+    "default": "light"
+  },
+  "seeds": {
+    "light": {
+      "background": { "colorSpace": "oklch", "components": [0.98, 0.01, 250] },
+      "foreground": { "colorSpace": "oklch", "components": [0.22, 0.02, 260] },
+      "accent": { "colorSpace": "oklch", "components": [0.55, 0.16, 275] }
+    },
+    "dark": {
+      "background": { "colorSpace": "oklch", "components": [0.18, 0.02, 260] },
+      "foreground": { "colorSpace": "oklch", "components": [0.92, 0.01, 250] },
+      "accent": { "colorSpace": "oklch", "components": [0.72, 0.14, 275] }
+    },
+    "fontFamily": ["Inter", "system-ui", "sans-serif"]
+  },
+  "tokens": {
+    "radius": {
+      "$type": "number",
+      "factor": { "$value": 1.5 }
+    }
+  },
+  "contexts": [
+    {
+      "when": { "contrast": "high", "colorScheme": "light" },
+      "tokens": {
+        "color": {
+          "action": {
+            "primary": {
+              "background": {
+                "$value": { "colorSpace": "srgb", "components": [0.15, 0.1, 0.55] }
+              },
+              "text": {
+                "$value": { "colorSpace": "srgb", "components": [1, 1, 1] }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "when": { "contrast": "high", "colorScheme": "dark" },
+      "tokens": {
+        "color": {
+          "action": {
+            "primary": {
+              "background": {
+                "$value": { "colorSpace": "srgb", "components": [0.75, 0.7, 1] }
+              },
+              "text": {
+                "$value": { "colorSpace": "srgb", "components": [0, 0, 0] }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "components": {
+    "std/button": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.action.primary.background}",
+              "hover": "{color.action.primary.background-hover}",
+              "pressed": "{color.action.primary.background-pressed}"
+            }
+          },
+          "corner-radius": "{radius.md}"
+        },
+        "label": {
+          "color": "{color.action.primary.text}"
+        }
+      }
+    },
+    "std/card": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.raised}",
+          "corner-radius": "{radius.lg}"
+        }
+      }
+    },
+    "std/text-input": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.base}",
+          "corner-radius": "{radius.sm}"
+        }
+      }
+    },
+    "com.example.notes/timeline": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.base}",
+          "padding": "{space.4}"
+        },
+        "rail": {
+          "color": "{color.border.subtle}",
+          "width": "{border.width.thin}"
+        },
+        "marker": {
+          "color": "{color.action.primary.background}",
+          "size": "{size.icon.sm}"
+        },
+        "date-label": {
+          "color": "{color.text.secondary}",
+          "text-style": "{text.caption}"
+        }
+      }
+    }
+  },
+  "layout": {
+    "variants": {
+      "navigation": {
+        "compact": "bottom",
+        "medium": "top",
+        "expanded": "side"
+      }
+    }
+  },
+  "customization": {
+    "points": [
+      { "id": "std.accent" },
+      { "id": "std.color-scheme" },
+      { "id": "std.contrast" },
+      { "id": "std.text-size" },
+      { "id": "std.density" },
+      { "id": "std.corner-roundness" },
+      { "id": "std.motion" }
+    ]
+  }
+}
