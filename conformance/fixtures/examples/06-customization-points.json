@@ -1,0 +1,16 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001"
+  ],
+  "description": "Example 06-customization-points validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/06-customization-points.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
