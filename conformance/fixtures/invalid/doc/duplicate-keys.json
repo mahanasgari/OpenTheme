@@ -1,0 +1,22 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-002"
+  ],
+  "description": "Duplicate member names (OT-DOC-002).",
+  "input": {
+    "theme": "{\"opentheme\":\"1.0\",\"opentheme\":\"1.0\",\"id\":\"uid.abcdefghijklmnopqrstuv2345\",\"version\":\"1.0.0\",\"name\":\"X\",\"provenance\":{\"origin\":\"user-created\"},\"compatibility\":{\"catalog\":\"1.0\"},\"colorSchemes\":{\"supported\":[\"light\"],\"default\":\"light\"},\"seeds\":{\"light\":{\"background\":{\"colorSpace\":\"srgb\",\"components\":[1,1,1]},\"foreground\":{\"colorSpace\":\"srgb\",\"components\":[0,0,0]},\"accent\":{\"colorSpace\":\"oklch\",\"components\":[0.5,0.1,200]}},\"fontFamily\":[\"sans-serif\"]}}"
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DOC-002",
+        "location": {
+          "document": "theme",
+          "pointer": "/opentheme"
+        }
+      }
+    ]
+  }
+}
