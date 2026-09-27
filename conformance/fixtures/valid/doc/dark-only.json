@@ -1,0 +1,28 @@
+{
+  "kind": "validate",
+  "rules": ["R-SEED-001", "R-CTX-001"],
+  "description": "Dark-only theme: supported schemes is just dark with dark default.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Night Ink",
+      "provenance": { "origin": "user-created" },
+      "compatibility": { "catalog": "1.0" },
+      "colorSchemes": { "supported": ["dark"], "default": "dark" },
+      "seeds": {
+        "dark": {
+          "background": { "colorSpace": "srgb", "components": [0.1, 0.1, 0.12] },
+          "foreground": { "colorSpace": "srgb", "components": [0.92, 0.92, 0.94] },
+          "accent": { "colorSpace": "oklch", "components": [0.7, 0.12, 250] }
+        },
+        "fontFamily": ["system-ui", "sans-serif"]
+      }
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
