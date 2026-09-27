@@ -1,0 +1,17 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001",
+    "R-CUS-001"
+  ],
+  "description": "Official reference theme aurora validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
