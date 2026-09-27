@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/defs/layout.schema.json",
+  "title": "OpenTheme Layout Selection",
+  "description": "Theme layout member: variants.<region> is a variant name or a map from size class to variant name.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "variants": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string", "minLength": 1, "maxLength": 64 },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "compact": { "type": "string", "minLength": 1 },
+              "medium": { "type": "string", "minLength": 1 },
+              "expanded": { "type": "string", "minLength": 1 }
+            }
+          }
+        ]
+      },
+      "description": "Region → variant name, or size-class map."
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional reflow budget inputs for FR-039 (narrowest size class ≤ 320 px).",
+      "properties": {
+        "minWidths": { "type": "array", "items": { "type": "number" } },
+        "fixedWidths": { "type": "array", "items": { "type": "number" } },
+        "gutters": { "type": "array", "items": { "type": "number" } }
+      }
+    }
+  }
+}
