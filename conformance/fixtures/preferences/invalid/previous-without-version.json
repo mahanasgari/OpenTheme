@@ -1,0 +1,30 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-006"
+  ],
+  "description": "previous requires both id and version.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": {
+        "id": "org.opentheme.aurora"
+      },
+      "values": {}
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-006",
+        "location": {
+          "document": "preferences",
+          "pointer": "/previous"
+        }
+      }
+    ]
+  }
+}
