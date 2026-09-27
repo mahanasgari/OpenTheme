@@ -1,0 +1,2079 @@
+{
+  "version": "1.0.0-draft.1",
+  "codes": [
+    {
+      "code": "OT-DOC-001",
+      "severity": "error",
+      "description": "not I-JSON / malformed",
+      "message": "doc.001",
+      "hint": "doc.001.hint",
+      "messageTemplate": "not I-JSON / malformed{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DOC-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DOC-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DOC-002",
+      "severity": "error",
+      "description": "duplicate member",
+      "message": "doc.002",
+      "hint": "doc.002.hint",
+      "messageTemplate": "duplicate member{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DOC-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DOC-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DOC-003",
+      "severity": "error",
+      "description": "unknown member outside $extensions",
+      "message": "doc.003",
+      "hint": "doc.003.hint",
+      "messageTemplate": "unknown member outside $extensions{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DOC-003"
+      ],
+      "fixtures": [
+        "canonical/export-preferences.json",
+        "invalid/lay/content-changes.json",
+        "malicious/ai/data-access-member.json",
+        "malicious/ai/script-member.json",
+        "malicious/ai/selector-member.json"
+      ],
+      "example": {
+        "code": "OT-DOC-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DOC-004",
+      "severity": "error",
+      "description": "wrong JSON type",
+      "message": "doc.004",
+      "hint": "doc.004.hint",
+      "messageTemplate": "wrong JSON type{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DOC-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DOC-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DOC-005",
+      "severity": "error",
+      "description": "missing required member",
+      "message": "doc.005",
+      "hint": "doc.005.hint",
+      "messageTemplate": "missing required member{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DOC-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DOC-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-001",
+      "severity": "error",
+      "description": "invalid identifier",
+      "message": "meta.001",
+      "hint": "meta.001.hint",
+      "messageTemplate": "invalid identifier{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-001"
+      ],
+      "fixtures": [
+        "invalid/cus/too-many-targets.json"
+      ],
+      "example": {
+        "code": "OT-META-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-002",
+      "severity": "error",
+      "description": "reserved identifier prefix",
+      "message": "meta.002",
+      "hint": "meta.002.hint",
+      "messageTemplate": "reserved identifier prefix{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-META-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-003",
+      "severity": "error",
+      "description": "invalid semantic version",
+      "message": "meta.003",
+      "hint": "meta.003.hint",
+      "messageTemplate": "invalid semantic version{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-META-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-004",
+      "severity": "error",
+      "description": "forbidden character in display text",
+      "message": "meta.004",
+      "hint": "meta.004.hint",
+      "messageTemplate": "forbidden character in display text{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-META-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-005",
+      "severity": "error",
+      "description": "display text too long",
+      "message": "meta.005",
+      "hint": "meta.005.hint",
+      "messageTemplate": "display text too long{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-META-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-006",
+      "severity": "error",
+      "description": "invalid language tag",
+      "message": "meta.006",
+      "hint": "meta.006.hint",
+      "messageTemplate": "invalid language tag{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-006"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-META-006",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-007",
+      "severity": "error",
+      "description": "invalid SPDX expression",
+      "message": "meta.007",
+      "hint": "meta.007.hint",
+      "messageTemplate": "invalid SPDX expression{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-007"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-META-007",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-META-008",
+      "severity": "error",
+      "description": "not export-eligible: missing author, license, or integrity",
+      "message": "meta.008",
+      "hint": "meta.008.hint",
+      "messageTemplate": "not export-eligible: missing author, license, or integrity{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-META-008"
+      ],
+      "fixtures": [
+        "canonical/export-missing-meta.json"
+      ],
+      "example": {
+        "code": "OT-META-008",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-VER-001",
+      "severity": "error",
+      "description": "unsupported major",
+      "message": "ver.001",
+      "hint": "ver.001.hint",
+      "messageTemplate": "unsupported major{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-VER-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-VER-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-VER-002",
+      "severity": "error",
+      "description": "newer minor, required version stated",
+      "message": "ver.002",
+      "hint": "ver.002.hint",
+      "messageTemplate": "newer minor, required version stated{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-VER-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-VER-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-VER-003",
+      "severity": "info",
+      "description": "migrated from previous major",
+      "message": "ver.003",
+      "hint": "ver.003.hint",
+      "messageTemplate": "migrated from previous major{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-VER-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-VER-003",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-VER-004",
+      "severity": "warning",
+      "description": "lossy migration step",
+      "message": "ver.004",
+      "hint": "ver.004.hint",
+      "messageTemplate": "lossy migration step{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-VER-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-VER-004",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-VER-005",
+      "severity": "warning",
+      "description": "deprecated element used, replacement named",
+      "message": "ver.005",
+      "hint": "ver.005.hint",
+      "messageTemplate": "deprecated element used, replacement named{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-VER-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-VER-005",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-TOK-001",
+      "severity": "error",
+      "description": "invalid path",
+      "message": "tok.001",
+      "hint": "tok.001.hint",
+      "messageTemplate": "invalid path{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-002",
+      "severity": "error",
+      "description": "duplicate path",
+      "message": "tok.002",
+      "hint": "tok.002.hint",
+      "messageTemplate": "duplicate path{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-003",
+      "severity": "error",
+      "description": "reserved group redefined",
+      "message": "tok.003",
+      "hint": "tok.003.hint",
+      "messageTemplate": "reserved group redefined{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-004",
+      "severity": "error",
+      "description": "value outside type grammar",
+      "message": "tok.004",
+      "hint": "tok.004.hint",
+      "messageTemplate": "value outside type grammar{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-005",
+      "severity": "error",
+      "description": "value outside range",
+      "message": "tok.005",
+      "hint": "tok.005.hint",
+      "messageTemplate": "value outside range{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-006",
+      "severity": "error",
+      "description": "type conflicts with base or registry",
+      "message": "tok.006",
+      "hint": "tok.006.hint",
+      "messageTemplate": "type conflicts with base or registry{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-006"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-006",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-007",
+      "severity": "error",
+      "description": "neither or both of $value and $derive",
+      "message": "tok.007",
+      "hint": "tok.007.hint",
+      "messageTemplate": "neither or both of $value and $derive{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-007"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-007",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-010",
+      "severity": "error",
+      "description": "missing seed for a supported scheme",
+      "message": "tok.010",
+      "hint": "tok.010.hint",
+      "messageTemplate": "missing seed for a supported scheme{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-010"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-010",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-TOK-011",
+      "severity": "error",
+      "description": "translucent seed",
+      "message": "tok.011",
+      "hint": "tok.011.hint",
+      "messageTemplate": "translucent seed{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-TOK-011"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-TOK-011",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-REF-001",
+      "severity": "error",
+      "description": "missing target",
+      "message": "ref.001",
+      "hint": "ref.001.hint",
+      "messageTemplate": "missing target{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-REF-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-REF-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-REF-002",
+      "severity": "error",
+      "description": "incompatible type",
+      "message": "ref.002",
+      "hint": "ref.002.hint",
+      "messageTemplate": "incompatible type{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-REF-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-REF-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-REF-003",
+      "severity": "error",
+      "description": "cycle",
+      "message": "ref.003",
+      "hint": "ref.003.hint",
+      "messageTemplate": "cycle{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-REF-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-REF-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-REF-004",
+      "severity": "error",
+      "description": "reference chain too deep",
+      "message": "ref.004",
+      "hint": "ref.004.hint",
+      "messageTemplate": "reference chain too deep{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-REF-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-REF-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-001",
+      "severity": "error",
+      "description": "unknown transformation",
+      "message": "drv.001",
+      "hint": "drv.001.hint",
+      "messageTemplate": "unknown transformation{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-002",
+      "severity": "error",
+      "description": "missing or unknown argument",
+      "message": "drv.002",
+      "hint": "drv.002.hint",
+      "messageTemplate": "missing or unknown argument{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-003",
+      "severity": "error",
+      "description": "operand type",
+      "message": "drv.003",
+      "hint": "drv.003.hint",
+      "messageTemplate": "operand type{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-004",
+      "severity": "error",
+      "description": "operand outside domain",
+      "message": "drv.004",
+      "hint": "drv.004.hint",
+      "messageTemplate": "operand outside domain{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-005",
+      "severity": "error",
+      "description": "composition too deep",
+      "message": "drv.005",
+      "hint": "drv.005.hint",
+      "messageTemplate": "composition too deep{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-006",
+      "severity": "error",
+      "description": "output type mismatch",
+      "message": "drv.006",
+      "hint": "drv.006.hint",
+      "messageTemplate": "output type mismatch{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-006"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-006",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-007",
+      "severity": "error",
+      "description": "effort budget exceeded",
+      "message": "drv.007",
+      "hint": "drv.007.hint",
+      "messageTemplate": "effort budget exceeded{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-007"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-007",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-DRV-101",
+      "severity": "info",
+      "description": "output clamped to token range",
+      "message": "drv.101",
+      "hint": "drv.101.hint",
+      "messageTemplate": "output clamped to token range{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-101"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-101",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-DRV-102",
+      "severity": "info",
+      "description": "user-dependent operand clamped into domain",
+      "message": "drv.102",
+      "hint": "drv.102.hint",
+      "messageTemplate": "user-dependent operand clamped into domain{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-DRV-102"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-DRV-102",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CTX-001",
+      "severity": "error",
+      "description": "unknown dimension or value",
+      "message": "ctx.001",
+      "hint": "ctx.001.hint",
+      "messageTemplate": "unknown dimension or value{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CTX-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CTX-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CTX-002",
+      "severity": "error",
+      "description": "duplicate when",
+      "message": "ctx.002",
+      "hint": "ctx.002.hint",
+      "messageTemplate": "duplicate when{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CTX-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CTX-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CTX-003",
+      "severity": "error",
+      "description": "scheme not supported",
+      "message": "ctx.003",
+      "hint": "ctx.003.hint",
+      "messageTemplate": "scheme not supported{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CTX-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CTX-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CTX-004",
+      "severity": "error",
+      "description": "overlay introduces an undeclared token",
+      "message": "ctx.004",
+      "hint": "ctx.004.hint",
+      "messageTemplate": "overlay introduces an undeclared token{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CTX-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CTX-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CTX-101",
+      "severity": "info",
+      "description": "requested color scheme unavailable, default used",
+      "message": "ctx.101",
+      "hint": "ctx.101.hint",
+      "messageTemplate": "requested color scheme unavailable, default used{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CTX-101"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CTX-101",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CMP-001",
+      "severity": "info",
+      "description": "contract unknown to host, styling ignored",
+      "message": "cmp.001",
+      "hint": "cmp.001.hint",
+      "messageTemplate": "contract unknown to host, styling ignored{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CMP-001"
+      ],
+      "fixtures": [
+        "resolution/us5/foreign-contract-ignored.json"
+      ],
+      "example": {
+        "code": "OT-CMP-001",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CMP-002",
+      "severity": "info",
+      "description": "incompatible contract version, styling ignored",
+      "message": "cmp.002",
+      "hint": "cmp.002.hint",
+      "messageTemplate": "incompatible contract version, styling ignored{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CMP-002"
+      ],
+      "fixtures": [
+        "resolution/us5/incompatible-version.json"
+      ],
+      "example": {
+        "code": "OT-CMP-002",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CMP-003",
+      "severity": "error",
+      "description": "unknown part or property of a known contract",
+      "message": "cmp.003",
+      "hint": "cmp.003.hint",
+      "messageTemplate": "unknown part or property of a known contract{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CMP-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CMP-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CMP-004",
+      "severity": "error",
+      "description": "undeclared state or variant of a known contract",
+      "message": "cmp.004",
+      "hint": "cmp.004.hint",
+      "messageTemplate": "undeclared state or variant of a known contract{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CMP-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-CMP-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LAY-001",
+      "severity": "info",
+      "description": "unknown region or variant, ignored",
+      "message": "lay.001",
+      "hint": "lay.001.hint",
+      "messageTemplate": "unknown region or variant, ignored{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LAY-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LAY-001",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-LAY-002",
+      "severity": "error",
+      "description": "value prevents reflow at 320 px",
+      "message": "lay.002",
+      "hint": "lay.002.hint",
+      "messageTemplate": "value prevents reflow at 320 px{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LAY-002"
+      ],
+      "fixtures": [
+        "invalid/lay/reflow-320.json"
+      ],
+      "example": {
+        "code": "OT-LAY-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-001",
+      "severity": "error",
+      "description": "default violates constraints",
+      "message": "cus.001",
+      "hint": "cus.001.hint",
+      "messageTemplate": "default violates constraints{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-001"
+      ],
+      "fixtures": [
+        "invalid/cus/default-violates.json",
+        "invalid/cus/effective-range-max.json",
+        "resolution/us4/policy-narrow-no-default.json"
+      ],
+      "example": {
+        "code": "OT-CUS-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-002",
+      "severity": "error",
+      "description": "constraint does not fit type",
+      "message": "cus.002",
+      "hint": "cus.002.hint",
+      "messageTemplate": "constraint does not fit type{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-002"
+      ],
+      "fixtures": [
+        "invalid/cus/constraint-type.json"
+      ],
+      "example": {
+        "code": "OT-CUS-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-003",
+      "severity": "error",
+      "description": "target missing",
+      "message": "cus.003",
+      "hint": "cus.003.hint",
+      "messageTemplate": "target missing{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-003"
+      ],
+      "fixtures": [
+        "invalid/cus/target-missing.json"
+      ],
+      "example": {
+        "code": "OT-CUS-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-004",
+      "severity": "error",
+      "description": "range not reachable in whole steps",
+      "message": "cus.004",
+      "hint": "cus.004.hint",
+      "messageTemplate": "range not reachable in whole steps{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-004"
+      ],
+      "fixtures": [
+        "invalid/cus/range-not-whole-steps.json"
+      ],
+      "example": {
+        "code": "OT-CUS-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-005",
+      "severity": "error",
+      "description": "text-size range below 100%",
+      "message": "cus.005",
+      "hint": "cus.005.hint",
+      "messageTemplate": "text-size range below 100%{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-005"
+      ],
+      "fixtures": [
+        "invalid/cus/text-size-below-100.json"
+      ],
+      "example": {
+        "code": "OT-CUS-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-006",
+      "severity": "error",
+      "description": "standard point target or type changed",
+      "message": "cus.006",
+      "hint": "cus.006.hint",
+      "messageTemplate": "standard point target or type changed{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-006"
+      ],
+      "fixtures": [
+        "invalid/cus/std-type-changed.json"
+      ],
+      "example": {
+        "code": "OT-CUS-006",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-CUS-101",
+      "severity": "info",
+      "description": "value clamped or snapped",
+      "message": "cus.101",
+      "hint": "cus.101.hint",
+      "messageTemplate": "value clamped or snapped{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-101"
+      ],
+      "fixtures": [
+        "resolution/us4/clamp-and-fallback.json",
+        "resolution/us4/arbitrary-accent.json"
+      ],
+      "example": {
+        "code": "OT-CUS-101",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CUS-102",
+      "severity": "info",
+      "description": "value fell back to default",
+      "message": "cus.102",
+      "hint": "cus.102.hint",
+      "messageTemplate": "value fell back to default{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-102"
+      ],
+      "fixtures": [
+        "resolution/us4/clamp-and-fallback.json"
+      ],
+      "example": {
+        "code": "OT-CUS-102",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CUS-103",
+      "severity": "info",
+      "description": "point not declared or not permitted, skipped",
+      "message": "cus.103",
+      "hint": "cus.103.hint",
+      "messageTemplate": "point not declared or not permitted, skipped{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-103"
+      ],
+      "fixtures": [
+        "resolution/us4/not-permitted.json"
+      ],
+      "example": {
+        "code": "OT-CUS-103",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-CUS-104",
+      "severity": "info",
+      "description": "point removed in this theme version, skipped",
+      "message": "cus.104",
+      "hint": "cus.104.hint",
+      "messageTemplate": "point removed in this theme version, skipped{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-CUS-104"
+      ],
+      "fixtures": [
+        "resolution/us4/point-removed.json"
+      ],
+      "example": {
+        "code": "OT-CUS-104",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-INH-001",
+      "severity": "error",
+      "description": "base missing",
+      "message": "inh.001",
+      "hint": "inh.001.hint",
+      "messageTemplate": "base missing{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-INH-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-INH-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-INH-002",
+      "severity": "error",
+      "description": "base invalid or unsupported",
+      "message": "inh.002",
+      "hint": "inh.002.hint",
+      "messageTemplate": "base invalid or unsupported{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-INH-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-INH-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-INH-003",
+      "severity": "error",
+      "description": "base version outside range",
+      "message": "inh.003",
+      "hint": "inh.003.hint",
+      "messageTemplate": "base version outside range{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-INH-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-INH-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-INH-004",
+      "severity": "error",
+      "description": "inheritance cycle",
+      "message": "inh.004",
+      "hint": "inh.004.hint",
+      "messageTemplate": "inheritance cycle{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-INH-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-INH-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-INH-005",
+      "severity": "error",
+      "description": "chain too deep",
+      "message": "inh.005",
+      "hint": "inh.005.hint",
+      "messageTemplate": "chain too deep{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-INH-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-INH-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-001",
+      "severity": "error",
+      "description": "document too large",
+      "message": "lim.001",
+      "hint": "lim.001.hint",
+      "messageTemplate": "document too large{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LIM-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-002",
+      "severity": "error",
+      "description": "nesting too deep",
+      "message": "lim.002",
+      "hint": "lim.002.hint",
+      "messageTemplate": "nesting too deep{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LIM-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-003",
+      "severity": "error",
+      "description": "too many tokens",
+      "message": "lim.003",
+      "hint": "lim.003.hint",
+      "messageTemplate": "too many tokens{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-003"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LIM-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-004",
+      "severity": "error",
+      "description": "too many customization points",
+      "message": "lim.004",
+      "hint": "lim.004.hint",
+      "messageTemplate": "too many customization points{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-004"
+      ],
+      "fixtures": [
+        "malicious/limits/customization-points-201.json"
+      ],
+      "example": {
+        "code": "OT-LIM-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-005",
+      "severity": "error",
+      "description": "too many overlays",
+      "message": "lim.005",
+      "hint": "lim.005.hint",
+      "messageTemplate": "too many overlays{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LIM-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-006",
+      "severity": "error",
+      "description": "path too long",
+      "message": "lim.006",
+      "hint": "lim.006.hint",
+      "messageTemplate": "path too long{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-006"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LIM-006",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-LIM-099",
+      "severity": "info",
+      "description": "diagnostics truncated",
+      "message": "lim.099",
+      "hint": "lim.099.hint",
+      "messageTemplate": "diagnostics truncated{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-LIM-099"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-LIM-099",
+        "severity": "info"
+      }
+    },
+    {
+      "code": "OT-A11Y-001",
+      "severity": "error",
+      "description": "seed pair below AA",
+      "message": "a11y.001",
+      "hint": "a11y.001.hint",
+      "messageTemplate": "seed pair below AA{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-A11Y-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-A11Y-002",
+      "severity": "error",
+      "description": "high-contrast mode below FR-027",
+      "message": "a11y.002",
+      "hint": "a11y.002.hint",
+      "messageTemplate": "high-contrast mode below FR-027{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-A11Y-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-A11Y-003",
+      "severity": "warning",
+      "description": "declared pair below threshold",
+      "message": "a11y.003",
+      "hint": "a11y.003.hint",
+      "messageTemplate": "declared pair below threshold{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-003"
+      ],
+      "fixtures": [
+        "accessibility/dark-overlay-shortfall.json",
+        "accessibility/token-shortfall.json"
+      ],
+      "example": {
+        "code": "OT-A11Y-003",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-A11Y-004",
+      "severity": "warning",
+      "description": "distinguishable pair too similar",
+      "message": "a11y.004",
+      "hint": "a11y.004.hint",
+      "messageTemplate": "distinguishable pair too similar{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-A11Y-004",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-A11Y-005",
+      "severity": "error",
+      "description": "focus indicator invisible",
+      "message": "a11y.005",
+      "hint": "a11y.005.hint",
+      "messageTemplate": "focus indicator invisible{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-005"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-A11Y-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-A11Y-006",
+      "severity": "warning",
+      "description": "target size raised to 24 px",
+      "message": "a11y.006",
+      "hint": "a11y.006.hint",
+      "messageTemplate": "target size raised to 24 px{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-006"
+      ],
+      "fixtures": [
+        "resolution/us4/compact-target-size.json"
+      ],
+      "example": {
+        "code": "OT-A11Y-006",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-A11Y-007",
+      "severity": "warning",
+      "description": "user value rejected by accessibility floor",
+      "message": "a11y.007",
+      "hint": "a11y.007.hint",
+      "messageTemplate": "user value rejected by accessibility floor{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-A11Y-007"
+      ],
+      "fixtures": [
+        "resolution/us4/aa-floor-reject.json"
+      ],
+      "example": {
+        "code": "OT-A11Y-007",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-SEC-001",
+      "severity": "warning",
+      "description": "untrusted theme shares a trusted identifier, kept distinct",
+      "message": "sec.001",
+      "hint": "sec.001.hint",
+      "messageTemplate": "untrusted theme shares a trusted identifier, kept distinct{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-SEC-001"
+      ],
+      "fixtures": [
+        "resolution/us8/ai-untrusted.json"
+      ],
+      "example": {
+        "code": "OT-SEC-001",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-SEC-002",
+      "severity": "warning",
+      "description": "same identifier and version with different integrity",
+      "message": "sec.002",
+      "hint": "sec.002.hint",
+      "messageTemplate": "same identifier and version with different integrity{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-SEC-002"
+      ],
+      "fixtures": [
+        "resolution/us7/same-id-version-different-content.json"
+      ],
+      "example": {
+        "code": "OT-SEC-002",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-HOST-001",
+      "severity": "error",
+      "description": "reserved or colliding namespace",
+      "message": "host.001",
+      "hint": "host.001.hint",
+      "messageTemplate": "reserved or colliding namespace{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-HOST-001"
+      ],
+      "fixtures": [
+        "invalid/host/reserved-std.json",
+        "invalid/host/reserved-opentheme.json",
+        "invalid/host/reserved-uid.json"
+      ],
+      "example": {
+        "code": "OT-HOST-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-HOST-002",
+      "severity": "error",
+      "description": "invalid contract declaration",
+      "message": "host.002",
+      "hint": "host.002.hint",
+      "messageTemplate": "invalid contract declaration{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-HOST-002"
+      ],
+      "fixtures": [
+        "invalid/host/bad-state.json",
+        "invalid/host/bad-property-type.json"
+      ],
+      "example": {
+        "code": "OT-HOST-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-HOST-003",
+      "severity": "error",
+      "description": "default does not resolve",
+      "message": "host.003",
+      "hint": "host.003.hint",
+      "messageTemplate": "default does not resolve{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-HOST-003"
+      ],
+      "fixtures": [
+        "invalid/host/missing-default.json"
+      ],
+      "example": {
+        "code": "OT-HOST-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-HOST-004",
+      "severity": "error",
+      "description": "duplicate contract identifier",
+      "message": "host.004",
+      "hint": "host.004.hint",
+      "messageTemplate": "duplicate contract identifier{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-HOST-004"
+      ],
+      "fixtures": [
+        "invalid/host/duplicate-contract.json"
+      ],
+      "example": {
+        "code": "OT-HOST-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-RES-001",
+      "severity": "warning",
+      "description": "fell back to previous theme",
+      "message": "res.001",
+      "hint": "res.001.hint",
+      "messageTemplate": "fell back to previous theme{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-RES-001"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-RES-001",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-RES-002",
+      "severity": "warning",
+      "description": "fell back to developer default",
+      "message": "res.002",
+      "hint": "res.002.hint",
+      "messageTemplate": "fell back to developer default{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-RES-002"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-RES-002",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-RES-003",
+      "severity": "warning",
+      "description": "fell back to specification baseline",
+      "message": "res.003",
+      "hint": "res.003.hint",
+      "messageTemplate": "fell back to specification baseline{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-RES-003"
+      ],
+      "fixtures": [
+        "resolution/us1/default-invalid",
+        "resolution/us1/default-missing"
+      ],
+      "example": {
+        "code": "OT-RES-003",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-RES-004",
+      "severity": "warning",
+      "description": "selected theme not available under policy",
+      "message": "res.004",
+      "hint": "res.004.hint",
+      "messageTemplate": "selected theme not available under policy{detail}",
+      "hintTemplate": "See the location and fix the reported issue.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-RES-004"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-RES-004",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-PREF-001",
+      "severity": "error",
+      "description": "preferences document is not well-formed I-JSON",
+      "message": "pref.001",
+      "hint": "pref.001.hint",
+      "messageTemplate": "preferences document is not well-formed I-JSON{detail}",
+      "hintTemplate": "The document must be a single JSON object with no duplicate members.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-001"
+      ],
+      "fixtures": [
+        "preferences/invalid/duplicate-member.json",
+        "preferences/invalid/not-json.json",
+        "preferences/invalid/top-level-array.json"
+      ],
+      "example": {
+        "code": "OT-PREF-001",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-002",
+      "severity": "error",
+      "description": "preferences document exceeds a size or nesting limit",
+      "message": "pref.002",
+      "hint": "pref.002.hint",
+      "messageTemplate": "preferences document exceeds a size or nesting limit{detail}",
+      "hintTemplate": "Keep the document under 65536 bytes and nesting depth 8.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-002"
+      ],
+      "fixtures": [
+        "preferences/malicious/nesting-too-deep.json",
+        "preferences/malicious/oversized.json"
+      ],
+      "example": {
+        "code": "OT-PREF-002",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-003",
+      "severity": "error",
+      "description": "preferences format version missing or malformed",
+      "message": "pref.003",
+      "hint": "pref.003.hint",
+      "messageTemplate": "preferences format version missing or malformed{detail}",
+      "hintTemplate": "Set openthemePreferences to a MAJOR.MINOR string such as \"1.0\".",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-003"
+      ],
+      "fixtures": [
+        "preferences/invalid/version-malformed.json",
+        "preferences/invalid/version-missing.json"
+      ],
+      "example": {
+        "code": "OT-PREF-003",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-004",
+      "severity": "error",
+      "description": "unsupported preferences format version",
+      "message": "pref.004",
+      "hint": "pref.004.hint",
+      "messageTemplate": "unsupported preferences format version{detail}",
+      "hintTemplate": "Use a format version this implementation supports; see the supported range in params.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-004"
+      ],
+      "fixtures": [
+        "preferences/invalid/version-newer-minor.json",
+        "preferences/invalid/version-other-major.json"
+      ],
+      "example": {
+        "code": "OT-PREF-004",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-005",
+      "severity": "error",
+      "description": "unknown or missing preferences member",
+      "message": "pref.005",
+      "hint": "pref.005.hint",
+      "messageTemplate": "unknown or missing preferences member{detail}",
+      "hintTemplate": "Remove members outside $extensions and provide openthemePreferences, selection, previous, and values.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-005"
+      ],
+      "fixtures": [
+        "preferences/invalid/required-missing.json",
+        "preferences/invalid/unknown-member.json",
+        "preferences/malicious/proto-member.json"
+      ],
+      "example": {
+        "code": "OT-PREF-005",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-006",
+      "severity": "error",
+      "description": "invalid selection or previous",
+      "message": "pref.006",
+      "hint": "pref.006.hint",
+      "messageTemplate": "invalid selection or previous{detail}",
+      "hintTemplate": "Use null or an object with a valid theme id and SemVer version.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-006"
+      ],
+      "fixtures": [
+        "preferences/invalid/previous-without-version.json",
+        "preferences/invalid/selection-bad-id.json"
+      ],
+      "example": {
+        "code": "OT-PREF-006",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-007",
+      "severity": "error",
+      "description": "invalid values map",
+      "message": "pref.007",
+      "hint": "pref.007.hint",
+      "messageTemplate": "invalid values map{detail}",
+      "hintTemplate": "values must be an object of at most 512 entries keyed by customization point ids.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-007"
+      ],
+      "fixtures": [
+        "preferences/invalid/values-bad-key.json",
+        "preferences/invalid/values-not-object.json",
+        "preferences/invalid/values-too-many.json"
+      ],
+      "example": {
+        "code": "OT-PREF-007",
+        "severity": "error"
+      }
+    },
+    {
+      "code": "OT-PREF-008",
+      "severity": "warning",
+      "description": "preference value is not a permitted literal and is ignored",
+      "message": "pref.008",
+      "hint": "pref.008.hint",
+      "messageTemplate": "preference value is not a permitted literal and is ignored{detail}",
+      "hintTemplate": "Store a number, boolean, short string, or color value; the entry is kept but not applied.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-008"
+      ],
+      "fixtures": [
+        "preferences/malicious/bidi-in-value.json",
+        "preferences/malicious/expression-value.json",
+        "preferences/valid/value-not-literal.json"
+      ],
+      "example": {
+        "code": "OT-PREF-008",
+        "severity": "warning"
+      }
+    },
+    {
+      "code": "OT-PREF-009",
+      "severity": "warning",
+      "description": "preferences migration lost information",
+      "message": "pref.009",
+      "hint": "pref.009.hint",
+      "messageTemplate": "preferences migration lost information{detail}",
+      "hintTemplate": "Review the migrated document; the lost members are named in params.",
+      "params": [
+        "detail"
+      ],
+      "rules": [
+        "R-PREF-009"
+      ],
+      "fixtures": [],
+      "example": {
+        "code": "OT-PREF-009",
+        "severity": "warning"
+      }
+    }
+  ]
+}
