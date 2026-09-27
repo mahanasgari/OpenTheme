@@ -1,0 +1,98 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-SEC-001"
+  ],
+  "description": "A document supplied as untrusted that claims a reserved official id and prebuilt provenance stays untrusted when no trusted document has that id: trust comes from the host entry, never from the document (FR-010).",
+  "input": {
+    "themes": [
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.opentheme.aurora",
+          "version": "1.0.0",
+          "name": "Impostor Aurora",
+          "provenance": {
+            "origin": "prebuilt"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  0,
+                  0
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.opentheme.aurora"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.aurora",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.aurora",
+      "applied.fallback": "none",
+      "applied.trust": "untrusted",
+      "displayText.name": "Impostor Aurora"
+    },
+    "diagnostics": []
+  }
+}
