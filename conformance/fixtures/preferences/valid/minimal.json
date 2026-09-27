@@ -1,0 +1,21 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-003",
+    "R-PREF-005"
+  ],
+  "description": "Smallest usable document: format version and the three required members, no values.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {}
+    }
+  },
+  "expect": {
+    "usable": true,
+    "values": {},
+    "diagnostics": []
+  }
+}
