@@ -1,0 +1,48 @@
+{
+  "kind": "validate-host",
+  "rules": [
+    "R-HOST-001"
+  ],
+  "description": "Namespace std → OT-HOST-001.",
+  "input": {
+    "host": {
+      "openthemeHost": "1.0",
+      "id": "std",
+      "catalog": "1.0",
+      "consumes": {
+        "tokens": [
+          "color.*",
+          "font.*",
+          "space.*",
+          "radius.*",
+          "focus.*",
+          "motion.*"
+        ],
+        "contracts": [
+          "std/button@1",
+          "std/text-input@1",
+          "std/dialog@1",
+          "std/tabs@1",
+          "std/card@1"
+        ]
+      },
+      "tokens": {},
+      "contracts": [],
+      "layoutVariants": {}
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-HOST-001",
+        "severity": "error",
+        "location": {
+          "document": "host",
+          "pointer": "/id"
+        },
+        "rule": "R-HOST-001"
+      }
+    ]
+  }
+}
