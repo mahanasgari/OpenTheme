@@ -1,0 +1,57 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-001"
+  ],
+  "description": "Policy lock on color.action.primary.background recomputes dependents (US1 scenario 3).",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+    },
+    "selection": {
+      "id": "org.opentheme.aurora"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.aurora",
+        "org.opentheme.baseline"
+      ],
+      "locks": {
+        "color.action.primary.background": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1,
+            0.2,
+            0.8
+          ]
+        }
+      }
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.fallback": "none",
+      "tokens.color.action.primary.background.srgb8": [
+        26,
+        51,
+        204
+      ]
+    },
+    "diagnostics": []
+  }
+}
