@@ -1,0 +1,33 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-008"
+  ],
+  "description": "A string value with bidirectional override controls is not a permitted literal; it is ignored and the document stays usable.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {
+        "brand-tint": "warm‮evil",
+        "std.text-size": 1.1
+      }
+    }
+  },
+  "expect": {
+    "usable": true,
+    "values": {
+      "std.text-size": 1.1
+    },
+    "diagnostics": [
+      {
+        "code": "OT-PREF-008",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values/brand-tint"
+        }
+      }
+    ]
+  }
+}
