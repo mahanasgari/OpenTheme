@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/registry/diagnostics.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "codes"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Specification version of this registry.",
+      "examples": [
+        "1.0.0-draft.1"
+      ]
+    },
+    "codes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "severity",
+          "description",
+          "message",
+          "hint",
+          "messageTemplate",
+          "hintTemplate",
+          "rules",
+          "fixtures",
+          "example"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^OT-[A-Z0-9]+-[0-9]{3}$"
+          },
+          "severity": {
+            "enum": [
+              "error",
+              "warning",
+              "info"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string"
+          },
+          "hint": {
+            "type": "string"
+          },
+          "messageTemplate": {
+            "type": "string"
+          },
+          "hintTemplate": {
+            "type": "string"
+          },
+          "params": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fixtures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "example": {}
+        }
+      }
+    }
+  }
+}
