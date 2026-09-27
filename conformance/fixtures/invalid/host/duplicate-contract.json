@@ -1,0 +1,277 @@
+{
+  "kind": "validate-host",
+  "rules": [
+    "R-HOST-004"
+  ],
+  "description": "Duplicate contract id → OT-HOST-004.",
+  "input": {
+    "host": {
+      "openthemeHost": "1.0",
+      "id": "com.example.notes",
+      "catalog": "1.0",
+      "consumes": {
+        "tokens": [
+          "color.*",
+          "font.*",
+          "space.*",
+          "radius.*",
+          "focus.*",
+          "motion.*"
+        ],
+        "contracts": [
+          "std/button@1",
+          "std/text-input@1",
+          "std/dialog@1",
+          "std/tabs@1",
+          "std/card@1"
+        ]
+      },
+      "tokens": {
+        "color": {
+          "$type": "color",
+          "rail": {
+            "$description": "Line connecting entries in a vertical list.",
+            "$derive": {
+              "op": "color.mix",
+              "args": {
+                "color": "{color.border.subtle}",
+                "toward": "{color.action.primary.background}",
+                "ratio": 0.3
+              }
+            }
+          }
+        }
+      },
+      "contracts": [
+        {
+          "id": "com.example.notes/timeline",
+          "version": "1.0.0",
+          "description": "Vertical list of dated entries.",
+          "parts": [
+            "container",
+            "rail",
+            "marker",
+            "date-label"
+          ],
+          "states": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected"
+          ],
+          "variants": {
+            "emphasis": [
+              "standard",
+              "muted"
+            ]
+          },
+          "properties": {
+            "container": {
+              "background": "color",
+              "padding": "dimension"
+            },
+            "rail": {
+              "color": "color",
+              "width": "dimension"
+            },
+            "marker": {
+              "color": "color",
+              "size": "dimension"
+            },
+            "date-label": {
+              "color": "color",
+              "text-style": "typography"
+            }
+          },
+          "defaults": {
+            "container": {
+              "background": "{color.surface.base}",
+              "padding": "{space.4}"
+            },
+            "rail": {
+              "color": "{com.example.notes/color.rail}",
+              "width": "{border.width.thin}"
+            },
+            "marker": {
+              "color": {
+                "$states": {
+                  "default": "{color.action.primary.background}",
+                  "selected": "{color.selection.background}"
+                }
+              },
+              "size": "{size.icon.sm}"
+            },
+            "date-label": {
+              "color": "{color.text.secondary}",
+              "text-style": "{text.caption}"
+            }
+          },
+          "pairs": [
+            {
+              "foreground": "date-label.color",
+              "background": "container.background",
+              "kind": "text"
+            },
+            {
+              "foreground": "marker.color",
+              "background": "container.background",
+              "kind": "non-text"
+            }
+          ],
+          "interactiveParts": [
+            "marker"
+          ]
+        },
+        {
+          "id": "com.example.notes/tag-chip",
+          "version": "1.0.0",
+          "description": "Compact label chip for categorization.",
+          "parts": [
+            "container",
+            "label"
+          ],
+          "states": [
+            "default",
+            "hover",
+            "selected"
+          ],
+          "properties": {
+            "container": {
+              "background": "color",
+              "corner-radius": "dimension",
+              "padding-inline": "dimension"
+            },
+            "label": {
+              "color": "color",
+              "typography": "typography"
+            }
+          },
+          "defaults": {
+            "container": {
+              "background": "{color.surface.raised}",
+              "corner-radius": "{radius.full}",
+              "padding-inline": "{space.2}"
+            },
+            "label": {
+              "color": "{color.text.secondary}",
+              "typography": "{text.caption}"
+            }
+          },
+          "pairs": [
+            {
+              "foreground": "label.color",
+              "background": "container.background",
+              "kind": "text"
+            }
+          ],
+          "interactiveParts": [
+            "container"
+          ]
+        },
+        {
+          "id": "com.example.notes/timeline",
+          "version": "1.0.0",
+          "description": "Vertical list of dated entries.",
+          "parts": [
+            "container",
+            "rail",
+            "marker",
+            "date-label"
+          ],
+          "states": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected"
+          ],
+          "variants": {
+            "emphasis": [
+              "standard",
+              "muted"
+            ]
+          },
+          "properties": {
+            "container": {
+              "background": "color",
+              "padding": "dimension"
+            },
+            "rail": {
+              "color": "color",
+              "width": "dimension"
+            },
+            "marker": {
+              "color": "color",
+              "size": "dimension"
+            },
+            "date-label": {
+              "color": "color",
+              "text-style": "typography"
+            }
+          },
+          "defaults": {
+            "container": {
+              "background": "{color.surface.base}",
+              "padding": "{space.4}"
+            },
+            "rail": {
+              "color": "{com.example.notes/color.rail}",
+              "width": "{border.width.thin}"
+            },
+            "marker": {
+              "color": {
+                "$states": {
+                  "default": "{color.action.primary.background}",
+                  "selected": "{color.selection.background}"
+                }
+              },
+              "size": "{size.icon.sm}"
+            },
+            "date-label": {
+              "color": "{color.text.secondary}",
+              "text-style": "{text.caption}"
+            }
+          },
+          "pairs": [
+            {
+              "foreground": "date-label.color",
+              "background": "container.background",
+              "kind": "text"
+            },
+            {
+              "foreground": "marker.color",
+              "background": "container.background",
+              "kind": "non-text"
+            }
+          ],
+          "interactiveParts": [
+            "marker"
+          ]
+        }
+      ],
+      "layoutVariants": {
+        "navigation": {
+          "variants": [
+            "top",
+            "side",
+            "bottom"
+          ],
+          "default": "top"
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-HOST-004",
+        "severity": "error",
+        "location": {
+          "document": "host",
+          "pointer": "/contracts/2/id"
+        },
+        "rule": "R-HOST-004"
+      }
+    ]
+  }
+}
