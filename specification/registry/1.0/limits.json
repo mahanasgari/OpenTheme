@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0-draft.1",
+  "limits": {
+    "documentBytes": {
+      "value": 1048576,
+      "description": "Maximum theme document size in bytes before parse.",
+      "example": 1048576
+    },
+    "tokens": {
+      "value": 10000,
+      "description": "Maximum number of tokens in a theme document.",
+      "example": 10000
+    },
+    "referenceDepth": {
+      "value": 16,
+      "description": "Maximum alias reference chain length.",
+      "example": 16
+    },
+    "derivationDepth": {
+      "value": 8,
+      "description": "Maximum nested $derive composition depth.",
+      "example": 8
+    },
+    "nestingDepth": {
+      "value": 16,
+      "description": "Maximum JSON structural nesting depth.",
+      "example": 16
+    },
+    "inheritanceDepth": {
+      "value": 4,
+      "description": "Maximum theme extends chain length.",
+      "example": 4
+    },
+    "customizationPoints": {
+      "value": 200,
+      "description": "Maximum customization points in a theme.",
+      "example": 200
+    },
+    "overlays": {
+      "value": 64,
+      "description": "Maximum context overlays in a theme.",
+      "example": 64
+    },
+    "styledContracts": {
+      "value": 128,
+      "description": "Maximum styled contracts in a theme.",
+      "example": 128
+    },
+    "localizedVariants": {
+      "value": 64,
+      "description": "Maximum localized display-text variants.",
+      "example": 64
+    },
+    "pointTargets": {
+      "value": 16,
+      "description": "Maximum targets per customization point.",
+      "example": 16
+    },
+    "contrastCandidates": {
+      "value": 8,
+      "description": "Maximum candidates in color.contrast-select.",
+      "example": 8
+    },
+    "contrastBackgrounds": {
+      "value": 4,
+      "description": "Maximum backgrounds in contrast-aware transforms.",
+      "example": 4
+    },
+    "pathLength": {
+      "value": 256,
+      "description": "Maximum token path string length.",
+      "example": 256
+    },
+    "pathSegmentLength": {
+      "value": 64,
+      "description": "Maximum length of one token path segment.",
+      "example": 64
+    },
+    "variantAxes": {
+      "value": 16,
+      "description": "Maximum variant axes on a contract.",
+      "example": 16
+    },
+    "displayNameLength": {
+      "value": 100,
+      "description": "Maximum display name length.",
+      "example": 100
+    },
+    "descriptionLength": {
+      "value": 1000,
+      "description": "Maximum description length.",
+      "example": 1000
+    },
+    "motionDurationMs": {
+      "value": 1000,
+      "description": "Maximum motion duration in milliseconds.",
+      "example": 1000
+    },
+    "diagnostics": {
+      "value": 200,
+      "description": "Maximum diagnostics reported before truncation.",
+      "example": 200
+    },
+    "effortUnitsPerMode": {
+      "value": 200000,
+      "description": "Maximum derivation effort units per mode.",
+      "example": 200000
+    },
+    "keywords": {
+      "value": 16,
+      "description": "Maximum keywords on a theme.",
+      "example": 16
+    },
+    "keywordLength": {
+      "value": 32,
+      "description": "Maximum length of one keyword.",
+      "example": 32
+    },
+    "lineageEntries": {
+      "value": 32,
+      "description": "Maximum provenance lineage entries.",
+      "example": 32
+    },
+    "fontFamilies": {
+      "value": 8,
+      "description": "Maximum font family fallback entries.",
+      "example": 8
+    }
+  }
+}
