@@ -1,0 +1,1413 @@
+{
+  "version": "1.0.0-draft.1",
+  "catalog": "1.0",
+  "contracts": [
+    {
+      "id": "std/button",
+      "version": "1.0.0",
+      "description": "Button control.",
+      "example": {
+        "id": "std/button"
+      },
+      "parts": [
+        "container",
+        "label",
+        "icon",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {
+        "emphasis": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "danger"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ]
+      },
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension",
+          "padding-inline": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "icon": {
+          "color": "color",
+          "size": "dimension"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.action.primary.background}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.md}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "padding-inline": {
+            "$states": {
+              "default": "{space.4}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.action.primary.text}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "icon": {
+          "color": {
+            "$states": {
+              "default": "{color.action.primary.text}"
+            }
+          },
+          "size": {
+            "$states": {
+              "default": "{size.icon.md}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/icon-button",
+      "version": "1.0.0",
+      "description": "Icon-only button.",
+      "example": {
+        "id": "std/icon-button"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/text-input",
+      "version": "1.0.0",
+      "description": "Single-line text input.",
+      "example": {
+        "id": "std/text-input"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/checkbox",
+      "version": "1.0.0",
+      "description": "Checkbox control.",
+      "example": {
+        "id": "std/checkbox"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/radio",
+      "version": "1.0.0",
+      "description": "Radio control.",
+      "example": {
+        "id": "std/radio"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/switch",
+      "version": "1.0.0",
+      "description": "Switch control.",
+      "example": {
+        "id": "std/switch"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/select",
+      "version": "1.0.0",
+      "description": "Select control.",
+      "example": {
+        "id": "std/select"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/form-field",
+      "version": "1.0.0",
+      "description": "Form field with label, help, and validation.",
+      "example": {
+        "id": "std/form-field"
+      },
+      "parts": [
+        "container",
+        "label",
+        "help",
+        "validation",
+        "control"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "gap": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "help": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "validation": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "control": {
+          "min-height": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "gap": {
+            "$states": {
+              "default": "{space.2}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "help": {
+          "color": {
+            "$states": {
+              "default": "{color.text.secondary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.caption}"
+            }
+          }
+        },
+        "validation": {
+          "color": {
+            "$states": {
+              "default": "{color.status.danger.foreground}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.caption}"
+            }
+          }
+        },
+        "control": {
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "color.surface.base",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "control"
+      ]
+    },
+    {
+      "id": "std/card",
+      "version": "1.0.0",
+      "description": "Card surface.",
+      "example": {
+        "id": "std/card"
+      },
+      "parts": [
+        "container",
+        "title",
+        "body"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "padding": "dimension",
+          "elevation": "shadow"
+        },
+        "title": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "body": {
+          "color": "color",
+          "typography": "typography"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.raised}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.lg}"
+            }
+          },
+          "padding": {
+            "$states": {
+              "default": "{space.5}"
+            }
+          },
+          "elevation": {
+            "$states": {
+              "default": "{elevation.sm}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "title": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.heading-4}"
+            }
+          }
+        },
+        "body": {
+          "color": {
+            "$states": {
+              "default": "{color.text.secondary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.body}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "title.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": []
+    },
+    {
+      "id": "std/nav-bar",
+      "version": "1.0.0",
+      "description": "Navigation bar.",
+      "example": {
+        "id": "std/nav-bar"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.overlay}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/menu",
+      "version": "1.0.0",
+      "description": "Menu surface.",
+      "example": {
+        "id": "std/menu"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.overlay}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/tabs",
+      "version": "1.0.0",
+      "description": "Tab list.",
+      "example": {
+        "id": "std/tabs"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.overlay}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/table",
+      "version": "1.0.0",
+      "description": "Data table.",
+      "example": {
+        "id": "std/table"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.overlay}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    },
+    {
+      "id": "std/dialog",
+      "version": "1.0.0",
+      "description": "Dialog / modal.",
+      "example": {
+        "id": "std/dialog"
+      },
+      "parts": [
+        "container",
+        "label",
+        "focus-ring"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ],
+      "variants": {},
+      "properties": {
+        "container": {
+          "background": "color",
+          "border": "border",
+          "corner-radius": "dimension",
+          "min-height": "dimension"
+        },
+        "label": {
+          "color": "color",
+          "typography": "typography"
+        },
+        "focus-ring": {
+          "color": "color",
+          "width": "dimension"
+        }
+      },
+      "defaults": {
+        "container": {
+          "background": {
+            "$states": {
+              "default": "{color.surface.overlay}"
+            }
+          },
+          "corner-radius": {
+            "$states": {
+              "default": "{radius.sm}"
+            }
+          },
+          "min-height": {
+            "$states": {
+              "default": "{size.control.height.md}"
+            }
+          },
+          "border": {
+            "$states": {
+              "default": "{border.default}"
+            }
+          }
+        },
+        "label": {
+          "color": {
+            "$states": {
+              "default": "{color.text.primary}"
+            }
+          },
+          "typography": {
+            "$states": {
+              "default": "{text.label}"
+            }
+          }
+        },
+        "focus-ring": {
+          "color": {
+            "$states": {
+              "default": "{color.focus}"
+            }
+          },
+          "width": {
+            "$states": {
+              "default": "{border.width.thick}"
+            }
+          }
+        }
+      },
+      "pairs": [
+        {
+          "foreground": "label.color",
+          "background": "container.background",
+          "kind": "text"
+        }
+      ],
+      "interactiveParts": [
+        "container"
+      ]
+    }
+  ]
+}
