@@ -1,0 +1,28 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-004"
+  ],
+  "description": "A newer minor than the reader supports is unsupported.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.9",
+      "selection": null,
+      "previous": null,
+      "values": {}
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-004",
+        "location": {
+          "document": "preferences",
+          "pointer": "/openthemePreferences"
+        }
+      }
+    ]
+  }
+}
