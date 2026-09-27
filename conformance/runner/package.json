@@ -1,0 +1,24 @@
+{
+  "name": "@opentheme/conformance-runner",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "OpenTheme conformance suite runner (ot-conformance)",
+  "bin": {
+    "ot-conformance": "./dist/main.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "conformance": "node dist/main.js",
+    "sweeps": "node dist/main.js --sweeps",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@opentheme/reference-checker": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.4"
+  }
+}
