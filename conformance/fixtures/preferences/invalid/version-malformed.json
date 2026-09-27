@@ -1,0 +1,28 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-003"
+  ],
+  "description": "The format version must be MAJOR.MINOR.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1",
+      "selection": null,
+      "previous": null,
+      "values": {}
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-003",
+        "location": {
+          "document": "preferences",
+          "pointer": "/openthemePreferences"
+        }
+      }
+    ]
+  }
+}
