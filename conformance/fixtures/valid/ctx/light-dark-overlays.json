@@ -1,0 +1,59 @@
+{
+  "kind": "validate",
+  "rules": ["R-CTX-001", "R-CTX-002"],
+  "description": "Light and dark overlays validate for a dual-scheme theme.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Harbor",
+      "provenance": { "origin": "user-created" },
+      "compatibility": { "catalog": "1.0" },
+      "colorSchemes": { "supported": ["light", "dark"], "default": "light" },
+      "seeds": {
+        "light": {
+          "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+          "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+          "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+        },
+        "dark": {
+          "background": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+          "foreground": { "colorSpace": "srgb", "components": [0.92, 0.92, 0.94] },
+          "accent": { "colorSpace": "oklch", "components": [0.7, 0.12, 250] }
+        },
+        "fontFamily": ["system-ui", "sans-serif"]
+      },
+      "contexts": [
+        {
+          "when": { "colorScheme": "light" },
+          "tokens": {
+            "color": {
+              "surface": {
+                "base": {
+                  "$value": { "colorSpace": "srgb", "components": [1, 1, 1] }
+                }
+              }
+            }
+          }
+        },
+        {
+          "when": { "colorScheme": "dark" },
+          "tokens": {
+            "color": {
+              "surface": {
+                "base": {
+                  "$value": { "colorSpace": "srgb", "components": [0.2, 0.2, 0.22] }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
