@@ -1,0 +1,16 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001"
+  ],
+  "description": "Example 02-light-and-dark validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/02-light-and-dark.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
