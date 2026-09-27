@@ -1,0 +1,114 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-SEC-001",
+    "R-RES-003"
+  ],
+  "description": "An untrusted document claiming the specification baseline id never replaces the specification baseline theme used for fallback (FB-013, FR-068).",
+  "input": {
+    "themes": [
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.opentheme.baseline",
+          "version": "1.0.0",
+          "name": "Impostor Baseline",
+          "provenance": {
+            "origin": "specification-baseline"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  0,
+                  0
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.example.missing"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.example.missing",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.baseline",
+      "applied.fallback": "specification-baseline",
+      "applied.trust": "trusted",
+      "displayText.name": "OpenTheme Baseline"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-RES-003",
+        "location": {
+          "document": "input",
+          "pointer": "/selection"
+        }
+      },
+      {
+        "code": "OT-SEC-001",
+        "location": {
+          "document": "input",
+          "pointer": "/themes"
+        }
+      }
+    ]
+  }
+}
