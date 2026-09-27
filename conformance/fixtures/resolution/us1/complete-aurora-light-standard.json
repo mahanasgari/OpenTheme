@@ -1,0 +1,51 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-001",
+    "R-A11Y-001"
+  ],
+  "description": "aurora resolves completely in light/standard against notes host (SC-001).",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+    },
+    "host": {
+      "$file": "specification/hosts/com.example.notes.opentheme-host.json"
+    },
+    "selection": {
+      "id": "org.opentheme.aurora"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.aurora",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.aurora",
+      "applied.fallback": "none",
+      "context.colorScheme": "light",
+      "context.contrast": "standard",
+      "accessibility.complete": true
+    },
+    "diagnostics": []
+  }
+}
