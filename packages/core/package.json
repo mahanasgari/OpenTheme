@@ -1,0 +1,46 @@
+{
+  "name": "@opentheme/core",
+  "version": "0.1.0-draft.0",
+  "description": "Framework-agnostic OpenTheme Core runtime: admission, trust, registry, and deterministic resolution per the OpenTheme Theme Specification",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./templates": {
+      "types": "./dist/diagnostics/templates.d.ts",
+      "import": "./dist/diagnostics/templates.js"
+    },
+    "./schemas/*": "./schemas/*",
+    "./internal-conformance": {
+      "types": "./dist/internal-conformance.d.ts",
+      "import": "./dist/internal-conformance.js"
+    }
+  },
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "api",
+    "dist",
+    "docs",
+    "schemas"
+  ],
+  "scripts": {
+    "generate": "tsx scripts/generate-artifacts.ts",
+    "build": "tsx scripts/generate-artifacts.ts && tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "bench": "esbuild bench/node.ts --bundle --minify --platform=node --format=esm --target=es2022 --outfile=bench/dist/node.mjs --log-level=warning && node bench/dist/node.mjs",
+    "size": "tsx scripts/size.ts",
+    "api": "tsx scripts/api-report.ts",
+    "api:check": "tsx scripts/api-report.ts --check",
+    "bench:browser": "tsx bench/browser.ts"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}
