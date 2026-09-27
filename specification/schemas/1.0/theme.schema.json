@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/theme.schema.json",
+  "title": "OpenTheme Theme Document",
+  "description": "Top-level theme shape. Unknown members outside $extensions are errors (OT-DOC-003).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "opentheme",
+    "id",
+    "version",
+    "name",
+    "provenance",
+    "compatibility",
+    "colorSchemes",
+    "seeds"
+  ],
+  "properties": {
+    "opentheme": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "Targeted Theme Specification MAJOR.MINOR. Version support is reported as VER codes, not schema errors.",
+      "examples": ["1.0"]
+    },
+    "id": {
+      "$ref": "defs/metadata.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "defs/metadata.schema.json#/$defs/version"
+    },
+    "name": {
+      "$ref": "defs/display-text.schema.json#/$defs/displayName"
+    },
+    "description": {
+      "$ref": "defs/display-text.schema.json#/$defs/descriptionString"
+    },
+    "keywords": {
+      "$ref": "defs/metadata.schema.json#/$defs/keywords"
+    },
+    "localized": {
+      "$ref": "defs/display-text.schema.json#/$defs/localized"
+    },
+    "author": {
+      "$ref": "defs/metadata.schema.json#/$defs/author"
+    },
+    "license": {
+      "$ref": "defs/metadata.schema.json#/$defs/license"
+    },
+    "provenance": {
+      "$ref": "defs/metadata.schema.json#/$defs/provenance"
+    },
+    "compatibility": {
+      "allOf": [
+        { "$ref": "defs/metadata.schema.json#/$defs/compatibility" },
+        { "required": ["catalog"] }
+      ]
+    },
+    "colorSchemes": {
+      "$ref": "defs/seeds.schema.json#/properties/colorSchemes"
+    },
+    "seeds": {
+      "$ref": "defs/seeds.schema.json#/properties/seeds"
+    },
+    "tokens": {
+      "$ref": "defs/tokens.schema.json#/$defs/tokenTree",
+      "description": "Token groups. Leaf nodes use $type plus exactly one of $value or $derive."
+    },
+    "contexts": {
+      "$ref": "defs/contexts.schema.json"
+    },
+    "components": {
+      "$ref": "defs/components.schema.json"
+    },
+    "customization": {
+      "$ref": "defs/customization.schema.json"
+    },
+    "layout": {
+      "$ref": "defs/layout.schema.json"
+    },
+    "extends": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {
+          "$ref": "defs/metadata.schema.json#/$defs/id"
+        },
+        "version": {
+          "type": "string",
+          "description": "Exact version or caret range ^M.m.p",
+          "pattern": "^\\^?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+          "examples": ["1.0.0", "^1.2.0"],
+          "x-opentheme-code": "OT-INH-003",
+          "x-opentheme-rule": "R-INH-003"
+        }
+      },
+      "description": "Optional base theme reference (id + exact or caret version).",
+      "examples": [{ "id": "org.opentheme.aurora", "version": "^1.0.0" }],
+      "x-opentheme-code": "OT-INH-001",
+      "x-opentheme-rule": "R-INH-001"
+    },
+    "integrity": {
+      "type": "string",
+      "pattern": "^sha256-[A-Za-z0-9+/]{43}=$",
+      "description": "SRI-style SHA-256 of the canonical (normalized + JCS) UTF-8 bytes, excluding this member.",
+      "examples": ["sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="],
+      "x-opentheme-code": "OT-META-008",
+      "x-opentheme-rule": "R-META-008"
+    },
+    "$extensions": {
+      "type": "object",
+      "description": "Namespaced opaque extensions preserved but not interpreted by core.",
+      "additionalProperties": true,
+      "examples": [{ "com.example.tooling": { "editorState": 3 } }]
+    }
+  },
+  "examples": [
+    {
+      "opentheme": "1.0",
+      "id": "uid.k7q2m4x5c3v6b6n2z5r7t2y4wa",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": { "origin": "user-created" },
+      "compatibility": { "catalog": "1.0" },
+      "colorSchemes": { "supported": ["light"], "default": "light" },
+      "seeds": {
+        "light": {
+          "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+          "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+          "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+        },
+        "fontFamily": ["Inter", "system-ui", "sans-serif"]
+      }
+    }
+  ],
+  "x-opentheme-code": "OT-DOC-003",
+  "x-opentheme-rule": "R-DOC-003"
+}
