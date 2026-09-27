@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/registry/customization-points.schema.json",
+  "type": "object",
+  "required": ["version", "points"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "description": "Specification version.", "examples": ["1.0.0-draft.1"] },
+    "points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "description", "example"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "localizationKey": { "type": "string" },
+          "target": true,
+          "type": { "type": "string" },
+          "constraints": { "type": "object" },
+          "default": true,
+          "effectiveRange": { "type": "object" },
+          "example": true
+        }
+      }
+    }
+  }
+}
