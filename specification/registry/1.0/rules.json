@@ -1,0 +1,1827 @@
+{
+  "version": "1.0.0-draft.1",
+  "rules": [
+    {
+      "id": "R-A11Y-001",
+      "chapter": "11-accessibility.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/a11y/seed-contrast-fail",
+        "resolution/core/seed-only-light-high",
+        "resolution/us1/baseline-dark-high",
+        "resolution/us1/baseline-dark-standard",
+        "resolution/us1/baseline-light-high",
+        "resolution/us1/baseline-light-standard",
+        "resolution/us1/complete-aurora-dark-high",
+        "resolution/us1/complete-aurora-dark-standard",
+        "resolution/us1/complete-aurora-light-high",
+        "resolution/us1/complete-aurora-light-standard",
+        "resolution/us1/complete-graphite-dark-high",
+        "resolution/us1/complete-graphite-dark-standard",
+        "resolution/us1/complete-graphite-light-high",
+        "resolution/us1/complete-graphite-light-standard",
+        "resolution/us3/forced-colors",
+        "resolution/us4/extreme-accents"
+      ],
+      "description": "Forced colors mapping",
+      "summary": "Forced colors mapping",
+      "example": {
+        "id": "R-A11Y-001",
+        "fixtures": [
+          "resolution/core/seed-only-light-high"
+        ]
+      }
+    },
+    {
+      "id": "R-A11Y-002",
+      "chapter": "08-accessibility.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-A11Y-002",
+      "summary": "Rule R-A11Y-002",
+      "example": {
+        "id": "R-A11Y-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-A11Y-003",
+      "chapter": "11-accessibility.md",
+      "requirements": [
+        "FR-064",
+        "FR-072"
+      ],
+      "fixtures": [
+        "accessibility/dark-overlay-shortfall",
+        "accessibility/invalid-theme-no-report",
+        "accessibility/no-shortfalls",
+        "accessibility/token-shortfall"
+      ],
+      "description": "Accessibility conformance report: a registry pair below its standard-contrast threshold in a supported mode",
+      "summary": "Declared pair below threshold (conformance report)",
+      "example": {
+        "id": "R-A11Y-003",
+        "fixtures": [
+          "accessibility/dark-overlay-shortfall"
+        ]
+      }
+    },
+    {
+      "id": "R-A11Y-004",
+      "chapter": "08-accessibility.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-A11Y-004",
+      "summary": "Rule R-A11Y-004",
+      "example": {
+        "id": "R-A11Y-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-A11Y-005",
+      "chapter": "08-accessibility.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-A11Y-005",
+      "summary": "Rule R-A11Y-005",
+      "example": {
+        "id": "R-A11Y-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-A11Y-006",
+      "chapter": "08-accessibility.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us4/compact-target-size"
+      ],
+      "description": "Rule R-A11Y-006",
+      "summary": "Rule R-A11Y-006",
+      "example": {
+        "id": "R-A11Y-006",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-A11Y-007",
+      "chapter": "08-accessibility.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us4/aa-floor-reject"
+      ],
+      "description": "Rule R-A11Y-007",
+      "summary": "Rule R-A11Y-007",
+      "example": {
+        "id": "R-A11Y-007",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-AI-001",
+      "chapter": "00-introduction-and-conformance.md",
+      "requirements": [
+        "FR-090",
+        "FR-097"
+      ],
+      "fixtures": [
+        "malicious/ai/data-access-member",
+        "malicious/ai/script-member",
+        "malicious/ai/selector-member",
+        "resolution/us8/ai-untrusted"
+      ],
+      "description": "AI-generated themes use the same rules and trust model",
+      "summary": "No AI exception",
+      "example": {
+        "id": "R-AI-001",
+        "fixtures": [
+          "resolution/us8/ai-untrusted"
+        ]
+      }
+    },
+    {
+      "id": "R-CAN-001",
+      "chapter": "01-document-format.md",
+      "requirements": [
+        "FR-069"
+      ],
+      "fixtures": [
+        "canonical/order-a",
+        "canonical/order-b"
+      ],
+      "description": "Canonical bytes ignore member order and formatting",
+      "summary": "Canonical form is order-independent",
+      "example": {
+        "id": "R-CAN-001",
+        "fixtures": [
+          "canonical/order-a"
+        ]
+      }
+    },
+    {
+      "id": "R-CAN-002",
+      "chapter": "01-document-format.md",
+      "requirements": [
+        "FR-069",
+        "FR-094"
+      ],
+      "fixtures": [
+        "canonical/normalize-alpha-hex"
+      ],
+      "description": "Normalization removes alpha:1, hex, and integrity before JCS",
+      "summary": "Closed normalization list (R3)",
+      "example": {
+        "id": "R-CAN-002",
+        "fixtures": [
+          "canonical/normalize-alpha-hex"
+        ]
+      }
+    },
+    {
+      "id": "R-CAN-003",
+      "chapter": "15-extensions-and-provenance.md",
+      "requirements": [
+        "FR-089"
+      ],
+      "fixtures": [
+        "canonical/preserve-extensions"
+      ],
+      "description": "$extensions preserved through canonicalization",
+      "summary": "Opaque extensions round-trip",
+      "example": {
+        "id": "R-CAN-003",
+        "fixtures": [
+          "canonical/preserve-extensions"
+        ]
+      }
+    },
+    {
+      "id": "R-CAN-004",
+      "chapter": "15-extensions-and-provenance.md",
+      "requirements": [
+        "FR-049"
+      ],
+      "fixtures": [
+        "canonical/flatten-aurora-child"
+      ],
+      "description": "Flatten drops extends and appends lineage oldest-first",
+      "summary": "Export flattening",
+      "example": {
+        "id": "R-CAN-004",
+        "fixtures": [
+          "canonical/flatten-aurora-child"
+        ]
+      }
+    },
+    {
+      "id": "R-CMP-001",
+      "chapter": "07-components.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us1/unstyled-contract-defaults",
+        "resolution/us5/foreign-contract-ignored",
+        "resolution/us5/host-defaults"
+      ],
+      "description": "Rule R-CMP-001",
+      "summary": "Rule R-CMP-001",
+      "example": {
+        "id": "R-CMP-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CMP-002",
+      "chapter": "07-components.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us5/incompatible-version"
+      ],
+      "description": "Rule R-CMP-002",
+      "summary": "Rule R-CMP-002",
+      "example": {
+        "id": "R-CMP-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CMP-003",
+      "chapter": "07-components.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-CMP-003",
+      "summary": "Rule R-CMP-003",
+      "example": {
+        "id": "R-CMP-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CMP-004",
+      "chapter": "07-components.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-CMP-004",
+      "summary": "Rule R-CMP-004",
+      "example": {
+        "id": "R-CMP-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CTX-001",
+      "chapter": "06-contexts-and-modes.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/ctx/unknown-dimension",
+        "malicious/ai/when-outside-dimensions",
+        "malicious/content/when-outside-dimensions",
+        "resolution/us3/platform-high-contrast-derived",
+        "resolution/us3/platform-text-scale",
+        "resolution/us3/reduced-motion",
+        "resolution/us3/user-dark-over-platform-light",
+        "resolution/us3/variant-fallback",
+        "resolution/us4/text-scale",
+        "resolution/us4/text-scale-clamp",
+        "resolution/us4/text-scale-platform",
+        "valid/ctx/light-dark-overlays",
+        "valid/doc/dark-only"
+      ],
+      "description": "Mode selection and platform accessibility",
+      "summary": "Mode selection and platform accessibility",
+      "example": {
+        "id": "R-CTX-001",
+        "fixtures": [
+          "valid/ctx/light-dark-overlays"
+        ]
+      }
+    },
+    {
+      "id": "R-CTX-002",
+      "chapter": "06-contexts-and-modes.md",
+      "requirements": [],
+      "fixtures": [
+        "valid/ctx/light-dark-overlays"
+      ],
+      "description": "Rule R-CTX-002",
+      "summary": "Rule R-CTX-002",
+      "example": {
+        "id": "R-CTX-002",
+        "fixtures": [
+          "valid/ctx/light-dark-overlays"
+        ]
+      }
+    },
+    {
+      "id": "R-CTX-003",
+      "chapter": "06-contexts-and-modes.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-CTX-003",
+      "summary": "Rule R-CTX-003",
+      "example": {
+        "id": "R-CTX-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CTX-004",
+      "chapter": "06-contexts-and-modes.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-CTX-004",
+      "summary": "Rule R-CTX-004",
+      "example": {
+        "id": "R-CTX-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CTX-101",
+      "chapter": "06-contexts-and-modes.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us3/dark-only-prefers-light"
+      ],
+      "description": "Unsupported platform scheme falls back with OT-CTX-101",
+      "summary": "Unsupported platform scheme falls back with OT-CTX-101",
+      "example": {
+        "id": "R-CTX-101",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-001",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/default-violates",
+        "invalid/cus/effective-range-max",
+        "resolution/us4/policy-narrow-no-default",
+        "valid/baseline/baseline-theme",
+        "valid/reference/aurora",
+        "valid/reference/graphite"
+      ],
+      "description": "Rule R-CUS-001",
+      "summary": "Rule R-CUS-001",
+      "example": {
+        "id": "R-CUS-001",
+        "fixtures": [
+          "valid/baseline/baseline-theme"
+        ]
+      }
+    },
+    {
+      "id": "R-CUS-002",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/constraint-type"
+      ],
+      "description": "Rule R-CUS-002",
+      "summary": "Rule R-CUS-002",
+      "example": {
+        "id": "R-CUS-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-003",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/target-missing"
+      ],
+      "description": "Rule R-CUS-003",
+      "summary": "Rule R-CUS-003",
+      "example": {
+        "id": "R-CUS-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-004",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/range-not-whole-steps"
+      ],
+      "description": "Rule R-CUS-004",
+      "summary": "Rule R-CUS-004",
+      "example": {
+        "id": "R-CUS-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-005",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/text-size-below-100"
+      ],
+      "description": "Rule R-CUS-005",
+      "summary": "Rule R-CUS-005",
+      "example": {
+        "id": "R-CUS-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-006",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/std-type-changed"
+      ],
+      "description": "Rule R-CUS-006",
+      "summary": "Rule R-CUS-006",
+      "example": {
+        "id": "R-CUS-006",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-101",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us4/arbitrary-accent",
+        "resolution/us4/carry-over",
+        "resolution/us4/clamp-and-fallback",
+        "resolution/us4/narrow-then-widen"
+      ],
+      "description": "Rule R-CUS-101",
+      "summary": "Rule R-CUS-101",
+      "example": {
+        "id": "R-CUS-101",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-102",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us4/clamp-and-fallback"
+      ],
+      "description": "Rule R-CUS-102",
+      "summary": "Rule R-CUS-102",
+      "example": {
+        "id": "R-CUS-102",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-103",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us4/not-permitted"
+      ],
+      "description": "Rule R-CUS-103",
+      "summary": "Rule R-CUS-103",
+      "example": {
+        "id": "R-CUS-103",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-CUS-104",
+      "chapter": "09-customization.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us4/point-removed"
+      ],
+      "description": "Rule R-CUS-104",
+      "summary": "Rule R-CUS-104",
+      "example": {
+        "id": "R-CUS-104",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DOC-001",
+      "chapter": "01-theme-document.md",
+      "requirements": [],
+      "fixtures": [
+        "examples/01-minimal-seed-only",
+        "examples/02-light-and-dark",
+        "examples/03-high-contrast-overrides",
+        "examples/04-derived-accent-family",
+        "examples/05-component-styling",
+        "examples/06-customization-points",
+        "examples/07-host-extension",
+        "examples/08-full-featured",
+        "invalid/doc/not-object",
+        "valid/baseline/baseline-theme",
+        "valid/doc/minimal-seed-only",
+        "valid/reference/aurora",
+        "valid/reference/graphite"
+      ],
+      "description": "Rule R-DOC-001",
+      "summary": "Rule R-DOC-001",
+      "example": {
+        "id": "R-DOC-001",
+        "fixtures": [
+          "valid/baseline/baseline-theme"
+        ]
+      }
+    },
+    {
+      "id": "R-DOC-002",
+      "chapter": "01-document-format.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/doc/duplicate-keys"
+      ],
+      "description": "Duplicate member",
+      "summary": "Duplicate member",
+      "example": {
+        "id": "R-DOC-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DOC-003",
+      "chapter": "01-document-format.md",
+      "requirements": [],
+      "fixtures": [
+        "canonical/export-preferences",
+        "examples/invalid-doc-unknown-member",
+        "invalid/doc/unknown-member",
+        "invalid/lay/content-changes",
+        "malicious/ai/data-access-member",
+        "malicious/ai/script-member",
+        "malicious/ai/selector-member",
+        "malicious/content/data-access-member",
+        "malicious/content/script-member",
+        "malicious/content/selector-member",
+        "resolution/us2/forbidden-selected"
+      ],
+      "description": "Unknown members are rejected",
+      "summary": "Unknown members are rejected",
+      "example": {
+        "id": "R-DOC-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DOC-004",
+      "chapter": "01-theme-document.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/too-many-font-families"
+      ],
+      "description": "Rule R-DOC-004",
+      "summary": "Rule R-DOC-004",
+      "example": {
+        "id": "R-DOC-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DOC-005",
+      "chapter": "01-theme-document.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DOC-005",
+      "summary": "Rule R-DOC-005",
+      "example": {
+        "id": "R-DOC-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-001",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/drv/unknown-op"
+      ],
+      "description": "Rule R-DRV-001",
+      "summary": "Rule R-DRV-001",
+      "example": {
+        "id": "R-DRV-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-002",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-002",
+      "summary": "Rule R-DRV-002",
+      "example": {
+        "id": "R-DRV-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-003",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-003",
+      "summary": "Rule R-DRV-003",
+      "example": {
+        "id": "R-DRV-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-004",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-004",
+      "summary": "Rule R-DRV-004",
+      "example": {
+        "id": "R-DRV-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-005",
+      "chapter": "04-transformations.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/derivation-depth-exceeded"
+      ],
+      "description": "Derivation composition depth",
+      "summary": "Derivation composition depth",
+      "example": {
+        "id": "R-DRV-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-006",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-006",
+      "summary": "Rule R-DRV-006",
+      "example": {
+        "id": "R-DRV-006",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-007",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-007",
+      "summary": "Rule R-DRV-007",
+      "example": {
+        "id": "R-DRV-007",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-101",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-101",
+      "summary": "Rule R-DRV-101",
+      "example": {
+        "id": "R-DRV-101",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-DRV-102",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-DRV-102",
+      "summary": "Rule R-DRV-102",
+      "example": {
+        "id": "R-DRV-102",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-HOST-001",
+      "chapter": "13-hosts.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/host/reserved-opentheme",
+        "invalid/host/reserved-std",
+        "invalid/host/reserved-uid",
+        "valid/host/media",
+        "valid/host/notes"
+      ],
+      "description": "Rule R-HOST-001",
+      "summary": "Rule R-HOST-001",
+      "example": {
+        "id": "R-HOST-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-HOST-002",
+      "chapter": "13-hosts.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/host/bad-property-type",
+        "invalid/host/bad-state"
+      ],
+      "description": "Rule R-HOST-002",
+      "summary": "Rule R-HOST-002",
+      "example": {
+        "id": "R-HOST-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-HOST-003",
+      "chapter": "13-hosts.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/host/missing-default"
+      ],
+      "description": "Rule R-HOST-003",
+      "summary": "Rule R-HOST-003",
+      "example": {
+        "id": "R-HOST-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-HOST-004",
+      "chapter": "13-hosts.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/host/duplicate-contract"
+      ],
+      "description": "Rule R-HOST-004",
+      "summary": "Rule R-HOST-004",
+      "example": {
+        "id": "R-HOST-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-INH-001",
+      "chapter": "10-inheritance-and-resolution.md",
+      "requirements": [],
+      "fixtures": [
+        "canonical/flatten-aurora-child",
+        "inheritance/missing-base",
+        "inheritance/valid-child",
+        "resolution/us2/base-missing",
+        "resolution/us7/user-child-untrusted"
+      ],
+      "description": "Inheritance base lookup",
+      "summary": "Inheritance base lookup",
+      "example": {
+        "id": "R-INH-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-INH-002",
+      "chapter": "11-inheritance.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-INH-002",
+      "summary": "Rule R-INH-002",
+      "example": {
+        "id": "R-INH-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-INH-003",
+      "chapter": "10-inheritance-and-resolution.md",
+      "requirements": [],
+      "fixtures": [
+        "inheritance/version-outside-range"
+      ],
+      "description": "Inheritance version range",
+      "summary": "Inheritance version range",
+      "example": {
+        "id": "R-INH-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-INH-004",
+      "chapter": "11-inheritance.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-INH-004",
+      "summary": "Rule R-INH-004",
+      "example": {
+        "id": "R-INH-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-INH-005",
+      "chapter": "11-inheritance.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-INH-005",
+      "summary": "Rule R-INH-005",
+      "example": {
+        "id": "R-INH-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-KRN-001",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/cbrt"
+      ],
+      "description": "Rule R-KRN-001",
+      "summary": "Rule R-KRN-001",
+      "example": {
+        "id": "R-KRN-001",
+        "fixtures": [
+          "kernels/cbrt"
+        ]
+      }
+    },
+    {
+      "id": "R-KRN-002",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/log2"
+      ],
+      "description": "Rule R-KRN-002",
+      "summary": "Rule R-KRN-002",
+      "example": {
+        "id": "R-KRN-002",
+        "fixtures": [
+          "kernels/log2"
+        ]
+      }
+    },
+    {
+      "id": "R-KRN-003",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/exp2"
+      ],
+      "description": "Rule R-KRN-003",
+      "summary": "Rule R-KRN-003",
+      "example": {
+        "id": "R-KRN-003",
+        "fixtures": [
+          "kernels/exp2"
+        ]
+      }
+    },
+    {
+      "id": "R-KRN-004",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/srgb-decode"
+      ],
+      "description": "Rule R-KRN-004",
+      "summary": "Rule R-KRN-004",
+      "example": {
+        "id": "R-KRN-004",
+        "fixtures": [
+          "kernels/srgb-decode"
+        ]
+      }
+    },
+    {
+      "id": "R-KRN-005",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/srgb-encode"
+      ],
+      "description": "Rule R-KRN-005",
+      "summary": "Rule R-KRN-005",
+      "example": {
+        "id": "R-KRN-005",
+        "fixtures": [
+          "kernels/srgb-encode"
+        ]
+      }
+    },
+    {
+      "id": "R-KRN-006",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/sin"
+      ],
+      "description": "Rule R-KRN-006",
+      "summary": "Rule R-KRN-006",
+      "example": {
+        "id": "R-KRN-006",
+        "fixtures": [
+          "kernels/sin"
+        ]
+      }
+    },
+    {
+      "id": "R-KRN-007",
+      "chapter": "05-numeric-kernels.md",
+      "requirements": [],
+      "fixtures": [
+        "kernels/cos"
+      ],
+      "description": "Rule R-KRN-007",
+      "summary": "Rule R-KRN-007",
+      "example": {
+        "id": "R-KRN-007",
+        "fixtures": [
+          "kernels/cos"
+        ]
+      }
+    },
+    {
+      "id": "R-LAY-001",
+      "chapter": "08-layout.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us5/navigation-side",
+        "resolution/us5/unknown-region"
+      ],
+      "description": "Rule R-LAY-001",
+      "summary": "Rule R-LAY-001",
+      "example": {
+        "id": "R-LAY-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LAY-002",
+      "chapter": "08-layout.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/lay/reflow-320"
+      ],
+      "description": "Rule R-LAY-002",
+      "summary": "Rule R-LAY-002",
+      "example": {
+        "id": "R-LAY-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-001",
+      "chapter": "12-security-and-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/document-too-large"
+      ],
+      "description": "Document byte limit",
+      "summary": "Document byte limit",
+      "example": {
+        "id": "R-LIM-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-002",
+      "chapter": "12-security-and-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/nesting-too-deep"
+      ],
+      "description": "Nesting depth limit",
+      "summary": "Nesting depth limit",
+      "example": {
+        "id": "R-LIM-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-003",
+      "chapter": "12-security-and-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/too-many-tokens"
+      ],
+      "description": "Token count limit",
+      "summary": "Token count limit",
+      "example": {
+        "id": "R-LIM-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-004",
+      "chapter": "11-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/customization-points-201"
+      ],
+      "description": "Rule R-LIM-004",
+      "summary": "Rule R-LIM-004",
+      "example": {
+        "id": "R-LIM-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-005",
+      "chapter": "12-security-and-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/host/too-many-variants",
+        "malicious/limits/too-many-overlays"
+      ],
+      "description": "Overlay count limit",
+      "summary": "Overlay count limit",
+      "example": {
+        "id": "R-LIM-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-006",
+      "chapter": "12-security-and-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/path-too-long",
+        "malicious/limits/segment-too-long"
+      ],
+      "description": "Path length limits",
+      "summary": "Path length limits",
+      "example": {
+        "id": "R-LIM-006",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-LIM-099",
+      "chapter": "11-limits.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-LIM-099",
+      "summary": "Rule R-LIM-099",
+      "example": {
+        "id": "R-LIM-099",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-001",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/cus/too-many-targets",
+        "invalid/meta/bad-id"
+      ],
+      "description": "Rule R-META-001",
+      "summary": "Rule R-META-001",
+      "example": {
+        "id": "R-META-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-002",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-META-002",
+      "summary": "Rule R-META-002",
+      "example": {
+        "id": "R-META-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-003",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-META-003",
+      "summary": "Rule R-META-003",
+      "example": {
+        "id": "R-META-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-004",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/ai/bidi-override",
+        "malicious/ai/markup-in-name",
+        "malicious/content/bidi-override",
+        "malicious/content/markup-in-name"
+      ],
+      "description": "Forbidden characters in display text",
+      "summary": "Forbidden characters in display text",
+      "example": {
+        "id": "R-META-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-005",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/description-too-long",
+        "malicious/limits/display-name-too-long"
+      ],
+      "description": "Display text length limits",
+      "summary": "Display text length limits",
+      "example": {
+        "id": "R-META-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-006",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us3/localized-de-default",
+        "resolution/us3/localized-fa"
+      ],
+      "description": "Localized display text lookup",
+      "summary": "Localized display text lookup",
+      "example": {
+        "id": "R-META-006",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-007",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-META-007",
+      "summary": "Rule R-META-007",
+      "example": {
+        "id": "R-META-007",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-META-008",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "canonical/export-missing-meta"
+      ],
+      "description": "Rule R-META-008",
+      "summary": "Rule R-META-008",
+      "example": {
+        "id": "R-META-008",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-REF-001",
+      "chapter": "03-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/ref/dangling"
+      ],
+      "description": "Dangling reference",
+      "summary": "Dangling reference",
+      "example": {
+        "id": "R-REF-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-REF-002",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-REF-002",
+      "summary": "Rule R-REF-002",
+      "example": {
+        "id": "R-REF-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-REF-003",
+      "chapter": "03-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/ref/cycle"
+      ],
+      "description": "Reference cycle",
+      "summary": "Reference cycle",
+      "example": {
+        "id": "R-REF-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-REF-004",
+      "chapter": "03-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "malicious/limits/reference-chain-too-deep"
+      ],
+      "description": "Reference chain depth",
+      "summary": "Reference chain depth",
+      "example": {
+        "id": "R-REF-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-RES-001",
+      "chapter": "10-inheritance-and-resolution.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/core/seed-only-light-high",
+        "resolution/core/seed-only-light-standard",
+        "resolution/matrix/L1-L2-colorScheme",
+        "resolution/matrix/L1-L2-contrast",
+        "resolution/matrix/L1-L2-density",
+        "resolution/matrix/L1-L2-motion",
+        "resolution/matrix/L1-L2-sizeClass",
+        "resolution/matrix/L1-L3-colorScheme",
+        "resolution/matrix/L1-L3-contrast",
+        "resolution/matrix/L1-L3-density",
+        "resolution/matrix/L1-L3-motion",
+        "resolution/matrix/L1-L3-sizeClass",
+        "resolution/matrix/L1-L4-colorScheme",
+        "resolution/matrix/L1-L4-contrast",
+        "resolution/matrix/L1-L4-density",
+        "resolution/matrix/L1-L4-motion",
+        "resolution/matrix/L1-L4-sizeClass",
+        "resolution/matrix/L1-L5-colorScheme",
+        "resolution/matrix/L1-L5-contrast",
+        "resolution/matrix/L1-L5-density",
+        "resolution/matrix/L1-L5-motion",
+        "resolution/matrix/L1-L5-sizeClass",
+        "resolution/matrix/L2-L3-colorScheme",
+        "resolution/matrix/L2-L3-contrast",
+        "resolution/matrix/L2-L3-density",
+        "resolution/matrix/L2-L3-motion",
+        "resolution/matrix/L2-L3-sizeClass",
+        "resolution/matrix/L2-L4-colorScheme",
+        "resolution/matrix/L2-L4-contrast",
+        "resolution/matrix/L2-L4-density",
+        "resolution/matrix/L2-L4-motion",
+        "resolution/matrix/L2-L4-sizeClass",
+        "resolution/matrix/L2-L5-colorScheme",
+        "resolution/matrix/L2-L5-contrast",
+        "resolution/matrix/L2-L5-density",
+        "resolution/matrix/L2-L5-motion",
+        "resolution/matrix/L2-L5-sizeClass",
+        "resolution/matrix/L3-L4-colorScheme",
+        "resolution/matrix/L3-L4-contrast",
+        "resolution/matrix/L3-L4-density",
+        "resolution/matrix/L3-L4-motion",
+        "resolution/matrix/L3-L4-sizeClass",
+        "resolution/matrix/L3-L5-colorScheme",
+        "resolution/matrix/L3-L5-contrast",
+        "resolution/matrix/L3-L5-density",
+        "resolution/matrix/L3-L5-motion",
+        "resolution/matrix/L3-L5-sizeClass",
+        "resolution/matrix/L4-L5-colorScheme",
+        "resolution/matrix/L4-L5-contrast",
+        "resolution/matrix/L4-L5-density",
+        "resolution/matrix/L4-L5-motion",
+        "resolution/matrix/L4-L5-sizeClass",
+        "resolution/us1/complete-aurora-dark-high",
+        "resolution/us1/complete-aurora-dark-standard",
+        "resolution/us1/complete-aurora-light-high",
+        "resolution/us1/complete-aurora-light-standard",
+        "resolution/us1/complete-graphite-dark-high",
+        "resolution/us1/complete-graphite-dark-standard",
+        "resolution/us1/complete-graphite-light-high",
+        "resolution/us1/complete-graphite-light-standard",
+        "resolution/us1/policy-lock-brand",
+        "resolution/us1/policy-lock-contract",
+        "resolution/us2/forbidden-selected",
+        "resolution/us2/keep-previous",
+        "resolution/us5/portability-aurora-media",
+        "resolution/us5/portability-aurora-notes",
+        "resolution/us5/portability-graphite-media",
+        "resolution/us5/portability-graphite-notes"
+      ],
+      "description": "Layer-pair matrix including L*-L5",
+      "summary": "Layer-pair matrix including L*-L5",
+      "example": {
+        "id": "R-RES-001",
+        "fixtures": [
+          "resolution/core/seed-only-light-high"
+        ]
+      }
+    },
+    {
+      "id": "R-RES-002",
+      "chapter": "10-resolution.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-RES-002",
+      "summary": "Rule R-RES-002",
+      "example": {
+        "id": "R-RES-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-RES-003",
+      "chapter": "10-resolution.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us1/baseline-dark-high",
+        "resolution/us1/baseline-dark-standard",
+        "resolution/us1/baseline-light-high",
+        "resolution/us1/baseline-light-standard",
+        "resolution/us1/default-invalid",
+        "resolution/us1/default-missing",
+        "resolution/us2/base-missing"
+      ],
+      "description": "Rule R-RES-003",
+      "summary": "Rule R-RES-003",
+      "example": {
+        "id": "R-RES-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-RES-004",
+      "chapter": "10-resolution.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-RES-004",
+      "summary": "Rule R-RES-004",
+      "example": {
+        "id": "R-RES-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-RES-005",
+      "chapter": "10-inheritance-and-resolution.md",
+      "requirements": [
+        "FR-053",
+        "NFR-001"
+      ],
+      "fixtures": [
+        "resolution/selection/unversioned-highest",
+        "resolution/selection/unversioned-order-independent",
+        "resolution/selection/unversioned-highest-invalid"
+      ],
+      "description": "Unversioned selection picks the highest SemVer precedence among candidates, independent of input order; an invalid highest version falls back as a whole",
+      "summary": "Unversioned selection: highest SemVer precedence",
+      "example": {
+        "id": "R-RES-005",
+        "fixtures": [
+          "resolution/selection/unversioned-highest"
+        ]
+      }
+    },
+    {
+      "id": "R-SEC-001",
+      "chapter": "12-security-and-limits.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us2/identity-collision",
+        "resolution/us7/user-child-untrusted",
+        "resolution/us8/ai-untrusted"
+      ],
+      "description": "Trust identity collision",
+      "summary": "Trust identity collision",
+      "example": {
+        "id": "R-SEC-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-SEC-002",
+      "chapter": "12-security.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/us7/same-id-version-different-content"
+      ],
+      "description": "Rule R-SEC-002",
+      "summary": "Rule R-SEC-002",
+      "example": {
+        "id": "R-SEC-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-SEED-001",
+      "chapter": "03-seeds-and-color.md",
+      "requirements": [],
+      "fixtures": [
+        "valid/doc/dark-only",
+        "valid/doc/minimal-seed-only"
+      ],
+      "description": "Rule R-SEED-001",
+      "summary": "Rule R-SEED-001",
+      "example": {
+        "id": "R-SEED-001",
+        "fixtures": [
+          "valid/doc/dark-only"
+        ]
+      }
+    },
+    {
+      "id": "R-TOK-001",
+      "chapter": "03-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "resolution/core/seed-only-light-standard",
+        "resolution/us3/rtl-mirroring"
+      ],
+      "description": "RTL logical mirroring",
+      "summary": "RTL logical mirroring",
+      "example": {
+        "id": "R-TOK-001",
+        "fixtures": [
+          "resolution/core/seed-only-light-standard"
+        ]
+      }
+    },
+    {
+      "id": "R-TOK-002",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-TOK-002",
+      "summary": "Rule R-TOK-002",
+      "example": {
+        "id": "R-TOK-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-003",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-TOK-003",
+      "summary": "Rule R-TOK-003",
+      "example": {
+        "id": "R-TOK-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-004",
+      "chapter": "03-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "examples/invalid-tok-bad-type",
+        "invalid/tok/type-mismatch",
+        "malicious/ai/css-in-value",
+        "malicious/ai/javascript-uri-token",
+        "malicious/ai/url-font-family",
+        "malicious/content/css-in-value",
+        "malicious/content/javascript-uri-token",
+        "malicious/content/url-font-family"
+      ],
+      "description": "Values outside type grammar",
+      "summary": "Values outside type grammar",
+      "example": {
+        "id": "R-TOK-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-005",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/tok/out-of-range"
+      ],
+      "description": "Rule R-TOK-005",
+      "summary": "Rule R-TOK-005",
+      "example": {
+        "id": "R-TOK-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-006",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/tok/unknown-type"
+      ],
+      "description": "Rule R-TOK-006",
+      "summary": "Rule R-TOK-006",
+      "example": {
+        "id": "R-TOK-006",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-007",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-TOK-007",
+      "summary": "Rule R-TOK-007",
+      "example": {
+        "id": "R-TOK-007",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-010",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-TOK-010",
+      "summary": "Rule R-TOK-010",
+      "example": {
+        "id": "R-TOK-010",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-TOK-011",
+      "chapter": "04-tokens.md",
+      "requirements": [],
+      "fixtures": [],
+      "description": "Rule R-TOK-011",
+      "summary": "Rule R-TOK-011",
+      "example": {
+        "id": "R-TOK-011",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-VER-001",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/ver/unsupported-major",
+        "versioning/compare-constraints-narrowed",
+        "versioning/compare-extension-removed",
+        "versioning/compare-point-added",
+        "versioning/compare-point-removed",
+        "versioning/compare-point-type-changed",
+        "versioning/compare-range-widened",
+        "versioning/compare-scheme-removed",
+        "versioning/compare-value-change"
+      ],
+      "description": "Unsupported major version",
+      "summary": "Unsupported major version",
+      "example": {
+        "id": "R-VER-001",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-VER-002",
+      "chapter": "02-metadata-and-identity.md",
+      "requirements": [],
+      "fixtures": [
+        "invalid/ver/unsupported-minor"
+      ],
+      "description": "Unsupported minor version",
+      "summary": "Unsupported minor version",
+      "example": {
+        "id": "R-VER-002",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-VER-003",
+      "chapter": "12-versioning.md",
+      "requirements": [],
+      "fixtures": [
+        "versioning/simulated-previous-major/migrate-ok",
+        "versioning/simulated-previous-major/migrate-outside-window"
+      ],
+      "description": "Rule R-VER-003",
+      "summary": "Rule R-VER-003",
+      "example": {
+        "id": "R-VER-003",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-VER-004",
+      "chapter": "12-versioning.md",
+      "requirements": [],
+      "fixtures": [
+        "versioning/simulated-previous-major/migrate-ok"
+      ],
+      "description": "Rule R-VER-004",
+      "summary": "Rule R-VER-004",
+      "example": {
+        "id": "R-VER-004",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-VER-005",
+      "chapter": "12-versioning.md",
+      "requirements": [],
+      "fixtures": [
+        "versioning/deprecated-token"
+      ],
+      "description": "Rule R-VER-005",
+      "summary": "Rule R-VER-005",
+      "example": {
+        "id": "R-VER-005",
+        "fixtures": []
+      }
+    },
+    {
+      "id": "R-PREF-001",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/invalid/duplicate-member",
+        "preferences/invalid/not-json",
+        "preferences/invalid/top-level-array"
+      ],
+      "description": "Preferences document is not well-formed I-JSON",
+      "summary": "Preferences document is not well-formed I-JSON",
+      "example": {
+        "id": "R-PREF-001",
+        "fixtures": [
+          "preferences/invalid/duplicate-member"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-002",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/malicious/nesting-too-deep",
+        "preferences/malicious/oversized",
+        "preferences/valid/nesting-at-limit",
+        "preferences/valid/size-at-limit"
+      ],
+      "description": "Preferences document exceeds a size or nesting limit",
+      "summary": "Preferences document exceeds a size or nesting limit",
+      "example": {
+        "id": "R-PREF-002",
+        "fixtures": [
+          "preferences/malicious/nesting-too-deep"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-003",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/invalid/version-malformed",
+        "preferences/invalid/version-missing",
+        "preferences/valid/minimal"
+      ],
+      "description": "Preferences format version missing or malformed",
+      "summary": "Preferences format version missing or malformed",
+      "example": {
+        "id": "R-PREF-003",
+        "fixtures": [
+          "preferences/invalid/version-malformed"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-004",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/invalid/version-newer-minor",
+        "preferences/invalid/version-other-major"
+      ],
+      "description": "Unsupported preferences format version",
+      "summary": "Unsupported preferences format version",
+      "example": {
+        "id": "R-PREF-004",
+        "fixtures": [
+          "preferences/invalid/version-newer-minor"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-005",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/invalid/required-missing",
+        "preferences/invalid/unknown-member",
+        "preferences/malicious/proto-member",
+        "preferences/valid/minimal"
+      ],
+      "description": "Unknown or missing preferences member",
+      "summary": "Unknown or missing preferences member",
+      "example": {
+        "id": "R-PREF-005",
+        "fixtures": [
+          "preferences/invalid/required-missing"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-006",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/invalid/previous-without-version",
+        "preferences/invalid/selection-bad-id",
+        "preferences/valid/full"
+      ],
+      "description": "Invalid selection or previous",
+      "summary": "Invalid selection or previous",
+      "example": {
+        "id": "R-PREF-006",
+        "fixtures": [
+          "preferences/invalid/previous-without-version"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-007",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/invalid/values-bad-key",
+        "preferences/invalid/values-not-object",
+        "preferences/invalid/values-too-many",
+        "preferences/valid/full"
+      ],
+      "description": "Invalid values map",
+      "summary": "Invalid values map",
+      "example": {
+        "id": "R-PREF-007",
+        "fixtures": [
+          "preferences/invalid/values-bad-key"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-008",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [
+        "preferences/malicious/bidi-in-value",
+        "preferences/malicious/expression-value",
+        "preferences/valid/value-not-literal"
+      ],
+      "description": "Preference value is not a permitted literal and is ignored",
+      "summary": "Preference value is not a permitted literal and is ignored",
+      "example": {
+        "id": "R-PREF-008",
+        "fixtures": [
+          "preferences/malicious/bidi-in-value"
+        ]
+      }
+    },
+    {
+      "id": "R-PREF-009",
+      "chapter": "18-user-preferences.md",
+      "requirements": [
+        "FR-C067",
+        "FR-C069"
+      ],
+      "fixtures": [],
+      "description": "Rule R-PREF-009 (reserved: lossy migration from a previous preferences major; no previous major exists yet)",
+      "summary": "Rule R-PREF-009 (reserved: lossy migration from a previous preferences major; no previous major exists yet)",
+      "example": {
+        "id": "R-PREF-009",
+        "fixtures": []
+      }
+    }
+  ]
+}
