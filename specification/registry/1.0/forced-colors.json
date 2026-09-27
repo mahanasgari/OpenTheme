@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0-draft.1",
+  "roles": [
+    {
+      "id": "canvas",
+      "description": "Page or window background.",
+      "cssSystemColorHint": "Canvas",
+      "example": "canvas"
+    },
+    {
+      "id": "canvas-text",
+      "description": "Default text on canvas.",
+      "cssSystemColorHint": "CanvasText",
+      "example": "canvas-text"
+    },
+    {
+      "id": "link-text",
+      "description": "Hyperlink text.",
+      "cssSystemColorHint": "LinkText",
+      "example": "link-text"
+    },
+    {
+      "id": "button-face",
+      "description": "Button background.",
+      "cssSystemColorHint": "ButtonFace",
+      "example": "button-face"
+    },
+    {
+      "id": "button-text",
+      "description": "Button label text.",
+      "cssSystemColorHint": "ButtonText",
+      "example": "button-text"
+    },
+    {
+      "id": "highlight",
+      "description": "Selected item background.",
+      "cssSystemColorHint": "Highlight",
+      "example": "highlight"
+    },
+    {
+      "id": "highlight-text",
+      "description": "Selected item text.",
+      "cssSystemColorHint": "HighlightText",
+      "example": "highlight-text"
+    },
+    {
+      "id": "gray-text",
+      "description": "Disabled or secondary text.",
+      "cssSystemColorHint": "GrayText",
+      "example": "gray-text"
+    },
+    {
+      "id": "button-border",
+      "description": "Button border.",
+      "cssSystemColorHint": "ButtonBorder",
+      "example": "button-border"
+    }
+  ]
+}
