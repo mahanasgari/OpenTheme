@@ -1,0 +1,204 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-001"
+  ],
+  "description": "Portability: org.opentheme.aurora × com.example.media (SC-002).",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.opentheme.aurora"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.aurora",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    },
+    "host": {
+      "openthemeHost": "1.0",
+      "id": "com.example.media",
+      "catalog": "1.0",
+      "consumes": {
+        "tokens": [
+          "color.*",
+          "font.*",
+          "space.*",
+          "radius.*",
+          "motion.*",
+          "size.*"
+        ],
+        "contracts": [
+          "std/button@1",
+          "std/dialog@1",
+          "std/nav-bar@1"
+        ]
+      },
+      "tokens": {
+        "color": {
+          "$type": "color",
+          "scrubber": {
+            "$description": "Progress track fill for media playback.",
+            "$value": "{color.action.primary.background}"
+          }
+        }
+      },
+      "contracts": [
+        {
+          "id": "com.example.media/player-controls",
+          "version": "1.0.0",
+          "description": "Transport controls for media playback.",
+          "parts": [
+            "container",
+            "play",
+            "scrubber"
+          ],
+          "states": [
+            "default",
+            "hover",
+            "pressed",
+            "disabled"
+          ],
+          "properties": {
+            "container": {
+              "background": "color",
+              "padding": "dimension"
+            },
+            "play": {
+              "background": "color",
+              "icon-color": "color"
+            },
+            "scrubber": {
+              "fill": "color",
+              "track": "color",
+              "height": "dimension"
+            }
+          },
+          "defaults": {
+            "container": {
+              "background": "{color.surface.raised}",
+              "padding": "{space.3}"
+            },
+            "play": {
+              "background": "{color.action.primary.background}",
+              "icon-color": "{color.action.primary.text}"
+            },
+            "scrubber": {
+              "fill": "{com.example.media/color.scrubber}",
+              "track": "{color.border.subtle}",
+              "height": "{size.control.height.sm}"
+            }
+          },
+          "pairs": [
+            {
+              "foreground": "play.icon-color",
+              "background": "play.background",
+              "kind": "text"
+            }
+          ],
+          "interactiveParts": [
+            "play",
+            "scrubber"
+          ]
+        },
+        {
+          "id": "com.example.media/playlist-row",
+          "version": "1.0.0",
+          "description": "Single row in a media playlist.",
+          "parts": [
+            "container",
+            "title",
+            "duration"
+          ],
+          "states": [
+            "default",
+            "hover",
+            "selected",
+            "focus-visible"
+          ],
+          "properties": {
+            "container": {
+              "background": "color",
+              "min-height": "dimension"
+            },
+            "title": {
+              "color": "color",
+              "typography": "typography"
+            },
+            "duration": {
+              "color": "color",
+              "typography": "typography"
+            }
+          },
+          "defaults": {
+            "container": {
+              "background": "{color.surface.base}",
+              "min-height": "{size.control.height.md}"
+            },
+            "title": {
+              "color": "{color.text.primary}",
+              "typography": "{text.body}"
+            },
+            "duration": {
+              "color": "{color.text.secondary}",
+              "typography": "{text.caption}"
+            }
+          },
+          "pairs": [
+            {
+              "foreground": "title.color",
+              "background": "container.background",
+              "kind": "text"
+            },
+            {
+              "foreground": "duration.color",
+              "background": "container.background",
+              "kind": "text"
+            }
+          ],
+          "interactiveParts": [
+            "container"
+          ]
+        }
+      ],
+      "layoutVariants": {
+        "library": {
+          "variants": [
+            "list",
+            "grid"
+          ],
+          "default": "list"
+        }
+      }
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.fallback": "none",
+      "accessibility.complete": true
+    }
+  }
+}
