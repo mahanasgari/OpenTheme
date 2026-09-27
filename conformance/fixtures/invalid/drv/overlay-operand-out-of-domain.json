@@ -1,0 +1,131 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DRV-004"
+  ],
+  "description": "Validation evaluates every mode: a dark-scheme overlay sets the aliased ratio to 3, so the operand is OT-DRV-004 (chapter 04, finding F27).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light",
+          "dark"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "dark": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1,
+              0.1,
+              0.12
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.93,
+              0.93,
+              0.95
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.7,
+              0.13,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "brand": {
+          "k": {
+            "$type": "number",
+            "$value": 0.5
+          },
+          "mixed": {
+            "$type": "color",
+            "$derive": {
+              "op": "color.mix",
+              "args": {
+                "color": "{seed.accent}",
+                "toward": "{seed.background}",
+                "ratio": "{brand.k}"
+              }
+            }
+          }
+        }
+      },
+      "contexts": [
+        {
+          "when": {
+            "colorScheme": "dark"
+          },
+          "tokens": {
+            "brand": {
+              "k": {
+                "$value": 3
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DRV-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/brand/mixed/$derive/args/ratio"
+        }
+      }
+    ]
+  }
+}
