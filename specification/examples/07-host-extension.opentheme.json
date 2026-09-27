@@ -1,0 +1,180 @@
+{
+  "opentheme": "1.0",
+  "id": "uid.bcdefghijklmnopqrstuvw2345",
+  "version": "1.0.0",
+  "name": "Notes Companion",
+  "provenance": {
+    "origin": "developer-authored"
+  },
+  "compatibility": {
+    "catalog": "1.0"
+  },
+  "colorSchemes": {
+    "supported": [
+      "light"
+    ],
+    "default": "light"
+  },
+  "seeds": {
+    "light": {
+      "background": {
+        "colorSpace": "srgb",
+        "components": [
+          0.98,
+          0.97,
+          0.95
+        ]
+      },
+      "foreground": {
+        "colorSpace": "srgb",
+        "components": [
+          0.12,
+          0.12,
+          0.14
+        ]
+      },
+      "accent": {
+        "colorSpace": "oklch",
+        "components": [
+          0.55,
+          0.15,
+          250
+        ]
+      }
+    },
+    "fontFamily": [
+      "Source Sans 3",
+      "system-ui",
+      "sans-serif"
+    ]
+  },
+  "tokens": {
+    "color": {
+      "border": {
+        "subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8,
+              0.8,
+              0.82
+            ]
+          }
+        }
+      },
+      "surface": {
+        "base": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.98,
+              0.99
+            ]
+          }
+        }
+      },
+      "action": {
+        "primary": {
+          "background": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.2,
+                0.4,
+                0.8
+              ]
+            }
+          }
+        }
+      },
+      "text": {
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4,
+              0.4,
+              0.45
+            ]
+          }
+        }
+      }
+    },
+    "space": {
+      "md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      }
+    },
+    "border": {
+      "width": {
+        "thin": {
+          "$type": "dimension",
+          "$value": {
+            "value": 1,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "size": {
+      "icon": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "text": {
+      "caption": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": [
+            "system-ui",
+            "sans-serif"
+          ],
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "fontWeight": 400,
+          "lineHeight": 1.3
+        }
+      }
+    }
+  },
+  "components": {
+    "com.example.notes/timeline": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.base}",
+          "padding": "{space.md}"
+        },
+        "rail": {
+          "color": "{color.border.subtle}",
+          "width": "{border.width.thin}"
+        },
+        "marker": {
+          "color": "{color.action.primary.background}",
+          "size": "{size.icon.sm}"
+        },
+        "date-label": {
+          "color": "{color.text.secondary}",
+          "text-style": "{text.caption}"
+        }
+      }
+    }
+  }
+}
