@@ -1,0 +1,23 @@
+{
+  "name": "@opentheme/types",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "TypeScript types generated from OpenTheme JSON Schemas",
+  "exports": {
+    ".": {
+      "types": "./src/generated/index.ts",
+      "import": "./src/generated/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsx scripts/generate.ts",
+    "generate": "tsx scripts/generate.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "json-schema-to-typescript": "^15.0.4",
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}
