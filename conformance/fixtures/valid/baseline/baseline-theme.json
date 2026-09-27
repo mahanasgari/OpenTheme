@@ -1,0 +1,14 @@
+{
+  "kind": "validate",
+  "rules": ["R-DOC-001", "R-CUS-001"],
+  "description": "Specification baseline theme validates (FB-013).",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/baseline/org.opentheme.baseline.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
