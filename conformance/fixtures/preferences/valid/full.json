@@ -1,0 +1,57 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-006",
+    "R-PREF-007"
+  ],
+  "description": "Selection, previous, one value of each permitted literal kind, and preserved $extensions.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": {
+        "id": "org.opentheme.aurora"
+      },
+      "previous": {
+        "id": "org.opentheme.aurora",
+        "version": "1.0.0"
+      },
+      "values": {
+        "std.accent": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9,
+            0.3,
+            0.1
+          ]
+        },
+        "std.text-size": 1.2,
+        "std.color-scheme": "dark",
+        "std.reduced-motion": true,
+        "brand-tint": "warm"
+      },
+      "$extensions": {
+        "com.example.sync": {
+          "revision": 3
+        }
+      }
+    }
+  },
+  "expect": {
+    "usable": true,
+    "values": {
+      "std.accent": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9,
+          0.3,
+          0.1
+        ]
+      },
+      "std.text-size": 1.2,
+      "std.color-scheme": "dark",
+      "std.reduced-motion": true,
+      "brand-tint": "warm"
+    },
+    "diagnostics": []
+  }
+}
