@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/defs/derivation.schema.json",
+  "title": "OpenTheme Derivation",
+  "description": "$derive: { op, args } per data-model §5. Nesting depth, operand types, and domains are validator rules.",
+  "$defs": {
+    "op": {
+      "type": "string",
+      "enum": [
+        "color.mix",
+        "color.lightness",
+        "color.chroma",
+        "color.hue",
+        "color.alpha",
+        "color.composite",
+        "color.contrast-select",
+        "color.contrast-adjust",
+        "color.mix-bounded",
+        "number.scale",
+        "number.add",
+        "number.clamp",
+        "dimension.scale",
+        "dimension.add",
+        "dimension.clamp",
+        "dimension.round"
+      ],
+      "description": "One of the 16 transformation identifiers in transformations.json",
+      "examples": ["color.mix"],
+      "x-opentheme-code": "OT-DRV-001",
+      "x-opentheme-rule": "R-DRV-001"
+    },
+    "operand": {
+      "description": "Literal, alias, or nested derivation",
+      "oneOf": [
+        { "$ref": "tokens.schema.json#/$defs/literal" },
+        { "$ref": "#/$defs/derive" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/operand" }
+        }
+      ]
+    },
+    "derive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "args"],
+      "properties": {
+        "op": { "$ref": "#/$defs/op" },
+        "args": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/operand" }
+        }
+      },
+      "examples": [
+        {
+          "op": "color.mix",
+          "args": {
+            "color": "{seed.foreground}",
+            "toward": "{seed.background}",
+            "ratio": 0.35
+          }
+        }
+      ]
+    }
+  }
+}
