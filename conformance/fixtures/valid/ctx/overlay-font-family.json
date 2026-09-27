@@ -1,0 +1,91 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-004"
+  ],
+  "description": "An overlay may set a font-family list that ends in a generic family (finding F33).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "brand": {
+          "face": {
+            "$type": "fontFamily",
+            "$value": [
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      },
+      "contexts": [
+        {
+          "when": {
+            "density": "compact"
+          },
+          "tokens": {
+            "brand": {
+              "face": {
+                "$value": [
+                  "Inter",
+                  "sans-serif"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
