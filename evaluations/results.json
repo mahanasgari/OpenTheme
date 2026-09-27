@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0-draft.1",
+  "evaluations": [
+    {
+      "id": "ai-generation",
+      "status": "pending",
+      "note": "Run evaluations/ai-generation/PROTOCOL.md before 1.0.0"
+    },
+    {
+      "id": "vocabulary-review",
+      "status": "pending"
+    },
+    {
+      "id": "resolution-prediction",
+      "status": "pending"
+    },
+    {
+      "id": "authoring-timing",
+      "status": "pending"
+    }
+  ]
+}
