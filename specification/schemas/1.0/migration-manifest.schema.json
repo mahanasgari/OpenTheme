@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/migration-manifest.schema.json",
+  "title": "OpenTheme Migration Manifest",
+  "description": "Migration manifest per data-model §19: from previous major M.x to N.0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["from", "to", "operations"],
+  "properties": {
+    "from": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9x]+$",
+      "description": "Source major.minor (or M.x) accepted as previous major.",
+      "examples": ["0.x", "0.9"]
+    },
+    "to": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.0$",
+      "description": "Target major.0 after migration.",
+      "examples": ["1.0"]
+    },
+    "operations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/operation" },
+      "description": "Ordered migration operations applied left to right."
+    }
+  },
+  "$defs": {
+    "operation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "from", "to"],
+          "properties": {
+            "op": { "const": "rename-path" },
+            "from": { "type": "string" },
+            "to": { "type": "string" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "from", "to"],
+          "properties": {
+            "op": { "const": "move-member" },
+            "from": { "type": "string" },
+            "to": { "type": "string" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "at", "mapping"],
+          "properties": {
+            "op": { "const": "map-value" },
+            "at": { "type": "string" },
+            "mapping": { "type": "object", "additionalProperties": true }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "at", "lossy"],
+          "properties": {
+            "op": { "const": "drop-member" },
+            "at": { "type": "string" },
+            "lossy": { "const": true }
+          }
+        }
+      ]
+    }
+  }
+}
