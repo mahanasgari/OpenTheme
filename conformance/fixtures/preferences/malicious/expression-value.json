@@ -1,0 +1,34 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-008"
+  ],
+  "description": "Derivations and expressions are never preference values.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {
+        "std.accent": {
+          "$derive": {
+            "fn": "color.mix"
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "usable": true,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-008",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values/std.accent"
+        }
+      }
+    ]
+  }
+}
