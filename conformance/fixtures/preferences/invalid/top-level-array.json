@@ -1,0 +1,23 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-001"
+  ],
+  "description": "The top-level value must be an object.",
+  "input": {
+    "document": []
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-001",
+        "location": {
+          "document": "preferences",
+          "pointer": ""
+        }
+      }
+    ]
+  }
+}
