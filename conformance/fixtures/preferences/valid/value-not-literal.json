@@ -1,0 +1,54 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-008"
+  ],
+  "description": "Values that are not permitted literals (a reference, an array, an over-long string) produce OT-PREF-008 warnings; those entries are ignored, the document stays usable, and the other values apply.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {
+        "a-list": [
+          1,
+          2
+        ],
+        "long-text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "std.accent": {
+          "$ref": "color.brand"
+        },
+        "std.text-size": 1.2
+      }
+    }
+  },
+  "expect": {
+    "usable": true,
+    "values": {
+      "std.text-size": 1.2
+    },
+    "diagnostics": [
+      {
+        "code": "OT-PREF-008",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values/a-list"
+        }
+      },
+      {
+        "code": "OT-PREF-008",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values/long-text"
+        }
+      },
+      {
+        "code": "OT-PREF-008",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values/std.accent"
+        }
+      }
+    ]
+  }
+}
