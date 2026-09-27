@@ -1,0 +1,24 @@
+/**
+ * Shared minimal valid theme seed for US2 fixtures.
+ */
+export const quietBase = {
+  opentheme: "1.0",
+  id: "uid.abcdefghijklmnopqrstuv2345",
+  version: "1.0.0",
+  name: "Quiet Paper",
+  provenance: { origin: "user-created" },
+  compatibility: { catalog: "1.0" },
+  colorSchemes: { supported: ["light"], default: "light" },
+  seeds: {
+    light: {
+      background: { colorSpace: "srgb", components: [0.98, 0.97, 0.95] },
+      foreground: { colorSpace: "srgb", components: [0.12, 0.12, 0.14] },
+      accent: { colorSpace: "oklch", components: [0.55, 0.15, 250] },
+    },
+    fontFamily: ["Inter", "system-ui", "sans-serif"],
+  },
+};
+
+export function theme(overrides: Record<string, unknown> = {}) {
+  return { ...quietBase, ...overrides };
+}
