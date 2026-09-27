@@ -1,0 +1,22 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001"
+  ],
+  "description": "Root value must be a JSON object.",
+  "input": {
+    "theme": []
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DOC-001",
+        "location": {
+          "document": "theme",
+          "pointer": "/"
+        }
+      }
+    ]
+  }
+}
