@@ -1,0 +1,48 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-003"
+  ],
+  "description": "Missing selection falls back to specification baseline (OT-RES-003).",
+  "input": {
+    "themes": [],
+    "selection": {
+      "id": "org.missing.theme"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.baseline",
+      "applied.fallback": "specification-baseline"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-RES-003",
+        "location": {
+          "document": "input",
+          "pointer": "/selection"
+        }
+      }
+    ]
+  }
+}
