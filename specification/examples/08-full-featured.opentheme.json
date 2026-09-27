@@ -1,0 +1,181 @@
+{
+  "opentheme": "1.0",
+  "id": "uid.cdefghijklmnopqrstuvwx2345",
+  "version": "1.0.0",
+  "name": "Full Featured",
+  "provenance": {
+    "origin": "developer-authored"
+  },
+  "compatibility": {
+    "catalog": "1.0"
+  },
+  "colorSchemes": {
+    "supported": [
+      "light",
+      "dark"
+    ],
+    "default": "light"
+  },
+  "seeds": {
+    "light": {
+      "background": {
+        "colorSpace": "srgb",
+        "components": [
+          0.98,
+          0.97,
+          0.95
+        ]
+      },
+      "foreground": {
+        "colorSpace": "srgb",
+        "components": [
+          0.12,
+          0.12,
+          0.14
+        ]
+      },
+      "accent": {
+        "colorSpace": "oklch",
+        "components": [
+          0.55,
+          0.15,
+          250
+        ]
+      }
+    },
+    "fontFamily": [
+      "Source Sans 3",
+      "system-ui",
+      "sans-serif"
+    ],
+    "dark": {
+      "background": {
+        "colorSpace": "srgb",
+        "components": [
+          0.12,
+          0.12,
+          0.14
+        ]
+      },
+      "foreground": {
+        "colorSpace": "srgb",
+        "components": [
+          0.95,
+          0.95,
+          0.96
+        ]
+      },
+      "accent": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7,
+          0.12,
+          250
+        ]
+      }
+    }
+  },
+  "author": {
+    "name": "OpenTheme Examples"
+  },
+  "license": "LicenseRef-OpenTheme-Pending",
+  "tokens": {
+    "color": {
+      "surface": {
+        "base": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.96,
+              0.96,
+              0.97
+            ]
+          }
+        }
+      },
+      "action": {
+        "primary": {
+          "background": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.2,
+                0.45,
+                0.75
+              ]
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      }
+    },
+    "radius": {
+      "md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "contexts": [
+    {
+      "when": {
+        "colorScheme": "dark"
+      },
+      "tokens": {
+        "color": {
+          "surface": {
+            "base": {
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.16,
+                  0.16,
+                  0.18
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "components": {
+    "std/button": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.action.primary.background}",
+          "corner-radius": "{radius.md}"
+        },
+        "label": {
+          "color": "{color.action.primary.text}"
+        }
+      }
+    }
+  },
+  "customization": {
+    "points": [
+      {
+        "id": "std.accent"
+      },
+      {
+        "id": "std.corner-roundness"
+      }
+    ]
+  }
+}
