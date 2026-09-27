@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Conformance and bench outputs
+conformance/out/
+tools/bench/out/
+
+# Logs and env
+*.log
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Coverage / caches
+coverage/
+.turbo/
+.cache/
+
+# Core build copies and test scratch
+packages/core/schemas/
+packages/core/test/docs/.examples/
