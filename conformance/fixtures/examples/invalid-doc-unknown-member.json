@@ -1,0 +1,24 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-003"
+  ],
+  "description": "Unknown member example (DOC).",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/invalid/doc-unknown-member.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DOC-003",
+        "location": {
+          "document": "theme",
+          "pointer": "/script"
+        }
+      }
+    ]
+  }
+}
