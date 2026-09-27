@@ -1,0 +1,16 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001"
+  ],
+  "description": "Example 01-minimal-seed-only validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/01-minimal-seed-only.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
