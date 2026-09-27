@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/registry/context-dimensions.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "priority",
+    "dimensions"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Specification version of this registry.",
+      "examples": [
+        "1.0.0-draft.1"
+      ]
+    },
+    "priority": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "values",
+          "description",
+          "example"
+        ],
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "variantsAllowed": {
+            "type": "boolean"
+          },
+          "default": {
+            "type": "string"
+          },
+          "thresholds": {
+            "type": "object"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "example": {}
+        }
+      }
+    }
+  }
+}
