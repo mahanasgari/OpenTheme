@@ -1,0 +1,16 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001"
+  ],
+  "description": "Example 03-high-contrast-overrides validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/03-high-contrast-overrides.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
