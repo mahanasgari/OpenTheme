@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/defs/contexts.schema.json",
+  "title": "OpenTheme Context Overlays",
+  "description": "Context overlays per data-model §6. Duplicate when maps and undeclared tokens are validator rules.",
+  "type": "array",
+  "maxItems": 64,
+  "items": { "$ref": "#/$defs/overlay" },
+  "examples": [
+    [
+      {
+        "when": { "colorScheme": "dark" },
+        "tokens": {
+          "color": {
+            "surface": {
+              "base": {
+                "$value": { "colorSpace": "srgb", "components": [0.1, 0.1, 0.12] }
+              }
+            }
+          }
+        }
+      }
+    ]
+  ],
+  "$defs": {
+    "when": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "colorScheme": { "type": "string" },
+        "contrast": { "enum": ["standard", "high"] },
+        "motion": { "enum": ["standard", "reduced"] },
+        "density": { "enum": ["compact", "standard", "comfortable"] },
+        "sizeClass": { "enum": ["compact", "medium", "expanded"] }
+      },
+      "description": "Non-empty map over the dimensions colorScheme, contrast, motion, density, sizeClass, each with one value from that dimension's closed set",
+      "examples": [{ "contrast": "high", "colorScheme": "light" }],
+      "x-opentheme-code": "OT-CTX-001",
+      "x-opentheme-rule": "R-CTX-001"
+    },
+    "overlayTokenLeaf": {
+      "type": "object",
+      "description": "Overlay token leaf omits $type; exactly one of $value or $derive.",
+      "additionalProperties": false,
+      "properties": {
+        "$value": { "$ref": "tokens.schema.json#/$defs/literal" },
+        "$derive": { "$ref": "derivation.schema.json#/$defs/derive" },
+        "$description": { "type": "string" },
+        "$deprecated": true,
+        "$extensions": { "type": "object" }
+      },
+      "oneOf": [
+        { "required": ["$value"], "not": { "required": ["$derive"] } },
+        { "required": ["$derive"], "not": { "required": ["$value"] } }
+      ]
+    },
+    "overlayTokenTree": {
+      "type": "object",
+      "description": "Partial token groups; nested objects or overlay leaves.",
+      "additionalProperties": {
+        "oneOf": [
+          { "$ref": "#/$defs/overlayTokenLeaf" },
+          { "$ref": "#/$defs/overlayTokenTree" }
+        ]
+      }
+    },
+    "overlay": {
+      "type": "object",
+      "required": ["when"],
+      "additionalProperties": false,
+      "properties": {
+        "when": { "$ref": "#/$defs/when" },
+        "tokens": { "$ref": "#/$defs/overlayTokenTree" },
+        "components": { "$ref": "components.schema.json" },
+        "layout": { "$ref": "layout.schema.json" }
+      }
+    }
+  }
+}
