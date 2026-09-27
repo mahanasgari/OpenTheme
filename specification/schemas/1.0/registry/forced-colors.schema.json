@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/registry/forced-colors.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "roles"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Specification version of this registry.",
+      "examples": [
+        "1.0.0-draft.1"
+      ]
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "description",
+          "example"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cssSystemColorHint": {
+            "type": "string"
+          },
+          "example": {}
+        }
+      }
+    }
+  }
+}
