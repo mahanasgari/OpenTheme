@@ -1,0 +1,24 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-004"
+  ],
+  "description": "Invalid token value example (TOK).",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/invalid/tok-bad-type.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/spot/$value"
+        }
+      }
+    ]
+  }
+}
