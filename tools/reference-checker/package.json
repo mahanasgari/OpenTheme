@@ -1,0 +1,29 @@
+{
+  "name": "@opentheme/reference-checker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Private, non-normative OpenTheme reference checker (ot-ref)",
+  "bin": {
+    "ot-ref": "./dist/cli/main.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "gen:kernels": "tsx scripts/gen-kernel-vectors.ts"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}
