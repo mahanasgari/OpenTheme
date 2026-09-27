@@ -1,0 +1,16 @@
+{
+  "from": "0.x",
+  "to": "1.0",
+  "operations": [
+    {
+      "op": "rename-path",
+      "from": "color.old-surface",
+      "to": "color.surface.base"
+    },
+    {
+      "op": "drop-member",
+      "at": "/legacyField",
+      "lossy": true
+    }
+  ]
+}
