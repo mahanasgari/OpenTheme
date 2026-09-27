@@ -1,0 +1,57 @@
+{
+  "kind": "resolve",
+  "rules": ["R-RES-001", "R-A11Y-001"],
+  "description": "Seed-only Quiet Paper resolves completely in light/high contrast.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.k7q2m4x5c3v6b6n2z5r7t2y4wa",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": { "origin": "user-created" },
+      "compatibility": { "catalog": "1.0" },
+      "colorSchemes": { "supported": ["light"], "default": "light" },
+      "seeds": {
+        "light": {
+          "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+          "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+          "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+        },
+        "fontFamily": ["Inter", "system-ui", "sans-serif"]
+      }
+    },
+    "selection": { "id": "uid.k7q2m4x5c3v6b6n2z5r7t2y4wa" },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "high",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "uid.k7q2m4x5c3v6b6n2z5r7t2y4wa",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "uid.k7q2m4x5c3v6b6n2z5r7t2y4wa",
+      "applied.fallback": "none",
+      "context.colorScheme": "light",
+      "context.contrast": "high",
+      "accessibility.complete": true
+    },
+    "diagnostics": []
+  }
+}
