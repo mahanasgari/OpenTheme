@@ -1,0 +1,36 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-002"
+  ],
+  "description": "A document larger than 65536 bytes is rejected before parsing.",
+  "input": {
+    "document": {
+      "generate": {
+        "generator": "pad-bytes",
+        "params": {
+          "base": {
+            "openthemePreferences": "1.0",
+            "selection": null,
+            "previous": null,
+            "values": {}
+          },
+          "bytes": 65537
+        }
+      }
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-002",
+        "location": {
+          "document": "preferences",
+          "pointer": ""
+        }
+      }
+    ]
+  }
+}
