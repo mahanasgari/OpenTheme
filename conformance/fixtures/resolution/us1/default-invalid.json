@@ -1,0 +1,93 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-003"
+  ],
+  "description": "Invalid selected theme falls back to specification baseline (OT-RES-003).",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.bad.theme",
+          "name": "Bad"
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.bad.theme"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.bad.theme",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.baseline",
+      "applied.fallback": "specification-baseline"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-DOC-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/colorSchemes"
+        }
+      },
+      {
+        "code": "OT-DOC-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/compatibility"
+        }
+      },
+      {
+        "code": "OT-DOC-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/provenance"
+        }
+      },
+      {
+        "code": "OT-DOC-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/seeds"
+        }
+      },
+      {
+        "code": "OT-DOC-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/version"
+        }
+      },
+      {
+        "code": "OT-RES-003",
+        "location": {
+          "document": "input",
+          "pointer": "/selection"
+        }
+      }
+    ]
+  }
+}
