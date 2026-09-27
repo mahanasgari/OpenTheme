@@ -1,0 +1,74 @@
+{
+  "kind": "resolve",
+  "rules": ["R-CUS-103"],
+  "description": "policy.protected group prefix blocks user preference on descendant paths; unrelated paths still apply.",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.protected",
+          "version": "1.0.0",
+          "name": "Protected",
+          "provenance": { "origin": "user-created" },
+          "compatibility": { "catalog": "1.0" },
+          "colorSchemes": { "supported": ["light"], "default": "light" },
+          "seeds": {
+            "light": {
+              "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+              "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+              "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+            },
+            "fontFamily": ["Inter", "system-ui", "sans-serif"]
+          },
+          "customization": {
+            "points": [
+              {
+                "id": "danger-bg",
+                "type": "color",
+                "target": ["color.status.danger.background"],
+                "constraints": { "range": { "gamut": "srgb", "opaque": true } },
+                "default": { "colorSpace": "srgb", "components": [0.75, 0.1, 0.1] }
+              },
+              {
+                "id": "std.corner-roundness",
+                "type": "number",
+                "target": ["radius.factor"],
+                "constraints": { "range": { "min": 0, "max": 2, "step": 0.05 } },
+                "default": 1
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "selection": { "id": "org.example.protected" },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": { "sizeClass": "expanded", "locale": "en", "direction": "ltr" },
+    "preferences": {
+      "danger-bg": { "colorSpace": "srgb", "components": [0.1, 0.8, 0.1] },
+      "std.corner-roundness": 1.5
+    },
+    "policy": {
+      "availableThemes": ["org.example.protected", "org.opentheme.baseline"],
+      "permittedPoints": { "danger-bg": {}, "std.corner-roundness": {} },
+      "protected": ["color.status.danger"]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.example.protected",
+      "preferences.danger-bg.status": "skipped",
+      "preferences.std.corner-roundness.status": "effective"
+    }
+  }
+}
