@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/resolved-theme.schema.json",
+  "title": "OpenTheme Resolved Theme",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "applied",
+    "context",
+    "tokens",
+    "components",
+    "layout",
+    "preferences",
+    "diagnostics"
+  ],
+  "properties": {
+    "applied": {
+      "type": "object",
+      "required": [
+        "id",
+        "version",
+        "fallback"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "fallback": {
+          "enum": [
+            "none",
+            "previous",
+            "developer-default",
+            "specification-baseline"
+          ]
+        },
+        "trust": {
+          "enum": [
+            "trusted",
+            "untrusted"
+          ],
+          "description": "Lowest trust level in the selected theme's inheritance chain (FR-048)."
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "description": "Effective resolved context: colorScheme, seedScheme, contrast, motion, density, sizeClass, textScale, forcedColors, direction, locale (chapter 10).",
+      "additionalProperties": true
+    },
+    "displayText": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "description": "Resolved token map. Every value is concrete; encodings by type are normative in chapter 10, Resolved values: colors are srgb8 (or system under forced colors), dimensions and durations are {value, unit}, numbers are {number}, font families are {families}, composites have every member resolved.",
+      "additionalProperties": true
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "variants": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "value": true,
+          "status": {
+            "enum": [
+              "effective",
+              "clamped",
+              "fell-back",
+              "skipped",
+              "rejected"
+            ]
+          }
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "description": "Accessibility report for the effective mode."
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "diagnostic.schema.json"
+      }
+    }
+  },
+  "$defs": {
+    "resolvedColor": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "srgb8"
+          ],
+          "properties": {
+            "srgb8": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              }
+            },
+            "alpha": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "multipleOf": 0.001
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "system"
+          ],
+          "properties": {
+            "system": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
