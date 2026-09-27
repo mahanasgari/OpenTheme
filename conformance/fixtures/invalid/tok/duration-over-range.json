@@ -1,0 +1,82 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-005"
+  ],
+  "description": "A duration above 1000 ms is out of range (chapter 11, Literal ranges).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "brand": {
+          "fade": {
+            "$type": "duration",
+            "$value": {
+              "value": 2000,
+              "unit": "ms"
+            }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-005",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/brand/fade/$value"
+        }
+      }
+    ]
+  }
+}
