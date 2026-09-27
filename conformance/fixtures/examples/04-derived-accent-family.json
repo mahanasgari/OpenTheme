@@ -1,0 +1,16 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-001"
+  ],
+  "description": "Example 04-derived-accent-family validates.",
+  "input": {
+    "theme": {
+      "$file": "specification/examples/04-derived-accent-family.opentheme.json"
+    }
+  },
+  "expect": {
+    "validity": "valid",
+    "diagnostics": []
+  }
+}
