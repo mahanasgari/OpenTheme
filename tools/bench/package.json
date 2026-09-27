@@ -1,0 +1,19 @@
+{
+  "name": "@opentheme/bench",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "OpenTheme validation/resolution benchmarks",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "bench": "node dist/node.js",
+    "bench:browser": "node dist/browser.js"
+  },
+  "dependencies": {
+    "@opentheme/reference-checker": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^6.0.3"
+  }
+}
