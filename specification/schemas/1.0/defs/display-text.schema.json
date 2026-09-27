@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/defs/display-text.schema.json",
+  "$defs": {
+    "displayString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F\\u007F-\\u009F\\u202A-\\u202E\\u2066-\\u2069]*$",
+      "x-opentheme-display-text": true,
+      "x-opentheme-code": "OT-META-004",
+      "x-opentheme-rule": "R-META-004",
+      "description": "Plain text without C0/C1 controls, bidi embedding/override/isolate (U+202A–U+202E, U+2066–U+2069), or noncharacters. U+200E, U+200F, and U+061C are allowed.",
+      "examples": [
+        "Aurora"
+      ]
+    },
+    "displayName": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/displayString"
+        },
+        {
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1,
+          "x-opentheme-code": "OT-META-005",
+          "x-opentheme-rule": "R-META-005"
+        }
+      ],
+      "description": "Plain text, 1 to 100 characters",
+      "examples": [
+        "Quiet Paper"
+      ]
+    },
+    "descriptionString": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/displayString"
+        },
+        {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1,
+          "x-opentheme-code": "OT-META-005",
+          "x-opentheme-rule": "R-META-005"
+        }
+      ],
+      "description": "Plain text description, 1 to 1000 characters",
+      "examples": [
+        "A calm light theme"
+      ]
+    },
+    "localized": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]+)*$",
+        "x-opentheme-code": "OT-META-006",
+        "x-opentheme-rule": "R-META-006"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "$ref": "#/$defs/displayName"
+          },
+          "description": {
+            "$ref": "#/$defs/descriptionString"
+          }
+        }
+      },
+      "description": "map from a BCP 47 language tag to { name?, description? }; at most 64 entries",
+      "examples": [
+        {
+          "fa": {
+            "name": "آرورا"
+          }
+        }
+      ]
+    }
+  }
+}
