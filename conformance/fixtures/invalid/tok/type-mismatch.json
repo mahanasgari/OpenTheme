@@ -1,0 +1,80 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-004"
+  ],
+  "description": "Value outside type grammar (OT-TOK-004).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "color": {
+          "x": {
+            "$type": "color",
+            "$value": 42
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/x/$value"
+        }
+      }
+    ]
+  }
+}
