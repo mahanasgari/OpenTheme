@@ -1,0 +1,55 @@
+{
+  "kind": "validate",
+  "rules": ["R-REF-001"],
+  "description": "Unknown host-qualified alias yields OT-REF-001.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": { "origin": "user-created" },
+      "compatibility": { "catalog": "1.0" },
+      "colorSchemes": { "supported": ["light"], "default": "light" },
+      "seeds": {
+        "light": {
+          "background": { "colorSpace": "srgb", "components": [0.98, 0.97, 0.95] },
+          "foreground": { "colorSpace": "srgb", "components": [0.12, 0.12, 0.14] },
+          "accent": { "colorSpace": "oklch", "components": [0.55, 0.15, 250] }
+        },
+        "fontFamily": ["Inter", "system-ui", "sans-serif"]
+      },
+      "tokens": {
+        "color": {
+          "$type": "color",
+          "rail-echo": { "$value": "{com.example.notes/color.missing}" }
+        }
+      }
+    },
+    "host": {
+      "openthemeHost": "1.0",
+      "id": "com.example.notes",
+      "catalog": "1.0",
+      "tokens": {
+        "color": {
+          "$type": "color",
+          "rail": {
+            "$value": { "colorSpace": "srgb", "components": [0.5, 0.5, 0.5] }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-REF-001",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/rail-echo/$value"
+        }
+      }
+    ]
+  }
+}
