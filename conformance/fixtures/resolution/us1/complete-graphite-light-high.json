@@ -1,0 +1,70 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-001",
+    "R-A11Y-001"
+  ],
+  "description": "graphite resolves completely in light/high against notes host (SC-001).",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.graphite.opentheme.json"
+    },
+    "host": {
+      "$file": "specification/hosts/com.example.notes.opentheme-host.json"
+    },
+    "selection": {
+      "id": "org.opentheme.graphite"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "high",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.graphite",
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.graphite",
+      "applied.fallback": "none",
+      "context.colorScheme": "light",
+      "context.contrast": "high",
+      "accessibility.complete": true
+    },
+    "diagnostics": [
+      {
+        "code": "OT-CMP-001",
+        "severity": "info",
+        "location": {
+          "document": "theme",
+          "pointer": "/components/com.example.media~1playlist-row"
+        },
+        "rule": "R-CMP-001"
+      },
+      {
+        "code": "OT-LAY-001",
+        "severity": "info",
+        "location": {
+          "document": "theme",
+          "pointer": "/layout/variants/library"
+        },
+        "rule": "R-LAY-001"
+      }
+    ]
+  }
+}
