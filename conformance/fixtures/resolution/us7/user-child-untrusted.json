@@ -1,0 +1,169 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-INH-001",
+    "R-SEC-001"
+  ],
+  "description": "User-created child of an untrusted base resolves under the same rules; trust is the chain minimum (FR-097).",
+  "input": {
+    "themes": [
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.base",
+          "version": "1.0.0",
+          "name": "Shared Base",
+          "provenance": {
+            "origin": "imported"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "tokens": {
+            "color": {
+              "surface": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [
+                    0.95,
+                    0.95,
+                    0.96
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "uid.zyxwvutsrqponmlkjihgfedcba",
+          "version": "1.0.0",
+          "name": "My Child",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "extends": {
+            "id": "org.example.base",
+            "version": "^1.0.0"
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "uid.zyxwvutsrqponmlkjihgfedcba"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "uid.zyxwvutsrqponmlkjihgfedcba",
+        "org.example.base",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "uid.zyxwvutsrqponmlkjihgfedcba",
+      "applied.fallback": "none"
+    },
+    "diagnostics": []
+  }
+}
