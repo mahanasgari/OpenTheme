@@ -1,0 +1,104 @@
+{
+  "opentheme": "1.0",
+  "id": "uid.abcdefghijklmnopqrstuv2345",
+  "version": "1.0.0",
+  "name": "Component Styled",
+  "provenance": {
+    "origin": "developer-authored"
+  },
+  "compatibility": {
+    "catalog": "1.0"
+  },
+  "colorSchemes": {
+    "supported": [
+      "light"
+    ],
+    "default": "light"
+  },
+  "seeds": {
+    "light": {
+      "background": {
+        "colorSpace": "srgb",
+        "components": [
+          0.98,
+          0.97,
+          0.95
+        ]
+      },
+      "foreground": {
+        "colorSpace": "srgb",
+        "components": [
+          0.12,
+          0.12,
+          0.14
+        ]
+      },
+      "accent": {
+        "colorSpace": "oklch",
+        "components": [
+          0.55,
+          0.15,
+          250
+        ]
+      }
+    },
+    "fontFamily": [
+      "Source Sans 3",
+      "system-ui",
+      "sans-serif"
+    ]
+  },
+  "tokens": {
+    "color": {
+      "action": {
+        "primary": {
+          "background": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.2,
+                0.4,
+                0.8
+              ]
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ]
+            }
+          }
+        }
+      }
+    },
+    "radius": {
+      "md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "components": {
+    "std/button": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.action.primary.background}",
+          "corner-radius": "{radius.md}"
+        },
+        "label": {
+          "color": "{color.action.primary.text}"
+        }
+      }
+    }
+  }
+}
