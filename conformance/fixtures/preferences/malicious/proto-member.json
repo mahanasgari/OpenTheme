@@ -1,0 +1,23 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-005"
+  ],
+  "description": "A __proto__ member is an ordinary unknown member: reported, never interpreted.",
+  "input": {
+    "document": "{\"openthemePreferences\":\"1.0\",\"selection\":null,\"previous\":null,\"values\":{},\"__proto__\":{\"polluted\":true}}"
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-005",
+        "location": {
+          "document": "preferences",
+          "pointer": "/__proto__"
+        }
+      }
+    ]
+  }
+}
