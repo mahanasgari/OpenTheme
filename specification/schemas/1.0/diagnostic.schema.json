@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/diagnostic.schema.json",
+  "title": "OpenTheme Diagnostic",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "severity", "location", "rule", "message", "hint", "params"],
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^OT-[A-Z0-9]+-[0-9]{3}$",
+      "description": "Stable diagnostic code from diagnostics.json.",
+      "examples": ["OT-REF-003"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["error", "warning", "info"],
+      "description": "Only error affects validity.",
+      "examples": ["error"]
+    },
+    "location": {
+      "$ref": "#/$defs/location"
+    },
+    "rule": {
+      "type": "string",
+      "pattern": "^R-[A-Z0-9]+-[0-9]{3}$",
+      "description": "Normative rule identifier.",
+      "examples": ["R-REF-004"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Message template id from diagnostics.json.",
+      "examples": ["ref.003"]
+    },
+    "hint": {
+      "type": "string",
+      "description": "Hint template id from diagnostics.json.",
+      "examples": ["ref.003.hint"]
+    },
+    "params": {
+      "type": "object",
+      "description": "Grammar-constrained parameters only (no free document text).",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "number" },
+          { "type": "boolean" },
+          { "type": "array", "items": { "type": "string" } }
+        ]
+      },
+      "examples": [{ "cycle": ["a", "b", "a"] }]
+    },
+    "related": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/location" },
+      "description": "Additional related locations."
+    }
+  },
+  "$defs": {
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document", "pointer"],
+      "properties": {
+        "document": {
+          "type": "string",
+          "pattern": "^(theme|host|input|preferences|base:[a-z0-9.-]+@[0-9A-Za-z.+-]+)$",
+          "description": "Document the pointer refers to.",
+          "examples": ["theme", "base:org.opentheme.aurora@1.0.0", "host", "input"]
+        },
+        "pointer": {
+          "type": "string",
+          "description": "RFC 6901 JSON Pointer.",
+          "examples": ["/tokens/color/text/secondary/$value"]
+        }
+      }
+    }
+  }
+}
