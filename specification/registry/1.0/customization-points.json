@@ -1,0 +1,145 @@
+{
+  "version": "1.0.0-draft.1",
+  "points": [
+    {
+      "id": "std.accent",
+      "label": "Accent",
+      "description": "Accent color applied to seed.accent in every scheme.",
+      "localizationKey": "point.std.accent",
+      "target": [
+        "seed.accent"
+      ],
+      "type": "color",
+      "constraints": {
+        "range": {
+          "gamut": "srgb",
+          "opaque": true
+        }
+      },
+      "default": null,
+      "example": {
+        "colorSpace": "oklch",
+        "components": [
+          0.55,
+          0.15,
+          250
+        ]
+      }
+    },
+    {
+      "id": "std.color-scheme",
+      "label": "Color scheme",
+      "description": "Preferred color scheme.",
+      "localizationKey": "point.std.color-scheme",
+      "target": {
+        "dimension": "colorScheme"
+      },
+      "type": "enum",
+      "constraints": {
+        "enum": [
+          "light",
+          "dark"
+        ]
+      },
+      "default": "light",
+      "example": "dark"
+    },
+    {
+      "id": "std.contrast",
+      "label": "Contrast",
+      "description": "Contrast preference.",
+      "localizationKey": "point.std.contrast",
+      "target": {
+        "dimension": "contrast"
+      },
+      "type": "enum",
+      "constraints": {
+        "enum": [
+          "standard",
+          "high"
+        ]
+      },
+      "default": "standard",
+      "example": "high"
+    },
+    {
+      "id": "std.text-size",
+      "label": "Text size",
+      "description": "In-app text scale factor.",
+      "localizationKey": "point.std.text-size",
+      "target": {
+        "textScale": "in-app"
+      },
+      "type": "number",
+      "constraints": {
+        "range": {
+          "min": 1,
+          "max": 2,
+          "step": 0.05
+        }
+      },
+      "default": 1,
+      "effectiveRange": {
+        "min": 1,
+        "max": 3
+      },
+      "example": 1.25
+    },
+    {
+      "id": "std.density",
+      "label": "Density",
+      "description": "UI density.",
+      "localizationKey": "point.std.density",
+      "target": {
+        "dimension": "density"
+      },
+      "type": "enum",
+      "constraints": {
+        "enum": [
+          "compact",
+          "standard",
+          "comfortable"
+        ]
+      },
+      "default": "standard",
+      "example": "compact"
+    },
+    {
+      "id": "std.corner-roundness",
+      "label": "Corner roundness",
+      "description": "Scales radius.factor.",
+      "localizationKey": "point.std.corner-roundness",
+      "target": [
+        "radius.factor"
+      ],
+      "type": "number",
+      "constraints": {
+        "range": {
+          "min": 0,
+          "max": 2,
+          "step": 0.05
+        }
+      },
+      "default": 1,
+      "example": 1.25
+    },
+    {
+      "id": "std.motion",
+      "label": "Motion",
+      "description": "Motion preference.",
+      "localizationKey": "point.std.motion",
+      "target": {
+        "dimension": "motion"
+      },
+      "type": "enum",
+      "constraints": {
+        "enum": [
+          "standard",
+          "reduced"
+        ]
+      },
+      "default": "standard",
+      "example": "reduced"
+    }
+  ]
+}
