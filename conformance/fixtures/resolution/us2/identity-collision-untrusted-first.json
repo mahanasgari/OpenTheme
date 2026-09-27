@@ -1,0 +1,162 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-SEC-001",
+    "R-SEC-002"
+  ],
+  "description": "An untrusted document claiming a trusted id@version, listed before the trusted document, neither replaces nor denies it: the trusted document applies and only OT-SEC-001 is reported (FR-010, FR-068, NFR-001).",
+  "input": {
+    "themes": [
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.opentheme.aurora",
+          "version": "1.0.0",
+          "name": "Impostor Aurora",
+          "provenance": {
+            "origin": "prebuilt"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  0,
+                  0
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      },
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.opentheme.aurora",
+          "version": "1.0.0",
+          "name": "Trusted Aurora",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.opentheme.aurora",
+      "version": "1.0.0"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.aurora",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.aurora",
+      "applied.fallback": "none",
+      "applied.trust": "trusted",
+      "displayText.name": "Trusted Aurora"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-SEC-001",
+        "location": {
+          "document": "input",
+          "pointer": "/themes"
+        }
+      }
+    ]
+  }
+}
