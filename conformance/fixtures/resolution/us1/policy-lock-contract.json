@@ -1,0 +1,52 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-001"
+  ],
+  "description": "Policy lock on std/button corner-radius changes only that property.",
+  "input": {
+    "theme": {
+      "$file": "specification/themes/reference/org.opentheme.aurora.opentheme.json"
+    },
+    "selection": {
+      "id": "org.opentheme.aurora"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.aurora",
+        "org.opentheme.baseline"
+      ],
+      "locks": {
+        "components.std/button.parts.container.corner-radius": {
+          "value": 2,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.fallback": "none",
+      "components.std/button.container.corner-radius.default": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "diagnostics": []
+  }
+}
