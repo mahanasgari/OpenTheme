@@ -1,0 +1,218 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-SEC-001",
+    "R-INH-001"
+  ],
+  "description": "An untrusted document claiming a trusted base's id@version, listed first, is never used as the base of a trusted child: the child stays trusted (FR-048, FR-068).",
+  "input": {
+    "themes": [
+      {
+        "trust": "untrusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.brand-base",
+          "version": "1.0.0",
+          "name": "Impostor Base",
+          "provenance": {
+            "origin": "prebuilt"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  0,
+                  0
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      },
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.brand-base",
+          "version": "1.0.0",
+          "name": "Brand Base",
+          "provenance": {
+            "origin": "prebuilt"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      },
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.brand-child",
+          "version": "1.0.0",
+          "name": "Brand Child",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "extends": {
+            "id": "org.example.brand-base",
+            "version": "^1.0.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.example.brand-child"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "expanded",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.example.brand-child",
+        "org.opentheme.baseline"
+      ]
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.example.brand-child",
+      "applied.fallback": "none",
+      "applied.trust": "trusted"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-SEC-001",
+        "location": {
+          "document": "input",
+          "pointer": "/themes"
+        }
+      }
+    ]
+  }
+}
