@@ -1,0 +1,107 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DOC-004"
+  ],
+  "description": "17 targets exceeds maxItems 16 (schema).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.abcdefghijklmnopqrstuv2345",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "customization": {
+        "points": [
+          {
+            "id": "local-many",
+            "type": "color",
+            "target": [
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent",
+              "seed.accent"
+            ],
+            "constraints": {
+              "range": {
+                "gamut": "srgb",
+                "opaque": true
+              }
+            },
+            "default": null
+          }
+        ]
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DOC-004",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/customization/points/0/target"
+        },
+        "rule": "R-DOC-004"
+      }
+    ]
+  }
+}
