@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opentheme.org/schemas/1.0/defs/components.schema.json",
+  "title": "OpenTheme Component Styling",
+  "description": "Theme-side component styling per data-model §7. No content, labels, or bindings (FR-034).",
+  "type": "object",
+  "maxProperties": 128,
+  "propertyNames": {
+    "type": "string",
+    "pattern": "^(std|[a-z][a-z0-9-]{0,62}(\\.[a-z0-9][a-z0-9-]{0,62}){0,7})/[a-z][a-z0-9-]*$",
+    "description": "Keys are std/<name> or <host-namespace>/<name>"
+  },
+  "additionalProperties": { "$ref": "#/$defs/contractStyling" },
+  "examples": [
+    {
+      "std/button": {
+        "contract": "1.0",
+        "parts": {
+          "container": {
+            "background": { "$value": "{color.action.primary.background}" }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stateName": {
+      "enum": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "selected",
+        "invalid"
+      ]
+    },
+    "styledValue": {
+      "oneOf": [
+        { "$ref": "tokens.schema.json#/$defs/literal" },
+        { "$ref": "derivation.schema.json#/$defs/derive" },
+        {
+          "type": "object",
+          "required": ["$states"],
+          "additionalProperties": false,
+          "properties": {
+            "$states": {
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": { "$ref": "#/$defs/stateName" },
+              "additionalProperties": {
+                "oneOf": [
+                  { "$ref": "tokens.schema.json#/$defs/literal" },
+                  { "$ref": "derivation.schema.json#/$defs/derive" }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "Token value or { \"$states\": { <state>: value } }"
+    },
+    "partsMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/$defs/styledValue" },
+        "description": "parts.<part>.<property>"
+      }
+    },
+    "contractStyling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contract": {
+          "type": "string",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$",
+          "description": "MAJOR.MINOR contract version the styling targets",
+          "examples": ["1.0"]
+        },
+        "parts": { "$ref": "#/$defs/partsMap" },
+        "variants": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "parts": { "$ref": "#/$defs/partsMap" }
+              }
+            }
+          },
+          "description": "variants.<axis>.<value>.parts…"
+        }
+      }
+    }
+  }
+}
