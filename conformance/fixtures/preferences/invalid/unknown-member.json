@@ -1,0 +1,31 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-005"
+  ],
+  "description": "Members outside $extensions are errors; theme data never belongs in preferences.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {},
+      "theme": {
+        "id": "org.opentheme.aurora"
+      }
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-005",
+        "location": {
+          "document": "preferences",
+          "pointer": "/theme"
+        }
+      }
+    ]
+  }
+}
