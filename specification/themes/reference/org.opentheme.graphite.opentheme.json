@@ -1,0 +1,145 @@
+{
+  "opentheme": "1.0",
+  "id": "org.opentheme.graphite",
+  "version": "1.0.0",
+  "name": "Graphite",
+  "description": "Crisp warm-neutral reference theme with amber accent and tight geometry.",
+  "author": { "name": "OpenTheme Project" },
+  "license": "LicenseRef-OpenTheme-Pending",
+  "provenance": { "origin": "prebuilt" },
+  "compatibility": {
+    "catalog": "1.0",
+    "extensions": { "com.example.media": "1.0" }
+  },
+  "colorSchemes": {
+    "supported": ["light", "dark"],
+    "default": "light"
+  },
+  "seeds": {
+    "light": {
+      "background": { "colorSpace": "oklch", "components": [0.97, 0.005, 80] },
+      "foreground": { "colorSpace": "oklch", "components": [0.25, 0.01, 70] },
+      "accent": { "colorSpace": "oklch", "components": [0.48, 0.14, 70] }
+    },
+    "dark": {
+      "background": { "colorSpace": "oklch", "components": [0.2, 0.01, 70] },
+      "foreground": { "colorSpace": "oklch", "components": [0.9, 0.005, 80] },
+      "accent": { "colorSpace": "oklch", "components": [0.75, 0.12, 70] }
+    },
+    "fontFamily": ["IBM Plex Sans", "system-ui", "sans-serif"]
+  },
+  "tokens": {
+    "radius": {
+      "$type": "number",
+      "factor": { "$value": 0.25 }
+    }
+  },
+  "contexts": [
+    {
+      "when": { "contrast": "high", "colorScheme": "light" },
+      "tokens": {
+        "color": {
+          "action": {
+            "primary": {
+              "background": {
+                "$value": { "colorSpace": "srgb", "components": [0.45, 0.25, 0] }
+              },
+              "text": {
+                "$value": { "colorSpace": "srgb", "components": [1, 1, 1] }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "when": { "contrast": "high", "colorScheme": "dark" },
+      "tokens": {
+        "color": {
+          "action": {
+            "primary": {
+              "background": {
+                "$value": { "colorSpace": "srgb", "components": [1, 0.85, 0.4] }
+              },
+              "text": {
+                "$value": { "colorSpace": "srgb", "components": [0, 0, 0] }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "components": {
+    "std/table": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.base}"
+        }
+      }
+    },
+    "std/tabs": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.base}"
+        }
+      }
+    },
+    "std/nav-bar": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.raised}"
+        }
+      }
+    },
+    "std/dialog": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.raised}",
+          "corner-radius": "{radius.sm}"
+        }
+      }
+    },
+    "com.example.media/playlist-row": {
+      "contract": "1.0",
+      "parts": {
+        "container": {
+          "background": "{color.surface.base}",
+          "min-height": "{size.control.height.md}"
+        },
+        "title": {
+          "color": "{color.text.primary}",
+          "typography": "{text.body}"
+        },
+        "duration": {
+          "color": "{color.text.secondary}",
+          "typography": "{text.caption}"
+        }
+      }
+    }
+  },
+  "layout": {
+    "variants": {
+      "library": {
+        "compact": "list",
+        "medium": "list",
+        "expanded": "grid"
+      }
+    }
+  },
+  "customization": {
+    "points": [
+      { "id": "std.accent" },
+      { "id": "std.color-scheme" },
+      { "id": "std.contrast" },
+      { "id": "std.text-size" },
+      { "id": "std.density" },
+      { "id": "std.corner-roundness" },
+      { "id": "std.motion" }
+    ]
+  }
+}
