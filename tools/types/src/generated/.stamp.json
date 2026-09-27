@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-09-26T09:06:21.838Z",
+  "schemaCount": 26,
+  "schemas": [
+    {
+      "path": "specification/schemas/1.0/defs/components.schema.json",
+      "mtimeMs": 1790353696291.4307
+    },
+    {
+      "path": "specification/schemas/1.0/defs/contexts.schema.json",
+      "mtimeMs": 1790353696202.431
+    },
+    {
+      "path": "specification/schemas/1.0/defs/customization.schema.json",
+      "mtimeMs": 1790353696236.431
+    },
+    {
+      "path": "specification/schemas/1.0/defs/derivation.schema.json",
+      "mtimeMs": 1790353696289.4307
+    },
+    {
+      "path": "specification/schemas/1.0/defs/display-text.schema.json",
+      "mtimeMs": 1790353696293.4307
+    },
+    {
+      "path": "specification/schemas/1.0/defs/layout.schema.json",
+      "mtimeMs": 1790353696202.431
+    },
+    {
+      "path": "specification/schemas/1.0/defs/metadata.schema.json",
+      "mtimeMs": 1790353696236.431
+    },
+    {
+      "path": "specification/schemas/1.0/defs/seeds.schema.json",
+      "mtimeMs": 1790353696201.431
+    },
+    {
+      "path": "specification/schemas/1.0/defs/tokens.schema.json",
+      "mtimeMs": 1790409384603.6292
+    },
+    {
+      "path": "specification/schemas/1.0/diagnostic.schema.json",
+      "mtimeMs": 1790359071388.9653
+    },
+    {
+      "path": "specification/schemas/1.0/fixture.schema.json",
+      "mtimeMs": 1790408904820.588
+    },
+    {
+      "path": "specification/schemas/1.0/host-declaration.schema.json",
+      "mtimeMs": 1790353696235.431
+    },
+    {
+      "path": "specification/schemas/1.0/migration-manifest.schema.json",
+      "mtimeMs": 1790353696235.431
+    },
+    {
+      "path": "specification/schemas/1.0/registry/component-catalog.schema.json",
+      "mtimeMs": 1790353696289.4307
+    },
+    {
+      "path": "specification/schemas/1.0/registry/context-dimensions.schema.json",
+      "mtimeMs": 1790341531650.4624
+    },
+    {
+      "path": "specification/schemas/1.0/registry/customization-points.schema.json",
+      "mtimeMs": 1790353696292.4307
+    },
+    {
+      "path": "specification/schemas/1.0/registry/diagnostics.schema.json",
+      "mtimeMs": 1790341531650.4624
+    },
+    {
+      "path": "specification/schemas/1.0/registry/forced-colors.schema.json",
+      "mtimeMs": 1790341531650.4624
+    },
+    {
+      "path": "specification/schemas/1.0/registry/limits.schema.json",
+      "mtimeMs": 1790341531650.4624
+    },
+    {
+      "path": "specification/schemas/1.0/registry/rules.schema.json",
+      "mtimeMs": 1790341531650.4624
+    },
+    {
+      "path": "specification/schemas/1.0/registry/semantic-baseline.schema.json",
+      "mtimeMs": 1790353696291.4307
+    },
+    {
+      "path": "specification/schemas/1.0/registry/transformations.schema.json",
+      "mtimeMs": 1790341531650.4624
+    },
+    {
+      "path": "specification/schemas/1.0/resolution-input.schema.json",
+      "mtimeMs": 1790356169355.9163
+    },
+    {
+      "path": "specification/schemas/1.0/resolved-theme.schema.json",
+      "mtimeMs": 1790361445500.5515
+    },
+    {
+      "path": "specification/schemas/1.0/theme.schema.json",
+      "mtimeMs": 1790353696178.431
+    },
+    {
+      "path": "specification/schemas/user-preferences/1.0/user-preferences.schema.json",
+      "mtimeMs": 1790359284889.7483
+    }
+  ]
+}
