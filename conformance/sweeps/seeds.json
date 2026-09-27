@@ -1,0 +1,21 @@
+{
+  "id": "sc-015-seeds",
+  "description": "SC-015 seed combination sweep parameters (research R10).",
+  "grid": {
+    "steps": 10,
+    "channels": ["r", "g", "b"],
+    "comment": "10×10×10 sRGB cube samples: i/9 for i in 0..9"
+  },
+  "accents": [
+    { "colorSpace": "oklch", "components": [0.55, 0.15, 250] },
+    { "colorSpace": "oklch", "components": [0.65, 0.18, 30] },
+    { "colorSpace": "oklch", "components": [0.6, 0.14, 145] },
+    { "colorSpace": "oklch", "components": [0.5, 0.12, 320] }
+  ],
+  "modes": [
+    { "colorScheme": "light", "contrast": "standard" },
+    { "colorScheme": "light", "contrast": "high" }
+  ],
+  "aaTarget": 4.5,
+  "minCombinations": 1000
+}
