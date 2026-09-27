@@ -1,0 +1,30 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-007"
+  ],
+  "description": "Keys of values must be customization point ids.",
+  "input": {
+    "document": {
+      "openthemePreferences": "1.0",
+      "selection": null,
+      "previous": null,
+      "values": {
+        "Bad Key": 1
+      }
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-007",
+        "location": {
+          "document": "preferences",
+          "pointer": "/values/Bad Key"
+        }
+      }
+    ]
+  }
+}
