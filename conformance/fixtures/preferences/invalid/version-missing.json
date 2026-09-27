@@ -1,0 +1,27 @@
+{
+  "kind": "validate-preferences",
+  "rules": [
+    "R-PREF-003"
+  ],
+  "description": "A missing openthemePreferences member is reported as OT-PREF-003.",
+  "input": {
+    "document": {
+      "selection": null,
+      "previous": null,
+      "values": {}
+    }
+  },
+  "expect": {
+    "usable": false,
+    "values": {},
+    "diagnostics": [
+      {
+        "code": "OT-PREF-003",
+        "location": {
+          "document": "preferences",
+          "pointer": "/openthemePreferences"
+        }
+      }
+    ]
+  }
+}
