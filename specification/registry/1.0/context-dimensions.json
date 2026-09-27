@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0-draft.1",
+  "priority": [
+    "contrast",
+    "colorScheme",
+    "density",
+    "sizeClass",
+    "motion"
+  ],
+  "dimensions": {
+    "colorScheme": {
+      "values": [
+        "light",
+        "dark"
+      ],
+      "variantsAllowed": true,
+      "description": "Color scheme mode; variants may fall back to light or dark.",
+      "example": "dark"
+    },
+    "contrast": {
+      "values": [
+        "standard",
+        "high"
+      ],
+      "description": "Contrast preference; high never leaves the selected theme.",
+      "example": "high"
+    },
+    "motion": {
+      "values": [
+        "standard",
+        "reduced"
+      ],
+      "description": "Motion preference; reduced removes non-essential movement.",
+      "example": "reduced"
+    },
+    "density": {
+      "values": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "default": "standard",
+      "description": "UI density affecting spacing and target sizes.",
+      "example": "compact"
+    },
+    "sizeClass": {
+      "values": [
+        "compact",
+        "medium",
+        "expanded"
+      ],
+      "thresholds": {
+        "medium": {
+          "value": 600,
+          "unit": "px"
+        },
+        "expanded": {
+          "value": 1024,
+          "unit": "px"
+        }
+      },
+      "description": "Viewport size class used for layout and overlays.",
+      "example": "expanded"
+    }
+  }
+}
