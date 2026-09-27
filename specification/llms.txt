@@ -1,0 +1,40 @@
+# OpenTheme Theme Specification 1.0 (machine entry)
+
+Purpose: author, validate, and resolve declarative presentation themes. Themes are JSON
+documents. There is no executable content, no network fetch, and no AI-specific exception.
+
+## Read these first
+
+- Schemas: `specification/schemas/1.0/` (`theme.schema.json`, `host-declaration.schema.json`,
+  `fixture.schema.json`, `resolution-input.schema.json`, `resolved-theme.schema.json`, and
+  `defs/`)
+- Registries: `specification/registry/1.0/` (`rules.json`, `diagnostics.json`,
+  `transformations.json`, `limits.json`, `forced-colors.json`, `semantic-baseline.json`)
+- Examples: `specification/examples/` (`01`–`08` valid themes, `invalid/`,
+  `09-modify-corner-roundness.md`)
+- Diagnostics catalog: `specification/registry/1.0/diagnostics.json`
+- Normative prose: `specification/spec/`
+- User Preferences document (a user's selection and point values, stored apart from themes):
+  `specification/spec/18-user-preferences.md`,
+  `specification/schemas/user-preferences/1.0/user-preferences.schema.json`
+
+## Closed rules producers must follow
+
+1. Use only transforms listed in `transformations.json`. No free-form formulas.
+2. Free text is only allowed in display-text fields (`name`, `description`, author name, etc.).
+3. Every theme requires `seeds` for each supported color scheme, plus `colorSchemes`.
+4. High-contrast behavior is always defined (defaults and/or overlays); do not omit contrast.
+5. Unknown members outside `$extensions` are errors (`OT-DOC-003`).
+6. Token path segments are lowercase kebab-case (`^[a-z][a-z0-9-]*$`).
+
+## Common mistakes
+
+- Putting `$type` inside a context overlay leaf (inherit type from the base token).
+- Aliasing host primitives from another host incorrectly.
+- Nesting derivations deeper than 8 (`OT-DRV-005`).
+- Styling undeclared component states or parts (`OT-CMP-003`).
+- Claiming trust via `provenance` — trust is assigned by the host, never by the document.
+- Putting references, derivations, or theme data in a User Preferences document: values must
+  be literals (`OT-PREF-008`), and only `$extensions` may hold other data.
+
+Validate drafts with `ot-ref validate`. Correct using only the diagnostics JSON (FR-093).
