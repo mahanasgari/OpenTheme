@@ -1,0 +1,532 @@
+{
+  "version": "1.0.0-draft.1",
+  "transformations": [
+    {
+      "id": "color.mix",
+      "description": "Interpolate two colors in premultiplied OKLab.",
+      "outputType": "color",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "toward",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "ratio",
+          "type": "number",
+          "domain": {
+            "min": 0,
+            "max": 1
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.mix",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.lightness",
+      "description": "Add a lightness delta in OKLab, then gamut-map.",
+      "outputType": "color",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "domain": {
+            "min": -1,
+            "max": 1
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.lightness",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.chroma",
+      "description": "Scale chroma in OKLab, then gamut-map.",
+      "outputType": "color",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "factor",
+          "type": "number",
+          "domain": {
+            "min": 0,
+            "max": 4
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.chroma",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.hue",
+      "description": "Rotate hue using kernel sin/cos.",
+      "outputType": "color",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "degrees",
+          "type": "number",
+          "domain": {
+            "min": -360,
+            "max": 360
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.hue",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.alpha",
+      "description": "Replace alpha.",
+      "outputType": "color",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "domain": {
+            "min": 0,
+            "max": 1
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.alpha",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.composite",
+      "description": "Source-over composite onto an opaque backdrop in sRGB.",
+      "outputType": "color",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "backdrop",
+          "type": "color",
+          "domain": {
+            "opaque": true
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.composite",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.contrast-select",
+      "description": "Pick first candidate meeting contrast target, else best.",
+      "outputType": "color",
+      "effortCost": 12,
+      "arguments": [
+        {
+          "name": "backgrounds",
+          "type": "color[]",
+          "domain": {
+            "minItems": 1,
+            "maxItems": 4,
+            "opaque": true
+          },
+          "optional": false
+        },
+        {
+          "name": "candidates",
+          "type": "color[]",
+          "domain": {
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "optional": false
+        },
+        {
+          "name": "target",
+          "type": "number",
+          "domain": {
+            "min": 1,
+            "max": 21
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.contrast-select",
+          "args": {
+            "backgrounds": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.contrast-adjust",
+      "description": "Adjust lightness to meet contrast (algorithm A1).",
+      "outputType": "color",
+      "effortCost": 48,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "backgrounds",
+          "type": "color[]",
+          "domain": {
+            "minItems": 1,
+            "maxItems": 4,
+            "opaque": true
+          },
+          "optional": false
+        },
+        {
+          "name": "target",
+          "type": "number",
+          "domain": {
+            "min": 1,
+            "max": 21
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.contrast-adjust",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "color.mix-bounded",
+      "description": "Mix toward a color without dropping below contrast (A2).",
+      "outputType": "color",
+      "effortCost": 48,
+      "arguments": [
+        {
+          "name": "color",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "toward",
+          "type": "color",
+          "optional": false
+        },
+        {
+          "name": "ratio",
+          "type": "number",
+          "domain": {
+            "min": 0,
+            "max": 1
+          },
+          "optional": false
+        },
+        {
+          "name": "reference",
+          "type": "color",
+          "domain": {
+            "opaque": true
+          },
+          "optional": false
+        },
+        {
+          "name": "minimum",
+          "type": "number",
+          "domain": {
+            "min": 1,
+            "max": 21
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "color.mix-bounded",
+          "args": {
+            "color": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "number.scale",
+      "description": "Multiply a number.",
+      "outputType": "number",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "factor",
+          "type": "number",
+          "domain": {
+            "min": 0,
+            "max": 100
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "number.scale",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "number.add",
+      "description": "Add a number delta.",
+      "outputType": "number",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "domain": {
+            "min": -1000000.0,
+            "max": 1000000.0
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "number.add",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "number.clamp",
+      "description": "Clamp a number between min and max.",
+      "outputType": "number",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "number.clamp",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "dimension.scale",
+      "description": "Scale a dimension value.",
+      "outputType": "dimension",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "dimension",
+          "optional": false
+        },
+        {
+          "name": "factor",
+          "type": "number",
+          "domain": {
+            "min": 0,
+            "max": 100
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "dimension.scale",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "dimension.add",
+      "description": "Add dimensions in px.",
+      "outputType": "dimension",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "dimension",
+          "optional": false
+        },
+        {
+          "name": "delta",
+          "type": "dimension",
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "dimension.add",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "dimension.clamp",
+      "description": "Clamp a dimension.",
+      "outputType": "dimension",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "dimension",
+          "optional": false
+        },
+        {
+          "name": "min",
+          "type": "dimension",
+          "optional": false
+        },
+        {
+          "name": "max",
+          "type": "dimension",
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "dimension.clamp",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    },
+    {
+      "id": "dimension.round",
+      "description": "Round to nearest step, ties to even.",
+      "outputType": "dimension",
+      "effortCost": 1,
+      "arguments": [
+        {
+          "name": "value",
+          "type": "dimension",
+          "optional": false
+        },
+        {
+          "name": "step",
+          "type": "dimension",
+          "domain": {
+            "exclusiveMinimum": 0
+          },
+          "optional": false
+        }
+      ],
+      "example": {
+        "$derive": {
+          "op": "dimension.round",
+          "args": {
+            "value": "{seed.accent}"
+          }
+        }
+      }
+    }
+  ]
+}
