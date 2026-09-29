@@ -53,5 +53,7 @@ To use Core, see [`packages/core/README.md`](packages/core/README.md) and the ag
 
 ## License
 
-Not yet chosen. The official themes carry the placeholder `LicenseRef-OpenTheme-Pending`, which
-the release check rejects until a license is selected.
+- Code, JSON Schemas, registries, conformance fixtures, and the official themes: [Apache
+  License 2.0](LICENSE).
+- Specification prose (`specification/spec/`, the changelog, and the other documentation):
+  [Creative Commons Attribution 4.0 International](LICENSE-docs).
