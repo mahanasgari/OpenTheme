@@ -125,12 +125,12 @@ failing storage, everything still applies and a store failure is reported
 
 ### Tests for User Story 3
 
-- [ ] T026 [P] [US3] Write `packages/web/test/dom/store.test.ts`: `read`/`write`/`clear` use key `opentheme:<scope>` (custom prefix supported); two scopes do not overwrite each other; a throwing storage rejects (and the controller lists `store-read-failed`/`store-write-failed`); a throwing `readInitial` makes `attachTheme` still apply and list `store-read-failed` in the scope's `errors`; a re-attached scope's first resolution uses the stored selection; corrupt, oversized, or newer-format stored data is ignored and left untouched
+- [X] T026 [P] [US3] Write `packages/web/test/dom/store.test.ts`: `read`/`write`/`clear` use key `opentheme:<scope>` (custom prefix supported); two scopes do not overwrite each other; a throwing storage rejects (and the controller lists `store-read-failed`/`store-write-failed`); a throwing `readInitial` makes `attachTheme` still apply and list `store-read-failed` in the scope's `errors`; a re-attached scope's first resolution uses the stored selection; corrupt, oversized, or newer-format stored data is ignored and left untouched
 
 ### Implementation for User Story 3
 
-- [ ] T027 [US3] Implement `packages/web/src/store.ts` `createBrowserStore({ storage?, prefix? })` (WR6): Core `PreferenceStore` over `localStorage` or the supplied storage, every access wrapped so exceptions reject, plus synchronous `readInitial(scope)` that returns the stored bytes or `null` and throws on a storage failure
-- [ ] T028 [US3] In `packages/web/src/scope.ts`, default `store` to `createBrowserStore()` (`false` disables it) and default `initial` to `store.readInitial(scope)`, recording `store-read-failed` in the scope's `errors` when it throws; export `createBrowserStore` from `packages/web/src/index.ts`
+- [X] T027 [US3] Implement `packages/web/src/store.ts` `createBrowserStore({ storage?, prefix? })` (WR6): Core `PreferenceStore` over `localStorage` or the supplied storage, every access wrapped so exceptions reject, plus synchronous `readInitial(scope)` that returns the stored bytes or `null` and throws on a storage failure
+- [X] T028 [US3] In `packages/web/src/scope.ts`, default `store` to `createBrowserStore()` (`false` disables it) and default `initial` to `store.readInitial(scope)`, recording `store-read-failed` in the scope's `errors` when it throws; export `createBrowserStore` from `packages/web/src/index.ts`
 
 **Checkpoint**: Preferences persist and failures are safe
 
