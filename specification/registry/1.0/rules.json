@@ -36,7 +36,9 @@
       "id": "R-A11Y-002",
       "chapter": "08-accessibility.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/a11y/high-contrast-shortfall"
+      ],
       "description": "Rule R-A11Y-002",
       "summary": "Rule R-A11Y-002",
       "example": {
@@ -248,7 +250,10 @@
       "id": "R-CMP-003",
       "chapter": "07-components.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/cmp/unknown-part",
+        "invalid/cmp/unknown-property"
+      ],
       "description": "Rule R-CMP-003",
       "summary": "Rule R-CMP-003",
       "example": {
@@ -260,7 +265,9 @@
       "id": "R-CMP-004",
       "chapter": "07-components.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/cmp/undeclared-state"
+      ],
       "description": "Rule R-CMP-004",
       "summary": "Rule R-CMP-004",
       "example": {
@@ -316,7 +323,9 @@
       "id": "R-CTX-003",
       "chapter": "06-contexts-and-modes.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/ctx/unsupported-scheme"
+      ],
       "description": "Rule R-CTX-003",
       "summary": "Rule R-CTX-003",
       "example": {
@@ -328,7 +337,9 @@
       "id": "R-CTX-004",
       "chapter": "06-contexts-and-modes.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/ctx/undeclared-token"
+      ],
       "description": "Rule R-CTX-004",
       "summary": "Rule R-CTX-004",
       "example": {
@@ -584,7 +595,9 @@
       "id": "R-DOC-005",
       "chapter": "01-theme-document.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/us1/default-invalid"
+      ],
       "description": "Rule R-DOC-005",
       "summary": "Rule R-DOC-005",
       "example": {
@@ -610,7 +623,10 @@
       "id": "R-DRV-002",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/drv/missing-argument",
+        "invalid/drv/unknown-argument"
+      ],
       "description": "Rule R-DRV-002",
       "summary": "Rule R-DRV-002",
       "example": {
@@ -622,7 +638,9 @@
       "id": "R-DRV-003",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/drv/operand-type"
+      ],
       "description": "Rule R-DRV-003",
       "summary": "Rule R-DRV-003",
       "example": {
@@ -634,7 +652,10 @@
       "id": "R-DRV-004",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/drv/alias-operand-out-of-domain",
+        "invalid/drv/overlay-operand-out-of-domain"
+      ],
       "description": "Rule R-DRV-004",
       "summary": "Rule R-DRV-004",
       "example": {
@@ -660,7 +681,9 @@
       "id": "R-DRV-006",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/drv/output-type"
+      ],
       "description": "Rule R-DRV-006",
       "summary": "Rule R-DRV-006",
       "example": {
@@ -672,7 +695,9 @@
       "id": "R-DRV-007",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "malicious/limits/effort-budget"
+      ],
       "description": "Rule R-DRV-007",
       "summary": "Rule R-DRV-007",
       "example": {
@@ -1110,7 +1135,9 @@
       "id": "R-META-003",
       "chapter": "02-metadata-and-identity.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/meta/bad-version"
+      ],
       "description": "Rule R-META-003",
       "summary": "Rule R-META-003",
       "example": {
@@ -1169,7 +1196,9 @@
       "id": "R-META-007",
       "chapter": "02-metadata-and-identity.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/meta/empty-license"
+      ],
       "description": "Rule R-META-007",
       "summary": "Rule R-META-007",
       "example": {
@@ -1209,7 +1238,9 @@
       "id": "R-REF-002",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/ref/incompatible-type"
+      ],
       "description": "Rule R-REF-002",
       "summary": "Rule R-REF-002",
       "example": {
@@ -1222,7 +1253,8 @@
       "chapter": "03-tokens.md",
       "requirements": [],
       "fixtures": [
-        "invalid/ref/cycle"
+        "invalid/ref/cycle",
+        "valid/ref/repeated-operand"
       ],
       "description": "Reference cycle",
       "summary": "Reference cycle",
@@ -1332,7 +1364,9 @@
       "id": "R-RES-002",
       "chapter": "10-resolution.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/us7/sec002-fail-closed"
+      ],
       "description": "Rule R-RES-002",
       "summary": "Rule R-RES-002",
       "example": {
@@ -1475,7 +1509,9 @@
       "id": "R-TOK-003",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/tok/reserved-seed-group"
+      ],
       "description": "Rule R-TOK-003",
       "summary": "Rule R-TOK-003",
       "example": {
@@ -1536,7 +1572,9 @@
       "id": "R-TOK-007",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/tok/value-and-derive"
+      ],
       "description": "Rule R-TOK-007",
       "summary": "Rule R-TOK-007",
       "example": {
@@ -1548,7 +1586,9 @@
       "id": "R-TOK-010",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/tok/missing-scheme-seeds"
+      ],
       "description": "Rule R-TOK-010",
       "summary": "Rule R-TOK-010",
       "example": {
@@ -1560,7 +1600,9 @@
       "id": "R-TOK-011",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/tok/translucent-seed"
+      ],
       "description": "Rule R-TOK-011",
       "summary": "Rule R-TOK-011",
       "example": {
