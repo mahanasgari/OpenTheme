@@ -64,7 +64,7 @@
       "properties": {
         "document": {
           "type": "string",
-          "pattern": "^(theme|host|input|preferences|base:[a-z0-9.-]+@[0-9A-Za-z.+-]+)$",
+          "pattern": "^(theme|host|input|preferences|base:[a-z0-9.-]+@\\^?[0-9A-Za-z.+-]+)$",
           "description": "Document the pointer refers to.",
           "examples": ["theme", "base:org.opentheme.aurora@1.0.0", "host", "input"]
         },
