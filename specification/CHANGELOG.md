@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased (errata to 1.0.0-draft.1)
+## 1.0.0-draft.2 (2026-09-29)
+
+Errata to `1.0.0-draft.1` (findings F1 to F33 of the Core runtime feature), plus licensing: code,
+schemas, registries, and the official themes are Apache-2.0; the specification prose is
+CC-BY-4.0. Drafts carry no compatibility guarantee.
 
 ### Specification errata
 

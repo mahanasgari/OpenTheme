@@ -5,7 +5,7 @@
   "required": ["version", "catalog", "contracts"],
   "additionalProperties": false,
   "properties": {
-    "version": { "type": "string", "description": "Specification version.", "examples": ["1.0.0-draft.1"] },
+    "version": { "type": "string", "description": "Specification version.", "examples": ["1.0.0-draft.2"] },
     "catalog": { "type": "string" },
     "contracts": {
       "type": "array",
