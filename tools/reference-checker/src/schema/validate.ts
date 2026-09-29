@@ -160,7 +160,8 @@ export function validateThemeDocument(data: unknown): {
     }
 
     themeValidator = (document: unknown) => {
-      const collector = new DiagnosticCollector();
+      // Schema findings are merged into the document's collector, which applies the cap once.
+      const collector = new DiagnosticCollector({ cap: Number.POSITIVE_INFINITY });
       const valid = validate(document) as boolean;
       const errors = (validate.errors ?? []).filter(
         (e) => !isCombinatorBranchError(e),

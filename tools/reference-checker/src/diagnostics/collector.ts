@@ -62,7 +62,6 @@ export interface CollectorOptions {
 export class DiagnosticCollector {
   readonly #items: Diagnostic[] = [];
   readonly #cap: number;
-  #omitted = 0;
 
   constructor(options: CollectorOptions = {}) {
     this.#cap = options.cap ?? 200;
@@ -118,10 +117,7 @@ export class DiagnosticCollector {
       return;
     }
 
-    if (this.#items.length >= this.#cap) {
-      this.#omitted += 1;
-      return;
-    }
+    // Every finding is kept until finish(), which orders them and then applies the cap (chapter 13).
     this.#items.push(diagnostic);
   }
 
@@ -152,7 +148,9 @@ export class DiagnosticCollector {
       return codeUnitCompare(a.code, b.code);
     });
 
-    if (this.#omitted > 0) {
+    if (sorted.length > this.#cap) {
+      const omitted = sorted.length - this.#cap;
+      sorted.length = this.#cap;
       const lim = requireDiagnosticCode("OT-LIM-099");
       sorted.push({
         code: "OT-LIM-099",
@@ -161,7 +159,7 @@ export class DiagnosticCollector {
         rule: "R-LIM-099",
         message: lim.message,
         hint: lim.hint,
-        params: { omitted: this.#omitted },
+        params: { omitted },
       });
     }
     return sorted;
