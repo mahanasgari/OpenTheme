@@ -15,8 +15,9 @@ carry no compatibility guarantee.
 | [`specification/`](specification/) | The normative specification: chapters 00–18, JSON Schemas, registries, the baseline and reference themes, example hosts, and the [changelog](specification/CHANGELOG.md) |
 | [`conformance/`](conformance/) | 275 conformance fixtures, sweeps, and the implementation-agnostic runner (NDJSON protocol) |
 | [`packages/core/`](packages/core/) | `@opentheme/core`: trust-aware admission, a theme registry, deterministic resolution, and a preferences controller ([README](packages/core/README.md)) |
+| [`packages/web/`](packages/web/) | `@opentheme/web`: applies resolved themes to web pages as CSS custom properties, follows system settings live, and remembers preferences on the device ([README](packages/web/README.md)) |
 | [`tools/`](tools/) | Private tooling: the non-normative reference checker `ot-ref`, spec-lint, generated types, benchmarks, and the Python kernel cross-check |
-| [`specs/`](specs/) | Spec Kit feature documents: [001 Foundation](specs/001-theme-specification-foundation/) and [002 Core runtime](specs/002-core-runtime/) |
+| [`specs/`](specs/) | Spec Kit feature documents: [001 Foundation](specs/001-theme-specification-foundation/), [002 Core runtime](specs/002-core-runtime/), and [003 Web adapter](specs/003-web-adapter/) |
 | [`evaluations/`](evaluations/) | Manual evaluation protocols |
 
 ## Key properties
@@ -45,10 +46,12 @@ pnpm verify:correctness  # every gate except the benchmarks (what CI blocks on)
 
 Other useful commands: `pnpm conformance` (reference checker), `pnpm conformance:core` (Core),
 `pnpm crosscheck:core`, `pnpm bench:core`, and `pnpm bench:core:browser` (a self-contained page
-for running Core's determinism check and benchmarks in a browser).
+for running Core's determinism check and benchmarks in a browser), `pnpm conformance:web`, and
+`pnpm bench:web:browser`.
 
 To use Core, see [`packages/core/README.md`](packages/core/README.md) and the agent guide
-[`packages/core/AGENTS.md`](packages/core/AGENTS.md). Contributors and coding agents should read
+[`packages/core/AGENTS.md`](packages/core/AGENTS.md); for web pages, see
+[`packages/web/README.md`](packages/web/README.md). Contributors and coding agents should read
 [`AGENTS.md`](AGENTS.md) for the repository's invariants.
 
 ## License

@@ -2,8 +2,9 @@
 
 OpenTheme is an open-source, domain-agnostic theme specification and conformance suite.
 This repository delivers Theme Specification 1.0 artifacts, private verification tooling, and
-the OpenTheme Core runtime (`packages/core`, feature `specs/002-core-runtime`). It does **not**
-ship adapters or output targets.
+the OpenTheme Core runtime (`packages/core`, feature `specs/002-core-runtime`), and the first
+platform adapter, the Web adapter (`packages/web`, feature `specs/003-web-adapter`). Adapters only
+translate Core's results; they never re-implement Core behavior.
 
 ## Layout
 
@@ -12,7 +13,7 @@ ship adapters or output targets.
 | `specification/` | Normative deliverables: prose chapters, JSON Schemas, registries, themes, hosts, examples |
 | `conformance/` | Fixtures, sweeps, and the implementation-agnostic runner |
 | `tools/` | Private, non-normative tooling (reference checker, types, spec-lint, bench, kernel cross-check) |
-| `packages/` | Core runtime `@opentheme/core` and its private conformance harness |
+| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, and the Web adapter `@opentheme/web` |
 | `evaluations/` | Manual protocols for human/AI success criteria (not in CI) |
 | `specs/` | Spec Kit feature docs (plan, research, tasks) |
 
@@ -36,7 +37,9 @@ pnpm release:check
 
 `pnpm verify` runs every gate, in the order defined by the root `package.json`. The Core gates
 (`conformance:core`, `sweeps:core`, `crosscheck:core`, `bench:core`, `size:core`) run the same
-conformance suite against `packages/core`. Run sweeps against any implementation with
+conformance suite against `packages/core`. The Web gates (`conformance:web`, `size:web`,
+`bench:web`) check that the CSS output decodes back to Core's result for every resolution fixture,
+that the adapter stays within 10 KB gzip over Core, and its apply and update budgets. Run sweeps against any implementation with
 `node conformance/runner/dist/main.js --sweeps --impl "<command>"`. The runner's `--filter`
 glob matches one path segment per `*`; use `**` to match nested fixture ids.
 
