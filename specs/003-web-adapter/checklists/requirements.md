@@ -41,7 +41,7 @@
 
 `pnpm verify` passes with the Web gates:
 
-- Workspace tests: 71 files, 851 tests (Web adapter: 12 files, 306 tests including the
+- Workspace tests: 71 files, 851 tests (Web adapter: 12 files, 305 tests including the
   documentation examples).
 - `conformance:web`: all 119 Core resolution fixtures plus a variant case round-trip JCS-identical
   with zero omissions; every value matches the contract grammar.
