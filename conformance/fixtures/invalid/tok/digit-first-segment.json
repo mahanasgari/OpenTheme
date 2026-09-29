@@ -1,0 +1,87 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-001"
+  ],
+  "description": "The first path segment must start with a letter → OT-TOK-001 (errata W3).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "uid.k7q2m4x5c3v6b6n2z5r7t2y4wa",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "4": {
+          "gap": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          }
+        }
+      }
+    },
+    "bases": [],
+    "host": null
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-001",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/4"
+        },
+        "rule": "R-TOK-001"
+      }
+    ]
+  }
+}
