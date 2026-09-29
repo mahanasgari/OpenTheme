@@ -83,13 +83,13 @@ written value matches the grammar and the stylesheet keeps exactly one rule
 
 ### Tests for User Story 5
 
-- [ ] T018 [P] [US5] Write `packages/web/test/malicious/output.test.ts`: admit every `conformance/fixtures/malicious/**` and `invalid/**` theme as untrusted with sources enabled, resolve what Core accepts, apply it, and assert every value matches the contract's value grammar (a single regular expression per type), no value contains `;`, `{`, `}`, `<`, or an unescaped `"`, and the scope's stylesheet has exactly one rule
-- [ ] T019 [P] [US5] Write `packages/web/test/unit/omissions.test.ts`: a host declaration with a contract, part, property, or variant name outside `[a-z][a-z0-9-]*` (for example `My Part`, `a_b`, `x}y`) and a `gradient` property produce omissions with the right reason and write nothing for them (findings W1, W2)
+- [X] T018 [P] [US5] Write `packages/web/test/malicious/output.test.ts`: admit every `conformance/fixtures/malicious/**` and `invalid/**` theme as untrusted with sources enabled, resolve what Core accepts, apply it, and assert every value matches the contract's value grammar (a single regular expression per type), no value contains `;`, `{`, `}`, `<`, or an unescaped `"`, and the scope's stylesheet has exactly one rule
+- [X] T019 [P] [US5] Write `packages/web/test/unit/omissions.test.ts`: a host declaration with a contract, part, property, or variant name outside `[a-z][a-z0-9-]*` (for example `My Part`, `a_b`, `x}y`) and a `gradient` property produce omissions with the right reason and write nothing for them (findings W1, W2)
 
 ### Implementation for User Story 5
 
-- [ ] T020 [US5] Harden `packages/web/src/serialize.ts` and `packages/web/src/naming.ts` so every value is built only from typed numbers, keywords, and escaped strings, and every name only from grammar-checked segments; add a final assertion in `packages/web/src/declarations.ts` that drops (and reports) any declaration failing the grammar
-- [ ] T021 [US5] Record the security review for `packages/web/src/**` in `specs/003-web-adapter/checklists/security-review.md` (names, values, CSSOM writes, server-rendered element, storage)
+- [X] T020 [US5] Harden `packages/web/src/serialize.ts` and `packages/web/src/naming.ts` so every value is built only from typed numbers, keywords, and escaped strings, and every name only from grammar-checked segments; add a final assertion in `packages/web/src/declarations.ts` that drops (and reports) any declaration failing the grammar
+- [X] T021 [US5] Record the security review for `packages/web/src/**` in `specs/003-web-adapter/checklists/security-review.md` (names, values, CSSOM writes, server-rendered element, storage)
 
 **Checkpoint**: The adapter is safe against every malicious fixture
 
