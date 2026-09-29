@@ -1,0 +1,194 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-INH-004"
+  ],
+  "description": "A chain that returns to a base already in it → OT-INH-004 at the closing link.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "extends": {
+        "id": "org.example.b1",
+        "version": "^1.0.0"
+      }
+    },
+    "bases": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.b1",
+          "version": "1.0.0",
+          "name": "Base b1",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "extends": {
+            "id": "org.example.b2",
+            "version": "^1.0.0"
+          }
+        }
+      },
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.b2",
+          "version": "1.0.0",
+          "name": "Base b2",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "extends": {
+            "id": "org.example.b1",
+            "version": "^1.0.0"
+          }
+        }
+      }
+    ]
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-INH-004",
+        "location": {
+          "document": "base:org.example.b1@^1.0.0",
+          "pointer": "/extends"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,2516 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-LIM-099"
+  ],
+  "description": "260 errors: the first 200 in canonical order, then OT-LIM-099 at the pointer \"\".",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "color": {
+          "t0": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t1": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t2": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t3": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t4": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t5": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t6": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t7": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t8": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t9": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t10": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t11": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t12": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t13": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t14": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t15": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t16": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t17": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t18": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t19": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t20": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t21": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t22": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t23": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t24": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t25": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t26": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t27": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t28": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t29": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t30": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t31": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t32": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t33": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t34": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t35": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t36": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t37": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t38": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t39": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t40": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t41": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t42": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t43": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t44": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t45": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t46": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t47": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t48": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t49": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t50": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t51": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t52": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t53": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t54": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t55": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t56": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t57": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t58": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t59": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t60": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t61": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t62": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t63": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t64": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t65": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t66": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t67": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t68": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t69": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t70": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t71": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t72": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t73": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t74": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t75": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t76": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t77": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t78": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t79": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t80": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t81": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t82": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t83": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t84": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t85": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t86": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t87": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t88": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t89": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t90": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t91": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t92": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t93": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t94": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t95": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t96": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t97": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t98": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t99": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t100": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t101": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t102": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t103": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t104": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t105": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t106": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t107": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t108": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t109": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t110": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t111": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t112": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t113": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t114": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t115": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t116": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t117": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t118": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t119": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t120": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t121": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t122": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t123": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t124": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t125": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t126": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t127": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t128": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t129": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t130": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t131": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t132": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t133": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t134": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t135": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t136": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t137": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t138": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t139": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t140": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t141": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t142": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t143": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t144": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t145": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t146": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t147": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t148": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t149": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t150": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t151": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t152": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t153": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t154": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t155": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t156": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t157": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t158": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t159": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t160": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t161": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t162": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t163": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t164": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t165": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t166": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t167": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t168": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t169": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t170": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t171": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t172": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t173": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t174": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t175": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t176": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t177": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t178": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t179": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t180": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t181": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t182": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t183": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t184": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t185": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t186": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t187": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t188": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t189": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t190": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t191": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t192": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t193": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t194": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t195": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t196": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t197": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t198": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t199": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t200": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t201": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t202": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t203": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t204": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t205": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t206": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t207": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t208": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t209": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t210": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t211": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t212": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t213": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t214": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t215": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t216": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t217": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t218": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t219": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t220": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t221": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t222": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t223": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t224": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t225": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t226": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t227": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t228": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t229": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t230": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t231": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t232": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t233": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t234": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t235": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t236": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t237": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t238": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t239": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t240": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t241": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t242": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t243": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t244": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t245": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t246": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t247": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t248": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t249": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t250": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t251": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t252": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t253": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t254": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t255": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t256": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t257": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t258": {
+            "$type": "color",
+            "$value": "nope"
+          },
+          "t259": {
+            "$type": "color",
+            "$value": "nope"
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t0/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t1/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t10/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t100/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t101/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t102/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t103/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t104/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t105/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t106/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t107/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t108/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t109/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t11/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t110/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t111/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t112/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t113/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t114/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t115/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t116/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t117/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t118/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t119/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t12/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t120/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t121/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t122/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t123/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t124/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t125/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t126/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t127/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t128/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t129/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t13/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t130/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t131/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t132/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t133/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t134/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t135/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t136/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t137/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t138/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t139/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t14/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t140/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t141/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t142/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t143/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t144/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t145/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t146/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t147/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t148/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t149/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t15/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t150/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t151/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t152/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t153/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t154/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t155/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t156/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t157/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t158/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t159/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t16/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t160/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t161/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t162/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t163/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t164/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t165/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t166/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t167/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t168/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t169/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t17/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t170/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t171/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t172/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t173/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t174/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t175/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t176/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t177/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t178/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t179/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t18/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t180/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t181/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t182/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t183/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t184/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t185/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t186/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t187/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t188/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t189/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t19/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t190/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t191/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t192/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t193/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t194/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t195/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t196/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t197/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t198/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t199/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t2/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t20/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t200/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t201/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t202/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t203/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t204/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t205/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t206/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t207/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t208/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t209/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t21/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t210/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t211/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t212/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t213/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t214/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t215/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t216/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t217/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t218/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t219/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t22/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t220/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t221/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t222/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t223/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t224/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t225/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t226/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t227/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t228/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t229/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t23/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t230/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t231/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t232/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t233/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t234/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t235/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t236/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t237/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t238/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t239/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t24/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t240/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t241/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t242/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t243/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t244/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t245/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t246/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t247/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t248/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t249/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t25/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t250/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t251/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t252/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t253/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t254/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t255/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t256/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t257/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t258/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t259/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t26/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t27/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t28/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t29/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t3/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t30/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t31/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t32/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t33/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t34/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t35/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t36/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t37/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t38/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t39/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t4/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t40/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t41/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t42/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t43/$value"
+        }
+      },
+      {
+        "code": "OT-TOK-004",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/t44/$value"
+        }
+      },
+      {
+        "code": "OT-LIM-099",
+        "location": {
+          "document": "theme",
+          "pointer": ""
+        }
+      }
+    ]
+  }
+}
