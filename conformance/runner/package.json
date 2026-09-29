@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "OpenTheme conformance suite runner (ot-conformance)",
+  "license": "Apache-2.0",
   "bin": {
     "ot-conformance": "./dist/main.js"
   },

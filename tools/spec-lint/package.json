@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Specification consistency, traceability, and example checks",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "node dist/main.js",

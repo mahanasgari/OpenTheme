@@ -2,6 +2,7 @@
   "name": "@opentheme/core",
   "version": "0.1.0-draft.0",
   "description": "Framework-agnostic OpenTheme Core runtime: admission, trust, registry, and deterministic resolution per the OpenTheme Theme Specification",
+  "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
   "exports": {

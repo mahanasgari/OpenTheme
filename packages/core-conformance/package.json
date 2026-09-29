@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Private NDJSON conformance harness for @opentheme/core",
-  "bin": { "ot-core": "./dist/main.js" },
+  "license": "Apache-2.0",
+  "bin": {
+    "ot-core": "./dist/main.js"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "vitest run --config vitest.config.ts"

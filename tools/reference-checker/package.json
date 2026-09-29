@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Private, non-normative OpenTheme reference checker (ot-ref)",
+  "license": "Apache-2.0",
   "bin": {
     "ot-ref": "./dist/cli/main.js"
   },

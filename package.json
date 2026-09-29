@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "OpenTheme Theme Specification 1.0 and conformance suite",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=24",
     "pnpm": ">=10"
