@@ -93,7 +93,7 @@ clarifications in the spec; these decisions settle the technical questions it le
   | `textScale` | host input (optional helper: root font size / 16) | `1` |
   | `sizeClass` | host input (optional helper: width against 600 px and 1024 px) | host default, required |
   | `direction` | the scope element's computed direction | `ltr` |
-  | `locale` | the nearest `lang` attribute | host default |
+  | `locale` | the nearest `lang` attribute | the host's `locale` option, default `en` |
 
   Listeners: `MediaQueryList` change events for the four media features, and one
   `MutationObserver` for `lang` and `dir` attributes on the document element and the scope element.
@@ -111,7 +111,7 @@ clarifications in the spec; these decisions settle the technical questions it le
   `opentheme:<scope>`. `read` is synchronous; every access is wrapped so exceptions (disabled
   storage, quota exceeded, sandboxed frames) reject the promise, which Core reports as
   `store-read-failed` / `store-write-failed`. `readInitial(scope)` returns the stored bytes or
-  `null` synchronously, and the scope passes them to Core's controller as `initial`, so the first
+  `null` synchronously (a storage failure is reported as `store-read-failed`), and the scope passes them to Core's controller as `initial`, so the first
   resolution uses them without waiting.
 - **Rationale**: Satisfies the constitution's local-store requirement and Core FR-C092; Core
   already validates and never overwrites stored documents it cannot use.

@@ -28,7 +28,7 @@ package lives in `packages/web/`.
 - [ ] T001 Create `packages/web/package.json` (`@opentheme/web`, version `0.1.0-draft.0`, `"type": "module"`, `license: Apache-2.0`, `sideEffects: false`, exports `.` → `dist/index.js`/`dist/index.d.ts`, `peerDependencies: { "@opentheme/core": "workspace:^" }`, devDependencies `happy-dom`, `esbuild`, `typescript`, and scripts `build`, `test`, `size`, `bench`), `packages/web/tsconfig.json` (extends `tsconfig.base.json`, `lib: ["ES2022", "DOM"]`, `rootDir: src`, `outDir: dist`), and `packages/web/vitest.config.ts` (`environment: "happy-dom"`, `include: ["test/**/*.test.ts"]`)
 - [ ] T002 Add `packages/web` to the root `vitest.config.ts` projects, add `@opentheme/web` to the root `build` filter, and add root scripts `conformance:web`, `bench:web`, and `size:web` in `package.json` (added to `verify` and `verify:correctness` in T037)
 - [ ] T003 [P] Create `packages/web/src/index.ts` exporting nothing yet and `packages/web/test/helpers.ts` (repo root, `read(path)`, the Aurora, Graphite, and notes-host paths, and a light/standard/medium/`en`/`ltr` context), mirroring `packages/core/test/helpers.ts`
-- [ ] T004 [P] Extend `tools/spec-lint/src/core-boundaries.ts` (or add `web-boundaries.ts` wired in `tools/spec-lint/src/main.ts`) so `packages/web/src/**` may import only `@opentheme/core` and relative modules, never a UI framework or `tools/**`
+- [ ] T004 [P] Add `tools/spec-lint/src/web-boundaries.ts`, wired in `tools/spec-lint/src/main.ts`, so `packages/web/src/**` may import only `@opentheme/core` (its public entry, never `internal-conformance`) and relative modules, never a UI framework, a Node built-in, or `tools/**`, and never uses a network API (`fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `sendBeacon`), cookies, or dynamic code (FR-W023, FR-W040 to FR-W042)
 - [ ] T005 [P] Create `packages/web/scripts/size.ts`: bundle `dist/index.js` with esbuild (`@opentheme/core` external, minified, ESM, browser platform), gzip, and fail above 10,240 bytes (SC-W007)
 
 ---
@@ -42,7 +42,7 @@ package lives in `packages/web/`.
 - [ ] T006 [P] Write `packages/web/test/unit/naming.test.ts`: every row of the naming table in contracts/css-output.md, injectivity over all standard catalog paths plus paths with hyphens in segments (`a.b-c` versus `a-b.c`), and rejection of any segment not matching `[a-z][a-z0-9-]*`
 - [ ] T007 [P] Write `packages/web/test/unit/serialize.test.ts`: every row of the values table in contracts/css-output.md, including `rgb(r g b)` when alpha is 1, `rgb(r g b / a)` otherwise, all nine system colors from `forced-colors.json` `cssSystemColorHint`, generic families unquoted, other family names quoted with `\` and `"` escaped, shortest round-trip numbers (including exponents), and `null` for any unsupported shape
 - [ ] T008 Implement `packages/web/src/naming.ts` (WR2): `tokenName(path)`, `componentName(contract, part, property, state, variant?)`, and `memberSuffix(member)`; segments must match `[a-z][a-z0-9-]*` (host identifiers: dot-separated segments), `.` becomes `_`, `/` becomes `__`, composite members become `___<kebab-case>`, variants insert `_v_<axis>_<value>`, tokens use `--ot-` and components `--otc-`; return `null` for a name outside the grammar
-- [ ] T009 Implement `packages/web/src/serialize.ts` (WR3): one serializer per resolved shape returning CSS text or `null` for a shape with no serializer; system color names come from `specification/registry/1.0/forced-colors.json` embedded at build time (generate `packages/web/src/generated/system-colors.ts` in the build script); the generic family list comes from Core's registry export or an embedded copy checked by a test
+- [ ] T009 Implement `packages/web/src/serialize.ts` (WR3): one serializer per resolved shape returning CSS text or `null` for a shape with no serializer; system color names come from `specification/registry/1.0/forced-colors.json` embedded at build time (generate `packages/web/src/generated/system-colors.ts` in the build script); the generic family list is generated in the same file from `specification/schemas/1.0/defs/tokens.schema.json` `$defs.genericFamily`
 - [ ] T010 Write the test-only decoder `packages/web/test/decode.ts`: the exact inverse of T008 and T009, turning declarations back into Core's `tokens` and `components` shapes
 
 **Checkpoint**: Naming and serialization are complete, tested, and reversible
@@ -61,13 +61,13 @@ back, and decode it; every value equals Core's resolved value
 
 - [ ] T011 [P] [US1] Write `packages/web/test/conformance/output-target.test.ts` (FR-W050): for every `conformance/fixtures/resolution/**` fixture (reuse Core's fixture expansion approach from `packages/core/test/fixtures.ts`), resolve through Core, run `toDeclarations`, decode with `test/decode.ts`, and assert JCS equality with Core's `tokens` and `components`; omissions must be empty for fixtures without host-specific names outside the grammar
 - [ ] T012 [P] [US1] Write `packages/web/test/quickstart.test.ts` running quickstart.md scenario 1 verbatim
-- [ ] T013 [P] [US1] Write `packages/web/test/dom/scope.test.ts`: document scope writes to a `:root` rule; two element scopes see only their own values; an update sets and removes only changed properties (count the calls); `detach()` removes the rule, the style element, the `data-opentheme-scope` attribute, and is idempotent; attaching twice to one target throws `scope-conflict`; an invalid scope id throws `invalid-argument`
+- [ ] T013 [P] [US1] Write `packages/web/test/dom/scope.test.ts`: document scope writes to a `:root` rule; two element scopes see only their own values; an update sets and removes only changed properties (count the calls); `detach()` removes the rule, the style element, the `data-opentheme-scope` attribute, and is idempotent; attaching twice to one target throws an `OpenThemeWebError` of kind `scope-conflict`; an invalid scope id throws one of kind `invalid-argument`
 
 ### Implementation for User Story 1
 
 - [ ] T014 [US1] Implement `packages/web/src/declarations.ts`: `toDeclarations(resolved)` walking `resolved.tokens` (including host-qualified tokens and composite members) and `resolved.components` (states and `$variants`), producing declarations sorted by name in UTF-16 code-unit order plus omissions `{ path, reason: "name-grammar" | "value-shape" }` (WR10)
 - [ ] T015 [P] [US1] Implement `packages/web/src/stylesheet.ts`: `toStylesheet(resolved, { scope?, nonce?, element? })` producing `:root { … }` or `[data-opentheme-scope="<id>"] { … }`, and with `element: true` the full `<style data-opentheme-scope="<id>">` element with the optional nonce attribute
-- [ ] T016 [US1] Implement `packages/web/src/scope.ts` `attachTheme` (WR4): validate the scope id (`[a-z][a-z0-9-]*`), refuse a managed target (`scope-conflict`), create an empty `<style data-opentheme-scope>` element (or adopt an existing one), add one rule through the CSS object model, create the Core controller with the policy, context, store, and initial preferences, apply every controller publication by diff (`setProperty`/`removeProperty` only for changed names), keep the `AdapterReport`, and implement idempotent `detach()` that also disposes the controller and every listener
+- [ ] T016 [US1] Implement `packages/web/src/errors.ts` (`OpenThemeWebError` with `kind`, `operation`, `message`) and `packages/web/src/scope.ts` `attachTheme` (WR4): validate the scope id (`[a-z][a-z0-9-]*`), refuse a managed target (`scope-conflict`), create an empty `<style data-opentheme-scope>` element (or adopt an existing one), add one rule through the CSS object model, create the Core controller with the policy, context, store, and initial preferences, apply every controller publication by diff (`setProperty`/`removeProperty` only for changed names), keep the `AdapterReport`, and implement idempotent `detach()` that also disposes the controller and every listener
 - [ ] T017 [US1] Export `toDeclarations`, `toStylesheet`, `attachTheme`, and the `WebScope`/`AdapterReport` types from `packages/web/src/index.ts` as listed in contracts/public-api.md
 
 **Checkpoint**: User Story 1 is functional and conformance passes on every resolution fixture
@@ -104,7 +104,7 @@ none for repeats
 
 ### Tests for User Story 2
 
-- [ ] T022 [P] [US2] Write `packages/web/test/dom/context.test.ts`: with a controllable `matchMedia` stub, each of `prefers-color-scheme`, `prefers-contrast`, `forced-colors`, and `prefers-reduced-motion` maps as in data-model.md §4 (missing features → `no-preference`, `standard`, `false`, `false`); a change causes exactly one `setContext`; a repeated identical signal causes none; `lang` and `dir` changes on the document or scope element update `locale` and `direction`; `setSizeClass` and `setTextScale` update the context; forced colors write system colors
+- [ ] T022 [P] [US2] Write `packages/web/test/dom/context.test.ts`: with a controllable `matchMedia` stub, each of `prefers-color-scheme`, `prefers-contrast`, `forced-colors`, and `prefers-reduced-motion` maps as in data-model.md §4 (missing features → `no-preference`, `standard`, `false`, `false`); a change causes exactly one `setContext`; a repeated identical signal causes none; `lang` and `dir` changes on the document or scope element update `locale` and `direction`; `setSizeClass` and `setTextScale` update the context; forced colors write system colors; the user's explicit color-scheme choice (the `color-scheme` point) stays applied when the system setting changes; without a `lang` attribute the `locale` option (default `en`) is used
 - [ ] T023 [P] [US2] Write `packages/web/test/unit/helpers.test.ts`: `sizeClassForWidth` returns `compact` below 600, `medium` from 600, `expanded` from 1024; `textScaleFromRoot` returns root font size / 16 and 1 when unavailable
 
 ### Implementation for User Story 2
@@ -125,12 +125,12 @@ failing storage, everything still applies and a store failure is reported
 
 ### Tests for User Story 3
 
-- [ ] T026 [P] [US3] Write `packages/web/test/dom/store.test.ts`: `read`/`write`/`clear` use key `opentheme:<scope>` (custom prefix supported); two scopes do not overwrite each other; a throwing storage rejects (and the controller lists `store-read-failed`/`store-write-failed`); `readInitial` returns `null` on failure; a re-attached scope's first resolution uses the stored selection; corrupt, oversized, or newer-format stored data is ignored and left untouched
+- [ ] T026 [P] [US3] Write `packages/web/test/dom/store.test.ts`: `read`/`write`/`clear` use key `opentheme:<scope>` (custom prefix supported); two scopes do not overwrite each other; a throwing storage rejects (and the controller lists `store-read-failed`/`store-write-failed`); a throwing `readInitial` makes `attachTheme` still apply and list `store-read-failed` in the scope's `errors`; a re-attached scope's first resolution uses the stored selection; corrupt, oversized, or newer-format stored data is ignored and left untouched
 
 ### Implementation for User Story 3
 
-- [ ] T027 [US3] Implement `packages/web/src/store.ts` `createBrowserStore({ storage?, prefix? })` (WR6): Core `PreferenceStore` over `localStorage` or the supplied storage, every access wrapped so exceptions reject, plus synchronous `readInitial(scope)`
-- [ ] T028 [US3] In `packages/web/src/scope.ts`, default `store` to `createBrowserStore()` (`false` disables it) and default `initial` to `store.readInitial(scope)`; export `createBrowserStore` from `packages/web/src/index.ts`
+- [ ] T027 [US3] Implement `packages/web/src/store.ts` `createBrowserStore({ storage?, prefix? })` (WR6): Core `PreferenceStore` over `localStorage` or the supplied storage, every access wrapped so exceptions reject, plus synchronous `readInitial(scope)` that returns the stored bytes or `null` and throws on a storage failure
+- [ ] T028 [US3] In `packages/web/src/scope.ts`, default `store` to `createBrowserStore()` (`false` disables it) and default `initial` to `store.readInitial(scope)`, recording `store-read-failed` in the scope's `errors` when it throws; export `createBrowserStore` from `packages/web/src/index.ts`
 
 **Checkpoint**: Preferences persist and failures are safe
 
@@ -165,7 +165,7 @@ count zero property writes
 - [ ] T034 [P] Extend the browser page (`packages/core/bench/browser.ts` or a new `packages/web/bench/browser.ts`) to time `attachTheme` apply and a context-change update in a real browser
 - [ ] T035 [P] Record findings W1 and W2 in `specification/CHANGELOG.md` under an "Unreleased" open-findings note and in `specs/003-web-adapter/plan.md`, without changing Foundation behavior
 - [ ] T036 Update the root `AGENTS.md` (layout row for `packages/web`, the web gates, and that the repository now ships the Web adapter) and the root `README.md` "What is here" table
-- [ ] T037 Add `conformance:web`, `size:web`, and `bench:web` to `pnpm verify`, and `conformance:web` and `size:web` to `pnpm verify:correctness` in the root `package.json`
+- [ ] T037 Add `conformance:web`, `size:web`, and `bench:web` to `pnpm verify`, and `conformance:web` and `size:web` to `pnpm verify:correctness` in the root `package.json`; add a non-blocking "Benchmark (Web)" step to `.github/workflows/ci.yml` beside the Core one (constitution VIII)
 - [ ] T038 Run `pnpm verify` and record the results (conformance counts, test counts, size, and bench medians) in `specs/003-web-adapter/checklists/requirements.md`
 
 ---

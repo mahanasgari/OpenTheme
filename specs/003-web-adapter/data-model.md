@@ -50,7 +50,7 @@ nothing. Attaching to a target already managed by another scope is refused
 | `platform.textScale` | host input (optional root-font-size helper) | `1` |
 | `environment.sizeClass` | host input (optional width helper, thresholds 600 / 1024 px) | required from the host |
 | `environment.direction` | computed direction of the target | `ltr` |
-| `environment.locale` | nearest `lang` attribute | host default locale |
+| `environment.locale` | nearest `lang` attribute | the host's `locale` option, default `en` |
 
 Change detection: the source keeps the last context sent to Core and forwards a change only when
 some field differs.
@@ -62,7 +62,7 @@ some field differs.
 | `read(scope)` | The bytes at key `<prefix><scope>` (default prefix `opentheme:`), or `null`; storage exceptions reject |
 | `write(scope, bytes)` | Stores the canonical document bytes; quota or access exceptions reject |
 | `clear(scope)` | Removes the key |
-| `readInitial(scope)` | Synchronous read for the first resolution; returns `null` on any failure |
+| `readInitial(scope)` | Synchronous read for the first resolution; `null` when absent; throws on a storage failure, which the scope reports as `store-read-failed` |
 
 The store never interprets the bytes; Core parses and validates them (chapter 18).
 

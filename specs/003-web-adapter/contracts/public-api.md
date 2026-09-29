@@ -31,7 +31,7 @@ export function attachTheme(options: {
   policy: PolicyInput;
   sizeClass: "compact" | "medium" | "expanded";
   textScale?: number;                   // default 1
-  locale?: string;                      // default: nearest lang, else "en"
+  locale?: string;                      // used when no lang attribute applies; default "en"
   store?: PreferenceStore | false;      // default: createBrowserStore(); false: none
   initial?: Uint8Array | string | UserPreferencesDocument;  // default: store.readInitial(scope)
   nonce?: string;
@@ -40,6 +40,7 @@ export function attachTheme(options: {
 export interface WebScope {
   readonly controller: ThemeController;   // Core's controller: select, setValue, preview, …
   readonly report: AdapterReport;         // last update's omissions and write counts
+  readonly errors: readonly OperationalError[];  // adapter errors (store-read-failed), then the controller's
   setSizeClass(sizeClass: "compact" | "medium" | "expanded"): void;
   setTextScale(textScale: number): void;
   detach(): void;                          // idempotent
@@ -51,7 +52,7 @@ export interface WebScope {
 | First application | Synchronous: the stored or `initial` preferences are used by the first resolution; an adopted server-rendered element is not rewritten when unchanged |
 | Updates | Every controller publication is applied by diff: only changed properties are set or removed |
 | Context | Media features and `lang`/`dir` are observed; Core's `setContext` is called only on a real change |
-| Errors | Attaching to a managed target throws `scope-conflict`; an invalid `scope` id throws `invalid-argument`; context errors are Core's `invalid-context` |
+| Errors | Attaching to a managed target throws `OpenThemeWebError` of kind `scope-conflict`; an invalid `scope` id or option throws one of kind `invalid-argument`; context errors are Core's `invalid-context` |
 | Teardown | `detach` removes the rule, the style element it created or adopted, the scope attribute, and every listener |
 
 ## Preferences
@@ -59,10 +60,15 @@ export interface WebScope {
 ```ts
 export function createBrowserStore(options?: { storage?: Storage; prefix?: string }):
   PreferenceStore & { readInitial(scope: string): string | null };
+
+export class OpenThemeWebError extends Error {
+  readonly kind: "scope-conflict" | "invalid-argument";
+  readonly operation: string;
+}
 ```
 
 Exceptions from storage become rejected promises, which Core reports as `store-read-failed` /
-`store-write-failed`. `readInitial` returns `null` on any failure.
+`store-write-failed`. `readInitial` returns the stored bytes or `null` and throws on a storage failure; `attachTheme` catches it, still applies, and lists `store-read-failed` in `WebScope.errors` (FR-W021).
 
 ## Helpers
 
