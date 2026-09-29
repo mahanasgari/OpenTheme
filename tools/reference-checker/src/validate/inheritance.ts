@@ -53,9 +53,11 @@ function extendsOf(doc: Record<string, unknown>): ExtendsRef | null {
 }
 
 /**
- * Resolve inheritance chain for `doc` among `available` bases.
- * Returns ordered bases from root to parent (nearest base last before child),
- * or null if inheritance is invalid (diagnostics already emitted).
+ * Resolve the inheritance chain for `doc` among `available` bases (chapter 10). The whole chain is
+ * walked first (depth, cycles, missing bases, versions); then the nearest base is validated with
+ * the same bases, which covers every farther base. Findings are located at `base:<id>@<version>`
+ * as the `extends` member that reached the base is written.
+ * Returns ordered bases from root to parent, or null if inheritance is invalid.
  */
 export function resolveInheritanceChain(
   doc: Record<string, unknown>,
@@ -70,102 +72,93 @@ export function resolveInheritanceChain(
     byId.set(id, list);
   }
 
-  const chain: Record<string, unknown>[] = [];
-  const seen = new Set<string>();
-  let current: Record<string, unknown> | null = doc;
-  let trust: "trusted" | "untrusted" = "trusted";
-  let depth = 0;
-
-  while (current) {
+  const links: { where: string; match: ThemeWithTrust }[] = [];
+  const ids = new Set<string>([themeId(doc)]);
+  let current: Record<string, unknown> = doc;
+  for (let depth = 1; ; depth += 1) {
     const ext = extendsOf(current);
     if (!ext) break;
-    depth += 1;
+    const where = `base:${ext.id}@${ext.version}`;
+    const key = `${ext.id}@${ext.version}`;
     if (depth > MAX_INHERITANCE_DEPTH) {
       collector.add({
         code: "OT-INH-005",
         rule: "R-INH-005",
-        location: { document: "theme", pointer: "/extends" },
+        location: { document: where, pointer: "/extends" },
         params: { detail: String(depth) },
       });
       return null;
     }
-
-    const key = `${ext.id}@${ext.version}`;
-    if (seen.has(ext.id) || themeId(current) === ext.id) {
+    if (ids.has(ext.id)) {
       collector.add({
         code: "OT-INH-004",
         rule: "R-INH-004",
-        location: {
-          document: `base:${ext.id}@${ext.version}`,
-          pointer: "/extends",
-        },
+        location: { document: where, pointer: "/extends" },
         params: { detail: ext.id },
       });
       return null;
     }
-    seen.add(ext.id);
-
     const candidates = byId.get(ext.id) ?? [];
-    const match = candidates.find((c) =>
-      versionSatisfies(ext.version, themeVersion(c.document)),
-    );
     if (candidates.length === 0) {
       collector.add({
         code: "OT-INH-001",
         rule: "R-INH-001",
-        location: {
-          document: `base:${ext.id}@${ext.version}`,
-          pointer: "/extends",
-        },
+        location: { document: where, pointer: "/extends" },
         params: { detail: key },
       });
       return null;
     }
+    const match = candidates.find((c) => versionSatisfies(ext.version, themeVersion(c.document)));
     if (!match) {
       collector.add({
         code: "OT-INH-003",
         rule: "R-INH-003",
-        location: {
-          document: `base:${ext.id}@${ext.version}`,
-          pointer: "/extends/version",
-        },
+        location: { document: where, pointer: "/extends/version" },
         params: { detail: key },
       });
       return null;
     }
-
-    const baseResult = validateThemeObject(match.document);
-    if (!baseResult.valid) {
-      for (const d of baseResult.diagnostics) {
-        collector.add({
-          code: "OT-INH-002",
-          rule: "R-INH-002",
-          location: {
-            document: `base:${themeId(match.document)}@${themeVersion(match.document)}`,
-            pointer: d.location.pointer,
-          },
-          params: { detail: d.code },
-        });
-      }
-      if (baseResult.diagnostics.length === 0) {
-        collector.add({
-          code: "OT-INH-002",
-          rule: "R-INH-002",
-          location: {
-            document: `base:${themeId(match.document)}@${themeVersion(match.document)}`,
-            pointer: "/",
-          },
-          params: { detail: "invalid base" },
-        });
-      }
-      return null;
-    }
-
-    if (match.trust === "untrusted") trust = "untrusted";
-    chain.unshift(match.document);
+    ids.add(ext.id);
+    links.push({ where, match });
     current = match.document;
   }
 
+  const nearest = links[0];
+  if (nearest) {
+    const baseResult = validateThemeObject(nearest.match.document, { bases: available });
+    if (!baseResult.valid) {
+      const errors = baseResult.diagnostics.filter((d) => d.severity === "error");
+      if (errors.length === 0) {
+        collector.add({
+          code: "OT-INH-002",
+          rule: "R-INH-002",
+          location: { document: nearest.where, pointer: "/" },
+          params: { detail: "invalid base" },
+        });
+      }
+      for (const d of errors) {
+        // A finding already located in a farther base is reported as it is.
+        if (d.location.document.startsWith("base:")) {
+          collector.add({ code: d.code, rule: d.rule, location: d.location, params: d.params ?? {} });
+        } else {
+          collector.add({
+            code: "OT-INH-002",
+            rule: "R-INH-002",
+            location: { document: nearest.where, pointer: d.location.pointer },
+            params: { detail: d.code },
+          });
+        }
+      }
+      return null;
+    }
+  }
+
+  let trust: "trusted" | "untrusted" = "trusted";
+  const chain: Record<string, unknown>[] = [];
+  for (const { match } of links) {
+    if (match.trust === "untrusted") trust = "untrusted";
+    chain.unshift(match.document);
+  }
   return { chain, trust };
 }
 
