@@ -1,0 +1,84 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-011"
+  ],
+  "description": "Seeds are opaque; a translucent seed → OT-TOK-011 (schema step and seed step).",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ],
+            "alpha": 0.5
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-011",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/seeds/light/background"
+        },
+        "rule": "R-TOK-011"
+      },
+      {
+        "code": "OT-TOK-011",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/seeds/light/background/alpha"
+        },
+        "rule": "R-TOK-011"
+      }
+    ]
+  }
+}

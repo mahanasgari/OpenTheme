@@ -1,0 +1,89 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-TOK-003"
+  ],
+  "description": "Themes MUST NOT redefine the reserved seed group under tokens → OT-TOK-003.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "seed": {
+          "accent": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.8,
+                0.1,
+                0.1
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-TOK-003",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/seed"
+        },
+        "rule": "R-TOK-003"
+      }
+    ]
+  }
+}
