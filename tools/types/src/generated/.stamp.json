@@ -67,7 +67,7 @@
     },
     {
       "path": "specification/schemas/1.0/registry/diagnostics.schema.json",
-      "sha256": "81e6ef474ad138ea154bb4df09979e85dd9b452239ba07b643ba12ef668d9d43"
+      "sha256": "bf25f4756d1c006c2434fb75491776137b230f114b0171d4a4ff5829672b149c"
     },
     {
       "path": "specification/schemas/1.0/registry/forced-colors.schema.json",
@@ -79,7 +79,7 @@
     },
     {
       "path": "specification/schemas/1.0/registry/rules.schema.json",
-      "sha256": "c45492a25efc2a67d7eb0bed597c78d6cd3bb6cd0946f927258f02b76de16586"
+      "sha256": "384b7111a3caa26f670e1511ba6f394a64e04a202410c5b3780eeead378e247d"
     },
     {
       "path": "specification/schemas/1.0/registry/semantic-baseline.schema.json",

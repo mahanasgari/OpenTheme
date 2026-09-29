@@ -17,6 +17,10 @@ export interface HttpsOpenthemeOrgSchemas10RegistryDiagnosticsSchemaJson {
     rules: string[];
     fixtures: string[];
     example: any;
+    /**
+     * Present when the entry is retired: why, and that it is never reported.
+     */
+    retired?: string;
     [k: string]: any;
   }[];
 }

@@ -56,7 +56,12 @@
             },
             "minItems": 0
           },
-          "example": {}
+          "example": {},
+          "retired": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Present when the entry is retired: why, and that it is never reported."
+          }
         }
       }
     }

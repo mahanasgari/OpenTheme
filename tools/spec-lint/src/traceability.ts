@@ -28,6 +28,7 @@ export function checkTraceability(repoRoot: string): string[] {
       fixtures?: string[];
       requirements?: string[];
       description?: string;
+      retired?: string;
     }>;
   };
   const ruleIds = new Set(rulesDoc.rules.map((r) => r.id));
@@ -61,6 +62,7 @@ export function checkTraceability(repoRoot: string): string[] {
   }
 
   for (const r of rulesDoc.rules) {
+    if (r.retired) continue; // retired rules are never reported, so they have no fixtures
     const fixtures = r.fixtures ?? [];
     const isStub = (r.description ?? "").startsWith("Rule R-");
     if (fixtures.length === 0) {
