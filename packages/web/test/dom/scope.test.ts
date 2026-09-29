@@ -72,7 +72,7 @@ describe("scopes", () => {
     }
   });
 
-  it("detach removes everything and is idempotent", () => {
+  it("detach removes everything and is idempotent", async () => {
     const el = document.createElement("div");
     document.body.append(el);
     const s = attach({ ...base, core: referenceCore(), target: el, scope: "panel" });
@@ -80,7 +80,7 @@ describe("scopes", () => {
     s.detach();
     expect(document.querySelector("style[data-opentheme-scope]")).toBeNull();
     expect(el.hasAttribute("data-opentheme-scope")).toBe(false);
-    expect(() => s.controller.select({ id: "org.opentheme.aurora" })).rejects.toThrow();
+    await expect(s.controller.select({ id: "org.opentheme.aurora" })).rejects.toThrow(/disposed/);
     // The target can be attached again after detach.
     attach({ ...base, core: referenceCore(), target: el, scope: "panel" }).detach();
   });
