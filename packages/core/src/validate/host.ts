@@ -11,6 +11,8 @@ const H = "host";
 const STATES = new Set(["default", "hover", "focus-visible", "pressed", "disabled", "selected", "invalid"]);
 const RESERVED = ["std", "org.opentheme", "uid"];
 const MAX_LAYOUT_VARIANTS = 16;
+/** Contract names, parts, properties, and variant axes and values (chapter 17). */
+const NAME = /^[a-z][a-z0-9-]*$/;
 
 export interface HostValidation {
   readonly valid: boolean;
@@ -49,6 +51,28 @@ export function validateHost(input: string | Uint8Array | unknown): HostValidati
       if (typeof raw.id === "string") {
         if (seen.has(raw.id)) semantic.add("OT-HOST-004", { document: H, pointer: `${ptr}/id` });
         seen.add(raw.id);
+        const hostId = typeof doc.id === "string" ? doc.id : "";
+        if (hostId && (!raw.id.startsWith(`${hostId}/`) || !NAME.test(raw.id.slice(hostId.length + 1)))) {
+          semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/id` });
+        }
+      }
+      if (Array.isArray(raw.parts)) {
+        raw.parts.forEach((part, k) => {
+          if (typeof part === "string" && !NAME.test(part)) semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/parts/${k}` });
+        });
+      }
+      if (isRecord(raw.variants)) {
+        for (const [axis, values] of Object.entries(raw.variants)) {
+          if (!NAME.test(axis)) {
+            semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/variants/${escapeSegment(axis)}` });
+          } else if (Array.isArray(values)) {
+            values.forEach((v, k) => {
+              if (typeof v === "string" && !NAME.test(v)) {
+                semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/variants/${escapeSegment(axis)}/${k}` });
+              }
+            });
+          }
+        }
       }
       if (Array.isArray(raw.states) && raw.states.some((s) => typeof s !== "string" || !STATES.has(s))) {
         semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/states` });
@@ -56,9 +80,10 @@ export function validateHost(input: string | Uint8Array | unknown): HostValidati
       const props = isRecord(raw.properties) ? raw.properties : {};
       const defaults = isRecord(raw.defaults) ? raw.defaults : {};
       for (const [part, pprops] of Object.entries(props)) {
+        if (!NAME.test(part)) semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/properties/${escapeSegment(part)}` });
         if (!isRecord(pprops)) continue;
         for (const [prop, type] of Object.entries(pprops)) {
-          if (typeof type !== "string" || !TOKEN_TYPES.has(type)) {
+          if (!NAME.test(prop) || typeof type !== "string" || !TOKEN_TYPES.has(type)) {
             semantic.add("OT-HOST-002", { document: H, pointer: `${ptr}/properties/${escapeSegment(part)}/${escapeSegment(prop)}` });
           }
         }
