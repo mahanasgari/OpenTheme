@@ -18,6 +18,7 @@ describe("naming table", () => {
     ["color.text.primary", "--ot-color_text_primary"],
     ["com.example.notes/color.rail", "--ot-com_example_notes__color_rail"],
     ["focus.ring-width", "--ot-focus_ring-width"],
+    ["space.4", "--ot-space_4"],
   ])("token %s", (path, name) => expect(tokenName(path)).toBe(name));
 
   it("composite members use a kebab-case ___ suffix", () => {
@@ -38,7 +39,7 @@ describe("naming table", () => {
 });
 
 describe("grammar", () => {
-  it.each(["Color.text", "color..text", "color.text_primary", "color.1st", "color.te xt", "", "a/b/c", "Bad.Host/a"])(
+  it.each(["Color.text", "color..text", "color.text_primary", "color.-x", "color.te xt", "", "a/b/c", "Bad.Host/a"])(
     "rejects token path %j",
     (path) => expect(tokenName(path)).toBeNull(),
   );
