@@ -16,6 +16,7 @@ import {
   limit,
 } from "../engine/registry.js";
 import { colorLiteral } from "../engine/values.js";
+import { refsOf } from "../engine/evaluate.js";
 import { fromLiteral } from "../color/index.js";
 import { quantizeChannel, quantizeAlpha } from "../color/index.js";
 
@@ -118,6 +119,16 @@ function literalInDomain(def: TransformArgDef, v: unknown): boolean {
   return true;
 }
 
+const argumentNamesByDef = new WeakMap<object, ReadonlySet<string>>();
+function argumentNames(def: { readonly arguments: readonly { readonly name: string }[] }): ReadonlySet<string> {
+  let names = argumentNamesByDef.get(def);
+  if (!names) {
+    names = new Set(def.arguments.map((a) => a.name));
+    argumentNamesByDef.set(def, names);
+  }
+  return names;
+}
+
 function checkDerive(derive: unknown, pointer: string, tokenType: string | undefined, c: DiagnosticCollector): void {
   const d = isRecord(derive) ? derive : {};
   const def = typeof d.op === "string" ? TRANSFORMS.get(d.op) : undefined;
@@ -126,7 +137,7 @@ function checkDerive(derive: unknown, pointer: string, tokenType: string | undef
     return;
   }
   const args = isRecord(d.args) ? d.args : {};
-  const known = new Set(def.arguments.map((a) => a.name));
+  const known = argumentNames(def);
   for (const name of Object.keys(args)) {
     if (!known.has(name)) c.add("OT-DRV-002", { document: T, pointer: `${pointer}/$derive/args/${escapeSegment(name)}` });
   }
@@ -159,15 +170,9 @@ export function validateDerivations(
   const derived = new Map<string, string[]>();
   for (const [p, n] of nodes) {
     if (!n.external && isDerive(n.raw)) {
-      const refs: string[] = [];
-      const walk = (x: unknown) => {
-        const t = aliasTarget(x);
-        if (t && nodes.get(t) && isDerive(nodes.get(t)!.raw)) refs.push(t);
-        else if (Array.isArray(x)) x.forEach(walk);
-        else if (isRecord(x)) Object.values(x).forEach(walk);
-      };
-      walk(n.raw);
-      derived.set(p, refs);
+      // Every alias in the derivation (refsOf's traversal, cached per frozen value) that names a
+      // derived token.
+      derived.set(p, refsOf(n.raw).filter((t) => isDerive(nodes.get(t)?.raw)));
     }
   }
   const memo = new Map<string, number>();
