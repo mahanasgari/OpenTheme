@@ -1,0 +1,92 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-DRV-003"
+  ],
+  "description": "A literal operand of the wrong type → OT-DRV-003.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "color": {
+          "x": {
+            "$type": "color",
+            "$derive": {
+              "op": "color.mix",
+              "args": {
+                "color": {
+                  "value": 8,
+                  "unit": "px"
+                },
+                "toward": "{color.surface.base}",
+                "ratio": 0.5
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-DRV-003",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/color/x/$derive/args/color"
+        },
+        "rule": "R-DRV-003"
+      }
+    ]
+  }
+}
