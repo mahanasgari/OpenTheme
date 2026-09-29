@@ -26,7 +26,8 @@
     "size:core": "pnpm --filter @opentheme/core run size",
     "crosscheck:core:sweeps": "node conformance/runner/dist/main.js --sweeps --impl \"node packages/core-conformance/dist/main.js serve-conformance\" --compare-impl \"node tools/reference-checker/dist/cli/main.js serve-conformance\"",
     "api:core": "pnpm --filter @opentheme/core run api:check",
-    "bench:core:browser": "pnpm --filter @opentheme/core run bench:browser"
+    "bench:core:browser": "pnpm --filter @opentheme/core run bench:browser",
+    "verify:correctness": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps"
   },
   "devDependencies": {
     "fast-check": "^4.1.1",

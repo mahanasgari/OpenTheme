@@ -32,5 +32,16 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Verify
-        run: pnpm verify
+      # Correctness gates block; `pnpm verify` locally also enforces the performance budgets.
+      - name: Verify (correctness)
+        run: pnpm verify:correctness
+
+      # Performance budgets (research R22) are measured and reported on every run. They do not
+      # block yet: GitHub-hosted runners measure about 1.5x slower than the calibration machine.
+      - name: Benchmark (reference checker)
+        continue-on-error: true
+        run: pnpm bench
+
+      - name: Benchmark (Core)
+        continue-on-error: true
+        run: pnpm bench:core
