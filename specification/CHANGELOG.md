@@ -5,7 +5,7 @@
 Errata to `1.0.0-draft.2`: findings W1 to W3, found while building the Web adapter
 (`specs/003-web-adapter`). Drafts carry no compatibility guarantee.
 
-### Specification errata
+### Errata W1 to W3
 
 - **W3**, chapter 03: the first token path segment matches `[a-z][a-z0-9-]*`, and every later
   segment matches `[a-z0-9][a-z0-9-]*`. The semantic baseline defines `space.0` to `space.9`
@@ -21,7 +21,7 @@ Errata to `1.0.0-draft.2`: findings W1 to W3, found while building the Web adapt
   `gradient`, which no chapter defines, and adds `strokeStyle` and `density`. The reference
   checker's list now matches Core's.
 
-### Conformance
+### New fixtures
 
 - Nine new fixtures: `invalid/host/{contract-name, contract-namespace, gradient-property,
   part-name, property-name, variant-name}`, `valid/host/stroke-style-property`,

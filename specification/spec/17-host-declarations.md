@@ -20,8 +20,8 @@ name, every part, every property name, and every variant axis and value match `[
 the standard catalog's grammar. Theme styling applies only when the pin is compatible
 (same major; theme minor ≤ declared). Unknown contracts → `OT-CMP-001` (info). Incompatible
 versions → `OT-CMP-002` (info). Every property MUST have a default (`OT-HOST-003`). Duplicate
-contract ids → `OT-HOST-004`. Invalid states, property types other than the chapter 03 types, a contract id outside the host
-namespace, or a name outside the grammar above → `OT-HOST-002`.
+contract ids → `OT-HOST-004`. Invalid states, property types other than the chapter 03 types, a
+contract id outside the host namespace, or a name outside the grammar above → `OT-HOST-002`.
 
 Host tokens are resolved at qualified paths `<host-id>/<local-path>` (for example
 `com.example.notes/color.rail`).
