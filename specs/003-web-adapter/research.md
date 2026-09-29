@@ -28,7 +28,8 @@ clarifications in the spec; these decisions settle the technical questions it le
     variants insert `_v_<axis>_<value>` after the contract, for example
     `--otc-std__button_v_emphasis_primary_container_background_hover`.
   Runs of `_` of length 1, 2, and 3 are unambiguous because the grammar never allows `_` inside a
-  segment (tokens: `[a-z][a-z0-9-]*`; identifiers: `[a-z0-9-.]`), so the mapping is injective and
+  segment (tokens: `[a-z][a-z0-9-]*`, plus the baseline's digit-led segments such as `space.4`,
+  finding W3; identifiers: `[a-z0-9-.]`), so the mapping is injective and
   decodable. `--ot-` and `--otc-` differ at the fifth character, so tokens and components never
   collide.
 - **Rationale**: Injectivity is required (FR-W002) and must hold for every valid path. Hyphens are
@@ -147,7 +148,7 @@ clarifications in the spec; these decisions settle the technical questions it le
 
 ## WR10. Names and value shapes outside the grammar (findings W1, W2)
 
-- **Decision**: A name segment is written only if it matches `[a-z][a-z0-9-]*` (host identifiers:
+- **Decision**: A name segment is written only if it matches `[a-z0-9][a-z0-9-]*` (host identifiers:
   dot-separated segments of that form). Any other segment, which is possible because host
   declarations do not constrain contract, part, property, or variant names (finding W1), is not
   written; the property is omitted and listed in the adapter's report. A resolved value of a shape

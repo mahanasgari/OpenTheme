@@ -70,6 +70,7 @@ Recorded per FR-W043; the adapter does not change Foundation or Core behavior.
 |---|---|---|---|
 | W1 | Host declarations do not constrain contract, part, property, or variant names (`host-declaration.schema.json` accepts any non-empty string), unlike the standard catalog's `[a-z][a-z0-9-]*` | Paths with a segment outside the grammar are omitted and reported | Chapter 17 errata: those names use the token-segment grammar, with a host rule and fixtures |
 | W2 | The host schema allows a `gradient` property type that no chapter, registry, or Core defines | Values of that shape are omitted and reported | Remove `gradient` from the host schema, or specify it in chapters 03 and 08 |
+| W3 | Chapter 03 requires token path segments to match `[a-z][a-z0-9-]*`, but the semantic baseline registry defines `space.0` to `space.9`, which Core resolves | The naming grammar accepts `[a-z0-9][a-z0-9-]*`; still injective because no segment contains `_` | Chapter 03 errata: allow digit-led segments (`[a-z0-9][a-z0-9-]*`), or rename the baseline spacing tokens in a major version |
 
 ## Delivery Phases (input to `/speckit-tasks`)
 

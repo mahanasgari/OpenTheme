@@ -8,7 +8,9 @@ for every theme; a change to a name or a value format is a breaking change of `@
 
 ## Names
 
-A **segment** is `[a-z][a-z0-9-]*`. A **host identifier** is dot-separated segments. Names are
+A **segment** is `[a-z0-9][a-z0-9-]*`: chapter 03's token segment grammar `[a-z][a-z0-9-]*`,
+widened to the digit-led segments the semantic baseline itself uses (`space.0` to `space.9`;
+finding W3). No segment contains `_`. A **host identifier** is dot-separated segments. Names are
 built from the Resolved Theme's paths:
 
 | Source | Name |
