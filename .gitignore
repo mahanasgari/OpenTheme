@@ -39,3 +39,4 @@ coverage/
 # Core build copies and test scratch
 packages/core/schemas/
 packages/core/test/docs/.examples/
+packages/web/test/docs/.examples/
