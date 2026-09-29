@@ -5,7 +5,7 @@
  * never rewrite `$extensions`. Then serialize with JCS and hash with SHA-256.
  */
 import { type ObjectMapper, writeJcs } from "./jcs.js";
-import { base64, sha256, utf8Encode } from "./sha256.js";
+import { base64, sha256Utf8 } from "./sha256.js";
 
 const COLOR_KEYS = new Set(["colorSpace", "components", "alpha", "hex"]);
 const HEX = /^#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})$/;
@@ -114,7 +114,7 @@ export function canonicalFormSlow(theme: Readonly<Record<string, unknown>>): str
 }
 
 export function integrityOf(canonical: string): string {
-  return `sha256-${base64(sha256(utf8Encode(canonical)))}`;
+  return `sha256-${base64(sha256Utf8(canonical))}`;
 }
 
 export function computeIntegrity(theme: Readonly<Record<string, unknown>>): {

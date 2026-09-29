@@ -1,7 +1,7 @@
 /** SHA-256 standard vectors and canonical integrity of the conformance fixtures. */
 import { describe, expect, it } from "vitest";
 import { computeIntegrity } from "../../../src/canonical/integrity.js";
-import { sha256, utf8Encode } from "../../../src/canonical/sha256.js";
+import { sha256, sha256Utf8, utf8Encode } from "../../../src/canonical/sha256.js";
 import { fixtures } from "../../fixtures.js";
 
 const hex = (b: Uint8Array) => [...b].map((x) => x.toString(16).padStart(2, "0")).join("");
@@ -56,5 +56,13 @@ describe("canonical form fast path", () => {
   });
   it("rejects non-finite numbers like JCS", () => {
     expect(() => canonicalForm({ a: Number.NaN })).toThrow(/non-finite/);
+  });
+});
+
+describe("sha256Utf8", () => {
+  it("equals sha256 of the UTF-8 bytes, across block boundaries and planes", () => {
+    for (const text of ["", "abc", "x".repeat(55), "x".repeat(56), "x".repeat(64), "é€\u{1F600}".repeat(40), "a".repeat(100_003)]) {
+      expect(hex(sha256Utf8(text))).toBe(hex(sha256(utf8Encode(text))));
+    }
   });
 });

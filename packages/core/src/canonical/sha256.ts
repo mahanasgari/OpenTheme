@@ -45,22 +45,49 @@ export function utf8Encode(s: string): Uint8Array {
   return out.subarray(0, j);
 }
 
-export function sha256(data: Uint8Array): Uint8Array {
-  const bitLength = data.length * 8;
-  const padded = new Uint8Array(((data.length + 9 + 63) >> 6) << 6);
-  padded.set(data);
-  padded[data.length] = 0x80;
-  const view = new DataView(padded.buffer);
-  view.setUint32(padded.length - 8, Math.floor(bitLength / 0x100000000));
-  view.setUint32(padded.length - 4, bitLength >>> 0);
-
-  const h = new Uint32Array([
+/** A streaming SHA-256 (FIPS 180-4): bytes go into a 64-byte block, compressed when full. */
+class Sha256 {
+  readonly #h = new Uint32Array([
     0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
   ]);
-  const w = new Uint32Array(64);
-  const rotr = (x: number, n: number) => (x >>> n) | (x << (32 - n));
-  for (let off = 0; off < padded.length; off += 64) {
-    for (let t = 0; t < 16; t += 1) w[t] = view.getUint32(off + t * 4);
+  readonly #w = new Uint32Array(64);
+  readonly #block = new Uint8Array(64);
+  #used = 0;
+  #length = 0;
+
+  byte(v: number): void {
+    this.#block[this.#used++] = v;
+    this.#length += 1;
+    if (this.#used === 64) this.#compress();
+  }
+
+  digest(): Uint8Array {
+    const bitLength = this.#length * 8;
+    this.byte(0x80);
+    while (this.#used !== 56) this.byte(0);
+    const hi = Math.floor(bitLength / 0x100000000);
+    const lo = bitLength >>> 0;
+    for (const word of [hi, lo]) for (let k = 24; k >= 0; k -= 8) this.byte((word >>> k) & 0xff);
+    const out = new Uint8Array(32);
+    for (let i = 0; i < 8; i += 1) {
+      const v = this.#h[i]!;
+      out[i * 4] = v >>> 24;
+      out[i * 4 + 1] = (v >>> 16) & 0xff;
+      out[i * 4 + 2] = (v >>> 8) & 0xff;
+      out[i * 4 + 3] = v & 0xff;
+    }
+    return out;
+  }
+
+  #compress(): void {
+    const w = this.#w;
+    const blk = this.#block;
+    const h = this.#h;
+    const rotr = (x: number, n: number) => (x >>> n) | (x << (32 - n));
+    for (let t = 0; t < 16; t += 1) {
+      const o = t * 4;
+      w[t] = ((blk[o]! << 24) | (blk[o + 1]! << 16) | (blk[o + 2]! << 8) | blk[o + 3]!) >>> 0;
+    }
     for (let t = 16; t < 64; t += 1) {
       const x = w[t - 15]!;
       const y = w[t - 2]!;
@@ -100,11 +127,47 @@ export function sha256(data: Uint8Array): Uint8Array {
     h[5] = (h[5]! + f) >>> 0;
     h[6] = (h[6]! + g) >>> 0;
     h[7] = (h[7]! + hh) >>> 0;
+    this.#used = 0;
   }
-  const out = new Uint8Array(32);
-  const ov = new DataView(out.buffer);
-  for (let i = 0; i < 8; i += 1) ov.setUint32(i * 4, h[i]!);
-  return out;
+}
+
+export function sha256(data: Uint8Array): Uint8Array {
+  const hash = new Sha256();
+  for (let i = 0; i < data.length; i += 1) hash.byte(data[i]!);
+  return hash.digest();
+}
+
+/**
+ * SHA-256 of a string's UTF-8 encoding, encoded on the fly (no intermediate byte buffer). Equal
+ * to `sha256(utf8Encode(s))` (tested); lone surrogates are not expected (validated I-JSON).
+ */
+export function sha256Utf8(s: string): Uint8Array {
+  const hash = new Sha256();
+  for (let i = 0; i < s.length; i += 1) {
+    let cp = s.charCodeAt(i);
+    if (cp < 0x80) {
+      hash.byte(cp);
+      continue;
+    }
+    if (cp >= 0xd800 && cp <= 0xdbff) {
+      cp = 0x10000 + ((cp - 0xd800) << 10) + (s.charCodeAt(i + 1) - 0xdc00);
+      i += 1;
+    }
+    if (cp < 0x800) {
+      hash.byte(0xc0 | (cp >> 6));
+      hash.byte(0x80 | (cp & 0x3f));
+    } else if (cp < 0x10000) {
+      hash.byte(0xe0 | (cp >> 12));
+      hash.byte(0x80 | ((cp >> 6) & 0x3f));
+      hash.byte(0x80 | (cp & 0x3f));
+    } else {
+      hash.byte(0xf0 | (cp >> 18));
+      hash.byte(0x80 | ((cp >> 12) & 0x3f));
+      hash.byte(0x80 | ((cp >> 6) & 0x3f));
+      hash.byte(0x80 | (cp & 0x3f));
+    }
+  }
+  return hash.digest();
 }
 
 const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
