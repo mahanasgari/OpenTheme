@@ -1,0 +1,106 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-A11Y-002"
+  ],
+  "description": "Text below 7:1 in the high-contrast mode → OT-A11Y-002 at the overlay member and at the seeds for roles the theme does not declare.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "contexts": [
+        {
+          "when": {
+            "contrast": "high"
+          },
+          "tokens": {
+            "color": {
+              "text": {
+                "primary": {
+                  "$value": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.6,
+                      0.6,
+                      0.6
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-A11Y-002",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/contexts/0/tokens/color/text/primary"
+        },
+        "rule": "R-A11Y-002"
+      },
+      {
+        "code": "OT-A11Y-002",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/seeds/light"
+        },
+        "rule": "R-A11Y-002"
+      }
+    ]
+  }
+}
