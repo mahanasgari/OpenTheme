@@ -1,0 +1,146 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-DRV-102"
+  ],
+  "description": "A user-dependent operand outside its operation domain is clamped into it; OT-DRV-102 is reported at the preference that caused it.",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.probe",
+          "version": "1.0.0",
+          "name": "Quiet Paper",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "customization": {
+            "points": [
+              {
+                "id": "std.corner-roundness",
+                "constraints": {
+                  "range": {
+                    "min": 0,
+                    "max": 500,
+                    "step": 1
+                  }
+                }
+              }
+            ]
+          },
+          "tokens": {
+            "radius": {
+              "md": {
+                "$derive": {
+                  "op": "dimension.scale",
+                  "args": {
+                    "value": {
+                      "value": 8,
+                      "unit": "px"
+                    },
+                    "factor": "{radius.factor}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.example.probe"
+    },
+    "previous": null,
+    "preferences": {
+      "std.corner-roundness": 300
+    },
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "medium",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "policy": {
+      "availableThemes": [
+        "org.example.probe"
+      ],
+      "defaultTheme": "org.opentheme.baseline",
+      "permittedPoints": {
+        "std.corner-roundness": {}
+      }
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.fallback": "none",
+      "tokens.radius.md": {
+        "value": 800,
+        "unit": "px"
+      },
+      "tokens.radius.sm": {
+        "value": 400,
+        "unit": "px"
+      }
+    },
+    "diagnostics": [
+      {
+        "code": "OT-DRV-102",
+        "location": {
+          "document": "input",
+          "pointer": "/preferences/std.corner-roundness"
+        }
+      }
+    ]
+  }
+}

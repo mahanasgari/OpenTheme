@@ -9,7 +9,10 @@ aliases, or nested derivations (depth ≤ 8).
 
 Validation evaluates every derivation in every declared mode using the theme's own values.
 Literal operands outside a domain are `OT-DRV-004`. At resolution, user-dependent operands are
-clamped into domain with `OT-DRV-102`. Outputs clamp to token ranges with `OT-DRV-101`.
+clamped into domain with `OT-DRV-102`, located at each user preference the operand depends on
+(`input` `/preferences/<point id>`). Outputs clamp to token ranges with `OT-DRV-101`; the clamp
+applies whenever a derivation is evaluated, and is reported at resolution, located at the
+token's member in the theme (`/tokens/<path segments>`), whether or not the theme declares it.
 
 Color computation is in OKLab with normative kernels. Contrast uses WCAG 2.2 on quantized sRGB.
 Effort costs sum per mode; budget is 200,000 units (`OT-DRV-007`).

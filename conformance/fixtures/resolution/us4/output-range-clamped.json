@@ -1,0 +1,123 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-DRV-101"
+  ],
+  "description": "A derivation output above its registry role range is clamped at resolution (OT-DRV-101 at the declaring member).",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.probe",
+          "version": "1.0.0",
+          "name": "Quiet Paper",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "tokens": {
+            "radius": {
+              "factor": {
+                "$derive": {
+                  "op": "number.scale",
+                  "args": {
+                    "value": 1.5,
+                    "factor": 3
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.example.probe"
+    },
+    "previous": null,
+    "preferences": {},
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "medium",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "policy": {
+      "availableThemes": [
+        "org.example.probe"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.fallback": "none",
+      "tokens.radius.factor": {
+        "number": 2
+      },
+      "tokens.radius.md": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "diagnostics": [
+      {
+        "code": "OT-DRV-101",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/radius/factor"
+        }
+      }
+    ]
+  }
+}

@@ -711,7 +711,9 @@
       "id": "R-DRV-101",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/us4/output-range-clamped"
+      ],
       "description": "Rule R-DRV-101",
       "summary": "Rule R-DRV-101",
       "example": {
@@ -723,7 +725,9 @@
       "id": "R-DRV-102",
       "chapter": "04-tokens.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/us4/user-operand-clamped"
+      ],
       "description": "Rule R-DRV-102",
       "summary": "Rule R-DRV-102",
       "example": {
