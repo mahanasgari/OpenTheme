@@ -154,22 +154,27 @@ interface ChainResult {
   readonly trust: Trust;
 }
 
+/**
+ * Chapter 10: walk the whole `extends` chain first (depth, cycles, missing bases, versions), then
+ * validate the nearest base with the same supplied bases. A valid nearest base implies a valid
+ * chain, because its own validation covers its bases. Every finding is located at
+ * `base:<id>@<version>` as the `extends` member that reached it is written.
+ */
 export function resolveChain(doc: Readonly<Record<string, unknown>>, options: ValidateOptions, c: DiagnosticCollector): ChainResult | null {
   const bases = options.bases ?? [];
-  const chain: Readonly<Record<string, unknown>>[] = [doc];
-  const seen = new Set<string>([String(doc.id)]);
-  let trust: Trust = "trusted";
+  const links: { readonly where: string; readonly match: (typeof bases)[number] }[] = [];
+  const ids = new Set<string>([String(doc.id)]);
   let current = doc;
   for (let depth = 1; ; depth += 1) {
     const ext = current.extends;
     if (!isRecord(ext) || typeof ext.id !== "string" || typeof ext.version !== "string") break;
     const where = `base:${ext.id}@${ext.version}`;
     if (depth > limit("inheritanceDepth")) {
-      c.add("OT-INH-005", { document: "theme", pointer: "/extends" });
+      c.add("OT-INH-005", { document: where, pointer: "/extends" });
       return null;
     }
-    if (seen.has(ext.id)) {
-      c.add("OT-INH-004", { document: "theme", pointer: "/extends" });
+    if (ids.has(ext.id)) {
+      c.add("OT-INH-004", { document: where, pointer: "/extends" });
       return null;
     }
     const candidates = bases.filter((b) => b.document.id === ext.id);
@@ -182,17 +187,29 @@ export function resolveChain(doc: Readonly<Record<string, unknown>>, options: Va
       c.add("OT-INH-003", { document: where, pointer: "/extends/version" });
       return null;
     }
-    const baseResult = validateThemeDocument(match.document, { ...options, bases: bases.filter((b) => b !== match) });
+    ids.add(ext.id);
+    links.push({ where, match });
+    current = match.document;
+  }
+  const nearest = links[0];
+  if (nearest) {
+    const baseResult = validateThemeDocument(nearest.match.document, { ...options, bases });
     if (!baseResult.valid) {
       const errors = baseResult.diagnostics.filter((d) => d.severity === "error");
-      if (errors.length === 0) c.add("OT-INH-002", { document: where, pointer: "/" });
-      for (const d of errors) c.add("OT-INH-002", { document: where, pointer: d.location.pointer });
+      if (errors.length === 0) c.add("OT-INH-002", { document: nearest.where, pointer: "/" });
+      for (const d of errors) {
+        // A finding already located in a farther base is reported as it is.
+        if (d.location.document.startsWith("base:")) c.addAll([d]);
+        else c.add("OT-INH-002", { document: nearest.where, pointer: d.location.pointer });
+      }
       return null;
     }
+  }
+  let trust: Trust = "trusted";
+  const chain: Readonly<Record<string, unknown>>[] = [doc];
+  for (const { match } of links) {
     if (match.trust !== "trusted") trust = "untrusted";
-    seen.add(ext.id);
     chain.unshift(match.document);
-    current = match.document;
   }
   return { chain, trust };
 }
