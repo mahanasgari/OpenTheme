@@ -315,3 +315,10 @@ now part of `pnpm verify`. Desktop Chrome on the same machine is uniformly about
 every phase (`?phases` on the browser page: parse 35 ms, integrity 56 ms, validation 262 ms,
 resolution 214 ms, against 23, 38, 177, and 141 ms in Node), which points to the environment rather
 than to a browser-specific cost; the browser budget is the reference phone's (1 s, T125).
+
+GitHub-hosted runner (ubuntu-latest, Node 24 and 26, 2026-09-29): Core typical 14.7-15.9 ms,
+at-limit **281-305 ms** (budget 250 ms), 10 MiB refusal 0.04 ms, re-resolution 1.2-1.3 ms; the
+reference checker's typical case 47.7-49.6 ms (budget 40 ms). These runners measure about 1.3-1.5x
+slower than the calibration machine, so CI reports the benchmarks without blocking and gates on
+`pnpm verify:correctness`; `pnpm verify` enforces the budgets locally. Open decision: recalibrate
+R22 for GitHub-hosted runners, or run the benchmark gate on a dedicated runner.
