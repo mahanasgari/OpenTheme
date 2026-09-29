@@ -66,6 +66,9 @@ No gate for a non-negotiable principle (I, VI, VII, XII) has any exception.
 
 Recorded per FR-W043; the adapter does not change Foundation or Core behavior.
 
+**Status**: all three were resolved as errata in specification `1.0.0-draft.3` (2026-09-30), as
+proposed below. The adapter keeps omitting and reporting such names and shapes as a defensive check.
+
 | # | Finding | Adapter handling | Proposed resolution |
 |---|---|---|---|
 | W1 | Host declarations do not constrain contract, part, property, or variant names (`host-declaration.schema.json` accepts any non-empty string), unlike the standard catalog's `[a-z][a-z0-9-]*` | Paths with a segment outside the grammar are omitted and reported | Chapter 17 errata: those names use the token-segment grammar, with a host rule and fixtures |
