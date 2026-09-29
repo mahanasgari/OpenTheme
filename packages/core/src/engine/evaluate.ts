@@ -299,6 +299,64 @@ function inDomain(v: number, d: TransformArgDef["domain"]): boolean {
 }
 
 /**
+ * Walks a raw value's derivations exactly as evaluation does (`evalDerive`): every known operation
+ * once, operands per the operation's argument list, aliases never followed.
+ */
+function forEachDerive(
+  raw: Raw,
+  visit: (def: NonNullable<ReturnType<typeof TRANSFORMS.get>>, args: Readonly<Record<string, unknown>>) => void,
+): void {
+  const operand = (x: unknown): void => {
+    if (aliasTarget(x) !== null) return;
+    if (isRecord(x) && "$derive" in x) derive(x.$derive);
+  };
+  const derive = (d: unknown): void => {
+    if (!isRecord(d)) return;
+    const def = TRANSFORMS.get(String(d.op));
+    if (!def) return;
+    const args = isRecord(d.args) ? d.args : {};
+    visit(def, args);
+    for (const a of def.arguments) {
+      if (a.type.endsWith("[]")) (Array.isArray(args[a.name]) ? (args[a.name] as unknown[]) : []).forEach(operand);
+      else operand(args[a.name]);
+    }
+  };
+  operand(raw);
+}
+
+/** Per frozen raw value: its derivations' total effort, and whether it can report OT-DRV-004. */
+const deriveFacts = new WeakMap<object, { readonly effort: number; readonly domainAlias: boolean }>();
+
+function factsOf(raw: Raw): { readonly effort: number; readonly domainAlias: boolean } {
+  const cacheable = raw !== null && typeof raw === "object" && Object.isFrozen(raw);
+  const hit = cacheable ? deriveFacts.get(raw as object) : undefined;
+  if (hit) return hit;
+  let effort = 0;
+  let domainAlias = false;
+  forEachDerive(raw, (def, args) => {
+    effort += def.effortCost;
+    for (const a of def.arguments) {
+      if (a.domain && !a.type.endsWith("[]") && aliasTarget(args[a.name]) !== null) domainAlias = true;
+    }
+  });
+  const facts = { effort, domainAlias };
+  if (cacheable) deriveFacts.set(raw as object, facts);
+  return facts;
+}
+
+/** The effort a full evaluation of `decls` spends, without evaluating (every derivation's cost). */
+export function staticEffort(decls: ReadonlyMap<string, Decl>): number {
+  let effort = 0;
+  for (const d of decls.values()) effort += factsOf(d.raw).effort;
+  return effort;
+}
+
+/** Whether evaluating `raw` can report OT-DRV-004: an aliased operand of an argument with a domain. */
+export function hasAliasedDomainOperand(raw: Raw): boolean {
+  return factsOf(raw).domainAlias;
+}
+
+/**
  * Evaluate every declaration in Kahn order. `mode` "validate" reports out-of-domain operands as
  * errors; "resolve" clamps user-dependent operands into the domain (OT-DRV-102).
  */

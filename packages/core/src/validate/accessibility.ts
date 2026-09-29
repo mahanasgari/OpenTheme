@@ -6,9 +6,9 @@
  */
 import { contrastRatio, quantize } from "../color/index.js";
 import type { DiagnosticCollector } from "../diagnostics/collector.js";
-import { declareBase, evaluate, type HostTokenDef } from "../engine/evaluate.js";
+import { declareBase, evaluate, hasAliasedDomainOperand, type HostTokenDef, refsOf, staticEffort } from "../engine/evaluate.js";
 import { buildModel, isRecord } from "../engine/model.js";
-import { BASELINE_PAIRS, type TokenType } from "../engine/registry.js";
+import { BASELINE_PAIRS, EFFORT_BUDGET, type TokenType } from "../engine/registry.js";
 import { colorLiteral } from "../engine/values.js";
 import { hostTokenTypes } from "./theme.js";
 import { Prepared } from "../resolve/prepare.js";
@@ -58,6 +58,34 @@ export function hostTokenDefs(host: Readonly<Record<string, unknown>> | null): H
   return out;
 }
 
+/**
+ * Evaluates what the per-mode checks read: the registry pairs' tokens and every declaration that
+ * can report OT-DRV-004, with their dependencies. A value depends only on its dependencies, so
+ * these values equal a full evaluation's. The effort budget (OT-DRV-007) is checked from the
+ * static total; when it would be exceeded, the evaluation is full, because only then does the
+ * evaluation order decide which findings are reported.
+ */
+function evaluateNeeded(decls: ReturnType<typeof declareBase>): ReturnType<typeof evaluate> {
+  if (staticEffort(decls) > EFFORT_BUDGET) return evaluate(decls, "validate");
+  const needed = new Set<string>();
+  const pending: string[] = [];
+  const need = (p: string) => {
+    if (!needed.has(p) && decls.has(p)) {
+      needed.add(p);
+      pending.push(p);
+    }
+  };
+  for (const pair of BASELINE_PAIRS) {
+    need(pair.foreground);
+    need(pair.background);
+  }
+  for (const [p, d] of decls) if (hasAliasedDomainOperand(d.raw)) need(p);
+  while (pending.length > 0) for (const r of refsOf(decls.get(pending.pop()!)!.raw)) need(r);
+  const subset = new Map<string, NonNullable<ReturnType<typeof decls.get>>>();
+  for (const [p, d] of decls) if (needed.has(p)) subset.set(p, d);
+  return evaluate(subset, "validate");
+}
+
 type ModeEvaluation = { readonly decls: ReturnType<typeof declareBase>; readonly result: ReturnType<typeof evaluate> };
 
 /**
@@ -75,7 +103,7 @@ function modeEvaluation(
 ): ModeEvaluation {
   const compute = (): ModeEvaluation => {
     const decls = declareBase(model, { colorScheme: scheme, contrast, motion: "standard", density: "standard", sizeClass: "medium" }, hostTokenDefs(host));
-    return { decls, result: evaluate(decls, "validate") };
+    return { decls, result: evaluateNeeded(decls) };
   };
   const base = prepared ? Prepared.key(doc, host) : null;
   if (!prepared || base === null) return compute();
