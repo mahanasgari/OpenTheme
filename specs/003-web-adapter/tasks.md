@@ -104,13 +104,13 @@ none for repeats
 
 ### Tests for User Story 2
 
-- [ ] T022 [P] [US2] Write `packages/web/test/dom/context.test.ts`: with a controllable `matchMedia` stub, each of `prefers-color-scheme`, `prefers-contrast`, `forced-colors`, and `prefers-reduced-motion` maps as in data-model.md §4 (missing features → `no-preference`, `standard`, `false`, `false`); a change causes exactly one `setContext`; a repeated identical signal causes none; `lang` and `dir` changes on the document or scope element update `locale` and `direction`; `setSizeClass` and `setTextScale` update the context; forced colors write system colors; the user's explicit color-scheme choice (the `color-scheme` point) stays applied when the system setting changes; without a `lang` attribute the `locale` option (default `en`) is used
-- [ ] T023 [P] [US2] Write `packages/web/test/unit/helpers.test.ts`: `sizeClassForWidth` returns `compact` below 600, `medium` from 600, `expanded` from 1024; `textScaleFromRoot` returns root font size / 16 and 1 when unavailable
+- [X] T022 [P] [US2] Write `packages/web/test/dom/context.test.ts`: with a controllable `matchMedia` stub, each of `prefers-color-scheme`, `prefers-contrast`, `forced-colors`, and `prefers-reduced-motion` maps as in data-model.md §4 (missing features → `no-preference`, `standard`, `false`, `false`); a change causes exactly one `setContext`; a repeated identical signal causes none; `lang` and `dir` changes on the document or scope element update `locale` and `direction`; `setSizeClass` and `setTextScale` update the context; forced colors write system colors; the user's explicit color-scheme choice (the `color-scheme` point) stays applied when the system setting changes; without a `lang` attribute the `locale` option (default `en`) is used
+- [X] T023 [P] [US2] Write `packages/web/test/unit/helpers.test.ts`: `sizeClassForWidth` returns `compact` below 600, `medium` from 600, `expanded` from 1024; `textScaleFromRoot` returns root font size / 16 and 1 when unavailable
 
 ### Implementation for User Story 2
 
-- [ ] T024 [US2] Implement `packages/web/src/context.ts` (WR5): read the four media features through `matchMedia` with change listeners, observe `lang`/`dir` on the document element and the scope element with one `MutationObserver`, merge host inputs (`sizeClass`, `textScale`, default `locale`), keep the last context sent, and call the controller's `setContext` only on a real change; export `sizeClassForWidth` and `textScaleFromRoot`
-- [ ] T025 [US2] Wire the context source into `packages/web/src/scope.ts` (initial context for the controller, `setSizeClass`, `setTextScale`, listener removal in `detach()`), and export the helpers from `packages/web/src/index.ts`
+- [X] T024 [US2] Implement `packages/web/src/context.ts` (WR5): read the four media features through `matchMedia` with change listeners, observe `lang`/`dir` on the document element and the scope element with one `MutationObserver`, merge host inputs (`sizeClass`, `textScale`, default `locale`), keep the last context sent, and call the controller's `setContext` only on a real change; export `sizeClassForWidth` and `textScaleFromRoot`
+- [X] T025 [US2] Wire the context source into `packages/web/src/scope.ts` (initial context for the controller, `setSizeClass`, `setTextScale`, listener removal in `detach()`), and export the helpers from `packages/web/src/index.ts`
 
 **Checkpoint**: Live context works and is covered by tests
 
