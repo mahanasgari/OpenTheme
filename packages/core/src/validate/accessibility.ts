@@ -18,27 +18,18 @@ export const THRESHOLDS = {
   high: { text: 7, "large-text": 4.5, "non-text": 3 },
 } as const;
 
-function focusLiterals(tokens: unknown, c: DiagnosticCollector): void {
-  // `focus`: some path segment contains "focus" (the dotted path does, since "." cannot be part
-  // of a match). Segments are joined only for a finding.
-  const walk = (node: unknown, parts: string[], focus: boolean) => {
-    if (!isRecord(node)) return;
-    for (const k of Object.keys(node)) {
-      const v = node[k];
-      if (k === "$value") {
-        if (focus && isRecord(v) && v.alpha === 0) {
-          c.add("OT-A11Y-005", { document: "theme", pointer: `/tokens/${parts.join("/")}/$value` });
-        }
-        continue;
-      }
-      if (k.charCodeAt(0) !== 0x24 /* $ */) {
-        parts.push(k);
-        walk(v, parts, focus || k.includes("focus"));
-        parts.pop();
-      }
-    }
+/**
+ * Chapter 11, focus visibility (finding C5): a literal color with alpha 0 given to the focus role
+ * `color.focus`, in `tokens` or in a context overlay, is OT-A11Y-005 at that member.
+ */
+function focusLiterals(doc: Readonly<Record<string, unknown>>, c: DiagnosticCollector): void {
+  const check = (tokens: unknown, base: string) => {
+    if (!isRecord(tokens) || !isRecord(tokens.color) || !isRecord(tokens.color.focus)) return;
+    const v = tokens.color.focus.$value;
+    if (isRecord(v) && v.alpha === 0) c.add("OT-A11Y-005", { document: "theme", pointer: `${base}/color/focus/$value` });
   };
-  walk(tokens, [], false);
+  check(doc.tokens, "/tokens");
+  if (Array.isArray(doc.contexts)) doc.contexts.forEach((o, i) => isRecord(o) && check(o.tokens, `/contexts/${i}/tokens`));
 }
 
 export function hostTokenDefs(host: Readonly<Record<string, unknown>> | null): HostTokenDef[] {
@@ -121,7 +112,7 @@ export function checkAccessibility(
   c: DiagnosticCollector,
   prepared?: Prepared,
 ): void {
-  focusLiterals(doc.tokens, c);
+  focusLiterals(doc, c);
   const model = buildModel(doc);
   for (const scheme of model.supportedSchemes) {
     for (const contrast of ["standard", "high"] as const) {

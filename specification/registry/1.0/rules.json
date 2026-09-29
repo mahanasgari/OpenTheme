@@ -84,7 +84,11 @@
       "id": "R-A11Y-005",
       "chapter": "08-accessibility.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "invalid/a11y/transparent-focus",
+        "invalid/a11y/transparent-focus-overlay",
+        "valid/a11y/transparent-decorative-token"
+      ],
       "description": "Rule R-A11Y-005",
       "summary": "Rule R-A11Y-005",
       "example": {

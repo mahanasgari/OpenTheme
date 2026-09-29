@@ -17,50 +17,29 @@ export function validateAccessibility(
   doc: Record<string, unknown>,
   collector: DiagnosticCollector,
 ): void {
-  const tokens = doc.tokens as Record<string, unknown> | undefined;
-  if (tokens) checkFocusAlpha(tokens, collector, []);
+  checkFocusAlpha(doc.tokens, collector, "/tokens");
+  if (Array.isArray(doc.contexts)) {
+    doc.contexts.forEach((o, i) => {
+      if (o && typeof o === "object") checkFocusAlpha((o as { tokens?: unknown }).tokens, collector, `/contexts/${i}/tokens`);
+    });
+  }
   checkModes(doc, collector);
 }
 
-function checkFocusAlpha(
-  node: Record<string, unknown>,
-  collector: DiagnosticCollector,
-  parts: string[],
-): void {
-  for (const [key, raw] of Object.entries(node)) {
-    if (key.startsWith("$")) {
-      if (
-        key === "$value" &&
-        raw &&
-        typeof raw === "object" &&
-        !Array.isArray(raw)
-      ) {
-        const color = raw as { alpha?: number };
-        const path = parts.join(".");
-        if (
-          path.includes("focus") &&
-          typeof color.alpha === "number" &&
-          color.alpha === 0
-        ) {
-          collector.add({
-            code: "OT-A11Y-005",
-            rule: "R-A11Y-005",
-            location: {
-              document: "theme",
-              pointer: `/tokens/${parts.join("/")}/$value`,
-            },
-            params: { path },
-          });
-        }
-      }
-      continue;
-    }
-    if (raw && typeof raw === "object" && !Array.isArray(raw)) {
-      checkFocusAlpha(raw as Record<string, unknown>, collector, [
-        ...parts,
-        key,
-      ]);
-    }
+/**
+ * Chapter 11, focus visibility (finding C5): a literal color with alpha 0 given to the focus role
+ * `color.focus` is OT-A11Y-005 at that member.
+ */
+function checkFocusAlpha(tokens: unknown, collector: DiagnosticCollector, base: string): void {
+  const color = (tokens as { color?: { focus?: { $value?: unknown } } } | undefined)?.color;
+  const value = color && typeof color === "object" ? color.focus?.$value : undefined;
+  if (value && typeof value === "object" && (value as { alpha?: unknown }).alpha === 0) {
+    collector.add({
+      code: "OT-A11Y-005",
+      rule: "R-A11Y-005",
+      location: { document: "theme", pointer: `${base}/color/focus/$value` },
+      params: { path: "color.focus" },
+    });
   }
 }
 

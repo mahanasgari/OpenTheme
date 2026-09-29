@@ -94,25 +94,16 @@ describe("validate pipeline", () => {
     expect(d?.related?.length).toBe(2);
   });
 
-  it("focus alpha 0 → OT-A11Y-005", () => {
-    const result = validateThemeObject({
+  it("alpha 0 on the focus role color.focus → OT-A11Y-005 (chapter 11)", () => {
+    const clear = { colorSpace: "srgb", components: [0.2, 0.4, 0.9], alpha: 0 };
+    const focus = validateThemeObject({ ...minimal, tokens: { color: { focus: { $value: clear } } } });
+    expect(focus.diagnostics.some((d) => d.code === "OT-A11Y-005")).toBe(true);
+    // Only the focus role is a focus indicator; a token merely named "focus…" is not.
+    const other = validateThemeObject({
       ...minimal,
-      tokens: {
-        color: {
-          $type: "color",
-          focus: {
-            ring: {
-              $value: {
-                colorSpace: "srgb",
-                components: [0.2, 0.4, 0.9],
-                alpha: 0,
-              },
-            },
-          },
-        },
-      },
+      tokens: { color: { $type: "color", "focus-glow": { $value: clear } } },
     });
-    expect(result.diagnostics.some((d) => d.code === "OT-A11Y-005")).toBe(true);
+    expect(other.diagnostics.some((d) => d.code === "OT-A11Y-005")).toBe(false);
   });
 
   it("reports multiple independent errors in one pass", () => {

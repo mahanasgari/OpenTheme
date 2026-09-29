@@ -73,6 +73,12 @@ Directional token paths ending in `start`/`end` (or `inline-start`/`inline-end`)
 `direction: rtl`. Tokens marked physical (`$extensions["org.opentheme.physical"]` or
 `physical: true`) MUST NOT mirror.
 
+## Focus visibility
+
+A literal color with alpha 0 given to the focus role `color.focus`, in `tokens` or in a context
+overlay, makes the focus indicator invisible: `OT-A11Y-005` (error), located at that `$value`.
+Other invisible or low-contrast focus colors are covered by the `color.focus` contrast pair.
+
 ## Distinguishable roles (FR-073)
 
 Baseline distinguishable pairs use OKLab ΔE with threshold from the registry (default 0.10).
