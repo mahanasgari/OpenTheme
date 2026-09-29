@@ -44,4 +44,6 @@ jobs:
 
       - name: Benchmark (Core)
         continue-on-error: true
-        run: pnpm bench:core
+        run: |
+          lscpu | grep -E "Model name|^CPU\(s\)" || true
+          pnpm bench:core
