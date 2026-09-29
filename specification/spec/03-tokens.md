@@ -27,7 +27,8 @@ tokens are named by role and consumed by hosts.
 
 ## Aliases and derivations (FR-017)
 
-`$value` is a literal or `{path}` alias. `$derive` is exclusive with `$value`. Aliases and
+`$value` is a literal or `{path}` alias. A node with `$value` or `$derive` is a token; any other
+node is a group. `$derive` is exclusive with `$value`: a node with both is `OT-TOK-007`. Aliases and
 derivations form one reference graph. Cycles are errors (`OT-REF-003`). Reference chain depth
 MUST NOT exceed 16 (`OT-REF-004`).
 

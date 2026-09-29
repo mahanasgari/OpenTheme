@@ -23,6 +23,12 @@ on a locale or collation.
 
 Identical inputs produce identical diagnostic lists (NFR-001).
 
+## Retired codes
+
+A registry entry with `retired` is never reported. `OT-TOK-002` (duplicate path) is retired: a
+duplicate member fails parsing as `OT-DOC-002`, and a nested token tree cannot express one path
+twice.
+
 ## Whole-document locations
 
 A diagnostic about a document as a whole (for example a size limit, nesting limit, malformed

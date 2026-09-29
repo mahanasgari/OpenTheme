@@ -1516,7 +1516,8 @@
       "example": {
         "id": "R-TOK-002",
         "fixtures": []
-      }
+      },
+      "retired": "Retired: a duplicate member fails parsing as OT-DOC-002 and a nested token tree cannot express one path twice, so no document can produce it (finding C2). Never reported."
     },
     {
       "id": "R-TOK-003",

@@ -409,7 +409,8 @@
       "example": {
         "code": "OT-TOK-002",
         "severity": "error"
-      }
+      },
+      "retired": "Retired: a duplicate member fails parsing as OT-DOC-002 and a nested token tree cannot express one path twice, so no document can produce it (finding C2). Never reported."
     },
     {
       "code": "OT-TOK-003",
@@ -494,10 +495,10 @@
     {
       "code": "OT-TOK-007",
       "severity": "error",
-      "description": "neither or both of $value and $derive",
+      "description": "both $value and $derive",
       "message": "tok.007",
       "hint": "tok.007.hint",
-      "messageTemplate": "neither or both of $value and $derive{detail}",
+      "messageTemplate": "both $value and $derive{detail}",
       "hintTemplate": "See the location and fix the reported issue.",
       "params": [
         "detail"

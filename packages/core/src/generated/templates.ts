@@ -97,7 +97,7 @@ export const englishTemplates: Readonly<Record<string, { readonly message: strin
   "hint": "See the location and fix the reported issue."
  },
  "OT-TOK-007": {
-  "message": "neither or both of $value and $derive{detail}",
+  "message": "both $value and $derive{detail}",
   "hint": "See the location and fix the reported issue."
  },
  "OT-TOK-010": {
