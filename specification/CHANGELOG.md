@@ -4,8 +4,8 @@
 
 ### Rule coverage (no change to existing expected results)
 
-Every rule with no fixture was checked against both implementations; 29 new fixtures (312 in
-total) now cover 22 of those 31 rules.
+Every rule with no fixture was checked against both implementations; 28 new fixtures (312 in
+total) now cover 23 of those 31 rules; the other 8 are the open findings below.
 
 - Chapter 10 pins the inheritance check: the whole `extends` chain is walked first, then the
   nearest base is validated with the same supplied bases; cycles through bases are `OT-INH-004`,
