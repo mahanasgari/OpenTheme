@@ -1,8 +1,9 @@
+import { createHash } from "node:crypto";
 /**
  * Generate TypeScript types from every schema under specification/schemas/ (all versions).
  * Wired into `pnpm build` via @opentheme/types; freshness checked by spec-lint (T030).
  */
-import { mkdir, readdir, readFile, writeFile, stat } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { compile } from "json-schema-to-typescript";
@@ -119,13 +120,13 @@ async function main(): Promise<void> {
   coreIndexLines.push("");
   await writeFile(path.join(coreOutDir, "index.ts"), coreIndexLines.join("\n"), "utf8");
 
+  // Content hashes, not modification times: a checkout or clone changes mtimes, not content.
   const stamp = {
-    generatedAt: new Date().toISOString(),
     schemaCount: schemas.length,
     schemas: await Promise.all(
       schemas.map(async (p) => ({
         path: path.relative(repoRoot, p).replace(/\\/g, "/"),
-        mtimeMs: (await stat(p)).mtimeMs,
+        sha256: createHash("sha256").update(await readFile(p)).digest("hex"),
       })),
     ),
   };

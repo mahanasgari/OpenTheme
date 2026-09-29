@@ -1,4 +1,5 @@
-import { readFile, readdir, stat } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
 async function collectSchemas(dir: string): Promise<string[]> {
@@ -20,7 +21,7 @@ export async function checkGeneratedTypesFresh(
     repoRoot,
     "tools/types/src/generated/.stamp.json",
   );
-  let stamp: { schemas?: { path: string; mtimeMs: number }[] };
+  let stamp: { schemas?: { path: string; sha256: string }[] };
   try {
     stamp = JSON.parse(await readFile(stampPath, "utf8")) as typeof stamp;
   } catch {
@@ -32,7 +33,7 @@ export async function checkGeneratedTypesFresh(
   const schemasRoot = path.join(repoRoot, "specification/schemas");
   const current = await collectSchemas(schemasRoot);
   const stamped = new Map(
-    (stamp.schemas ?? []).map((s) => [s.path, s.mtimeMs]),
+    (stamp.schemas ?? []).map((s) => [s.path, s.sha256]),
   );
   if (stamped.size !== current.length) {
     errors.push(
@@ -41,9 +42,9 @@ export async function checkGeneratedTypesFresh(
   }
   for (const schemaPath of current) {
     const rel = path.relative(repoRoot, schemaPath).replace(/\\/g, "/");
-    const mtime = (await stat(schemaPath)).mtimeMs;
-    const prev = stamped.get(rel);
-    if (prev === undefined || Math.abs(prev - mtime) > 1) {
+    // Content hashes, not modification times: a checkout or clone changes mtimes, not content.
+    const hash = createHash("sha256").update(await readFile(schemaPath)).digest("hex");
+    if (stamped.get(rel) !== hash) {
       errors.push(`generated types stale for ${rel}`);
     }
   }

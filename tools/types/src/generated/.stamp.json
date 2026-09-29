@@ -1,110 +1,109 @@
 {
-  "generatedAt": "2026-09-26T09:06:21.838Z",
   "schemaCount": 26,
   "schemas": [
     {
       "path": "specification/schemas/1.0/defs/components.schema.json",
-      "mtimeMs": 1790353696291.4307
+      "sha256": "0b41b0b294380860caffeb6af894e1d6ac4ea075abc09324ac715dcae1a847a4"
     },
     {
       "path": "specification/schemas/1.0/defs/contexts.schema.json",
-      "mtimeMs": 1790353696202.431
+      "sha256": "59107f571a5f3dd04e3e8a101e8c185811a10871aa3a351d7da4afd04e2e8954"
     },
     {
       "path": "specification/schemas/1.0/defs/customization.schema.json",
-      "mtimeMs": 1790353696236.431
+      "sha256": "22bb3322cbd2aeebf996a717bccf6ec3b2f5afe1c268e482f63db93bcdacf7ec"
     },
     {
       "path": "specification/schemas/1.0/defs/derivation.schema.json",
-      "mtimeMs": 1790353696289.4307
+      "sha256": "2ec93a346de6d5a8bc30537a7044fc40977790e4d76fc30066824c0291baf3d4"
     },
     {
       "path": "specification/schemas/1.0/defs/display-text.schema.json",
-      "mtimeMs": 1790353696293.4307
+      "sha256": "0074f8442aa3d792567ad4490dc6277297fa235415458df6640c880f8a0fb9d3"
     },
     {
       "path": "specification/schemas/1.0/defs/layout.schema.json",
-      "mtimeMs": 1790353696202.431
+      "sha256": "74168490d2fedcef080d1fe133f859747ab63e02ae9074c72bd77fbce2f88c21"
     },
     {
       "path": "specification/schemas/1.0/defs/metadata.schema.json",
-      "mtimeMs": 1790353696236.431
+      "sha256": "7fa8185373b74b69229b5095b9d519f7bcb17e559d204d60fa3c045d0f432486"
     },
     {
       "path": "specification/schemas/1.0/defs/seeds.schema.json",
-      "mtimeMs": 1790353696201.431
+      "sha256": "5e0e925a935993e8e3bfacde3ad23c874bd17e3328a262420a8d5c834c5e49c2"
     },
     {
       "path": "specification/schemas/1.0/defs/tokens.schema.json",
-      "mtimeMs": 1790409384603.6292
+      "sha256": "3605f6e73d9be256ac247ec4e6e3d40166d3e40ed948806e2563aa3eb5485fba"
     },
     {
       "path": "specification/schemas/1.0/diagnostic.schema.json",
-      "mtimeMs": 1790359071388.9653
+      "sha256": "276a7f95bdafafe3405599c26a08699ebabaef7d1f5275b04ccce692192b5243"
     },
     {
       "path": "specification/schemas/1.0/fixture.schema.json",
-      "mtimeMs": 1790408904820.588
+      "sha256": "128faa2ae50ff36de8ddcc758b68f770825c5c437967a7a46cfa73e1e14b0538"
     },
     {
       "path": "specification/schemas/1.0/host-declaration.schema.json",
-      "mtimeMs": 1790353696235.431
+      "sha256": "9a6542e7d459dc4e055d4112a1704dc0cce637d97f95741866fbe05ef620d2b5"
     },
     {
       "path": "specification/schemas/1.0/migration-manifest.schema.json",
-      "mtimeMs": 1790353696235.431
+      "sha256": "a23948f40ecc353c3992052d51d64833adace3686b8faf13c76d0c32f07fb174"
     },
     {
       "path": "specification/schemas/1.0/registry/component-catalog.schema.json",
-      "mtimeMs": 1790353696289.4307
+      "sha256": "4c17e8a3ff5233af22d0a41560dda600d1983071e6c8c6c9d780445369baab14"
     },
     {
       "path": "specification/schemas/1.0/registry/context-dimensions.schema.json",
-      "mtimeMs": 1790341531650.4624
+      "sha256": "f2152021c1dc77ab37f8bf058cb5e926eee2930f0de3efebdced159790b751a2"
     },
     {
       "path": "specification/schemas/1.0/registry/customization-points.schema.json",
-      "mtimeMs": 1790353696292.4307
+      "sha256": "8c61bc1a1f0f192464f6bc5cc10a134dc1603db8f11c45d420a76aa12d6cc9d6"
     },
     {
       "path": "specification/schemas/1.0/registry/diagnostics.schema.json",
-      "mtimeMs": 1790341531650.4624
+      "sha256": "baf569f7d8552de6455f77f73c2e3f23bb40083614db60d2ed60908f698881b9"
     },
     {
       "path": "specification/schemas/1.0/registry/forced-colors.schema.json",
-      "mtimeMs": 1790341531650.4624
+      "sha256": "433370ab64e9c2b342bb8ce15847ef94480d0c9e510565463ad66081cc47f1c5"
     },
     {
       "path": "specification/schemas/1.0/registry/limits.schema.json",
-      "mtimeMs": 1790341531650.4624
+      "sha256": "19794d8ca043b7cdf5231be0db1a6e9be3fa614888c7d234b85c5a9b2b8e9bf3"
     },
     {
       "path": "specification/schemas/1.0/registry/rules.schema.json",
-      "mtimeMs": 1790341531650.4624
+      "sha256": "296a1dc34bba8987ae1d816bba6516f6c50328c3054efb2a1f45b3463cb52f35"
     },
     {
       "path": "specification/schemas/1.0/registry/semantic-baseline.schema.json",
-      "mtimeMs": 1790353696291.4307
+      "sha256": "1b47c26fe102242fa786918f3db83887fc9c4d8c66aca7008c44c7bfc52655be"
     },
     {
       "path": "specification/schemas/1.0/registry/transformations.schema.json",
-      "mtimeMs": 1790341531650.4624
+      "sha256": "def63a21c7c4c4f3f038034a743340cc204028aadc5979c3f1673b4887a6cb63"
     },
     {
       "path": "specification/schemas/1.0/resolution-input.schema.json",
-      "mtimeMs": 1790356169355.9163
+      "sha256": "a4232a66090e933fa18e985a1f2368c79a924a6fe273d3b5ba5989fa8ef1e131"
     },
     {
       "path": "specification/schemas/1.0/resolved-theme.schema.json",
-      "mtimeMs": 1790361445500.5515
+      "sha256": "f773754f72844e3862aaea9906168c2c0cc5a72f7f5b98836df11c982c81d785"
     },
     {
       "path": "specification/schemas/1.0/theme.schema.json",
-      "mtimeMs": 1790353696178.431
+      "sha256": "1ee9cc04f31477553e2a0bdc2930ea3f0c2660c97dbfd6f3c4b945d82a418557"
     },
     {
       "path": "specification/schemas/user-preferences/1.0/user-preferences.schema.json",
-      "mtimeMs": 1790359284889.7483
+      "sha256": "b94900bd7fd0e08b936d11c547513492286bd23840853d8b37cd846304c0eccb"
     }
   ]
 }
