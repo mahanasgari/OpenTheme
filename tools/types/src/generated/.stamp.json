@@ -47,7 +47,7 @@
     },
     {
       "path": "specification/schemas/1.0/host-declaration.schema.json",
-      "sha256": "9a6542e7d459dc4e055d4112a1704dc0cce637d97f95741866fbe05ef620d2b5"
+      "sha256": "b7eed530880e67d56f882e69adb2ec8f93799d42e8274ec86147545a84bce797"
     },
     {
       "path": "specification/schemas/1.0/migration-manifest.schema.json",
