@@ -13,9 +13,10 @@ export function toDeclarations(resolved: ResolvedTheme): {
   omissions: readonly { path: string; reason: "name-grammar" | "value-shape" }[];
 };
 export function toStylesheet(resolved: ResolvedTheme, options?: {
-  scope?: string;            // omitted: the document scope (:root)
-  nonce?: string;
-  element?: boolean;         // true: the full <style data-opentheme-scope> element text
+  scope?: string;            // the scope id; required with element or for an element scope
+  root?: boolean;            // a document scope (:root); default: true when scope is omitted
+  nonce?: string;            // base64 or base64url
+  element?: boolean;         // true: the full <style data-opentheme-scope="<scope>"> element text
 }): string;
 ```
 

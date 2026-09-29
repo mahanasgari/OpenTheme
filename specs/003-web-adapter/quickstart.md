@@ -49,7 +49,8 @@ no writes.
 
 ## Scenario 5: first paint (US4)
 
-`toStylesheet(resolved, { element: true })` produces the server-rendered element. Attaching on a
+`toStylesheet(resolved, { scope: "app", root: true, element: true })` produces the server-rendered
+element. Attaching on a
 page that already contains it with the same inputs performs zero `setProperty` calls.
 
 ## Scenario 6: safety (US5)
