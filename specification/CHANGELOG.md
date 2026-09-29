@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased
+
+### Open findings (no normative change)
+
+Found while building the Web adapter (`specs/003-web-adapter`, FR-W043). Each is recorded, not
+resolved; Foundation behavior is unchanged until an errata or version decides it.
+
+- **W1**: `host-declaration.schema.json` does not constrain contract, part, property, or variant
+  names, unlike the standard catalog's `[a-z][a-z0-9-]*`. Proposed: chapter 17 errata applying
+  the token segment grammar, with a host rule and fixtures. The Web adapter omits and reports such
+  names.
+- **W2**: the host schema allows a `gradient` property type that no chapter, registry, or Core
+  defines. Proposed: remove it, or specify it in chapters 03 and 08. The Web adapter omits and
+  reports such values.
+- **W3**: chapter 03 requires token path segments to match `[a-z][a-z0-9-]*`, but the semantic
+  baseline registry defines `space.0` to `space.9`. Proposed: chapter 03 errata allowing
+  digit-led segments (`[a-z0-9][a-z0-9-]*`), or renaming the baseline spacing tokens in a major
+  version. The Web adapter's naming accepts digit-led segments.
+
 ## 1.0.0-draft.2 (2026-09-29)
 
 Errata to `1.0.0-draft.1` (findings F1 to F33 of the Core runtime feature), plus licensing: code,
