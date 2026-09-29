@@ -6,7 +6,6 @@
  */
 import type {
   Core,
-  ControllerContext,
   OperationalError,
   PolicyInput,
   PreferenceStore,
@@ -14,11 +13,15 @@ import type {
   ThemeController,
   UserPreferencesDocument,
 } from "@opentheme/core";
+import { createContextSource, type SizeClass } from "./context.js";
 import { toDeclarations, type Omission } from "./declarations.js";
 import { NONCE, OpenThemeWebError, SCOPE_ID } from "./errors.js";
 import { selectorFor } from "./stylesheet.js";
 
-export type SizeClass = "compact" | "medium" | "expanded";
+export type { SizeClass };
+
+const SIZE_CLASSES = new Set(["compact", "medium", "expanded"]);
+const validScale = (n: unknown): n is number => typeof n === "number" && Number.isFinite(n) && n > 0;
 
 export interface AttachOptions {
   readonly core: Core;
@@ -78,6 +81,8 @@ export function attachTheme(options: AttachOptions): WebScope {
   if (!target || typeof target.nodeType !== "number") fail("invalid-argument", "target must be a Document or an Element.");
   if (typeof scope !== "string" || !SCOPE_ID.test(scope)) fail("invalid-argument", "scope must match [a-z][a-z0-9-]*.");
   if (nonce !== undefined && !NONCE.test(nonce)) fail("invalid-argument", "nonce must be base64 or base64url.");
+  if (!SIZE_CLASSES.has(options.sizeClass)) fail("invalid-argument", "sizeClass must be compact, medium, or expanded.");
+  if (options.textScale !== undefined && !validScale(options.textScale)) fail("invalid-argument", "textScale must be a positive number.");
 
   const root = isDocument(target);
   const doc = root ? target : target.ownerDocument;
@@ -143,34 +148,32 @@ export function attachTheme(options: AttachOptions): WebScope {
     report = Object.freeze({ omissions, set, removed });
   };
 
-  let context: ControllerContext = {
-    platform: {
-      colorScheme: "no-preference",
-      contrast: "standard",
-      forcedColors: false,
-      reducedMotion: false,
-      textScale: options.textScale ?? 1,
-    },
-    environment: { sizeClass: options.sizeClass, locale: options.locale ?? "en", direction: "ltr" },
-  };
+  // Live browser context (FR-W010 to FR-W014); Core sees only real changes.
+  let controller: ThemeController | undefined;
+  const source = createContextSource(
+    target,
+    { sizeClass: options.sizeClass, textScale: options.textScale ?? 1, locale: options.locale ?? "en" },
+    (next) => controller?.setContext(next),
+  );
 
   const store = options.store === false ? undefined : options.store;
-  let controller: ThemeController;
   try {
     controller = core.createController({
       policy: options.policy,
-      context,
+      context: source.context,
       scope,
       ...(store ? { store } : {}),
       ...(options.initial !== undefined ? { initial: options.initial } : {}),
     });
   } catch (e) {
+    source.dispose();
     release();
     throw e;
   }
+  const ctl = controller;
 
-  apply(controller.current.resolved);
-  const unsubscribe = controller.subscribe((result) => apply(result.resolved));
+  apply(ctl.current.resolved);
+  const unsubscribe = ctl.subscribe((result) => apply(result.resolved));
 
   let attached = true;
   function release(): void {
@@ -180,30 +183,30 @@ export function attachTheme(options: AttachOptions): WebScope {
     if (element) managed.delete(element);
   }
 
-  const setContext = (next: ControllerContext) => {
-    context = next;
-    controller.setContext(next);
-  };
-
   return Object.freeze({
-    controller,
+    controller: ctl,
     get report() {
       return report;
     },
     get errors() {
-      return Object.freeze([...adapterErrors, ...controller.errors]);
+      return Object.freeze([...adapterErrors, ...ctl.errors]);
     },
     setSizeClass(sizeClass: SizeClass) {
-      setContext({ ...context, environment: { ...context.environment, sizeClass } });
+      if (!SIZE_CLASSES.has(sizeClass)) {
+        throw new OpenThemeWebError("invalid-argument", "web.setSizeClass", "sizeClass must be compact, medium, or expanded.");
+      }
+      if (attached) source.setInputs({ sizeClass });
     },
     setTextScale(textScale: number) {
-      setContext({ ...context, platform: { ...context.platform, textScale } });
+      if (!validScale(textScale)) throw new OpenThemeWebError("invalid-argument", "web.setTextScale", "textScale must be a positive number.");
+      if (attached) source.setInputs({ textScale });
     },
     detach() {
       if (!attached) return;
       attached = false;
       unsubscribe();
-      controller.dispose();
+      source.dispose();
+      ctl.dispose();
       release();
     },
   });
