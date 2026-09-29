@@ -4,7 +4,7 @@
 import type { Lab } from "../color/index.js";
 import * as C from "../transforms/color.js";
 import * as N from "../transforms/number.js";
-import { aliasTarget, isRecord, type Raw, seedSchemeOf, type ThemeModel } from "./model.js";
+import { aliasTarget, escapeSegment, isRecord, type Raw, seedSchemeOf, type ThemeModel } from "./model.js";
 import {
   BASELINE,
   DIMENSION_PRIORITY,
@@ -368,13 +368,24 @@ export function evaluate(
   const values = new Map<string, Value>();
   const issues: EvalIssue[] = [];
   const userDependent = new Set<string>(userValuePaths);
+  // The preferences each user-dependent value comes from (their `input` pointers), so a clamp is
+  // reported at the preference that caused it (chapter 04, finding C7).
+  const sources = new Map<string, ReadonlySet<string>>();
+  for (const p of userValuePaths) {
+    const d = decls.get(p);
+    if (d && d.document === "input") sources.set(p, new Set([d.pointer]));
+  }
   let effort = 0;
   const { order, cyclic } = kahnOrder(decls);
 
-  const evalOperand = (operand: unknown, type: string, decl: Decl, depUser: { v: boolean }): Value | null => {
+  type Dep = { v: boolean; readonly from: Set<string> };
+  const evalOperand = (operand: unknown, type: string, decl: Decl, depUser: Dep): Value | null => {
     const target = aliasTarget(operand);
     if (target !== null) {
-      if (userDependent.has(target)) depUser.v = true;
+      if (userDependent.has(target)) {
+        depUser.v = true;
+        for (const f of sources.get(target) ?? []) depUser.from.add(f);
+      }
       const v = values.get(target);
       return v ?? null;
     }
@@ -382,7 +393,7 @@ export function evaluate(
     return decodeLiteral(type, operand);
   };
 
-  const evalDerive = (derive: unknown, decl: Decl, depUser: { v: boolean }): Value | null => {
+  const evalDerive = (derive: unknown, decl: Decl, depUser: Dep): Value | null => {
     if (!isRecord(derive)) return null;
     const def = TRANSFORMS.get(String(derive.op));
     if (!def) return null;
@@ -397,16 +408,17 @@ export function evaluate(
         got[a.name] = list.map((x) => evalOperand(x, a.type.slice(0, -2), decl, depUser)!).filter((x) => x !== null);
         continue;
       }
-      const local = { v: false };
+      const local: Dep = { v: false, from: new Set() };
       let v = evalOperand(operand, a.type, decl, local);
       if (local.v) depUser.v = true;
+      for (const f of local.from) depUser.from.add(f);
       if (v && v.k === "number" && a.domain && !inDomain(v.value, a.domain)) {
         if (mode === "validate" && aliasTarget(operand) !== null) {
           issues.push({ code: "OT-DRV-004", path: decl.path, document: decl.document, pointer: `${decl.pointer}/$derive/args/${a.name}` });
         }
         if (mode === "resolve" && local.v) {
           v = { k: "number", value: clampDomain(v.value, a.domain) };
-          issues.push({ code: "OT-DRV-102", path: decl.path, document: decl.document, pointer: decl.pointer, params: { detail: a.name } });
+          for (const f of local.from) issues.push({ code: "OT-DRV-102", path: decl.path, document: "input", pointer: f, params: { detail: a.name } });
         }
       }
       got[a.name] = v;
@@ -416,7 +428,7 @@ export function evaluate(
 
   for (const path of order) {
     const decl = decls.get(path)!;
-    const depUser = { v: userDependent.has(path) };
+    const depUser: Dep = { v: userDependent.has(path), from: new Set(sources.get(path) ?? []) };
     let v: Value | null;
     try {
       v = evalOperand(decl.raw, decl.type, decl, depUser);
@@ -427,7 +439,10 @@ export function evaluate(
       }
       throw e;
     }
-    if (depUser.v) userDependent.add(path);
+    if (depUser.v) {
+      userDependent.add(path);
+      sources.set(path, depUser.from);
+    }
     if (v === null) continue;
     const range = BASELINE.get(path)?.range;
     // Registry role ranges bound derivation outputs only (chapter 11, "Literal ranges").
@@ -436,7 +451,15 @@ export function evaluate(
       if (clamped !== v.value) {
         v = { ...v, value: clamped };
         if (isRecord(decl.raw) && "$derive" in decl.raw) {
-          issues.push({ code: "OT-DRV-101", path, document: decl.document, pointer: decl.pointer });
+          // A baseline default has no member in the theme; it is located where the theme would
+          // declare the token (chapter 04).
+          const spec = decl.document === "specification";
+          issues.push({
+            code: "OT-DRV-101",
+            path,
+            document: spec ? "theme" : decl.document,
+            pointer: spec ? `/tokens/${path.split(".").map(escapeSegment).join("/")}` : decl.pointer,
+          });
         }
       }
     }
