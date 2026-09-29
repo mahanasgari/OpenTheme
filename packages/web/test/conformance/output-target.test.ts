@@ -9,6 +9,7 @@ import { toDeclarations } from "../../src/index.js";
 import { jcs, without } from "../canonical.js";
 import { AURORA, LIGHT_CONTEXT, read } from "../helpers.js";
 import { decodeDeclarations } from "../decode.js";
+import { matchesGrammar } from "../grammar.js";
 
 const ALL = { "user-created": true, imported: true, shared: true, "ai-generated": true } as const;
 
@@ -50,6 +51,7 @@ describe("output-target conformance", () => {
       if (d.name.includes("_v_")) seen.variant = true;
       if (d.name.includes("___")) seen.member = true;
       if (/^[A-Z]/.test(d.value)) seen.system = true;
+      expect(matchesGrammar(d.value), `${d.name}: ${d.value}`).toBe(true);
     }
     const decoded = decodeDeclarations(declarations);
     const paths = omissions.map((o) => o.path);

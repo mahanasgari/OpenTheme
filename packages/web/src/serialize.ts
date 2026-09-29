@@ -74,9 +74,17 @@ export function serializeLeaf(v: unknown): string | null {
   return null;
 }
 
-/** A composite (border, shadow, typography): a record that is not an encoded leaf. */
+const COMPOSITES: readonly ReadonlySet<string>[] = [
+  new Set(["width", "style", "color", "physical"]),
+  new Set(["offsetX", "offsetY", "blur", "spread", "color", "physical"]),
+  new Set(["fontFamily", "fontWeight", "fontSize", "lineHeight", "letterSpacing", "physical"]),
+];
+
+/** A border, shadow, or typography composite: every key is a member of one of them (chapter 03). */
 export function isCompositeValue(v: unknown): v is Rec {
-  return isRecord(v) && Object.keys(v).length > 0 && !LEAF_KEYS.some((k) => k in v);
+  if (!isRecord(v) || LEAF_KEYS.some((k) => k in v)) return false;
+  const keys = Object.keys(v);
+  return keys.length > 0 && COMPOSITES.some((members) => keys.every((k) => members.has(k)));
 }
 
 function all(v: Rec, keys: readonly string[]): string[] | null {

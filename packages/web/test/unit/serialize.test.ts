@@ -95,6 +95,8 @@ describe("composites", () => {
     expect(isCompositeValue(border)).toBe(true);
     expect(isCompositeValue({ number: 1 })).toBe(false);
     expect(isCompositeValue({ srgb8: [0, 0, 0], alpha: 1 })).toBe(false);
+    expect(isCompositeValue({ stops: [], angle: 90 })).toBe(false);
+    expect(isCompositeValue({ width: { value: 1, unit: "px" }, angle: 90 })).toBe(false);
   });
   it("border and shadow shorthands", () => {
     expect(serializeShorthand(border)).toBe("1px solid rgb(0 0 0)");
