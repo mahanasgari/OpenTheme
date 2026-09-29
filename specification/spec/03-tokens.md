@@ -13,7 +13,9 @@ optionally per script (FR-022).
 
 ## Paths and groups (FR-019)
 
-Path segments match `[a-z][a-z0-9-]*`, at most 64 characters per segment and 256 in total.
+The first path segment matches `[a-z][a-z0-9-]*`; every later segment matches `[a-z0-9][a-z0-9-]*`
+(so `space.4` is a valid path). Segments are at most 64 characters and paths at most 256 in total.
+Violations → `OT-TOK-001`.
 Reserved groups: `seed`, `primitive`, and the baseline semantic groups (`color`, `font`, `text`,
 `space`, `size`, `radius`, `border`, `elevation`, `opacity`, `motion`, `focus`, `breakpoint`,
 `layout`).
