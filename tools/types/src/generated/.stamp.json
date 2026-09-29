@@ -55,39 +55,39 @@
     },
     {
       "path": "specification/schemas/1.0/registry/component-catalog.schema.json",
-      "sha256": "98d0f03eb15ce74aba4a42a776a0aa007825aa506c5a5f09f4c2c3ccf468128a"
+      "sha256": "863fd6dd9aaded14a3e739e459b086ed484b2c8a17d4685f6ec9e2692c150ee1"
     },
     {
       "path": "specification/schemas/1.0/registry/context-dimensions.schema.json",
-      "sha256": "41045cf37ca8f6972ef9f7ea028b549c5d19206745ef471b322296e39a13400b"
+      "sha256": "45c698a0a4f2ce4d6ba74c43abe3edb0abf85b4f16362319ce371367c37e4fc7"
     },
     {
       "path": "specification/schemas/1.0/registry/customization-points.schema.json",
-      "sha256": "de7cae6ff7651049a0dbec717395da0323f502be1bfc586c7496ef48017ae104"
+      "sha256": "c97e7480839aaf349b5a988a621507b2392a06dfa08d6be52996f7b449d6fdad"
     },
     {
       "path": "specification/schemas/1.0/registry/diagnostics.schema.json",
-      "sha256": "097aca3539c09774aeccc275b4878d56cc07aaa0c2e438f4ec0f875e56c783f8"
+      "sha256": "81e6ef474ad138ea154bb4df09979e85dd9b452239ba07b643ba12ef668d9d43"
     },
     {
       "path": "specification/schemas/1.0/registry/forced-colors.schema.json",
-      "sha256": "d32ed903af0bca852494edd42c9a398d5258f611eef42f058979ebb6fe588ba1"
+      "sha256": "9b8fc233ac85b493b9bfabb4d47941c0be50cb6aa1ff05b163549f708e8b2f6f"
     },
     {
       "path": "specification/schemas/1.0/registry/limits.schema.json",
-      "sha256": "075410fb22723228b164f520519d59a9355d10e2364045629b0b9a806fcf9f8c"
+      "sha256": "311f42c28ff1ad7a98a78a352d3ea8a23eddf89667817e5e44b1ad414b38ff82"
     },
     {
       "path": "specification/schemas/1.0/registry/rules.schema.json",
-      "sha256": "f8598893e7d1c504e2bf453083202c1d7b33ab65cde5fded4a69863f660f026b"
+      "sha256": "c45492a25efc2a67d7eb0bed597c78d6cd3bb6cd0946f927258f02b76de16586"
     },
     {
       "path": "specification/schemas/1.0/registry/semantic-baseline.schema.json",
-      "sha256": "1df04163598173738b8b69ac475268945e0160ca8c1f836d4042ff09c474aa95"
+      "sha256": "fc030a70b31206192b06d71d04e4e5e9170f13418d4bf5fec0fd57f104477136"
     },
     {
       "path": "specification/schemas/1.0/registry/transformations.schema.json",
-      "sha256": "a5644a74cd22a78b694e4362e98359d0d35d9f29f6036c5156925389d67d5a10"
+      "sha256": "0732bc4a9c5c0edac28368fac138ecc41c423496ead8476932ee9437c463e171"
     },
     {
       "path": "specification/schemas/1.0/resolution-input.schema.json",

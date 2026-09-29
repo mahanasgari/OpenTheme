@@ -13,7 +13,7 @@
       "type": "string",
       "description": "Specification version of this registry.",
       "examples": [
-        "1.0.0-draft.2"
+        "1.0.0-draft.3"
       ]
     },
     "priority": {

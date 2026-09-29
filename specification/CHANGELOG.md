@@ -1,23 +1,32 @@
 # Changelog
 
-## Unreleased
+## 1.0.0-draft.3 (2026-09-30)
 
-### Open findings (no normative change)
+Errata to `1.0.0-draft.2`: findings W1 to W3, found while building the Web adapter
+(`specs/003-web-adapter`). Drafts carry no compatibility guarantee.
 
-Found while building the Web adapter (`specs/003-web-adapter`, FR-W043). Each is recorded, not
-resolved; Foundation behavior is unchanged until an errata or version decides it.
+### Specification errata
 
-- **W1**: `host-declaration.schema.json` does not constrain contract, part, property, or variant
-  names, unlike the standard catalog's `[a-z][a-z0-9-]*`. Proposed: chapter 17 errata applying
-  the token segment grammar, with a host rule and fixtures. The Web adapter omits and reports such
-  names.
-- **W2**: the host schema allows a `gradient` property type that no chapter, registry, or Core
-  defines. Proposed: remove it, or specify it in chapters 03 and 08. The Web adapter omits and
-  reports such values.
-- **W3**: chapter 03 requires token path segments to match `[a-z][a-z0-9-]*`, but the semantic
-  baseline registry defines `space.0` to `space.9`. Proposed: chapter 03 errata allowing
-  digit-led segments (`[a-z0-9][a-z0-9-]*`), or renaming the baseline spacing tokens in a major
-  version. The Web adapter's naming accepts digit-led segments.
+- **W3**, chapter 03: the first token path segment matches `[a-z][a-z0-9-]*`, and every later
+  segment matches `[a-z0-9][a-z0-9-]*`. The semantic baseline defines `space.0` to `space.9`
+  (not reserved, with ranges), so themes are meant to override them, but the old grammar
+  rejected those paths with `OT-TOK-001`. The new grammar matches the alias grammar and
+  chapter 02 identifiers. Documents valid before stay valid; `"space": { "4": … }` becomes valid.
+- **W1**, chapter 17: contract ids are `<host-id>/<name>`, and the contract name, parts, property
+  names, and variant axes and values match `[a-z][a-z0-9-]*`, the standard catalog's grammar.
+  Violations are `OT-HOST-002`. The reference checker already required the host namespace; Core
+  now does too.
+- **W2**, chapter 17 and `host-declaration.schema.json`: host property types are exactly the
+  chapter 03 token types, as chapter 17 already required through research R4. The schema drops
+  `gradient`, which no chapter defines, and adds `strokeStyle` and `density`. The reference
+  checker's list now matches Core's.
+
+### Conformance
+
+- Nine new fixtures: `invalid/host/{contract-name, contract-namespace, gradient-property,
+  part-name, property-name, variant-name}`, `valid/host/stroke-style-property`,
+  `invalid/tok/digit-first-segment`, and `valid/tok/digit-segment` (284 fixtures). No existing
+  expected result changes. Core and the reference checker agree on every fixture and sweep.
 
 ## 1.0.0-draft.2 (2026-09-29)
 

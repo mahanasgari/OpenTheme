@@ -5,7 +5,7 @@ contract for presentation themes. A theme changes how an application looks, neve
 This repository holds the specification, its conformance suite, and **OpenTheme Core**, a
 framework-agnostic runtime that implements it.
 
-**Status**: specification `1.0.0-draft.2`, `@opentheme/core` `0.1.0-draft`. Drafts
+**Status**: specification `1.0.0-draft.3`, `@opentheme/core` `0.1.0-draft`. Drafts
 carry no compatibility guarantee.
 
 ## What is here
@@ -13,7 +13,7 @@ carry no compatibility guarantee.
 | Path | What it is |
 |---|---|
 | [`specification/`](specification/) | The normative specification: chapters 00–18, JSON Schemas, registries, the baseline and reference themes, example hosts, and the [changelog](specification/CHANGELOG.md) |
-| [`conformance/`](conformance/) | 275 conformance fixtures, sweeps, and the implementation-agnostic runner (NDJSON protocol) |
+| [`conformance/`](conformance/) | 284 conformance fixtures, sweeps, and the implementation-agnostic runner (NDJSON protocol) |
 | [`packages/core/`](packages/core/) | `@opentheme/core`: trust-aware admission, a theme registry, deterministic resolution, and a preferences controller ([README](packages/core/README.md)) |
 | [`packages/web/`](packages/web/) | `@opentheme/web`: applies resolved themes to web pages as CSS custom properties, follows system settings live, and remembers preferences on the device ([README](packages/web/README.md)) |
 | [`tools/`](tools/) | Private tooling: the non-normative reference checker `ot-ref`, spec-lint, generated types, benchmarks, and the Python kernel cross-check |
