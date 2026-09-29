@@ -195,7 +195,8 @@ export function analyzeTokenGraph(
     dependents.set(n.path, new Set());
   }
   for (const n of tokenNodes) {
-    for (const ref of edgesOf(n)) {
+    // A dependency referenced twice (an alias and an operand, or two operands) is one edge.
+    for (const ref of new Set(edgesOf(n))) {
       if (!indegree.has(ref)) continue; // missing already diagnosed
       dependents.get(ref)!.add(n.path);
       indegree.set(n.path, (indegree.get(n.path) ?? 0) + 1);
