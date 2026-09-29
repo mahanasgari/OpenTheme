@@ -159,14 +159,14 @@ count zero property writes
 
 **Purpose**: Documentation, budgets, findings, and the full gate
 
-- [ ] T031 [P] Write `packages/web/README.md` (quickstart, naming examples, forced colors, scopes, server rendering, persistence, CSP and nonce) and `packages/web/AGENTS.md` (integration pattern, what the adapter never does, common mistakes)
-- [ ] T032 [P] Add `packages/web/test/docs/examples.test.ts` running every fenced `ts` block in the README and agent guide (same approach as `packages/core/test/docs/examples.test.ts`)
-- [ ] T033 [P] Write `packages/web/bench/node.ts` (`bench:web`): declaration generation plus diff for the typical theme, and a context-change update including Core re-resolution, each ≤ 4 ms median (SC-W006), failing above budget
-- [ ] T034 [P] Extend the browser page (`packages/core/bench/browser.ts` or a new `packages/web/bench/browser.ts`) to time `attachTheme` apply and a context-change update in a real browser
-- [ ] T035 [P] Record findings W1 and W2 in `specification/CHANGELOG.md` under an "Unreleased" open-findings note and in `specs/003-web-adapter/plan.md`, without changing Foundation behavior
-- [ ] T036 Update the root `AGENTS.md` (layout row for `packages/web`, the web gates, and that the repository now ships the Web adapter) and the root `README.md` "What is here" table
-- [ ] T037 Add `conformance:web`, `size:web`, and `bench:web` to `pnpm verify`, and `conformance:web` and `size:web` to `pnpm verify:correctness` in the root `package.json`; add a non-blocking "Benchmark (Web)" step to `.github/workflows/ci.yml` beside the Core one (constitution VIII)
-- [ ] T038 Run `pnpm verify` and record the results (conformance counts, test counts, size, and bench medians) in `specs/003-web-adapter/checklists/requirements.md`
+- [X] T031 [P] Write `packages/web/README.md` (quickstart, naming examples, forced colors, scopes, server rendering, persistence, CSP and nonce) and `packages/web/AGENTS.md` (integration pattern, what the adapter never does, common mistakes)
+- [X] T032 [P] Add `packages/web/test/docs/examples.test.ts` running every fenced `ts` block in the README and agent guide (same approach as `packages/core/test/docs/examples.test.ts`)
+- [X] T033 [P] Write `packages/web/bench/node.ts` (`bench:web`): declaration generation plus diff for the typical theme, and a context-change update including Core re-resolution, each ≤ 4 ms median (SC-W006), failing above budget
+- [X] T034 [P] Extend the browser page (`packages/core/bench/browser.ts` or a new `packages/web/bench/browser.ts`) to time `attachTheme` apply and a context-change update in a real browser
+- [X] T035 [P] Record findings W1 and W2 in `specification/CHANGELOG.md` under an "Unreleased" open-findings note and in `specs/003-web-adapter/plan.md`, without changing Foundation behavior
+- [X] T036 Update the root `AGENTS.md` (layout row for `packages/web`, the web gates, and that the repository now ships the Web adapter) and the root `README.md` "What is here" table
+- [X] T037 Add `conformance:web`, `size:web`, and `bench:web` to `pnpm verify`, and `conformance:web` and `size:web` to `pnpm verify:correctness` in the root `package.json`; add a non-blocking "Benchmark (Web)" step to `.github/workflows/ci.yml` beside the Core one (constitution VIII)
+- [X] T038 Run `pnpm verify` and record the results (conformance counts, test counts, size, and bench medians) in `specs/003-web-adapter/checklists/requirements.md`
 
 ---
 
