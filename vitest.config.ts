@@ -9,6 +9,7 @@ export default defineConfig({
       "conformance/runner",
       "packages/core",
       "packages/core-conformance",
+      "packages/web",
     ],
   },
 });
