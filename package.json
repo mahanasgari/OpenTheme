@@ -30,6 +30,7 @@
     "bench:core:browser": "pnpm --filter @opentheme/core run bench:browser",
     "conformance:web": "pnpm --filter @opentheme/web run conformance",
     "bench:web": "pnpm --filter @opentheme/web run bench",
+    "bench:web:browser": "pnpm --filter @opentheme/web run bench:browser",
     "size:web": "pnpm --filter @opentheme/web run size",
     "verify:correctness": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps"
   },

@@ -22,6 +22,7 @@
     "test": "vitest run --config vitest.config.ts",
     "conformance": "vitest run --config vitest.config.ts test/conformance",
     "size": "tsx scripts/size.ts",
+    "bench:browser": "tsx bench/browser.ts",
     "bench": "esbuild bench/node.ts --bundle --minify --platform=node --format=esm --target=es2022 --external:happy-dom --outfile=bench/dist/node.mjs --log-level=warning && node bench/dist/node.mjs"
   },
   "peerDependencies": {
