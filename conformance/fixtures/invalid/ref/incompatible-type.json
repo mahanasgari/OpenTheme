@@ -1,0 +1,82 @@
+{
+  "kind": "validate",
+  "rules": [
+    "R-REF-002"
+  ],
+  "description": "An alias to a token of an incompatible type → OT-REF-002.",
+  "input": {
+    "theme": {
+      "opentheme": "1.0",
+      "id": "org.example.quiet-paper",
+      "version": "1.0.0",
+      "name": "Quiet Paper",
+      "provenance": {
+        "origin": "user-created"
+      },
+      "compatibility": {
+        "catalog": "1.0"
+      },
+      "colorSchemes": {
+        "supported": [
+          "light"
+        ],
+        "default": "light"
+      },
+      "seeds": {
+        "light": {
+          "background": {
+            "colorSpace": "srgb",
+            "components": [
+              0.98,
+              0.97,
+              0.95
+            ]
+          },
+          "foreground": {
+            "colorSpace": "srgb",
+            "components": [
+              0.12,
+              0.12,
+              0.14
+            ]
+          },
+          "accent": {
+            "colorSpace": "oklch",
+            "components": [
+              0.55,
+              0.15,
+              250
+            ]
+          }
+        },
+        "fontFamily": [
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "tokens": {
+        "space": {
+          "gap": {
+            "$type": "dimension",
+            "$value": "{color.text.primary}"
+          }
+        }
+      }
+    }
+  },
+  "expect": {
+    "validity": "invalid",
+    "diagnostics": [
+      {
+        "code": "OT-REF-002",
+        "severity": "error",
+        "location": {
+          "document": "theme",
+          "pointer": "/tokens/space/gap/$value"
+        },
+        "rule": "R-REF-002"
+      }
+    ]
+  }
+}
