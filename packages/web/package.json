@@ -1,0 +1,37 @@
+{
+  "name": "@opentheme/web",
+  "version": "0.1.0-draft.0",
+  "description": "OpenTheme Web adapter: applies OpenTheme Core's resolved themes to web pages as CSS custom properties",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "generate": "tsx scripts/generate.ts",
+    "build": "tsx scripts/generate.ts && tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "conformance": "vitest run --config vitest.config.ts test/conformance",
+    "size": "tsx scripts/size.ts",
+    "bench": "esbuild bench/node.ts --bundle --minify --platform=node --format=esm --target=es2022 --outfile=bench/dist/node.mjs --log-level=warning && node bench/dist/node.mjs"
+  },
+  "peerDependencies": {
+    "@opentheme/core": "workspace:^"
+  },
+  "devDependencies": {
+    "@opentheme/core": "workspace:^",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^20.0.0",
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}
