@@ -17,7 +17,8 @@ Runnable scenarios that prove the feature works. Scenario 1 is also an automated
 2. `attachTheme({ core, target: document, scope: "app", policy: { preset: "closed", defaultTheme:
    "org.opentheme.aurora" }, sizeClass: "medium", store: false })`.
 3. Read `--ot-color_text_primary` and `--otc-std__button_container_background_default` from
-   `:root`.
+   the scope's `:root` rule (the DOM test environment's computed style ignores CSS object model
+   writes; the browser page reads computed style in a real browser).
 
 **Expected**: both are set, equal to Aurora's resolved values serialized per
 [contracts/css-output.md](./contracts/css-output.md); `detach()` leaves no `data-opentheme-scope`
