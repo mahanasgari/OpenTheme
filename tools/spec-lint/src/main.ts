@@ -20,6 +20,7 @@ import { checkDomainTerms } from "./domain-terms.js";
 import { checkResolutionInputs } from "./resolution-inputs.js";
 import { checkCoreFreshness } from "./core-freshness.js";
 import { checkCoreBoundaries } from "./core-boundaries.js";
+import { checkWebBoundaries } from "./web-boundaries.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, "../../..");
@@ -31,6 +32,7 @@ async function main(): Promise<void> {
   errors.push(...checkSchemas(repoRoot));
   errors.push(...checkCoreFreshness(repoRoot));
   errors.push(...checkCoreBoundaries(repoRoot));
+  errors.push(...checkWebBoundaries(repoRoot));
   errors.push(...checkRegistries(repoRoot));
   errors.push(...checkConsistency(repoRoot));
   errors.push(...checkExamples(repoRoot));
