@@ -42,20 +42,28 @@ const ALLOWED_STATES = new Set([
   "invalid",
 ]);
 
+/** The chapter 03 token types (research R4); chapter 17 allows exactly these as property types. */
 const R4_TYPES = new Set([
   "color",
   "dimension",
+  "fontFamily",
+  "fontWeight",
   "number",
   "opacity",
   "duration",
   "cubicBezier",
-  "fontFamily",
-  "fontWeight",
-  "typography",
-  "shadow",
+  "strokeStyle",
   "border",
-  "gradient",
+  "shadow",
+  "typography",
+  "density",
 ]);
+
+/** Contract names, parts, properties, and variant axes and values (chapter 17). */
+const NAME = /^[a-z][a-z0-9-]*$/;
+
+/** JSON Pointer segment escaping (RFC 6901). */
+const esc = (s: string): string => s.replace(/~/g, "~0").replace(/\//g, "~1");
 
 function reservedNamespace(id: string): boolean {
   return (
@@ -179,6 +187,7 @@ export function validateHost(
         properties?: Record<string, Record<string, string>>;
         defaults?: Record<string, unknown>;
         parts?: string[];
+        variants?: Record<string, unknown>;
       };
       const pointer = `/contracts/${index}`;
       if (typeof c.id === "string") {
@@ -191,13 +200,48 @@ export function validateHost(
           });
         }
         seen.add(c.id);
-        if (!c.id.startsWith(`${id}/`) && id) {
+        if (id && (!c.id.startsWith(`${id}/`) || !NAME.test(c.id.slice(id.length + 1)))) {
           collector.add({
             code: "OT-HOST-002",
             rule: "R-HOST-002",
             location: { document: "host", pointer: `${pointer}/id` },
             params: { detail: c.id },
           });
+        }
+      }
+      if (Array.isArray(c.parts)) {
+        c.parts.forEach((part, k) => {
+          if (typeof part === "string" && !NAME.test(part)) {
+            collector.add({
+              code: "OT-HOST-002",
+              rule: "R-HOST-002",
+              location: { document: "host", pointer: `${pointer}/parts/${k}` },
+              params: { detail: part },
+            });
+          }
+        });
+      }
+      if (c.variants && typeof c.variants === "object" && !Array.isArray(c.variants)) {
+        for (const [axis, values] of Object.entries(c.variants)) {
+          if (!NAME.test(axis)) {
+            collector.add({
+              code: "OT-HOST-002",
+              rule: "R-HOST-002",
+              location: { document: "host", pointer: `${pointer}/variants/${esc(axis)}` },
+              params: { detail: axis },
+            });
+          } else if (Array.isArray(values)) {
+            values.forEach((v, k) => {
+              if (typeof v === "string" && !NAME.test(v)) {
+                collector.add({
+                  code: "OT-HOST-002",
+                  rule: "R-HOST-002",
+                  location: { document: "host", pointer: `${pointer}/variants/${esc(axis)}/${k}` },
+                  params: { detail: v },
+                });
+              }
+            });
+          }
         }
       }
       for (const s of c.states ?? []) {
@@ -212,14 +256,22 @@ export function validateHost(
       }
       if (c.properties) {
         for (const [part, props] of Object.entries(c.properties)) {
+          if (!NAME.test(part)) {
+            collector.add({
+              code: "OT-HOST-002",
+              rule: "R-HOST-002",
+              location: { document: "host", pointer: `${pointer}/properties/${esc(part)}` },
+              params: { detail: part },
+            });
+          }
           for (const [prop, type] of Object.entries(props)) {
-            if (!R4_TYPES.has(type)) {
+            if (!NAME.test(prop) || !R4_TYPES.has(type)) {
               collector.add({
                 code: "OT-HOST-002",
                 rule: "R-HOST-002",
                 location: {
                   document: "host",
-                  pointer: `${pointer}/properties/${part}/${prop}`,
+                  pointer: `${pointer}/properties/${esc(part)}/${esc(prop)}`,
                 },
                 params: { detail: type },
               });
@@ -240,7 +292,7 @@ export function validateHost(
                 rule: "R-HOST-003",
                 location: {
                   document: "host",
-                  pointer: `${pointer}/defaults/${part}`,
+                  pointer: `${pointer}/defaults/${esc(part)}`,
                 },
                 params: { detail: `${part}.${prop}` },
               });
