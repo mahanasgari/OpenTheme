@@ -15,10 +15,13 @@ and carries no presentation values beyond defaults that alias or derive from sta
 
 ## Contracts and tokens (FR-032, FR-086)
 
-Contract ids are `<host-id>/<name>`. Theme styling applies only when the pin is compatible
+Contract ids are `<host-id>/<name>`, where `<host-id>` is the declaration's `id`. The contract
+name, every part, every property name, and every variant axis and value match `[a-z][a-z0-9-]*`,
+the standard catalog's grammar. Theme styling applies only when the pin is compatible
 (same major; theme minor ≤ declared). Unknown contracts → `OT-CMP-001` (info). Incompatible
 versions → `OT-CMP-002` (info). Every property MUST have a default (`OT-HOST-003`). Duplicate
-contract ids → `OT-HOST-004`. Invalid states or non-R4 property types → `OT-HOST-002`.
+contract ids → `OT-HOST-004`. Invalid states, property types other than the chapter 03 types, a contract id outside the host
+namespace, or a name outside the grammar above → `OT-HOST-002`.
 
 Host tokens are resolved at qualified paths `<host-id>/<local-path>` (for example
 `com.example.notes/color.rail`).
