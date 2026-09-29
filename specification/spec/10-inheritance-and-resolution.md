@@ -11,6 +11,16 @@ set), checks that the base is valid and version-compatible (`OT-INH-001` missing
 invalid base, `OT-INH-003` version outside range), rejects cycles (`OT-INH-004`), and limits chain
 depth to 4 (`OT-INH-005`). Locations for inheritance failures use `base:<id>@<version>`.
 
+The check has two passes and stops at the first finding. First, the chain is walked from the
+theme being validated; at each `extends` link, in order: a fifth link is `OT-INH-005`, an id
+already in the chain (the theme's own id included) is `OT-INH-004`, no supplied base with that id
+is `OT-INH-001`, and no supplied version satisfying `version` is `OT-INH-003`. Then the nearest
+base is validated as a theme with the same supplied bases; if it is invalid, each of its errors
+is `OT-INH-002` at the error's pointer (`/` when it has none), and an error already located in a
+farther base is reported unchanged. In every location, `<id>` and `<version>` are the `extends`
+member that reached the base, as written (for example `base:org.example.base@^1.0.0`); the
+pointer is `/extends`, or `/extends/version` for `OT-INH-003`.
+
 **Merge** is base-first: the child overrides token values; context overlays merge per identical
 `when` key; component styling merges; a redefined customization point keeps its id and type while
 constraints may be narrowed or replaced. Trust of a resolved theme is the lowest trust level in
