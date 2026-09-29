@@ -18,9 +18,8 @@ jobs:
         with:
           python-version: "3.13"
 
+      # The pnpm version comes from package.json "packageManager".
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - uses: actions/setup-node@v4
         with:
@@ -29,6 +28,9 @@ jobs:
 
       - name: Install
         run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
 
       - name: Verify
         run: pnpm verify
