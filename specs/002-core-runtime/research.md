@@ -322,3 +322,11 @@ reference checker's typical case 47.7-49.6 ms (budget 40 ms). These runners meas
 slower than the calibration machine, so CI reports the benchmarks without blocking and gates on
 `pnpm verify:correctness`; `pnpm verify` enforces the budgets locally. Open decision: recalibrate
 R22 for GitHub-hosted runners, or run the benchmark gate on a dedicated runner.
+
+Phase B (2026-09-29): restricting per-mode validation to what its checks read, a streaming
+SHA-256, and cached derivation facts brought Core's at-limit case on GitHub-hosted runners from
+281-305 ms to 242-260 ms on AMD EPYC 7763 machines and 200-225 ms on AMD EPYC 9V74 machines. The
+runner pool mixes both CPUs, so a blocking budget gate would pass or fail by hardware assignment.
+The Core benchmark therefore stays reported (with the CPU model) and non-blocking in CI, and
+`pnpm verify` enforces it locally. Further reductions (a single-pass document index shared by
+parsing, canonicalization, and validation) are the remaining option for gating on the slower CPU.
