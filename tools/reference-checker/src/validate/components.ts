@@ -181,7 +181,7 @@ export function validateComponents(
               nested.$variants,
               contract,
               collector,
-              `${partPointer}/${prop}`,
+              `${partPointer}/${prop}/$variants`,
             );
           }
         }
@@ -206,6 +206,7 @@ function checkStatesOrVariants(
   value: unknown,
   contract: Contract,
   collector: DiagnosticCollector,
+  /** For `$states`, the property; for `$variants`, the variants object itself. */
   pointerBase: string,
 ): void {
   if (!value || typeof value !== "object" || Array.isArray(value)) return;
@@ -233,7 +234,7 @@ function checkStatesOrVariants(
         rule: "R-CMP-004",
         location: {
           document: "theme",
-          pointer: `${pointerBase}/$variants/${axis}`,
+          pointer: `${pointerBase}/${axis}`,
         },
         params: { detail: axis },
       });
@@ -247,7 +248,7 @@ function checkStatesOrVariants(
             rule: "R-CMP-004",
             location: {
               document: "theme",
-              pointer: `${pointerBase}/$variants/${axis}/${v}`,
+              pointer: `${pointerBase}/${axis}/${v}`,
             },
             params: { detail: v },
           });
