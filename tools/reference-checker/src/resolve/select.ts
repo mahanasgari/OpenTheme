@@ -270,6 +270,21 @@ export function selectTheme(
     };
   };
 
+  // A supplied theme that the policy excludes is reported, then falls back (chapter 10).
+  if (
+    available.size > 0 &&
+    input.selection.id &&
+    (input.themes ?? []).some((t) => themeId(t.document) === input.selection.id) &&
+    !available.has(input.selection.id) &&
+    input.selection.id !== BASELINE_ID
+  ) {
+    collector.add({
+      code: "OT-RES-004",
+      rule: "R-RES-004",
+      location: { document: "input", pointer: "/selection" },
+      params: { detail: input.selection.id },
+    });
+  }
   const selected = tryId(
     input.selection.id,
     "none",

@@ -57,7 +57,11 @@ inside a theme document.
 
 ## Selection, trust, and fallback (FR-068, FB-001, FB-010)
 
-Selection order is: selected → previous → developer default → specification baseline. An
+Selection order is: selected → previous → developer default → specification baseline. A selected
+theme that is supplied but whose id is not in a non-empty `availableThemes` (the specification
+baseline is always available) is `OT-RES-004` (warning) at `input` `/selection`; a selection that
+names no supplied theme is not. Resolution then continues in that order, and the step that
+applies reports its own code (`OT-RES-001`–`OT-RES-003`). An
 untrusted entry MUST NOT replace or shadow a trusted entry with the same id; it is kept distinct
 and flagged `OT-SEC-001`. When the selected theme is invalid, its validation diagnostics are
 included in the resolution output and nothing from it is applied (`OT-RES-001`–`OT-RES-004`,

@@ -102,6 +102,11 @@ export function selectTheme(input: SelectInput, c: DiagnosticCollector, prepared
     return { entry, merged: v.merged, fallback, trust };
   };
 
+  // A supplied theme that the policy excludes is reported, then falls back (chapter 10).
+  const sel = input.selection.id;
+  if (input.availableThemes && input.availableThemes.length > 0 && sel && byId.has(sel) && !available.has(sel)) {
+    c.add("OT-RES-004", { document: "input", pointer: "/selection" }, { params: { detail: input.selection.id } });
+  }
   return (
     attempt(input.selection.id, "none", undefined, input.selection.version) ??
     attempt(input.previous?.id, "previous", "OT-RES-001", input.previous?.version) ??

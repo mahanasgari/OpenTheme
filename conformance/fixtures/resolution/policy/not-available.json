@@ -1,0 +1,111 @@
+{
+  "kind": "resolve",
+  "rules": [
+    "R-RES-004"
+  ],
+  "description": "A supplied theme that the policy does not make available \u2192 OT-RES-004, then the developer default applies (OT-RES-002).",
+  "input": {
+    "themes": [
+      {
+        "trust": "trusted",
+        "document": {
+          "opentheme": "1.0",
+          "id": "org.example.quiet-paper",
+          "version": "1.0.0",
+          "name": "Quiet Paper",
+          "provenance": {
+            "origin": "user-created"
+          },
+          "compatibility": {
+            "catalog": "1.0"
+          },
+          "colorSchemes": {
+            "supported": [
+              "light"
+            ],
+            "default": "light"
+          },
+          "seeds": {
+            "light": {
+              "background": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.98,
+                  0.97,
+                  0.95
+                ]
+              },
+              "foreground": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.12,
+                  0.12,
+                  0.14
+                ]
+              },
+              "accent": {
+                "colorSpace": "oklch",
+                "components": [
+                  0.55,
+                  0.15,
+                  250
+                ]
+              }
+            },
+            "fontFamily": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      }
+    ],
+    "selection": {
+      "id": "org.example.quiet-paper"
+    },
+    "previous": null,
+    "platform": {
+      "colorScheme": "light",
+      "contrast": "standard",
+      "forcedColors": false,
+      "reducedMotion": false,
+      "textScale": 1
+    },
+    "environment": {
+      "sizeClass": "medium",
+      "locale": "en",
+      "direction": "ltr"
+    },
+    "preferences": {},
+    "policy": {
+      "availableThemes": [
+        "org.opentheme.baseline"
+      ],
+      "defaultTheme": "org.opentheme.baseline"
+    }
+  },
+  "expect": {
+    "subset": true,
+    "resolved": {
+      "applied.id": "org.opentheme.baseline",
+      "applied.fallback": "developer-default"
+    },
+    "diagnostics": [
+      {
+        "code": "OT-RES-002",
+        "location": {
+          "document": "input",
+          "pointer": "/selection"
+        }
+      },
+      {
+        "code": "OT-RES-004",
+        "location": {
+          "document": "input",
+          "pointer": "/selection"
+        }
+      }
+    ]
+  }
+}

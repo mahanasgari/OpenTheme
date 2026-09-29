@@ -1411,7 +1411,9 @@
       "id": "R-RES-004",
       "chapter": "10-resolution.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/policy/not-available"
+      ],
       "description": "Rule R-RES-004",
       "summary": "Rule R-RES-004",
       "example": {
