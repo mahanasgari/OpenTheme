@@ -5,5 +5,6 @@
 export { toDeclarations, type Declaration, type DeclarationSet, type Omission } from "./declarations.js";
 export { toStylesheet, type StylesheetOptions } from "./stylesheet.js";
 export { attachTheme, type AdapterReport, type AttachOptions, type SizeClass, type WebScope } from "./scope.js";
+export { createBrowserStore, type BrowserStore, type BrowserStoreOptions } from "./store.js";
 export { sizeClassForWidth, textScaleFromRoot } from "./context.js";
 export { OpenThemeWebError, type WebErrorKind } from "./errors.js";

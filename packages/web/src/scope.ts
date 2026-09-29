@@ -16,6 +16,7 @@ import type {
 import { createContextSource, type SizeClass } from "./context.js";
 import { toDeclarations, type Omission } from "./declarations.js";
 import { NONCE, OpenThemeWebError, SCOPE_ID } from "./errors.js";
+import { createBrowserStore } from "./store.js";
 import { selectorFor } from "./stylesheet.js";
 
 export type { SizeClass };
@@ -156,14 +157,33 @@ export function attachTheme(options: AttachOptions): WebScope {
     (next) => controller?.setContext(next),
   );
 
-  const store = options.store === false ? undefined : options.store;
+  // Preferences (FR-W020 to FR-W022): the stored document is read synchronously so the first
+  // resolution uses it. With a synchronous read done, Core's own asynchronous read is not needed,
+  // so an absent or failed read passes an empty initial document.
+  const store = options.store === false ? undefined : (options.store ?? createBrowserStore());
+  let initial = options.initial;
+  const readInitial = (store as { readInitial?: unknown } | undefined)?.readInitial;
+  if (initial === undefined && store && typeof readInitial === "function") {
+    try {
+      initial = (readInitial.call(store, scope) as string | null) ?? "";
+    } catch {
+      initial = "";
+      adapterErrors.push({
+        kind: "store-read-failed",
+        operation: "web.attachTheme",
+        message: "The preference store failed to read.",
+        hint: "Check the storage; resolution continued without stored data.",
+        docs: "https://opentheme.org/core/errors/store-read-failed",
+      });
+    }
+  }
   try {
     controller = core.createController({
       policy: options.policy,
       context: source.context,
       scope,
       ...(store ? { store } : {}),
-      ...(options.initial !== undefined ? { initial: options.initial } : {}),
+      ...(initial !== undefined ? { initial } : {}),
     });
   } catch (e) {
     source.dispose();
