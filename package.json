@@ -10,7 +10,7 @@
   },
   "packageManager": "pnpm@10.15.0",
   "scripts": {
-    "build": "pnpm -r --filter @opentheme/types --filter @opentheme/reference-checker --filter @opentheme/conformance-runner --filter @opentheme/spec-lint --filter @opentheme/bench --filter @opentheme/core --filter @opentheme/core-conformance --filter @opentheme/web run build",
+    "build": "pnpm -r --filter @opentheme/types --filter @opentheme/reference-checker --filter @opentheme/conformance-runner --filter @opentheme/spec-lint --filter @opentheme/bench --filter @opentheme/core --filter @opentheme/core-conformance --filter @opentheme/web --filter @opentheme/playground run build",
     "test": "vitest run",
     "spec:check": "pnpm --filter @opentheme/spec-lint run check",
     "conformance": "pnpm --filter @opentheme/conformance-runner run conformance",
@@ -31,6 +31,7 @@
     "conformance:web": "pnpm --filter @opentheme/web run conformance",
     "bench:web": "pnpm --filter @opentheme/web run bench",
     "bench:web:browser": "pnpm --filter @opentheme/web run bench:browser",
+    "playground": "pnpm --filter @opentheme/playground run build",
     "size:web": "pnpm --filter @opentheme/web run size",
     "verify:correctness": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web"
   },
