@@ -137,17 +137,19 @@
               "enum": [
                 "color",
                 "dimension",
+                "fontFamily",
+                "fontWeight",
                 "number",
                 "opacity",
                 "duration",
                 "cubicBezier",
-                "fontFamily",
-                "fontWeight",
-                "typography",
-                "shadow",
+                "strokeStyle",
                 "border",
-                "gradient"
-              ]
+                "shadow",
+                "typography",
+                "density"
+              ],
+              "description": "The chapter 03 token types (research R4); any other type is OT-HOST-002."
             }
           }
         },
