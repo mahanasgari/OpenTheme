@@ -1,11 +1,11 @@
 /**
  * Custom property names (contracts/css-output.md "Names"; research WR2; FR-W002).
  *
- * Every segment matches `[a-z0-9][a-z0-9-]*` (chapter 03's `[a-z][a-z0-9-]*`, widened to the
- * digit-led segments the semantic baseline uses, such as `space.4`; finding W3), so `_` never
- * occurs inside one and runs of one, two, and three underscores decode unambiguously: `_` separates segments, `__` ends a host or contract
- * namespace, and `___` starts a composite member. A name outside the grammar is `null` and the
- * caller omits and reports it (finding W1).
+ * Every segment matches `[a-z0-9][a-z0-9-]*` (chapter 03 since 1.0.0-draft.3 allows digit-led
+ * later token segments such as `space.4`; finding W3), so `_` never occurs inside one, and runs of
+ * one, two, and three underscores decode unambiguously: `_` separates segments, `__` ends a host
+ * or contract namespace, and `___` starts a composite member. A name outside the grammar is `null`
+ * and the caller omits and reports it (finding W1).
  */
 
 const SEGMENT = /^[a-z0-9][a-z0-9-]*$/;
