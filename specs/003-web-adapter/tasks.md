@@ -145,11 +145,11 @@ count zero property writes
 
 ### Tests for User Story 4
 
-- [ ] T029 [P] [US4] Write `packages/web/test/dom/first-paint.test.ts`: `toStylesheet(resolved, { element: true, scope })` inserted into the page, then `attachTheme` with the same inputs adopts the element and performs zero `setProperty`/`removeProperty` calls; with different inputs it updates only the differing properties; the nonce is preserved on the adopted element
+- [X] T029 [P] [US4] Write `packages/web/test/dom/first-paint.test.ts`: `toStylesheet(resolved, { element: true, scope })` inserted into the page, then `attachTheme` with the same inputs adopts the element and performs zero `setProperty`/`removeProperty` calls; with different inputs it updates only the differing properties; the nonce is preserved on the adopted element
 
 ### Implementation for User Story 4
 
-- [ ] T030 [US4] Implement adoption in `packages/web/src/scope.ts`: find `<style data-opentheme-scope="<id>">`, read its rule's current declarations as the baseline, and diff against the first resolution instead of rewriting; `detach()` removes an adopted element too
+- [X] T030 [US4] Implement adoption in `packages/web/src/scope.ts`: find `<style data-opentheme-scope="<id>">`, read its rule's current declarations as the baseline, and diff against the first resolution instead of rewriting; `detach()` removes an adopted element too
 
 **Checkpoint**: All user stories are independently functional
 
