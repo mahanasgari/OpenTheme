@@ -173,7 +173,7 @@ export function validateContexts(
       const paths = overlayTokenPaths(o.tokens as Record<string, unknown>);
       for (const path of paths) {
         const segs = path.split(".");
-        if (!segs.every(isValidSegment)) continue;
+        if (!segs.every((s, i) => isValidSegment(s, i === 0))) continue;
         if (!declared.has(path)) {
           collector.add({
             code: "OT-CTX-004",

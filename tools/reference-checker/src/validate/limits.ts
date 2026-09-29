@@ -54,7 +54,7 @@ export function validateLimits(
       if (path.length > limit("pathLength") || !isValidPath(path)) {
         const segs = path.split(".");
         const longSeg = segs.some((s) => s.length > limit("pathSegmentLength"));
-        if (path.length > limit("pathLength") || longSeg || segs.some((s) => !isValidSegment(s))) {
+        if (path.length > limit("pathLength") || longSeg || segs.some((s, i) => !isValidSegment(s, i === 0))) {
           if (path.length > limit("pathLength") || longSeg) {
             collector.add({
               code: "OT-LIM-006",

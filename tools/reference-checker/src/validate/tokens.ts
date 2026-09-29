@@ -146,7 +146,7 @@ export function validateTokens(
   ): void {
     for (const [key, raw] of Object.entries(obj)) {
       if (key.startsWith("$")) continue;
-      if (!isValidSegment(key)) {
+      if (!isValidSegment(key, pathParts.length === 0)) {
         const code =
           key.length > 64 ? "OT-LIM-006" : "OT-TOK-001";
         collector.add({

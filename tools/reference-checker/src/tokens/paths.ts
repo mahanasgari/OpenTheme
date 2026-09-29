@@ -1,17 +1,19 @@
 /** Token path grammar (chapter 03, FR-019). */
 
-const SEGMENT = /^[a-z][a-z0-9-]*$/;
+/** The first segment starts with a letter; later segments may start with a digit (`space.4`). */
+const FIRST_SEGMENT = /^[a-z][a-z0-9-]*$/;
+const SEGMENT = /^[a-z0-9][a-z0-9-]*$/;
 const MAX_SEGMENT = 64;
 const MAX_TOTAL = 256;
 
-export function isValidSegment(segment: string): boolean {
-  return segment.length <= MAX_SEGMENT && SEGMENT.test(segment);
+export function isValidSegment(segment: string, first = true): boolean {
+  return segment.length <= MAX_SEGMENT && (first ? FIRST_SEGMENT : SEGMENT).test(segment);
 }
 
 export function isValidPath(path: string): boolean {
   if (path.length === 0 || path.length > MAX_TOTAL) return false;
   const parts = path.split(".");
-  return parts.every(isValidSegment);
+  return parts.every((s, i) => isValidSegment(s, i === 0));
 }
 
 /** Parse `{path}` alias syntax. Returns null if not an alias string. */
