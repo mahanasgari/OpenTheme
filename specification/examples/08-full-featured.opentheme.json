@@ -78,7 +78,7 @@
   "author": {
     "name": "OpenTheme Examples"
   },
-  "license": "LicenseRef-OpenTheme-Pending",
+  "license": "Apache-2.0",
   "tokens": {
     "color": {
       "surface": {

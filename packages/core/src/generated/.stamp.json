@@ -1,7 +1,7 @@
 {
   "inputs": {
     "packages/core/scripts/generate-artifacts.ts": "91c79a43654c41d61ff7ad82d8890c540360be51d5b2046a0d9ae637831a30c1",
-    "specification/themes/baseline/org.opentheme.baseline.opentheme.json": "4880152180a7601650798330778bd9c3ab3e2338552860e6ecc342bf79a0eecd",
+    "specification/themes/baseline/org.opentheme.baseline.opentheme.json": "2034408215aa966b13c89d5504ea9d87310b5e98e3af8c9c6cf5e36d7508ad17",
     "specification/registry/1.0/semantic-baseline.json": "6ca977d899f96d2e1f31cd43fda85759bb0aa7cbe261dab2f54a490a56395848",
     "specification/registry/1.0/component-catalog.json": "98d31211f40eb285face05a3ee69f9c5cacaf51292469c43e186acbeed6b7484",
     "specification/registry/1.0/context-dimensions.json": "ff5a06ad55a37968a9277fffb35bceb50e632e6760ad5524b4824d0764bae80f",
@@ -16,7 +16,7 @@
     "specification/schemas/1.0/defs/derivation.schema.json": "2ec93a346de6d5a8bc30537a7044fc40977790e4d76fc30066824c0291baf3d4",
     "specification/schemas/1.0/defs/display-text.schema.json": "0074f8442aa3d792567ad4490dc6277297fa235415458df6640c880f8a0fb9d3",
     "specification/schemas/1.0/defs/layout.schema.json": "74168490d2fedcef080d1fe133f859747ab63e02ae9074c72bd77fbce2f88c21",
-    "specification/schemas/1.0/defs/metadata.schema.json": "7fa8185373b74b69229b5095b9d519f7bcb17e559d204d60fa3c045d0f432486",
+    "specification/schemas/1.0/defs/metadata.schema.json": "4f81f9746bb141479c88c4eb416b4801babccd0696336b305e7864bcedfc0b0c",
     "specification/schemas/1.0/defs/seeds.schema.json": "5e0e925a935993e8e3bfacde3ad23c874bd17e3328a262420a8d5c834c5e49c2",
     "specification/schemas/1.0/defs/tokens.schema.json": "3605f6e73d9be256ac247ec4e6e3d40166d3e40ed948806e2563aa3eb5485fba",
     "specification/schemas/1.0/diagnostic.schema.json": "276a7f95bdafafe3405599c26a08699ebabaef7d1f5275b04ccce692192b5243",

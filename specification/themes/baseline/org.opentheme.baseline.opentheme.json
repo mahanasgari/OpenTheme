@@ -5,7 +5,7 @@
   "name": "OpenTheme Baseline",
   "description": "Specification baseline theme. Seed-only; all semantics come from registry defaults.",
   "author": { "name": "OpenTheme Project" },
-  "license": "LicenseRef-OpenTheme-Pending",
+  "license": "Apache-2.0",
   "provenance": { "origin": "specification-baseline" },
   "compatibility": { "catalog": "1.0" },
   "colorSchemes": {

@@ -5,7 +5,7 @@
   "name": "Aurora",
   "description": "Cool, airy reference theme with soft elevation and a blue-violet accent.",
   "author": { "name": "OpenTheme Project" },
-  "license": "LicenseRef-OpenTheme-Pending",
+  "license": "Apache-2.0",
   "provenance": { "origin": "prebuilt" },
   "compatibility": {
     "catalog": "1.0",

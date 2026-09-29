@@ -27,7 +27,7 @@
     },
     {
       "path": "specification/schemas/1.0/defs/metadata.schema.json",
-      "sha256": "7fa8185373b74b69229b5095b9d519f7bcb17e559d204d60fa3c045d0f432486"
+      "sha256": "4f81f9746bb141479c88c4eb416b4801babccd0696336b305e7864bcedfc0b0c"
     },
     {
       "path": "specification/schemas/1.0/defs/seeds.schema.json",

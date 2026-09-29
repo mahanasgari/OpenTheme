@@ -8,7 +8,7 @@ export const baselineTheme: unknown = {
  "author": {
   "name": "OpenTheme Project"
  },
- "license": "LicenseRef-OpenTheme-Pending",
+ "license": "Apache-2.0",
  "provenance": {
   "origin": "specification-baseline"
  },
