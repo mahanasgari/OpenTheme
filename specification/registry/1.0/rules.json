@@ -728,7 +728,14 @@
       "requirements": [],
       "fixtures": [
         "invalid/host/bad-property-type",
-        "invalid/host/bad-state"
+        "invalid/host/bad-state",
+        "invalid/host/contract-name",
+        "invalid/host/contract-namespace",
+        "invalid/host/gradient-property",
+        "invalid/host/part-name",
+        "invalid/host/property-name",
+        "invalid/host/variant-name",
+        "valid/host/stroke-style-property"
       ],
       "description": "Rule R-HOST-002",
       "summary": "Rule R-HOST-002",
@@ -1438,8 +1445,10 @@
       "chapter": "03-tokens.md",
       "requirements": [],
       "fixtures": [
+        "invalid/tok/digit-first-segment",
         "resolution/core/seed-only-light-standard",
-        "resolution/us3/rtl-mirroring"
+        "resolution/us3/rtl-mirroring",
+        "valid/tok/digit-segment"
       ],
       "description": "RTL logical mirroring",
       "summary": "RTL logical mirroring",
