@@ -1,5 +1,50 @@
 # Changelog
 
+## Unreleased
+
+### Rule coverage (no change to existing expected results)
+
+Every rule with no fixture was checked against both implementations; 29 new fixtures (312 in
+total) now cover 22 of those 31 rules.
+
+- Chapter 10 pins the inheritance check: the whole `extends` chain is walked first, then the
+  nearest base is validated with the same supplied bases; cycles through bases are `OT-INH-004`,
+  and every finding uses `base:<id>@<version>` as the `extends` member is written.
+  `diagnostic.schema.json` now accepts a caret range in that label, which a published fixture
+  already used.
+- Core: inheritance cycles through bases were reported as `OT-INH-002`; they are `OT-INH-004`.
+- Reference checker: bases were validated without the other bases, so every chain deeper than one
+  was rejected; a token referencing one dependency twice was reported as a cycle; undeclared
+  variants were located at a pointer that does not exist; the 200-entry cap kept findings in
+  insertion order and put a second `OT-LIM-099` first.
+
+### Open findings (no normative change)
+
+Recorded, not resolved; each needs a specification decision.
+
+- **C1** `OT-META-002` (reserved identifier prefix): chapter 02 reserves `org.opentheme.` and
+  `uid.`, but the official themes use `org.opentheme.*` and validation has no notion of trust, so
+  no rule says when the code applies. Neither implementation emits it.
+- **C2** `OT-TOK-002` (duplicate path) is unreachable: duplicate members fail parsing as
+  `OT-DOC-002`, and the nested token tree cannot express one path twice.
+- **C3** `OT-TOK-007` covers "neither or both of `$value` and `$derive`", but a node with neither
+  is a group by definition, so only "both" can occur. The wording should say so.
+- **C4** `OT-A11Y-004` (distinguishable roles) has a threshold and pairs but no location and no
+  statement of whether it belongs to validation or the accessibility report; neither
+  implementation emits it.
+- **C5** `OT-A11Y-005` (invisible focus indicator) has no normative text. Both implementations
+  report a literal alpha of 0 on any token whose path contains `focus`, which the specification
+  never states.
+- **C6** `OT-DRV-101` (derivation output clamped to a registry range) is emitted by neither
+  implementation during validation; chapter 04 does not say at which step it applies.
+- **C7** `OT-DRV-102` (user-dependent operand clamped): the location is unspecified; Core reports
+  it twice, once with an invalid document label, and the reference checker not at all.
+- **C8** `OT-RES-004` (selected theme not available under policy) is never emitted; both
+  implementations report only the fallback code (`OT-RES-002`). Chapter 10 does not say whether
+  both codes apply.
+- **C9** `OT-PREF-009` (migration lost information) cannot occur until a second major version of
+  the User Preferences format exists.
+
 ## 1.0.0-draft.3 (2026-09-30)
 
 Errata to `1.0.0-draft.2`: findings W1 to W3, found while building the Web adapter

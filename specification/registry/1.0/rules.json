@@ -266,7 +266,9 @@
       "chapter": "07-components.md",
       "requirements": [],
       "fixtures": [
-        "invalid/cmp/undeclared-state"
+        "invalid/cmp/undeclared-state",
+        "invalid/cmp/undeclared-variant",
+        "invalid/cmp/undeclared-variant-axis"
       ],
       "description": "Rule R-CMP-004",
       "summary": "Rule R-CMP-004",
@@ -819,7 +821,10 @@
       "id": "R-INH-002",
       "chapter": "11-inheritance.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "inheritance/invalid-base",
+        "inheritance/invalid-farther-base"
+      ],
       "description": "Rule R-INH-002",
       "summary": "Rule R-INH-002",
       "example": {
@@ -845,7 +850,10 @@
       "id": "R-INH-004",
       "chapter": "11-inheritance.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "inheritance/cycle",
+        "inheritance/self-cycle"
+      ],
       "description": "Rule R-INH-004",
       "summary": "Rule R-INH-004",
       "example": {
@@ -857,7 +865,10 @@
       "id": "R-INH-005",
       "chapter": "11-inheritance.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "inheritance/four-links",
+        "inheritance/too-deep"
+      ],
       "description": "Rule R-INH-005",
       "summary": "Rule R-INH-005",
       "example": {
@@ -1096,7 +1107,9 @@
       "id": "R-LIM-099",
       "chapter": "11-limits.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "malicious/limits/diagnostic-cap"
+      ],
       "description": "Rule R-LIM-099",
       "summary": "Rule R-LIM-099",
       "example": {

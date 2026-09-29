@@ -19,7 +19,7 @@
     "specification/schemas/1.0/defs/metadata.schema.json": "4f81f9746bb141479c88c4eb416b4801babccd0696336b305e7864bcedfc0b0c",
     "specification/schemas/1.0/defs/seeds.schema.json": "5e0e925a935993e8e3bfacde3ad23c874bd17e3328a262420a8d5c834c5e49c2",
     "specification/schemas/1.0/defs/tokens.schema.json": "3605f6e73d9be256ac247ec4e6e3d40166d3e40ed948806e2563aa3eb5485fba",
-    "specification/schemas/1.0/diagnostic.schema.json": "276a7f95bdafafe3405599c26a08699ebabaef7d1f5275b04ccce692192b5243",
+    "specification/schemas/1.0/diagnostic.schema.json": "5d7ecf1ea3e7c1f779d9416bab13f79f02e0cead0c98c32632542a5a89bbd00b",
     "specification/schemas/1.0/fixture.schema.json": "128faa2ae50ff36de8ddcc758b68f770825c5c437967a7a46cfa73e1e14b0538",
     "specification/schemas/1.0/host-declaration.schema.json": "b7eed530880e67d56f882e69adb2ec8f93799d42e8274ec86147545a84bce797",
     "specification/schemas/1.0/migration-manifest.schema.json": "a23948f40ecc353c3992052d51d64833adace3686b8faf13c76d0c32f07fb174",

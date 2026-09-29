@@ -39,7 +39,7 @@
     },
     {
       "path": "specification/schemas/1.0/diagnostic.schema.json",
-      "sha256": "276a7f95bdafafe3405599c26a08699ebabaef7d1f5275b04ccce692192b5243"
+      "sha256": "5d7ecf1ea3e7c1f779d9416bab13f79f02e0cead0c98c32632542a5a89bbd00b"
     },
     {
       "path": "specification/schemas/1.0/fixture.schema.json",
