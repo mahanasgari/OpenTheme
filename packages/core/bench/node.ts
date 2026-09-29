@@ -8,6 +8,7 @@ import { dirname, join } from "node:path";
 import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
 import { runBench } from "./cases.js";
+import { runPhases } from "./phases.js";
 
 // Run from bench/ (tsx) or bench/dist/ (the bundle): find the repository root either way.
 const here = dirname(fileURLToPath(import.meta.url));
@@ -17,6 +18,10 @@ const results = runBench(
   readFileSync(join(root, "specification/themes/reference/org.opentheme.aurora.opentheme.json"), "utf8"),
   () => performance.now(),
 );
+// The phase breakdown locates engine-specific costs; it is reported, never gated.
+for (const p of runPhases(() => performance.now())) {
+  process.stderr.write(`bench:core phase ${p.name} median=${p.ms.toFixed(1)}ms\n`);
+}
 const failures: string[] = [];
 for (const r of results) {
   process.stderr.write(`bench:core ${r.name} median=${r.ms.toFixed(2)}ms budget=${r.budget}ms\n`);
