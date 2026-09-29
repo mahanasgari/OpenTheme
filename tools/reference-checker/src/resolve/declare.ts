@@ -12,6 +12,8 @@ export type Declaration = {
   source: "specification" | "theme" | "overlay" | "seed";
   /** Location of the declaring member in the theme document, when the theme declares it. */
   pointer?: string;
+  /** The `input` pointer of the user preference that set this value, when one did. */
+  user?: string;
 };
 
 interface BaselineEntry {

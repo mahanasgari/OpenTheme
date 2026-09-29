@@ -399,6 +399,8 @@ export function applyPreferences(
       type: out.get(path)?.type ?? type,
       value: result.value,
       source: "theme",
+      // A value that fell back to the default no longer depends on the user (chapter 04).
+      ...(prefStatus === "fell-back" ? {} : { user: `/preferences/${point.id}` }),
     });
   }
 

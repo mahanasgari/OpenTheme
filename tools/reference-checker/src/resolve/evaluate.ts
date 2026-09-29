@@ -25,6 +25,32 @@ import { oklchToOklab } from "../color/oklch.js";
 import { EffortCounter } from "../transforms/effort.js";
 import { getTransform } from "../transforms/registry.js";
 import type { Declaration } from "./declare.js";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { clampToRange, inDomain } from "../transforms/number.js";
+
+/** A clamp reported at resolution (chapter 04): OT-DRV-101 output ranges, OT-DRV-102 operands. */
+export interface EvalIssue {
+  code: "OT-DRV-101" | "OT-DRV-102";
+  document: "theme" | "input";
+  pointer: string;
+  detail: string;
+}
+
+let ranges: Map<string, { min?: number; max?: number }> | undefined;
+
+/** Registry role ranges, which bound derivation outputs (chapter 11, "Literal ranges"). */
+function baselineRanges(): Map<string, { min?: number; max?: number }> {
+  if (ranges) return ranges;
+  const file = join(dirname(fileURLToPath(import.meta.url)), "../../../../specification/registry/1.0/semantic-baseline.json");
+  const data = JSON.parse(readFileSync(file, "utf8")) as { tokens: { path: string; range?: { min?: number; max?: number } | null }[] };
+  ranges = new Map();
+  for (const t of data.tokens) if (t.range) ranges.set(t.path, t.range);
+  return ranges;
+}
+
+const esc = (s: string): string => s.replace(/~/g, "~0").replace(/\//g, "~1");
 
 export type ConcreteValue =
   | { kind: "color"; lab: Oklab }
@@ -144,17 +170,44 @@ export function kahnOrder(decls: Map<string, Declaration>): string[] {
  */
 export function evaluateDeclarations(
   decls: Map<string, Declaration>,
-): { values: Map<string, ConcreteValue>; effort: EffortCounter; order: string[] } {
+  options: { resolve?: boolean } = {},
+): { values: Map<string, ConcreteValue>; effort: EffortCounter; order: string[]; issues: EvalIssue[] } {
   const values = new Map<string, ConcreteValue>();
   const effort = new EffortCounter();
   const order = kahnOrder(decls);
+  const issues: EvalIssue[] = [];
+  // The preferences each value depends on, and those gathered by the operand being evaluated.
+  const sources = new Map<string, Set<string>>();
+  let gathering = new Set<string>();
 
   function resolvePath(path: string): ConcreteValue | undefined {
-    if (values.has(path)) return values.get(path);
+    if (values.has(path)) {
+      for (const f of sources.get(path) ?? []) gathering.add(f);
+      return values.get(path);
+    }
     const decl = decls.get(path);
     if (!decl) return undefined;
-    const concrete = evalValue(decl.value, decl.type);
+    const outer = gathering;
+    gathering = new Set(decl.user ? [decl.user] : []);
+    let concrete = evalValue(decl.value, decl.type);
+    const range = baselineRanges().get(path);
+    if (concrete && range && isDerive(decl.value) && (concrete.kind === "number" || concrete.kind === "dimension")) {
+      const c = clampToRange(concrete.value, range);
+      if (c.clamped) {
+        concrete = { ...concrete, value: c.value };
+        if (options.resolve) {
+          const pointer =
+            decl.pointer && (decl.source === "theme" || decl.source === "overlay")
+              ? decl.pointer
+              : `/tokens/${path.split(".").map(esc).join("/")}`;
+          issues.push({ code: "OT-DRV-101", document: "theme", pointer, detail: path });
+        }
+      }
+    }
     if (concrete) values.set(path, concrete);
+    if (gathering.size > 0) sources.set(path, gathering);
+    for (const f of gathering) outer.add(f);
+    gathering = outer;
     return concrete;
   }
 
@@ -215,10 +268,22 @@ export function evaluateDeclarations(
       return asColor(c);
     };
     const numArg = (name: string): number => {
+      const outer = gathering;
+      gathering = new Set();
       const c = evalOperand(args[name]);
-      if (c?.kind === "number") return c.value;
-      if (typeof args[name] === "number") return args[name] as number;
-      return 0;
+      const from = gathering;
+      for (const f of from) outer.add(f);
+      gathering = outer;
+      let v = 0;
+      if (c?.kind === "number") v = c.value;
+      else if (typeof args[name] === "number") v = args[name] as number;
+      // A user-dependent operand outside its domain is clamped into it (OT-DRV-102).
+      const domain = def?.arguments.find((a) => a.name === name)?.domain as { min?: number; max?: number } | undefined;
+      if (options.resolve && from.size > 0 && !inDomain(v, domain)) {
+        v = clampToRange(v, domain).value;
+        for (const f of from) issues.push({ code: "OT-DRV-102", document: "input", pointer: f, detail: name });
+      }
+      return v;
     };
     const dimArg = (name: string) => {
       const c = evalOperand(args[name]);
@@ -345,7 +410,7 @@ export function evaluateDeclarations(
 
   for (const p of order) resolvePath(p);
 
-  return { values, effort, order };
+  return { values, effort, order, issues };
 }
 
 /** Collect alias/derive dependency paths from a declaration value (for AA floor). */

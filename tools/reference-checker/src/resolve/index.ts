@@ -264,7 +264,15 @@ export function resolveTheme(input: ResolveInput): {
     for (const sd of styledDeclarations(selected.document, overlays, input.host)) {
       decls.set(sd.path, { path: sd.path, type: sd.type, value: sd.value, source: "theme" });
     }
-    const { values: evaluated, effort } = evaluateDeclarations(decls);
+    const { values: evaluated, effort, issues } = evaluateDeclarations(decls, { resolve: true });
+    for (const issue of issues) {
+      collector.add({
+        code: issue.code,
+        rule: issue.code.replace(/^OT-/, "R-"),
+        location: { document: issue.document, pointer: issue.pointer },
+        params: { detail: issue.detail },
+      });
+    }
     // Styled component values and component locks are not tokens (chapter 08): they are encoded
     // without post-processing and never appear in the token output.
     const values = new Map<string, (typeof evaluated extends Map<string, infer V> ? V : never)>();
