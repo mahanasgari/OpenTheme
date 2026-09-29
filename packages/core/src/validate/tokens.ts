@@ -10,7 +10,9 @@ import { inRange, shapeOf } from "./grammar.js";
 
 const LEAF_DOLLAR = new Set(["$type", "$value", "$derive", "$description", "$deprecated", "$extensions"]);
 const GROUP_DOLLAR = new Set(["$type", "$description", "$deprecated", "$extensions"]);
-const SEGMENT = /^[a-z][a-z0-9-]*$/;
+/** Chapter 03: the first segment starts with a letter; later segments may start with a digit. */
+const FIRST_SEGMENT = /^[a-z][a-z0-9-]*$/;
+const SEGMENT = /^[a-z0-9][a-z0-9-]*$/;
 
 export interface GraphNode {
   readonly path: string;
@@ -72,7 +74,7 @@ export function validateTokenTree(
       if (key.charCodeAt(0) === 0x24 /* $ */) continue;
       const raw = obj[key];
       const ptr = `${pointer}/${escapeSegment(key)}`;
-      if (!SEGMENT.test(key) || key.length > maxSeg) {
+      if (!(prefix === "" ? FIRST_SEGMENT : SEGMENT).test(key) || key.length > maxSeg) {
         c.add(key.length > maxSeg ? "OT-LIM-006" : "OT-TOK-001", { document: "theme", pointer: ptr });
         continue;
       }

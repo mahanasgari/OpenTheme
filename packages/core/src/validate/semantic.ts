@@ -237,7 +237,7 @@ export function validateContexts(doc: Record<string, unknown>, declared: Readonl
       seen.set(key, index);
     }
     flattenTokenTree(o.tokens, `${ptr}/tokens`, (path, _node, _type, pointer) => {
-      if (!path.split(".").every((s) => /^[a-z][a-z0-9-]*$/.test(s))) return;
+      if (!path.split(".").every((s, i) => (i === 0 ? /^[a-z][a-z0-9-]*$/ : /^[a-z0-9][a-z0-9-]*$/).test(s))) return;
       if (!declared.has(path)) c.add("OT-CTX-004", { document: T, pointer });
     });
   });
