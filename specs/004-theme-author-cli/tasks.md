@@ -24,27 +24,27 @@ package lives in `packages/cli/`.
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Create `packages/cli/package.json` (`@opentheme/cli`, `0.1.0-draft.0`, `"type": "module"`, `license: Apache-2.0`, `bin: { "opentheme": "dist/main.js" }`, `engines.node >= 24`, dependencies `@opentheme/core` and `@opentheme/web` as `workspace:^`, devDependencies `esbuild`, `tsx`, `typescript`, scripts `build`, `test`, `bench`), `packages/cli/tsconfig.json` (extends `tsconfig.base.json`, `lib: ["ES2022"]`, `types: ["node"]`, `rootDir: src`, `outDir: dist`), and `packages/cli/vitest.config.ts`
-- [ ] T002 Add `packages/cli` to the root `vitest.config.ts` projects and the root `build` filter, and add the root script `bench:cli`
-- [ ] T003 [P] Add `tools/spec-lint/src/cli-boundaries.ts`, wired in `tools/spec-lint/src/main.ts`, so `packages/cli/src/**` imports only `@opentheme/core` (public entry and `templates`), `@opentheme/web`, relative modules, and the Node built-ins `node:util`, `node:fs`, `node:path`, `node:crypto`, `node:process`, `node:url`; never network modules, `node:child_process`, `node:vm`, `node:worker_threads`, or dynamic code (FR-T003, FR-T004)
-- [ ] T004 [P] Create `packages/cli/scripts/generate.ts` embedding `specification/examples/01-minimal-seed-only.opentheme.json` and the supported specification version into `packages/cli/src/generated/minimal-theme.ts`, run by `build`, with a freshness test
+- [X] T001 Create `packages/cli/package.json` (`@opentheme/cli`, `0.1.0-draft.0`, `"type": "module"`, `license: Apache-2.0`, `bin: { "opentheme": "dist/main.js" }`, `engines.node >= 24`, dependencies `@opentheme/core` and `@opentheme/web` as `workspace:^`, devDependencies `esbuild`, `tsx`, `typescript`, scripts `build`, `test`, `bench`), `packages/cli/tsconfig.json` (extends `tsconfig.base.json`, `lib: ["ES2022"]`, `types: ["node"]`, `rootDir: src`, `outDir: dist`), and `packages/cli/vitest.config.ts`
+- [X] T002 Add `packages/cli` to the root `vitest.config.ts` projects and the root `build` filter, and add the root script `bench:cli`
+- [X] T003 [P] Add `tools/spec-lint/src/cli-boundaries.ts`, wired in `tools/spec-lint/src/main.ts`, so `packages/cli/src/**` imports only `@opentheme/core` (public entry and `templates`), `@opentheme/web`, relative modules, and the Node built-ins `node:util`, `node:fs`, `node:path`, `node:crypto`, `node:process`, `node:url`; never network modules, `node:child_process`, `node:vm`, `node:worker_threads`, or dynamic code (FR-T003, FR-T004)
+- [X] T004 [P] Create `packages/cli/scripts/generate.ts` embedding `specification/examples/01-minimal-seed-only.opentheme.json` and the supported specification version into `packages/cli/src/generated/minimal-theme.ts`, run by `build`, with a freshness test
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-- [ ] T005 Implement `packages/cli/src/io.ts`: an `Io` with `stdout`/`stderr` writers, `isTerminal`, `env`, `readFile` (bytes or a typed input error), and `writeFile` (refusing an existing file unless forced); color only when `isTerminal` and neither `NO_COLOR` nor `--no-color` (LR5)
-- [ ] T006 Implement `packages/cli/src/format.ts`: the human diagnostic block (file, severity, code, pointer, message, hint from `@opentheme/core/templates` `formatDiagnostic`), the summary line, and `writeJson` with sorted keys and a trailing newline (LR5)
-- [ ] T007 Implement `packages/cli/src/args.ts`: `parseArgs` wrappers for global, input, context (data-model §2 defaults, Core schema values only), resolve, report, css, preview, and init options; invalid values and unknown options become usage errors (exit 2)
-- [ ] T008 Implement `packages/cli/src/admit.ts`: create one Core with `untrustedSources` set to the chosen source and `accessibilityGate` `relaxed` only with `--relaxed-gate`; admit hosts (trusted), then bases, then themes with `--trusted` or `untrusted` + source; detect hosts by `openthemeHost`; map admission status to `valid`/`invalid`/`refused` (LR2)
-- [ ] T009 Implement `packages/cli/src/run.ts` and `packages/cli/src/main.ts`: `run(argv, io): Promise<number>` with command dispatch, `--help` per command, `--version` (tool and specification versions), exit statuses 0/1/2/3 (LR6), and the binary entry that calls `process.exitCode = await run(...)`
-- [ ] T010 [P] Write `packages/cli/test/unit/{args,format,io}.test.ts`: option defaults and rejections, diagnostic formatting, JSON key order, color rules, overwrite refusal
+- [X] T005 Implement `packages/cli/src/io.ts`: an `Io` with `stdout`/`stderr` writers, `isTerminal`, `env`, `readFile` (bytes or a typed input error), and `writeFile` (refusing an existing file unless forced); color only when `isTerminal` and neither `NO_COLOR` nor `--no-color` (LR5)
+- [X] T006 Implement `packages/cli/src/format.ts`: the human diagnostic block (file, severity, code, pointer, message, hint from `@opentheme/core/templates` `formatDiagnostic`), the summary line, and `writeJson` with sorted keys and a trailing newline (LR5)
+- [X] T007 Implement `packages/cli/src/args.ts`: `parseArgs` wrappers for global, input, context (data-model §2 defaults, Core schema values only), resolve, report, css, preview, and init options; invalid values and unknown options become usage errors (exit 2)
+- [X] T008 Implement `packages/cli/src/admit.ts`: create one Core with `untrustedSources` set to the chosen source and `accessibilityGate` `relaxed` only with `--relaxed-gate`; admit hosts (trusted), then bases, then themes with `--trusted` or `untrusted` + source; detect hosts by `openthemeHost`; map admission status to `valid`/`invalid`/`refused` (LR2)
+- [X] T009 Implement `packages/cli/src/run.ts` and `packages/cli/src/main.ts`: `run(argv, io): Promise<number>` with command dispatch, `--help` per command, `--version` (tool and specification versions), exit statuses 0/1/2/3 (LR6), and the binary entry that calls `process.exitCode = await run(...)`
+- [X] T010 [P] Write `packages/cli/test/unit/{args,format,io}.test.ts`: option defaults and rejections, diagnostic formatting, JSON key order, color rules, overwrite refusal
 
 **Checkpoint**: `opentheme --version` and `--help` run; unit tests pass
 
 ## Phase 3: User Story 1 - Check a theme (Priority: P1) 🎯 MVP
 
-- [ ] T011 [P] [US1] Write `packages/cli/test/equivalence/validate.test.ts`: for every `validate` and `validate-host` conformance fixture (reuse `packages/core/test/fixtures.ts`), write the inputs to a temporary directory, run `validate --json` (with `--base`, `--host`, and `--trusted` as the fixture's trust says), and assert the validity and the diagnostics' codes and locations equal the fixture's expected result
-- [ ] T012 [P] [US1] Write `packages/cli/test/commands/validate.test.ts`: several files with mixed results (exit 1), human output format, one JSON document with nothing else on stdout, missing and unreadable files (exit 3), not-JSON and oversized files reported with Core's codes
-- [ ] T013 [US1] Implement `packages/cli/src/commands/validate.ts` (FR-T020, FR-T021)
+- [X] T011 [P] [US1] Write `packages/cli/test/equivalence/validate.test.ts`: for every `validate` and `validate-host` conformance fixture (reuse `packages/core/test/fixtures.ts`), write the inputs to a temporary directory, run `validate --json` (with `--base`, `--host`, and `--trusted` as the fixture's trust says), and assert the validity and the diagnostics' codes and locations equal the fixture's expected result
+- [X] T012 [P] [US1] Write `packages/cli/test/commands/validate.test.ts`: several files with mixed results (exit 1), human output format, one JSON document with nothing else on stdout, missing and unreadable files (exit 3), not-JSON and oversized files reported with Core's codes
+- [X] T013 [US1] Implement `packages/cli/src/commands/validate.ts` (FR-T020, FR-T021)
 
 ## Phase 4: User Story 7 - Trust from the command line only (Priority: P1)
 
