@@ -39,6 +39,9 @@ importers:
       '@opentheme/core':
         specifier: workspace:^
         version: link:../core
+      '@opentheme/dtcg':
+        specifier: workspace:^
+        version: link:../dtcg
       '@opentheme/web':
         specifier: workspace:^
         version: link:../web

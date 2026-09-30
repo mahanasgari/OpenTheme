@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@opentheme/core": "workspace:^",
+    "@opentheme/dtcg": "workspace:^",
     "@opentheme/web": "workspace:^"
   },
   "devDependencies": {

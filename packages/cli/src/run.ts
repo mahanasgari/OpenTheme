@@ -18,6 +18,8 @@ Commands:
   css <theme>          CSS custom properties from the Web adapter
   preview <theme>      A self-contained HTML preview of every mode
   init <file>          Create a new minimal theme
+  export <theme>       W3C Design Tokens files, one per mode
+  import <tokens>      A theme from a W3C Design Tokens file
 
 Run "opentheme <command> --help" for a command's options.
 Exit statuses: 0 success, 1 invalid or failed check, 2 usage error, 3 input or output failure.
