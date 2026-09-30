@@ -31,11 +31,13 @@ export function importAllowed(spec: string): boolean {
   return spec === "@opentheme/core" || spec.startsWith("./") || spec.startsWith("../");
 }
 
+/** The Web adapter and the design tokens interchange library share these rules (T003 of 005). */
 export function checkWebBoundaries(repoRoot: string): string[] {
-  const srcRoot = join(repoRoot, "packages/web/src");
-  if (!existsSync(srcRoot)) return [];
   const files: string[] = [];
-  walkTs(srcRoot, files);
+  for (const pkg of ["packages/web/src", "packages/dtcg/src"]) {
+    const srcRoot = join(repoRoot, pkg);
+    if (existsSync(srcRoot)) walkTs(srcRoot, files);
+  }
   const errors: string[] = [];
   for (const file of files) {
     const rel = relative(repoRoot, file).replace(/\\/g, "/");

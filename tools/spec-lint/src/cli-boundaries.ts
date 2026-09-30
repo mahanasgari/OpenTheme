@@ -12,6 +12,7 @@ const ALLOWED = new Set([
   "@opentheme/core",
   "@opentheme/core/templates",
   "@opentheme/web",
+  "@opentheme/dtcg",
   "node:util",
   "node:fs",
   "node:fs/promises",
