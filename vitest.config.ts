@@ -12,6 +12,7 @@ export default defineConfig({
       "packages/web",
       "packages/playground",
       "packages/cli",
+      "packages/dtcg",
     ],
   },
 });

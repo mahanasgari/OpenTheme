@@ -1,0 +1,30 @@
+{
+  "name": "@opentheme/dtcg",
+  "version": "0.1.0-draft.0",
+  "description": "OpenTheme ↔ W3C Design Tokens Format Module 2025.10 interchange (Theme Specification chapter 16)",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "generate": "tsx scripts/generate.ts",
+    "build": "tsx scripts/generate.ts && tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@opentheme/core": "workspace:^"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}
