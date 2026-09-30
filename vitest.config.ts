@@ -11,6 +11,7 @@ export default defineConfig({
       "packages/core-conformance",
       "packages/web",
       "packages/playground",
+      "packages/cli",
     ],
   },
 });
