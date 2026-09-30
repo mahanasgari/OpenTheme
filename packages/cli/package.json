@@ -1,0 +1,33 @@
+{
+  "name": "@opentheme/cli",
+  "version": "0.1.0-draft.0",
+  "description": "The opentheme command: validate, resolve, report, and preview OpenTheme themes, and write their CSS",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "opentheme": "dist/main.js"
+  },
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "generate": "tsx scripts/generate.ts",
+    "build": "tsx scripts/generate.ts && tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "bench": "node bench/node.mjs"
+  },
+  "dependencies": {
+    "@opentheme/core": "workspace:^",
+    "@opentheme/web": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}

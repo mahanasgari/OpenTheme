@@ -34,6 +34,25 @@ importers:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@24.13.6)(happy-dom@20.14.5)(tsx@4.23.15)
 
+  packages/cli:
+    dependencies:
+      '@opentheme/core':
+        specifier: workspace:^
+        version: link:../core
+      '@opentheme/web':
+        specifier: workspace:^
+        version: link:../web
+    devDependencies:
+      '@types/node':
+        specifier: ^24.3.0
+        version: 24.13.6
+      tsx:
+        specifier: ^4.20.5
+        version: 4.23.15
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+
   packages/core:
     devDependencies:
       ajv:
