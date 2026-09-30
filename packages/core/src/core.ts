@@ -20,7 +20,7 @@ import {
   type UserPreferencesDocument,
 } from "./preferences/document.js";
 import { Registry, type ThemeRegistry } from "./registry/registry.js";
-import { deepFreeze, sameRef, snapshotData, type RegistryEntry, type RegistryEntryRef, type Snapshot } from "./registry/snapshot.js";
+import { deepFreeze, sameRef, snapshotData, type RegistryEntry, type RegistryEntryRef, type Snapshot, type Validity } from "./registry/snapshot.js";
 import { Lru } from "./resolve/cache.js";
 import { admitted, compileInput, reachableEntries, type ResolutionRequest } from "./resolve/compile.js";
 import { checkRequest } from "./resolve/context-input.js";
@@ -32,6 +32,7 @@ import { comparePrecedence } from "./versioning/semver.js";
 import { compareVersions } from "./versioning/compare.js";
 import { migrateTheme, type MigrationManifest } from "./versioning/migrate.js";
 import type { BaseEntry } from "./validate/theme.js";
+import { conformanceReport } from "./validate/accessibility.js";
 
 export type Outcome = "selected" | "selected-with-adjustments" | "fallback";
 
@@ -85,6 +86,14 @@ export interface DocumentUtilities {
   canonicalize(theme: unknown): { readonly canonical: string; readonly integrity: string } | OperationalErrorResult;
   flatten(themeRef: RegistryEntryRef, snapshot: Snapshot): { readonly document: object; readonly diagnostics: readonly Diagnostic[] } | OperationalErrorResult;
   exportCheck(theme: unknown): { readonly eligible: boolean; readonly diagnostics: readonly Diagnostic[] };
+  /**
+   * The chapter 11 accessibility conformance report of a theme entry under the snapshot's theme
+   * set and host declaration (FR-064; finding L1). Diagnostics are empty unless it is valid.
+   */
+  accessibilityReport(
+    themeRef: RegistryEntryRef,
+    snapshot: Snapshot,
+  ): { readonly validity: Validity; readonly diagnostics: readonly Diagnostic[] } | OperationalErrorResult;
   compareVersions(older: unknown, newer: unknown): {
     readonly classification: "compatible" | "breaking";
     readonly reasons: readonly { readonly kind: string; readonly detail: string; readonly pointer: string }[];
@@ -301,6 +310,17 @@ export function createCore(settings?: CoreSettings): Core {
         .map((e) => ({ trust: e.trust, document: data.documents.get(e)! }));
       const result = flattenTheme(data.documents.get(entry)!, bases);
       return deepFreeze({ document: result.document ?? {}, diagnostics: result.diagnostics });
+    },
+    accessibilityReport(themeRef: RegistryEntryRef, snapshot: Snapshot) {
+      const op = "documents.accessibilityReport";
+      const data = requireSnapshot(snapshot, op);
+      const entry = [snapshot.baseline, ...snapshot.entries].find((e) => e.kind === "theme" && sameRef(e, themeRef));
+      if (!entry) return fail("unknown-theme", op, "The entry is not in the snapshot.", "/themeRef");
+      const merged = data.merged.get(entry) ?? data.documents.get(entry);
+      if (entry.validity !== "valid" || !merged) return deepFreeze({ validity: entry.validity, diagnostics: [] });
+      const c = new DiagnosticCollector("theme");
+      conformanceReport(merged, data.hostDocument, c);
+      return deepFreeze({ validity: entry.validity, diagnostics: c.finish() });
     },
     exportCheck(theme: unknown) {
       return deepFreeze(exportCheck(toRecord(theme, "documents.exportCheck", "/theme")));

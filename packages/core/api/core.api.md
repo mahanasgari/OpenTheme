@@ -155,6 +155,10 @@ export interface DocumentUtilities {
         readonly eligible: boolean;
         readonly diagnostics: readonly Diagnostic[];
     };
+    accessibilityReport(themeRef: RegistryEntryRef, snapshot: Snapshot): {
+        readonly validity: Validity;
+        readonly diagnostics: readonly Diagnostic[];
+    } | OperationalErrorResult;
     compareVersions(older: unknown, newer: unknown): {
         readonly classification: "compatible" | "breaking";
         readonly reasons: readonly {

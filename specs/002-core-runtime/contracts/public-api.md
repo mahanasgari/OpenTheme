@@ -151,6 +151,10 @@ export interface DocumentUtilities {
   flatten(themeRef: RegistryEntryRef, snapshot: Snapshot): { document: object;
     diagnostics: readonly Diagnostic[] };
   exportCheck(theme: unknown): { eligible: boolean; diagnostics: readonly Diagnostic[] };
+  // The chapter 11 accessibility conformance report under the snapshot's theme set and host
+  // (FR-064). Added for the command-line tool (specs/004-theme-author-cli, finding L1).
+  accessibilityReport(themeRef: RegistryEntryRef, snapshot: Snapshot):
+    { validity: Validity; diagnostics: readonly Diagnostic[] } | OperationalErrorResult;
   compareVersions(older: unknown, newer: unknown): { classification: "compatible" | "breaking";
     reasons: readonly { kind: string; detail: string; pointer: string }[] };
   migrate(theme: unknown, manifest: unknown): { document: object;
