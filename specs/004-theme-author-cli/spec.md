@@ -107,7 +107,7 @@ the fixtures' expected results.
 1. **Given** a theme that meets every threshold, **When** the author runs the report, **Then** the
    tool says the theme is conformant.
 2. **Given** a theme with shortfalls, **When** the author runs the report, **Then** each shortfall is
-   listed with the mode, the pair, the location, and the code.
+   listed with the pair, the location, and the code.
 3. **Given** an invalid theme, **When** the author runs the report, **Then** the tool reports the
    validation failure instead of a report, as the specification requires.
 
@@ -264,9 +264,9 @@ identifier, author) changes the outcome.
 
 **Report**
 
-- **FR-T040**: `report` MUST print the accessibility conformance report of a valid theme for every
-  mode the specification defines, grouped by mode, and MUST fail when there are shortfalls if the
-  author asks for strict mode.
+- **FR-T040**: `report` MUST print the chapter 11 accessibility conformance report of a valid
+  theme (which covers every mode the specification defines), each finding with its code, pair,
+  and location, and MUST fail when there are findings if the author asks for strict mode.
 
 **CSS**
 
