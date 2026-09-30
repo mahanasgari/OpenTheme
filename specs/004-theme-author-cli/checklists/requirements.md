@@ -39,3 +39,20 @@
   scope come from the description, the constitution, and Core's existing contracts. The defaults
   are recorded under Assumptions.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`.
+
+## Implementation Results (T032, T033, 2026-09-30)
+
+`pnpm verify` passes with the command-line tool:
+
+- Workspace tests: 1,292, including 339 for `@opentheme/cli`.
+- `validate` agrees with all 145 `validate` and `validate-host` fixtures, `report` with all four
+  accessibility fixtures, `resolve` with Core and `css` and `preview` with the Web adapter for both
+  reference themes in every mode (SC-T001, SC-T006).
+- 70+ malicious and invalid themes run through every command, untrusted, without a crash; the
+  built binary imports no network, process, or code-evaluation module (SC-T005).
+- `bench:cli`: `validate` median 112 ms for the typical theme (budget 1 s) and 455 ms for the
+  at-limit theme (budget 3 s), including Node start-up (SC-T003).
+- Every README and agent guide example runs against the built binary (SC-T007). That test found
+  that `--preset` hid an untrusted author's theme behind the baseline; fixed.
+- Finding L1: Core gained `documents.accessibilityReport`, additive; Core's size and API report
+  checks pass.

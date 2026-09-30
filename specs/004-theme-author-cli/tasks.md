@@ -78,11 +78,11 @@ package lives in `packages/cli/`.
 
 ## Phase 9: Polish & Cross-Cutting Concerns
 
-- [ ] T029 [P] Write `packages/cli/test/binary.test.ts`: the built `dist/main.js` runs, exit statuses match, output is byte-identical across two runs, and no network or child-process module is loaded
-- [ ] T030 [P] Write `packages/cli/README.md` (install, every command, options, defaults, exit statuses, examples) and `packages/cli/AGENTS.md`; add `packages/cli/test/docs/examples.test.ts` running every fenced `bash` example that starts with `opentheme` against the built binary (FR-T080)
-- [ ] T031 [P] Write `packages/cli/bench/node.ts` (`bench:cli`): wall time of `validate` for the typical and the at-limit theme with start-up (SC-T003), report-only in CI
-- [ ] T032 Update the root `README.md` and `AGENTS.md`, add the CI step "Benchmark (CLI)" (non-blocking), and record results in `specs/004-theme-author-cli/checklists/requirements.md`
-- [ ] T033 Run `pnpm verify` and fix anything it finds
+- [X] T029 [P] Write `packages/cli/test/binary.test.ts`: the built `dist/main.js` runs, exit statuses match, output is byte-identical across two runs, and no network or child-process module is loaded
+- [X] T030 [P] Write `packages/cli/README.md` (install, every command, options, defaults, exit statuses, examples) and `packages/cli/AGENTS.md`; add `packages/cli/test/docs/examples.test.ts` running every fenced `bash` example that starts with `opentheme` against the built binary (FR-T080)
+- [X] T031 [P] Write `packages/cli/bench/node.ts` (`bench:cli`): wall time of `validate` for the typical and the at-limit theme with start-up (SC-T003), report-only in CI
+- [X] T032 Update the root `README.md` and `AGENTS.md`, add the CI step "Benchmark (CLI)" (non-blocking), and record results in `specs/004-theme-author-cli/checklists/requirements.md`
+- [X] T033 Run `pnpm verify` and fix anything it finds
 
 ## Dependencies & Execution Order
 
