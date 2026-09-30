@@ -2,8 +2,9 @@
 
 OpenTheme is an open-source, domain-agnostic theme specification and conformance suite.
 This repository delivers Theme Specification 1.0 artifacts, private verification tooling, and
-the OpenTheme Core runtime (`packages/core`, feature `specs/002-core-runtime`), and the first
-platform adapter, the Web adapter (`packages/web`, feature `specs/003-web-adapter`). Adapters only
+the OpenTheme Core runtime (`packages/core`, feature `specs/002-core-runtime`), the first
+platform adapter, the Web adapter (`packages/web`, feature `specs/003-web-adapter`), and the
+`opentheme` command-line tool for theme authors (`packages/cli`, feature `specs/004-theme-author-cli`). Adapters only
 translate Core's results; they never re-implement Core behavior.
 
 ## Layout
@@ -13,7 +14,7 @@ translate Core's results; they never re-implement Core behavior.
 | `specification/` | Normative deliverables: prose chapters, JSON Schemas, registries, themes, hosts, examples |
 | `conformance/` | Fixtures, sweeps, and the implementation-agnostic runner |
 | `tools/` | Private, non-normative tooling (reference checker, types, spec-lint, bench, kernel cross-check) |
-| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, and the Web adapter `@opentheme/web` |
+| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, the Web adapter `@opentheme/web`, the `opentheme` command-line tool `@opentheme/cli`, and the playground demo |
 | `evaluations/` | Manual protocols for human/AI success criteria (not in CI) |
 | `specs/` | Spec Kit feature docs (plan, research, tasks) |
 

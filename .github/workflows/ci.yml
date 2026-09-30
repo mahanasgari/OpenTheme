@@ -51,3 +51,7 @@ jobs:
       - name: Benchmark (Web)
         continue-on-error: true
         run: pnpm bench:web
+
+      - name: Benchmark (CLI)
+        continue-on-error: true
+        run: pnpm bench:cli

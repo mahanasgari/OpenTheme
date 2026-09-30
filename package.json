@@ -18,7 +18,7 @@
     "kernels:crosscheck": "python3 tools/kernel-crosscheck/crosscheck.py",
     "bench": "pnpm --filter @opentheme/bench run bench",
     "bench:browser": "pnpm --filter @opentheme/bench run bench:browser",
-    "verify": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run bench:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web && pnpm run bench:web",
+    "verify": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run bench:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web && pnpm run bench:web && pnpm run bench:cli",
     "release:check": "pnpm --filter @opentheme/spec-lint run release-check",
     "conformance:core": "node conformance/runner/dist/main.js --impl \"node packages/core-conformance/dist/main.js serve-conformance\"",
     "sweeps:core": "node conformance/runner/dist/main.js --sweeps --impl \"node packages/core-conformance/dist/main.js serve-conformance\"",
