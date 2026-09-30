@@ -50,9 +50,11 @@ clarifications; these decisions settle the technical questions it left to the pl
 
 - **Decision**: The default context is light, standard contrast, no forced colors, standard
   motion, text scale 1, `medium`, `en`, `ltr`. The default policy is the abstract policy
-  `{ availableThemes: [<theme id>], defaultTheme: <theme id> }` with no permitted points; the
-  `--preset` option selects Core's `closed` or `common-personalization` preset instead, and
-  preferences require a preset that permits their points. The selection is the theme's id and
+  `{ availableThemes: [<theme id>], defaultTheme: <theme id> }` with no permitted points. The
+  `--preset` option adds the permitted points and floors of Core's `closed` or
+  `common-personalization` preset (`PRESETS`) to that policy; a preset on its own makes only
+  trusted entries available, which would resolve an untrusted author's theme to the baseline.
+  Preferences require a preset that permits their points. The selection is the theme's id and
   version. When the applied theme is not the selected one (`applied.fallback` is not `none`), the
   tool prints a notice first and exits with the "check failed" status.
 - **Rationale**: Authors want to see their own theme; a silent fallback would hide their errors

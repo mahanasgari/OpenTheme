@@ -2,7 +2,7 @@
  * Loading and resolving one theme, shared by resolve, report, css, and preview (research LR2,
  * LR4). A theme that is not valid is reported as `validate` reports it, and the command stops.
  */
-import type { ControllerContext, Core, Diagnostic, RegistryEntry, ResolutionResult } from "@opentheme/core";
+import { type ControllerContext, type Core, type Diagnostic, PRESETS, type RegistryEntry, type ResolutionResult } from "@opentheme/core";
 import { type Admitted, admit, admitContext, openCore } from "./admit.js";
 import { type InputOptions, inputOptions, type Values } from "./args.js";
 import { colored, counts, formatDiagnostics, plain, type Styler, toJson, withText } from "./format.js";
@@ -68,8 +68,10 @@ export interface Resolved {
 }
 
 /**
- * Resolve the loaded theme. Without a preset, the policy makes exactly this theme available and
- * the developer default, so the author sees their own theme.
+ * Resolve the loaded theme. The policy makes exactly this theme available and the developer
+ * default, so the author sees their own theme. With a preset, the preset's permitted points and
+ * floors apply: a preset alone makes only trusted entries available, which would hide an
+ * untrusted author's theme behind the baseline.
  */
 export function resolveTheme(
   loaded: Loaded,
@@ -78,7 +80,7 @@ export function resolveTheme(
   preset?: "closed" | "common-personalization",
 ): Resolved {
   const { entry, core } = loaded;
-  const policy = preset ? { preset, defaultTheme: entry.id } : { availableThemes: [entry.id], defaultTheme: entry.id };
+  const policy = { ...(preset ? PRESETS[preset] : {}), availableThemes: [entry.id], defaultTheme: entry.id };
   const result = core.resolve(core.registry.snapshot(), {
     selection: { id: entry.id, ...(entry.version ? { version: entry.version } : {}) },
     previous: null,

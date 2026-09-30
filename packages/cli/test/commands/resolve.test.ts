@@ -31,6 +31,10 @@ describe("resolve", () => {
     const doc = tmp.file("prefs.json", { openthemePreferences: "1.0", selection: null, previous: null, values: { "std.color-scheme": "dark" } });
     const file = await cli(["resolve", "--json", "--trusted", AURORA, "--preset", "common-personalization", "--preferences", doc]);
     expect((file.json().resolved as { context: Record<string, unknown> }).context).toMatchObject({ colorScheme: "dark" });
+    // An untrusted theme with a preset is still the one resolved (presets alone list trusted themes).
+    const untrusted = await cli(["resolve", "--json", AURORA, "--preset", "common-personalization", "--set", 'std.color-scheme="dark"']);
+    expect(untrusted.status).toBe(0);
+    expect(untrusted.json().applied).toMatchObject({ id: "org.opentheme.aurora", fallback: "none", trust: "untrusted" });
     expect((await cli(["resolve", "--trusted", AURORA, "--set", "std.text-size=1.5"])).status).toBe(2);
     expect((await cli(["resolve", "--trusted", AURORA, "--preset", "closed", "--set", "std.text-size=oops"])).status).toBe(2);
   });
