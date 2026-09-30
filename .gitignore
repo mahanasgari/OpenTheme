@@ -40,3 +40,4 @@ coverage/
 packages/core/schemas/
 packages/core/test/docs/.examples/
 packages/web/test/docs/.examples/
+packages/dtcg/test/docs/.examples/

@@ -34,6 +34,8 @@ Open `my-theme.html` in any browser to see your theme in every supported mode.
 | `css <theme>` | The Web adapter's CSS custom properties, as a rule or a complete `<style>` element |
 | `preview <theme>` | One self-contained HTML page with sample components in every supported mode |
 | `init <file>` | A new valid minimal theme with a fresh `uid.` identifier |
+| `export <theme>` | W3C Design Tokens (2025.10) files, one per mode, with computed values |
+| `import <tokens.json>` | A valid theme from a W3C Design Tokens file; losses are reported |
 
 Run `opentheme <command> --help` for every option.
 
@@ -89,6 +91,20 @@ opentheme css my-theme.opentheme.json --scheme dark --element --scope app --nonc
 
 `--element` writes the `<style data-opentheme-scope>` element for server rendering; the Web adapter
 adopts it on the client without rewriting anything.
+
+## Design tools
+
+Export a theme as W3C Design Tokens files, one per mode, and bring tokens back as a theme:
+
+```bash
+opentheme export my-theme.opentheme.json --mode light --out-dir .
+opentheme import my-theme.light.tokens.json --out from-tokens.opentheme.json --name "From Tokens"
+opentheme validate from-tokens.opentheme.json
+```
+
+Anything one format cannot represent is left out and listed in the report. A mapping file
+(`--mapping`) assigns seeds and semantic roles to imported tokens; see
+[`@opentheme/dtcg`](../dtcg/README.md).
 
 ## Machine-readable output and exit statuses
 

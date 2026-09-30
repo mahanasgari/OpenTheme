@@ -40,3 +40,4 @@ export function dtcgTokens(doc: unknown, prefix = ""): Map<string, Record<string
   }
   return out;
 }
+export const NOTES_HOST = "specification/hosts/com.example.notes.opentheme-host.json";
