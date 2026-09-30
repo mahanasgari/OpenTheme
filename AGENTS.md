@@ -14,7 +14,7 @@ translate Core's results; they never re-implement Core behavior.
 | `specification/` | Normative deliverables: prose chapters, JSON Schemas, registries, themes, hosts, examples |
 | `conformance/` | Fixtures, sweeps, and the implementation-agnostic runner |
 | `tools/` | Private, non-normative tooling (reference checker, types, spec-lint, bench, kernel cross-check) |
-| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, the Web adapter `@opentheme/web`, the `opentheme` command-line tool `@opentheme/cli`, and the playground demo |
+| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, the Web adapter `@opentheme/web`, the `opentheme` command-line tool `@opentheme/cli`, the design tokens interchange `@opentheme/dtcg`, and the playground demo |
 | `evaluations/` | Manual protocols for human/AI success criteria (not in CI) |
 | `specs/` | Spec Kit feature docs (plan, research, tasks) |
 

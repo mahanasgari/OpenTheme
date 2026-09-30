@@ -17,9 +17,10 @@ carry no compatibility guarantee.
 | [`packages/core/`](packages/core/) | `@opentheme/core`: trust-aware admission, a theme registry, deterministic resolution, and a preferences controller ([README](packages/core/README.md)) |
 | [`packages/web/`](packages/web/) | `@opentheme/web`: applies resolved themes to web pages as CSS custom properties, follows system settings live, and remembers preferences on the device ([README](packages/web/README.md)) |
 | [`packages/cli/`](packages/cli/) | `@opentheme/cli`: the `opentheme` command for theme authors: validate, resolve, report, css, preview, and init, all answered by Core and the Web adapter ([README](packages/cli/README.md)) |
+| [`packages/dtcg/`](packages/dtcg/) | `@opentheme/dtcg`: export themes to and import them from the W3C Design Tokens format (chapter 16), with every loss reported ([README](packages/dtcg/README.md)) |
 | [`packages/playground/`](packages/playground/) | A self-contained demo page: pick a theme, personalize it, and inspect every custom property the Web adapter writes (`pnpm playground`, then open `packages/playground/dist/index.html`) |
 | [`tools/`](tools/) | Private tooling: the non-normative reference checker `ot-ref`, spec-lint, generated types, benchmarks, and the Python kernel cross-check |
-| [`specs/`](specs/) | Spec Kit feature documents: [001 Foundation](specs/001-theme-specification-foundation/), [002 Core runtime](specs/002-core-runtime/), and [003 Web adapter](specs/003-web-adapter/), and [004 command-line tool](specs/004-theme-author-cli/) |
+| [`specs/`](specs/) | Spec Kit feature documents: [001 Foundation](specs/001-theme-specification-foundation/), [002 Core runtime](specs/002-core-runtime/), and [003 Web adapter](specs/003-web-adapter/), [004 command-line tool](specs/004-theme-author-cli/), and [005 design tokens interchange](specs/005-design-tokens-interchange/) |
 | [`evaluations/`](evaluations/) | Manual evaluation protocols |
 
 ## Key properties

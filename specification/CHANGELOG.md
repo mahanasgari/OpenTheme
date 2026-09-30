@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased
+
+### Open findings (no normative change)
+
+Found while implementing chapter 16 (`specs/005-design-tokens-interchange`). Recorded, not
+resolved; the tooling's handling is described in that feature's research.
+
+- **D1**: chapter 16's example keeps a derivation under `$extensions["org.opentheme"].derive` as
+  `{ from, via: [{ transform, args }] }`, a shape no chapter, schema, or registry defines and unlike
+  `$derive` (`{ op, args }`). `@opentheme/dtcg` keeps the declared `$derive` object verbatim.
+  Proposed: chapter 16 errata replacing the example with the `$derive` form.
+- **D2**: import does not say where a theme's required seeds come from. `@opentheme/dtcg` takes them
+  from an optional mapping and otherwise uses the seed-only example's, reported. Proposed: chapter
+  16 states that seeds come from a mapping supplied by the user.
+- **D3**: import does not say how DTCG names outside the path grammar are handled. `@opentheme/dtcg`
+  lowercases, replaces other characters with `-`, and reports collisions. Proposed: chapter 16
+  states that such names are converted by a documented rule or rejected, never silently changed.
+
 ## 1.0.0-draft.4 (2026-09-30)
 
 Errata to `1.0.0-draft.3`, from checking every rule that had no fixture against both
