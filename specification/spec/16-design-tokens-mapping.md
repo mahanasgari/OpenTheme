@@ -14,8 +14,9 @@ When a token was produced from a derivation, the exporter MUST retain the deriva
 $extensions["org.opentheme"].derive
 ```
 
-so a later OpenTheme import can recover the authoring form. Primitive `$type` / `$value` pairs that
-are already concrete need no extension payload.
+so a later OpenTheme import can recover the authoring form. The payload is the token's `$derive`
+object exactly as the theme declares it (`{ "op", "args" }`, chapter 04), with its aliases as
+written. Primitive `$type` / `$value` pairs that are already concrete need no extension payload.
 
 ```opentheme
 {
@@ -29,8 +30,8 @@ are already concrete need no extension payload.
       "$extensions": {
         "org.opentheme": {
           "derive": {
-            "from": "{seeds.light.accent}",
-            "via": [{ "transform": "color.chroma", "args": { "factor": 0.8 } }]
+            "op": "color.chroma",
+            "args": { "color": "{seed.accent}", "factor": 0.8 }
           }
         }
       }
@@ -44,6 +45,13 @@ are already concrete need no extension payload.
 Import maps DTCG tokens to OpenTheme primitives, or by name mapping into the theme's semantic
 token tree. Unknown DTCG types that OpenTheme does not define MUST be rejected or placed under
 `$extensions` without affecting core validation.
+
+A DTCG document carries no seeds, so an importer MUST take a theme's seeds (chapter 07) from a
+mapping the user supplies, or use documented defaults and report that it did. A DTCG name that does
+not match the path grammar (chapter 03) MUST be converted by a documented rule or rejected, and
+every conversion MUST be reported; two names that convert to the same path MUST NOT be merged. No
+value is approximated: a type, unit, or color space without an exact OpenTheme equivalent is
+rejected or placed under `$extensions`, and reported.
 
 ## What does not map
 
