@@ -19,7 +19,7 @@
     "generate": "tsx scripts/generate.ts",
     "build": "tsx scripts/generate.ts && tsc -p tsconfig.json && node -e \"require('node:fs').chmodSync('dist/main.js', 0o755)\"",
     "test": "vitest run --config vitest.config.ts",
-    "bench": "node bench/node.mjs"
+    "bench": "tsx bench/node.ts"
   },
   "dependencies": {
     "@opentheme/core": "workspace:^",
