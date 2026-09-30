@@ -15,7 +15,8 @@ function walkTs(dir: string, out: string[]): void {
   }
 }
 
-const IMPORT = /(?:from|import)\s*\(?\s*["']([^"']+)["']/g;
+/** `… from "x"`, `import("x")`, and a bare `import "x"` statement (not the string "import"). */
+const IMPORT = /(?:\bfrom\s*|\bimport\s*\(\s*|^\s*import\s+)["']([^"']+)["']/gm;
 
 const CODE_RULES: Array<[RegExp, string]> = [
   [/\bfetch\s*\(/, "network (fetch)"],
