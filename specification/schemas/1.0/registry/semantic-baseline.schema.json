@@ -5,7 +5,7 @@
   "required": ["version", "tokens", "pairs", "distinguishable", "distinguishableThreshold"],
   "additionalProperties": false,
   "properties": {
-    "version": { "type": "string", "description": "Specification version.", "examples": ["1.0.0-draft.3"] },
+    "version": { "type": "string", "description": "Specification version.", "examples": ["1.0.0-draft.4"] },
     "tokens": {
       "type": "array",
       "items": {

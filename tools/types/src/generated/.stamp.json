@@ -55,39 +55,39 @@
     },
     {
       "path": "specification/schemas/1.0/registry/component-catalog.schema.json",
-      "sha256": "863fd6dd9aaded14a3e739e459b086ed484b2c8a17d4685f6ec9e2692c150ee1"
+      "sha256": "9e2467046bd15e10f24db618e2916ab898e305833db8ad31d21ccbeb260fd3c7"
     },
     {
       "path": "specification/schemas/1.0/registry/context-dimensions.schema.json",
-      "sha256": "45c698a0a4f2ce4d6ba74c43abe3edb0abf85b4f16362319ce371367c37e4fc7"
+      "sha256": "9d930527d25742810ee6793c1f00de5eb278e9552ff4afcd9285b310f394b294"
     },
     {
       "path": "specification/schemas/1.0/registry/customization-points.schema.json",
-      "sha256": "c97e7480839aaf349b5a988a621507b2392a06dfa08d6be52996f7b449d6fdad"
+      "sha256": "db1934bb531d622491811c1dc8ab4794bc187efd71434bf2c7688c59111075f3"
     },
     {
       "path": "specification/schemas/1.0/registry/diagnostics.schema.json",
-      "sha256": "bf25f4756d1c006c2434fb75491776137b230f114b0171d4a4ff5829672b149c"
+      "sha256": "9b80c23664c8c28516877a33296542b2c3fad5cf9dace8c0c063ac5eec8985e8"
     },
     {
       "path": "specification/schemas/1.0/registry/forced-colors.schema.json",
-      "sha256": "9b8fc233ac85b493b9bfabb4d47941c0be50cb6aa1ff05b163549f708e8b2f6f"
+      "sha256": "42f918a0a92193fa7cc1f5583bcf08e79e8f07bd66dea145fe011514eef7ae40"
     },
     {
       "path": "specification/schemas/1.0/registry/limits.schema.json",
-      "sha256": "311f42c28ff1ad7a98a78a352d3ea8a23eddf89667817e5e44b1ad414b38ff82"
+      "sha256": "5c46acd25505a463b979474eaa73b7cdf79087ea2f2623e868f02b3550a19e5a"
     },
     {
       "path": "specification/schemas/1.0/registry/rules.schema.json",
-      "sha256": "384b7111a3caa26f670e1511ba6f394a64e04a202410c5b3780eeead378e247d"
+      "sha256": "67cc286ed3535164cdafcf57c69b266c87ccf537a830df2e0690404f8eb2d9a4"
     },
     {
       "path": "specification/schemas/1.0/registry/semantic-baseline.schema.json",
-      "sha256": "fc030a70b31206192b06d71d04e4e5e9170f13418d4bf5fec0fd57f104477136"
+      "sha256": "2699414c8090affff45b81d83714988f44a752929292360849655a0312d4c768"
     },
     {
       "path": "specification/schemas/1.0/registry/transformations.schema.json",
-      "sha256": "0732bc4a9c5c0edac28368fac138ecc41c423496ead8476932ee9437c463e171"
+      "sha256": "33816c1f2de73eb269a6d4f149ebbeb2c111fa796c3c5e39aa53e6c99eeb6951"
     },
     {
       "path": "specification/schemas/1.0/resolution-input.schema.json",

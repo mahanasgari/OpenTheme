@@ -9,7 +9,7 @@ adapter) supplies bytes, context, and storage.
 - Untrusted themes are validated, gated, and never trusted by their content.
 - No DOM, Node, or framework types. No dependencies at runtime.
 
-Status: `0.1.0-draft`, tracking specification `1.0.0-draft.3`.
+Status: `0.1.0-draft`, tracking specification `1.0.0-draft.4`.
 
 In the examples, `auroraBytes`, `graphiteBytes`, and `notesHostBytes` are the contents of
 `org.opentheme.aurora.opentheme.json`, `org.opentheme.graphite.opentheme.json`, and

@@ -71,7 +71,7 @@ glob matches one path segment per `*`; use `**` to match nested fixture ids.
 
 - Themes: `org.opentheme.baseline`, `org.opentheme.aurora`, `org.opentheme.graphite`
 - Hosts: `com.example.notes`, `com.example.media`
-- Draft specification version: `1.0.0-draft.3`
+- Draft specification version: `1.0.0-draft.4`
 - Themes and hosts target `"opentheme": "1.0"` / `"openthemeHost": "1.0"`
 
 ## Rule identifiers

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-draft.3",
+  "version": "1.0.0-draft.4",
   "limits": {
     "documentBytes": {
       "value": 1048576,
