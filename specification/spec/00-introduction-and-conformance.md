@@ -1,6 +1,6 @@
 # 00. Introduction and Conformance
 
-**Status**: Normative. Specification version `1.0.0-draft.4`.
+**Status**: Normative. Specification version `1.0.0-draft.5`.
 
 ## Scope and product boundaries
 

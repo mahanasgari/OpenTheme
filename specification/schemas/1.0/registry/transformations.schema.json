@@ -12,7 +12,7 @@
       "type": "string",
       "description": "Specification version of this registry.",
       "examples": [
-        "1.0.0-draft.4"
+        "1.0.0-draft.5"
       ]
     },
     "transformations": {

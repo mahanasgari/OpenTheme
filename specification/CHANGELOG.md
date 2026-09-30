@@ -1,22 +1,23 @@
 # Changelog
 
-## Unreleased
+## 1.0.0-draft.5 (2026-09-30)
 
-### Open findings (no normative change)
+Errata to `1.0.0-draft.4`: findings D1 to D3, found while implementing chapter 16
+(`specs/005-design-tokens-interchange`). No conformance fixture or expected result changes. Drafts
+carry no compatibility guarantee.
 
-Found while implementing chapter 16 (`specs/005-design-tokens-interchange`). Recorded, not
-resolved; the tooling's handling is described in that feature's research.
+### Chapter 16 errata
 
-- **D1**: chapter 16's example keeps a derivation under `$extensions["org.opentheme"].derive` as
-  `{ from, via: [{ transform, args }] }`, a shape no chapter, schema, or registry defines and unlike
-  `$derive` (`{ op, args }`). `@opentheme/dtcg` keeps the declared `$derive` object verbatim.
-  Proposed: chapter 16 errata replacing the example with the `$derive` form.
-- **D2**: import does not say where a theme's required seeds come from. `@opentheme/dtcg` takes them
-  from an optional mapping and otherwise uses the seed-only example's, reported. Proposed: chapter
-  16 states that seeds come from a mapping supplied by the user.
-- **D3**: import does not say how DTCG names outside the path grammar are handled. `@opentheme/dtcg`
-  lowercases, replaces other characters with `-`, and reports collisions. Proposed: chapter 16
-  states that such names are converted by a documented rule or rejected, never silently changed.
+- **D1**: the derivation kept under `$extensions["org.opentheme"].derive` is the token's `$derive`
+  object exactly as declared (`{ op, args }`). The example no longer uses a `{ from, via }` shape
+  that nothing defined.
+- **D2**: an importer takes seeds from a mapping the user supplies, or uses documented defaults and
+  reports that it did.
+- **D3**: DTCG names outside the path grammar are converted by a documented rule or rejected, every
+  conversion is reported, and names that convert to the same path are not merged. No value is
+  approximated.
+
+`@opentheme/dtcg` already behaves this way; findings C1, C4, and C9 (see `1.0.0-draft.4`) stay open.
 
 ## 1.0.0-draft.4 (2026-09-30)
 

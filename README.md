@@ -5,7 +5,7 @@ contract for presentation themes. A theme changes how an application looks, neve
 This repository holds the specification, its conformance suite, and **OpenTheme Core**, a
 framework-agnostic runtime that implements it.
 
-**Status**: specification `1.0.0-draft.4`, `@opentheme/core` `0.1.0-draft`. Drafts
+**Status**: specification `1.0.0-draft.5`, `@opentheme/core` `0.1.0-draft`. Drafts
 carry no compatibility guarantee.
 
 ## What is here

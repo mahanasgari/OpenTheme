@@ -8,7 +8,7 @@ All theming behavior lives in Core: admission, trust, validation, resolution, po
 accessibility. The adapter only translates Core's result into CSS and feeds Core the browser's
 context. It has no runtime dependency besides Core and works with any framework or none.
 
-Status: `0.1.0-draft.0`, pre-release, tracking Theme Specification `1.0.0-draft.4`.
+Status: `0.1.0-draft.0`, pre-release, tracking Theme Specification `1.0.0-draft.5`.
 
 ## Quickstart
 

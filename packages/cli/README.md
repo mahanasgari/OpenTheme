@@ -8,7 +8,7 @@ Every answer comes from [`@opentheme/core`](../core/README.md) and
 OpenTheme. It works offline, never runs anything from a theme file, and prints the same bytes for
 the same inputs.
 
-Status: `0.1.0-draft.0`, pre-release, tracking Theme Specification `1.0.0-draft.4`. Requires
+Status: `0.1.0-draft.0`, pre-release, tracking Theme Specification `1.0.0-draft.5`. Requires
 Node.js 24 or later.
 
 ## Quickstart
