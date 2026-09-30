@@ -112,6 +112,12 @@ describe("exportTheme", () => {
     expect(r.report).toContainEqual(expect.objectContaining({ path: "text.body", action: "left-out", reason: expect.stringMatching(/line height/) }));
   });
 
+  it("refuses a scheme the theme does not support", () => {
+    const { core, entry } = admitted(read("specification/examples/01-minimal-seed-only.opentheme.json"));
+    const r = exportTheme(core, entry, { modes: [{ scheme: "dark", contrast: "standard" }] });
+    expect(r).toMatchObject({ ok: false, error: { kind: "invalid-argument" } });
+  });
+
   it("refuses an entry that is not in the snapshot", () => {
     const core = createCore();
     const r = exportTheme(core, { kind: "theme", id: "org.example.none", version: "1.0.0", integrity: "x", trust: "trusted" });

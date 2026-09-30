@@ -64,6 +64,19 @@ export function exportTheme(core: Core, theme: RegistryEntryRef, options: { read
   const supported = isRecord(doc.colorSchemes) && Array.isArray(doc.colorSchemes.supported) ? (doc.colorSchemes.supported as string[]) : ["light"];
   const modes: readonly Mode[] =
     options.modes ?? (["light", "dark"] as const).filter((s) => supported.includes(s)).map((scheme) => ({ scheme, contrast: "standard" as const }));
+  const unsupported = modes.find((m) => !supported.includes(m.scheme));
+  if (unsupported) {
+    return {
+      ok: false,
+      error: {
+        kind: "invalid-argument",
+        operation: "dtcg.exportTheme",
+        message: `The theme does not support the ${unsupported.scheme} color scheme.`,
+        hint: `Export one of: ${supported.join(", ")}.`,
+        docs: "",
+      },
+    };
+  }
   const report = new Report();
   const seen = new Set<string>();
   const note = (path: string, action: ReportEntry["action"], reason: string) => {
