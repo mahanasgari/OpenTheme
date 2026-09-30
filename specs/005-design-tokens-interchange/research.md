@@ -52,8 +52,9 @@ Not exported, and reported: `density` values, system colors (forced colors), a t
 - Tokens go under `primitive` (reserved group, chapter 03), keeping DTCG group structure. Aliases
   `{a.b}` become `{primitive.a.b}` after name conversion.
 - **Names (finding D3)**: each segment is lowercased; characters outside `[a-z0-9-]` become `-`;
-  runs of `-` collapse and leading or trailing `-` is removed; a first segment that starts with a
-  digit is prefixed with `t-`. Empty names and collisions are reported and left out.
+  runs of `-` collapse and leading or trailing `-` is removed. Imported names always follow
+  `primitive`, so a digit-led segment is valid (chapter 03). Empty names, names over 64
+  characters, and collisions are reported and left out.
 - **Types**: `color` in `srgb` or `oklch` with numeric components; `dimension` in `px`; `duration`
   in `ms`, or `s` when `value × 1000` is an integer that divides back exactly; `fontFamily` (string
   or array); `fontWeight` numbers and the DTCG keywords (thin 100, extra-light 200, light 300,

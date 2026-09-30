@@ -4,3 +4,4 @@
  */
 export { exportTheme, type ExportResult, type Mode } from "./export.js";
 export type { ReportEntry } from "./report.js";
+export { importTokens, type ImportOptions, type ImportResult } from "./import.js";
