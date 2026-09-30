@@ -48,33 +48,33 @@ package lives in `packages/cli/`.
 
 ## Phase 4: User Story 7 - Trust from the command line only (Priority: P1)
 
-- [ ] T014 [P] [US7] Write `packages/cli/test/trust/malicious.test.ts`: every `malicious/**` and `invalid/**` fixture through `validate`, `resolve`, `report`, `css`, and `preview` without `--trusted` completes with exit 1 or 0 (never a crash or hang), and results equal Core's untrusted handling; a document claiming an official id or provenance stays untrusted
-- [ ] T015 [US7] Add the gate notice: when `--relaxed-gate` is set, every command states it in human output and includes `"gate": "relaxed"` in JSON (FR-T010 to FR-T012)
+- [X] T014 [P] [US7] Write `packages/cli/test/trust/malicious.test.ts`: every `malicious/**` and `invalid/**` fixture through `validate`, `resolve`, `report`, `css`, and `preview` without `--trusted` completes with exit 1 or 0 (never a crash or hang), and results equal Core's untrusted handling; a document claiming an official id or provenance stays untrusted
+- [X] T015 [US7] Add the gate notice: when `--relaxed-gate` is set, every command states it in human output and includes `"gate": "relaxed"` in JSON (FR-T010 to FR-T012)
 
 ## Phase 5: User Story 2 - Resolve (Priority: P1)
 
-- [ ] T016 [P] [US2] Write `packages/cli/test/equivalence/resolve.test.ts`: each reference theme in each of scheme × contrast × forced colors, and the `--path` subsets, equal `core.resolve` with the same inputs (JCS)
-- [ ] T017 [P] [US2] Write `packages/cli/test/commands/resolve.test.ts`: defaults, every context option, invalid context values (exit 2), unknown path (exit 2), preferences file and `--set` with a preset, an invalid theme prints a fallback notice and exits 1 (FR-T033)
-- [ ] T018 [US2] Implement `packages/cli/src/commands/resolve.ts` (LR4; FR-T030 to FR-T033)
+- [X] T016 [P] [US2] Write `packages/cli/test/equivalence/resolve.test.ts`: each reference theme in each of scheme × contrast × forced colors, and the `--path` subsets, equal `core.resolve` with the same inputs (JCS)
+- [X] T017 [P] [US2] Write `packages/cli/test/commands/resolve.test.ts`: defaults, every context option, invalid context values (exit 2), unknown path (exit 2), preferences file and `--set` with a preset, an invalid theme prints a fallback notice and exits 1 (FR-T033)
+- [X] T018 [US2] Implement `packages/cli/src/commands/resolve.ts` (LR4; FR-T030 to FR-T033)
 
 ## Phase 6: User Story 3 - Accessibility report (Priority: P2)
 
-- [ ] T019 [US3] Add `accessibilityReport(themeRef, snapshot)` to `DocumentUtilities` in `packages/core/src/core.ts` (returning `{ valid, diagnostics }` from `conformanceReport` for a registered theme, operational errors for an unknown entry), update `packages/core/api/` with `pnpm api` and `specs/002-core-runtime/contracts/public-api.md`, and add `packages/core/test/api/accessibility-report.test.ts` checking the four `accessibility/` fixtures (finding L1)
-- [ ] T020 [P] [US3] Write `packages/cli/test/equivalence/report.test.ts` over the `accessibility-report` fixtures, and `--strict` exit statuses
-- [ ] T021 [US3] Implement `packages/cli/src/commands/report.ts` (FR-T040)
+- [X] T019 [US3] Add `accessibilityReport(themeRef, snapshot)` to `DocumentUtilities` in `packages/core/src/core.ts` (returning `{ valid, diagnostics }` from `conformanceReport` for a registered theme, operational errors for an unknown entry), update `packages/core/api/` with `pnpm api` and `specs/002-core-runtime/contracts/public-api.md`, and add `packages/core/test/api/accessibility-report.test.ts` checking the four `accessibility/` fixtures (finding L1)
+- [X] T020 [P] [US3] Write `packages/cli/test/equivalence/report.test.ts` over the `accessibility-report` fixtures, and `--strict` exit statuses
+- [X] T021 [US3] Implement `packages/cli/src/commands/report.ts` (FR-T040)
 
 ## Phase 7: User Story 4 - CSS (Priority: P2)
 
-- [ ] T022 [P] [US4] Write `packages/cli/test/commands/css.test.ts`: output equals `toStylesheet` of `core.resolve` for each reference theme and context; `--scope`, `--element`, `--nonce`; `--out` writes the file and refuses to overwrite without `--force`
-- [ ] T023 [US4] Implement `packages/cli/src/commands/css.ts` (FR-T050)
+- [X] T022 [P] [US4] Write `packages/cli/test/commands/css.test.ts`: output equals `toStylesheet` of `core.resolve` for each reference theme and context; `--scope`, `--element`, `--nonce`; `--out` writes the file and refuses to overwrite without `--force`
+- [X] T023 [US4] Implement `packages/cli/src/commands/css.ts` (FR-T050)
 
 ## Phase 8: User Stories 5 and 6 - Preview and init (Priority: P3)
 
-- [ ] T024 [P] [US5] Write `packages/cli/test/commands/preview.test.ts`: one section per scheme × contrast, each section's rule equals `toStylesheet` for that mode, no `<script>`, no `http`, `src=`, or `url(` references, deterministic bytes
-- [ ] T025 [US5] Implement `packages/cli/src/commands/preview.ts` (LR7; FR-T060)
-- [ ] T026 [P] [US6] Write `packages/cli/test/commands/init.test.ts`: the created theme is valid, its id matches `uid.[a-z2-7]{26}`, two runs give different ids, `--name`, refusal to overwrite (exit 3), `--force`
-- [ ] T027 [US6] Implement `packages/cli/src/commands/init.ts` (LR8; FR-T070)
-- [ ] T028 [US6] Write `packages/cli/test/quickstart.test.ts` running quickstart.md scenario 1
+- [X] T024 [P] [US5] Write `packages/cli/test/commands/preview.test.ts`: one section per scheme × contrast, each section's rule equals `toStylesheet` for that mode, no `<script>`, no `http`, `src=`, or `url(` references, deterministic bytes
+- [X] T025 [US5] Implement `packages/cli/src/commands/preview.ts` (LR7; FR-T060)
+- [X] T026 [P] [US6] Write `packages/cli/test/commands/init.test.ts`: the created theme is valid, its id matches `uid.[a-z2-7]{26}`, two runs give different ids, `--name`, refusal to overwrite (exit 3), `--force`
+- [X] T027 [US6] Implement `packages/cli/src/commands/init.ts` (LR8; FR-T070)
+- [X] T028 [US6] Write `packages/cli/test/quickstart.test.ts` running quickstart.md scenario 1
 
 ## Phase 9: Polish & Cross-Cutting Concerns
 
