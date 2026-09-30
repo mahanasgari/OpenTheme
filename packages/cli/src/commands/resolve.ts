@@ -3,7 +3,7 @@
  * or for the requested paths, with resolution diagnostics and a notice when the theme fell back.
  */
 import { CONTEXT_OPTIONS, contextOptions, INPUT_OPTIONS, parse, presetOption, type Values } from "../args.js";
-import { toJson, withText } from "../format.js";
+import { clean, toJson, withText } from "../format.js";
 import { type Io, readInput, UsageError } from "../io.js";
 import { diagnosticsBlock, fallbackNotice, loadTheme, type Loaded, resolveTheme } from "../theme.js";
 
@@ -71,7 +71,7 @@ export function pick(resolved: Rec, path: string): unknown {
   throw new UsageError(`unknown path "${path}"`);
 }
 
-const show = (v: unknown) => JSON.stringify(v);
+const show = (v: unknown) => clean(JSON.stringify(v));
 
 export function resolveCommand(argv: readonly string[], io: Io): number {
   const { values, positionals } = parse(argv, RESOLVE_OPTIONS);
@@ -109,21 +109,21 @@ export function resolveCommand(argv: readonly string[], io: Io): number {
   const applied = resolved.applied as { id: string; version: string };
   const ctx = resolved.context as Rec;
   io.stdout(fallbackNotice(r, s));
-  io.stdout(`${s.bold(loaded.path)}: ${applied.id}@${applied.version} · ${ctx.colorScheme} · ${ctx.contrast} contrast · ${ctx.sizeClass} · text ×${ctx.textScale}\n`);
+  io.stdout(`${s.bold(clean(loaded.path))}: ${clean(`${applied.id}@${applied.version}`)} · ${ctx.colorScheme} · ${ctx.contrast} contrast · ${ctx.sizeClass} · text ×${ctx.textScale}\n`);
   if (selected) {
-    for (const [p, v] of Object.entries(selected)) io.stdout(`${p} = ${show(v)}\n`);
+    for (const [p, v] of Object.entries(selected)) io.stdout(`${clean(p)} = ${show(v)}\n`);
   } else {
     io.stdout(s.bold("tokens\n"));
-    for (const [p, v] of Object.entries(resolved.tokens as Rec)) io.stdout(`  ${p} = ${show(v)}\n`);
+    for (const [p, v] of Object.entries(resolved.tokens as Rec)) io.stdout(`  ${clean(p)} = ${show(v)}\n`);
     io.stdout(s.bold("components\n"));
     for (const [contract, parts] of Object.entries(resolved.components as Rec)) {
       for (const [part, props] of Object.entries(parts as Rec)) {
         if (part === "$variants") {
-          io.stdout(`  ${contract} $variants = ${show(props)}\n`);
+          io.stdout(`  ${clean(contract)} $variants = ${show(props)}\n`);
           continue;
         }
         for (const [prop, states] of Object.entries(props as Rec)) {
-          for (const [state, v] of Object.entries(states as Rec)) io.stdout(`  ${contract}.${part}.${prop}.${state} = ${show(v)}\n`);
+          for (const [state, v] of Object.entries(states as Rec)) io.stdout(`  ${clean(`${contract}.${part}.${prop}.${state}`)} = ${show(v)}\n`);
         }
       }
     }

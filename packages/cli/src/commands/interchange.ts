@@ -5,7 +5,7 @@
 import { basename, dirname, join } from "node:path";
 import { exportTheme, importTokens, type Mode, type ReportEntry } from "@opentheme/dtcg";
 import { INPUT_OPTIONS, parse } from "../args.js";
-import { colored, formatDiagnostics, plain, type Styler, toJson, withText } from "../format.js";
+import { clean, colored, formatDiagnostics, plain, type Styler, toJson, withText } from "../format.js";
 import { type Io, readInput, UsageError, useColor, writeOutput } from "../io.js";
 import { loadTheme } from "../theme.js";
 
@@ -36,7 +36,7 @@ Creates an OpenTheme theme from a W3C Design Tokens (2025.10) file. Tokens go un
 `;
 
 function reportLines(report: readonly ReportEntry[], s: Styler): string {
-  return report.map((e) => `  ${e.action === "left-out" ? s.yellow(e.action) : s.dim(e.action)} ${e.path || "(document)"}: ${e.reason}\n`).join("");
+  return report.map((e) => `  ${e.action === "left-out" ? s.yellow(e.action) : s.dim(e.action)} ${clean(e.path) || "(document)"}: ${clean(e.reason)}\n`).join("");
 }
 
 function mode(text: string): Mode {
@@ -75,7 +75,7 @@ export function exportCommand(argv: readonly string[], io: Io): number {
     io.stdout(toJson({ command: "export", path: loaded.path, files, report: r.report, status: 0 }));
     return 0;
   }
-  for (const f of files) io.stdout(`${loaded.path}: wrote ${f}\n`);
+  for (const f of files) io.stdout(`${clean(loaded.path)}: wrote ${clean(f)}\n`);
   if (r.report.length > 0) io.stdout(`report (${r.report.length}):\n${reportLines(r.report, loaded.styler)}`);
   return 0;
 }
@@ -131,7 +131,7 @@ export function importCommand(argv: readonly string[], io: Io): number {
     return status;
   }
   const s = useColor(io, values["no-color"] === true) ? colored : plain;
-  io.stdout(r.text !== null ? `${path}: wrote ${values.out}\n` : `${path}: ${s.red("not imported")}\n`);
+  io.stdout(r.text !== null ? `${clean(path)}: wrote ${clean(values.out)}\n` : `${clean(path)}: ${s.red("not imported")}\n`);
   if (r.report.length > 0) io.stdout(`report (${r.report.length}):\n${reportLines(r.report, s)}`);
   io.stdout(formatDiagnostics(r.diagnostics, s));
   return status;

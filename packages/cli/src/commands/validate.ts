@@ -4,7 +4,7 @@
  */
 import { INPUT_OPTIONS, inputOptions, parse } from "../args.js";
 import { type Admitted, admit, admitContext, kindOf, openCore } from "../admit.js";
-import { colored, counts, formatDiagnostics, plain, toJson, withText } from "../format.js";
+import { clean, colored, counts, formatDiagnostics, plain, toJson, withText } from "../format.js";
 import { InputOutputError, type Io, readInput, UsageError, useColor } from "../io.js";
 
 const HELP = `Usage: opentheme validate <file...> [options]
@@ -63,12 +63,12 @@ export function validate(argv: readonly string[], io: Io): number {
   if (options.relaxedGate) io.stdout(s.yellow("note: the accessibility gate is relaxed for untrusted themes (--relaxed-gate)\n"));
   for (const r of rows) {
     if ("failure" in r) {
-      io.stdout(`${s.bold(r.path)}: ${s.red("unreadable")}: ${r.failure.slice(r.path.length + 2)}\n`);
+      io.stdout(`${s.bold(clean(r.path))}: ${s.red("unreadable")}: ${clean(r.failure.slice(r.path.length + 2))}\n`);
       continue;
     }
     const detail = counts(r.diagnostics);
     const label = r.validity === "valid" ? "valid" : s.red(r.validity);
-    io.stdout(`${s.bold(r.path)}${r.kind === "host" ? " (host)" : ""}: ${label}${detail ? ` (${detail})` : ""}\n`);
+    io.stdout(`${s.bold(clean(r.path))}${r.kind === "host" ? " (host)" : ""}: ${label}${detail ? ` (${detail})` : ""}\n`);
     if (r.error) io.stdout(`  ${s.red(r.error.kind)}: ${r.error.message}\n        ${s.dim(`hint: ${r.error.hint}`)}\n`);
     io.stdout(formatDiagnostics(r.diagnostics, s));
   }

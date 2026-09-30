@@ -3,6 +3,7 @@
  * (research LR6): 0 success, 1 invalid or failed check, 2 usage error, 3 input or output failure.
  */
 import { SPEC_VERSION } from "./generated/minimal-theme.js";
+import { clean } from "./format.js";
 import { InputOutputError, type Io, UsageError } from "./io.js";
 
 export const TOOL_VERSION = "0.1.0-draft.0";
@@ -41,11 +42,11 @@ export async function run(argv: readonly string[], io: Io, commands: Readonly<Re
     return await command(rest, io);
   } catch (e) {
     if (e instanceof UsageError) {
-      io.stderr(`opentheme: ${e.message}\n`);
+      io.stderr(`opentheme: ${clean(e.message)}\n`);
       return 2;
     }
     if (e instanceof InputOutputError) {
-      io.stderr(`opentheme: ${e.message}\n`);
+      io.stderr(`opentheme: ${clean(e.message)}\n`);
       return 3;
     }
     throw e;

@@ -5,7 +5,7 @@
  */
 import { toStylesheet } from "@opentheme/web";
 import { INPUT_OPTIONS, parse } from "../args.js";
-import { toJson } from "../format.js";
+import { clean, toJson } from "../format.js";
 import { type Io, writeOutput } from "../io.js";
 import { TOOL_VERSION } from "../run.js";
 import { fallbackNotice, loadTheme, resolveTheme } from "../theme.js";
@@ -117,6 +117,6 @@ ${sections.join("\n")}
   const out = typeof values.out === "string" ? values.out : `${loaded.path.replace(/\.json$/, "")}.preview.html`;
   writeOutput(out, html, values.force === true);
   if (values.json) io.stdout(toJson({ command: "preview", ...(loaded.options.relaxedGate ? { gate: "relaxed" } : {}), path: loaded.path, output: out, modes: sections.length, status }));
-  else io.stdout(`${loaded.path}: wrote ${out} (${sections.length} modes)\n`);
+  else io.stdout(`${clean(loaded.path)}: wrote ${clean(out)} (${sections.length} modes)\n`);
   return status;
 }

@@ -3,7 +3,7 @@
  * through Core's public API. Exit status 1 with --strict when there are findings.
  */
 import { INPUT_OPTIONS, parse } from "../args.js";
-import { formatDiagnostics, toJson, withText } from "../format.js";
+import { clean, formatDiagnostics, toJson, withText } from "../format.js";
 import type { Io } from "../io.js";
 import { loadTheme } from "../theme.js";
 
@@ -33,12 +33,12 @@ export function report(argv: readonly string[], io: Io): number {
   }
   const s = loaded.styler;
   if (r.diagnostics.length === 0) {
-    io.stdout(`${s.bold(loaded.path)}: conformant (every declared pair meets its threshold in every mode)\n`);
+    io.stdout(`${s.bold(clean(loaded.path))}: conformant (every declared pair meets its threshold in every mode)\n`);
   } else {
     const n = r.diagnostics.length;
-    io.stdout(`${s.bold(loaded.path)}: ${s.yellow("not conformant")} (${n} finding${n === 1 ? "" : "s"}; the theme is still valid)\n`);
+    io.stdout(`${s.bold(clean(loaded.path))}: ${s.yellow("not conformant")} (${n} finding${n === 1 ? "" : "s"}; the theme is still valid)\n`);
     io.stdout(formatDiagnostics(r.diagnostics, s));
-    for (const d of r.diagnostics) if (typeof d.params.detail === "string") io.stdout(`  pair ${d.params.detail}\n`);
+    for (const d of r.diagnostics) if (typeof d.params.detail === "string") io.stdout(`  pair ${clean(d.params.detail)}\n`);
   }
   return status;
 }

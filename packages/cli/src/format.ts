@@ -16,6 +16,15 @@ const ansi = (code: number) => (s: string) => `\u001b[${code}m${s}\u001b[0m`;
 export const plain: Styler = { red: (s) => s, yellow: (s) => s, dim: (s) => s, bold: (s) => s };
 export const colored: Styler = { red: ansi(31), yellow: ansi(33), dim: ansi(2), bold: ansi(1) };
 
+/**
+ * Text from files (member names, pointers, token names, file names) is untrusted: C0 and C1
+ * controls, DEL, and bidirectional overrides are shown escaped, so a file cannot rewrite or reorder
+ * the author's terminal. Styling is applied after cleaning. JSON output needs none of this.
+ */
+export function clean(text: string): string {
+  return text.replace(/[\u0000-\u001f\u007f-\u009f\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, (c) => `\\u{${c.charCodeAt(0).toString(16)}}`);
+}
+
 export interface DisplayDiagnostic extends Diagnostic {
   readonly message: string;
   readonly hint: string;
@@ -32,10 +41,10 @@ export function formatDiagnostics(diagnostics: readonly Diagnostic[], s: Styler)
   for (const raw of diagnostics) {
     const d = withText(raw);
     const sev = d.severity === "error" ? s.red("error") : d.severity === "warning" ? s.yellow("warning") : s.dim("info");
-    const doc = d.location.document === "theme" ? "" : ` ${s.dim(`[${d.location.document}]`)}`;
-    out += `  ${sev} ${s.bold(d.code)} ${d.location.pointer || '""'}${doc}\n`;
-    out += `        ${d.message}\n`;
-    if (d.hint) out += `        ${s.dim(`hint: ${d.hint}`)}\n`;
+    const doc = d.location.document === "theme" ? "" : ` ${s.dim(`[${clean(d.location.document)}]`)}`;
+    out += `  ${sev} ${s.bold(d.code)} ${clean(d.location.pointer) || '""'}${doc}\n`;
+    out += `        ${clean(d.message)}\n`;
+    if (d.hint) out += `        ${s.dim(`hint: ${clean(d.hint)}`)}\n`;
   }
   return out;
 }

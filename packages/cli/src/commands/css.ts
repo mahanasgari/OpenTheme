@@ -4,7 +4,7 @@
  */
 import { toStylesheet } from "@opentheme/web";
 import { CONTEXT_OPTIONS, contextOptions, INPUT_OPTIONS, parse } from "../args.js";
-import { toJson } from "../format.js";
+import { clean, toJson } from "../format.js";
 import { type Io, UsageError, writeOutput } from "../io.js";
 import { fallbackNotice, loadTheme, resolveTheme } from "../theme.js";
 
@@ -60,7 +60,7 @@ export function css(argv: readonly string[], io: Io): number {
     return status;
   }
   io.stderr(fallbackNotice(r, loaded.styler));
-  if (out) io.stdout(`${loaded.path}: wrote ${out}\n`);
+  if (out) io.stdout(`${clean(loaded.path)}: wrote ${clean(out)}\n`);
   else io.stdout(text);
   return status;
 }

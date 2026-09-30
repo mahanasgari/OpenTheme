@@ -5,7 +5,7 @@
 import { randomBytes } from "node:crypto";
 import { createCore } from "@opentheme/core";
 import { parse } from "../args.js";
-import { toJson } from "../format.js";
+import { clean, toJson } from "../format.js";
 import { MINIMAL_THEME } from "../generated/minimal-theme.js";
 import { type Io, UsageError, writeOutput } from "../io.js";
 
@@ -54,6 +54,6 @@ export function init(argv: readonly string[], io: Io): number {
   if (check.status !== "registered") throw new UsageError(`the new theme would not be valid: ${check.diagnostics.map((d) => d.code).join(", ")}`);
   writeOutput(path, text, values.force === true);
   if (values.json) io.stdout(toJson({ command: "init", path, id, status: 0 }));
-  else io.stdout(`created ${path} (${id})\nnext: opentheme validate ${path}\n`);
+  else io.stdout(`created ${clean(path)} (${id})\nnext: opentheme validate ${clean(path)}\n`);
   return 0;
 }

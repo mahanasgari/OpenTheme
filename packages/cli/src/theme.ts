@@ -5,7 +5,7 @@
 import { type ControllerContext, type Core, type Diagnostic, PRESETS, type RegistryEntry, type ResolutionResult } from "@opentheme/core";
 import { type Admitted, admit, admitContext, openCore } from "./admit.js";
 import { type InputOptions, inputOptions, type Values } from "./args.js";
-import { colored, counts, formatDiagnostics, plain, type Styler, toJson, withText } from "./format.js";
+import { clean, colored, counts, formatDiagnostics, plain, type Styler, toJson, withText } from "./format.js";
 import { type Io, readInput, UsageError, useColor } from "./io.js";
 
 export interface Loaded {
@@ -55,7 +55,7 @@ function printAdmissionFailures(command: string, failed: readonly Admitted[], js
   }
   for (const a of failed) {
     const detail = counts(a.diagnostics);
-    io.stdout(`${s.bold(a.path)}: ${s.red(a.validity)}${detail ? ` (${detail})` : ""}\n`);
+    io.stdout(`${s.bold(clean(a.path))}: ${s.red(a.validity)}${detail ? ` (${detail})` : ""}\n`);
     if (a.error) io.stdout(`  ${s.red(a.error.kind)}: ${a.error.message}\n        ${s.dim(`hint: ${a.error.hint}`)}\n`);
     io.stdout(formatDiagnostics(a.diagnostics, s));
   }
@@ -95,7 +95,7 @@ export function resolveTheme(
 }
 
 export function fallbackNotice(r: Resolved, s: Styler): string {
-  return r.fallback ? s.red(`notice: your theme was not applied; resolution fell back to ${r.fallback}\n`) : "";
+  return r.fallback ? s.red(`notice: your theme was not applied; resolution fell back to ${clean(r.fallback)}\n`) : "";
 }
 
 export function diagnosticsBlock(diagnostics: readonly Diagnostic[], s: Styler): string {
