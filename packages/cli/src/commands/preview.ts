@@ -116,7 +116,7 @@ ${sections.join("\n")}
 `;
   const out = typeof values.out === "string" ? values.out : `${loaded.path.replace(/\.json$/, "")}.preview.html`;
   writeOutput(out, html, values.force === true);
-  if (values.json) io.stdout(toJson({ command: "preview", path: loaded.path, output: out, modes: sections.length, status }));
+  if (values.json) io.stdout(toJson({ command: "preview", ...(loaded.options.relaxedGate ? { gate: "relaxed" } : {}), path: loaded.path, output: out, modes: sections.length, status }));
   else io.stdout(`${loaded.path}: wrote ${out} (${sections.length} modes)\n`);
   return status;
 }

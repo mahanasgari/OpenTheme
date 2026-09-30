@@ -27,9 +27,8 @@ export function loadTheme(command: string, values: Values, positionals: readonly
   const admitted = admit(core, path, readInput(path), "theme", options);
   const failed = [...context, admitted].filter((a) => a.validity !== "valid");
   if (failed.length === 0 && admitted.entry) {
-    if (options.relaxedGate && !values.json) {
-      io.stdout(styler.yellow("note: the accessibility gate is relaxed for untrusted themes (--relaxed-gate)\n"));
-    }
+    // On standard error, so it never mixes with CSS, JSON, or other output.
+    if (options.relaxedGate) io.stderr(styler.yellow("note: the accessibility gate is relaxed for untrusted themes (--relaxed-gate)\n"));
     return { core, path, entry: admitted.entry, options, styler };
   }
   printAdmissionFailures(command, failed, values.json === true, options.relaxedGate, io, styler);

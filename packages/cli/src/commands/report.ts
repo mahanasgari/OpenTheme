@@ -28,7 +28,7 @@ export function report(argv: readonly string[], io: Io): number {
   if ("ok" in r) throw new Error(r.error.message);
   const status = values.strict === true && r.diagnostics.length > 0 ? 1 : 0;
   if (values.json) {
-    io.stdout(toJson({ command: "report", path: loaded.path, validity: r.validity, diagnostics: r.diagnostics.map(withText), status }));
+    io.stdout(toJson({ command: "report", ...(loaded.options.relaxedGate ? { gate: "relaxed" } : {}), path: loaded.path, validity: r.validity, diagnostics: r.diagnostics.map(withText), status }));
     return status;
   }
   const s = loaded.styler;

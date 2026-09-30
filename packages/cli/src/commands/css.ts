@@ -56,7 +56,7 @@ export function css(argv: readonly string[], io: Io): number {
   const out = typeof values.out === "string" ? values.out : undefined;
   if (out) writeOutput(out, text, values.force === true);
   if (values.json) {
-    io.stdout(toJson({ command: "css", path: loaded.path, ...(out ? { output: out } : { text }), status }));
+    io.stdout(toJson({ command: "css", ...(loaded.options.relaxedGate ? { gate: "relaxed" } : {}), path: loaded.path, ...(out ? { output: out } : { text }), status }));
     return status;
   }
   io.stderr(fallbackNotice(r, loaded.styler));
