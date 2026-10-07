@@ -23,13 +23,13 @@ documentation tests. Write each story's tests before its implementation.
 ## Phase 2: Foundational
 
 - [X] T005 Implement `packages/react/src/path.ts`: `pickValue(resolved, path)` for a token path or a component path `<contract>.<part>.<property>[.<state>]` (same rule as `packages/cli/src/commands/resolve.ts` `pick`, but returning `undefined` instead of throwing), with unit tests in `packages/react/test/path.test.ts`
-- [ ] T006 Implement `packages/react/src/store.ts`: a tiny external store `{ subscribe(listener), get(): Snapshot }` that holds `{ result, scope }` and is updated only from `controller.subscribe` callbacks (research RR3: never read `controller.current` in the snapshot getter except once right after attaching)
+- [X] T006 Implement `packages/react/src/store.ts`: a tiny external store `{ subscribe(listener), get(): Snapshot }` that holds `{ result, scope }` and is updated only from `controller.subscribe` callbacks (research RR3: never read `controller.current` in the snapshot getter except once right after attaching)
 
 ## Phase 3: User Story 1 - Theme a React app (P1)
 
-- [ ] T007 [P] [US1] Write `packages/react/test/provider.test.tsx`: with the reference themes (Aurora and Graphite admitted as trusted), a document provider applies exactly the properties `attachTheme` applies for the same inputs (compare the `style[data-opentheme-scope]` CSSOM rule's declarations; happy-dom's computed style ignores CSSOM writes); an element target (ref) themes only that element's scope; unmount removes the style element and attribute; changing `sizeClass`/`textScale` props updates the scope without detaching (same style element); changing `scope` or `core` replaces it; a `policy` change reaches the controller; `sizeClass="auto"` follows a `resize` to 500 px (compact); using `store={false}` in every test except one that checks the default browser store writes `opentheme:<scope>`
-- [ ] T008 [P] [US1] Write `packages/react/test/strict.test.tsx`: under `<React.StrictMode>` exactly one style element exists after mounting, no error is thrown, and unmount leaves none
-- [ ] T009 [US1] Implement `packages/react/src/provider.tsx` `OpenThemeProvider` per research RR2, RR5, RR6 and the contract, with a React context carrying the store and `serverResolved`
+- [X] T007 [P] [US1] Write `packages/react/test/provider.test.tsx`: with the reference themes (Aurora and Graphite admitted as trusted), a document provider applies exactly the properties `attachTheme` applies for the same inputs (compare the `style[data-opentheme-scope]` CSSOM rule's declarations; happy-dom's computed style ignores CSSOM writes); an element target (ref) themes only that element's scope; unmount removes the style element and attribute; changing `sizeClass`/`textScale` props updates the scope without detaching (same style element); changing `scope` or `core` replaces it; a `policy` change reaches the controller; `sizeClass="auto"` follows a `resize` to 500 px (compact); using `store={false}` in every test except one that checks the default browser store writes `opentheme:<scope>`
+- [X] T008 [P] [US1] Write `packages/react/test/strict.test.tsx`: under `<React.StrictMode>` exactly one style element exists after mounting, no error is thrown, and unmount leaves none
+- [X] T009 [US1] Implement `packages/react/src/provider.tsx` `OpenThemeProvider` per research RR2, RR5, RR6 and the contract, with a React context carrying the store and `serverResolved`
 
 ## Phase 4: User Story 2 - Read and change the theme (P1)
 

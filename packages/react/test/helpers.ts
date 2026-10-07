@@ -90,19 +90,28 @@ export function cleanup(): void {
 }
 
 /** A Core whose controllers are recorded, so tests can reach the controller a provider created. */
-export function observed(core: Core): { core: Core; controllers: ThemeController[] } {
+export function observed(core: Core): { core: Core; controllers: ThemeController[]; policyCalls: PolicyInput[] } {
   const controllers: ThemeController[] = [];
-  const proxy = new Proxy(core, {
-    get(target, key) {
-      if (key !== "createController") return Reflect.get(target, key, target);
-      return (options: Parameters<Core["createController"]>[0]) => {
-        const controller = target.createController(options);
-        controllers.push(controller);
-        return controller;
-      };
+  const policyCalls: PolicyInput[] = [];
+  // Core is frozen, so wrap it in a plain object that records what createController returns.
+  const wrapped: Core = {
+    ...core,
+    createController(options) {
+      const inner = core.createController(options);
+      // Controllers are frozen; a derived object records setPolicy calls and forwards everything else.
+      const controller: ThemeController = Object.create(inner, {
+        setPolicy: {
+          value: (policy: PolicyInput) => {
+            policyCalls.push(policy);
+            inner.setPolicy(policy);
+          },
+        },
+      });
+      controllers.push(controller);
+      return controller;
     },
-  });
-  return { core: proxy, controllers };
+  };
+  return { core: wrapped, controllers, policyCalls };
 }
 
 /** What `attachTheme` itself applies for these inputs (detached again before returning). */

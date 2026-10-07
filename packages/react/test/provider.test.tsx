@@ -108,6 +108,7 @@ describe("prop updates", () => {
     expect(seen.controllers).toHaveLength(1);
     const after = declarationsOf("app");
     expect(after).not.toEqual(before);
+    m.unmount();
     expect(after).toEqual(referenceDeclarations({ core: referenceCore(), policy: POLICY, textScale: 1.5 }));
   });
 
@@ -134,18 +135,20 @@ describe("prop updates", () => {
     m.rerender(ui({ policy: GRAPHITE_POLICY }));
     expect(styles()[0]).toBe(element);
     expect(seen.controllers).toHaveLength(1);
-    expect(declarationsOf("app")).not.toEqual(aurora);
-    expect(declarationsOf("app")).toEqual(referenceDeclarations({ core: referenceCore(), policy: GRAPHITE_POLICY }));
+    expect(seen.policyCalls).toEqual([GRAPHITE_POLICY]);
+    const graphite = declarationsOf("app");
+    expect(graphite).not.toEqual(aurora);
+    m.unmount();
+    expect(graphite).toEqual(referenceDeclarations({ core: referenceCore(), policy: GRAPHITE_POLICY }));
   });
 
   it("an equal policy under a new object identity is not passed on", () => {
     const seen = observed(core);
     core = seen.core;
     const m = mount(ui({ policy: { ...POLICY } }));
-    const spy = vi.spyOn(seen.controllers[0]!, "setPolicy");
     m.rerender(ui({ policy: { ...POLICY } }));
     m.rerender(ui({ policy: { ...POLICY } }));
-    expect(spy).not.toHaveBeenCalled();
+    expect(seen.policyCalls).toHaveLength(0);
   });
 
   it("a scope change replaces the scope", () => {
@@ -172,7 +175,9 @@ describe("prop updates", () => {
     expect(element.isConnected).toBe(false);
     expect(first.controllers).toHaveLength(1);
     expect(second.controllers).toHaveLength(1);
-    expect(declarationsOf("app")).toEqual(referenceDeclarations({ core: referenceCore(), policy: POLICY }));
+    const applied = declarationsOf("app");
+    m.unmount();
+    expect(applied).toEqual(referenceDeclarations({ core: referenceCore(), policy: POLICY }));
   });
 
   it("sizeClass auto follows the window width", () => {
@@ -232,8 +237,9 @@ describe("preference store", () => {
     const ctl = referenceCore().createController({ policy: POLICY, context: LIGHT_CONTEXT });
     await ctl.select({ id: "org.opentheme.graphite" });
     localStorage.setItem("opentheme:app", ctl.exportDocument());
+    const expected = referenceDeclarations({ core: referenceCore(), policy: GRAPHITE_POLICY });
     mount(<OpenThemeProvider core={referenceCore()} scope="app" policy={POLICY} />);
-    expect(declarationsOf("app")).toEqual(referenceDeclarations({ core: referenceCore(), policy: GRAPHITE_POLICY }));
+    expect(declarationsOf("app")).toEqual(expected);
   });
 
   it("unmounting while a write is pending raises nothing", async () => {

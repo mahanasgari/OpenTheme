@@ -13,6 +13,7 @@ describe("React.StrictMode", () => {
   it("leaves exactly one style element after mounting, with the right properties", () => {
     const errors = vi.spyOn(console, "error").mockImplementation(() => undefined);
     const core = referenceCore();
+    const expected = referenceDeclarations({ core, policy: POLICY });
     const m = mount(
       <StrictMode>
         <OpenThemeProvider core={core} scope="app" policy={POLICY} store={false}>
@@ -21,7 +22,7 @@ describe("React.StrictMode", () => {
       </StrictMode>,
     );
     expect(styles()).toHaveLength(1);
-    expect(declarationsOf("app")).toEqual(referenceDeclarations({ core, policy: POLICY }));
+    expect(declarationsOf("app")).toEqual(expected);
     expect(errors).not.toHaveBeenCalled();
     m.unmount();
     expect(styles()).toHaveLength(0);
