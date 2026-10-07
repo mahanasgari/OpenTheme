@@ -39,7 +39,7 @@ documentation tests. Write each story's tests before its implementation.
 ## Phase 5: User Story 3 - Server rendering (P2)
 
 - [X] T012 [P] [US3] Write `packages/react/test/ssr.test.tsx`: `renderToString(<OpenThemeStyle resolved scope="app" root nonce="abc" />)` equals `toStylesheet(resolved, { scope: "app", root: true, element: true, nonce: "abc" })` (allowing for React's attribute order if it differs, compare the element's attributes and text); `renderToString` of a provider with `serverResolved` renders children whose `useOpenTheme().resolved` equals `serverResolved` and touches no browser API (run that test in a plain Node environment with `// @vitest-environment node`); after inserting the server HTML into the document and mounting the provider with the same inputs, the scope's rule receives zero `setProperty`/`removeProperty` calls (spy on the rule's style object as `packages/web/test/dom/first-paint.test.ts` does)
-- [ ] T013 [US3] Implement `packages/react/src/style.tsx` `OpenThemeStyle` (research RR4) and export everything listed in the contract from `packages/react/src/index.ts` (nothing else)
+- [X] T013 [US3] Implement `packages/react/src/style.tsx` `OpenThemeStyle` (research RR4) and export everything listed in the contract from `packages/react/src/index.ts` (nothing else)
 
 ## Phase 6: Polish
 
