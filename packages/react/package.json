@@ -1,0 +1,41 @@
+{
+  "name": "@opentheme/react",
+  "version": "0.1.0-draft.0",
+  "description": "OpenTheme React bindings: a provider, hooks, and a server-rendering component over the Web adapter",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "size": "tsx scripts/size.ts"
+  },
+  "peerDependencies": {
+    "@opentheme/core": "workspace:^",
+    "react": "^18.3.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@opentheme/web": "workspace:^"
+  },
+  "devDependencies": {
+    "@opentheme/core": "workspace:^",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^20.0.0",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsx": "^4.20.5",
+    "typescript": "^6.0.3"
+  }
+}
