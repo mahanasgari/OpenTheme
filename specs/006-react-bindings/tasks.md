@@ -22,7 +22,7 @@ documentation tests. Write each story's tests before its implementation.
 
 ## Phase 2: Foundational
 
-- [ ] T005 Implement `packages/react/src/path.ts`: `pickValue(resolved, path)` for a token path or a component path `<contract>.<part>.<property>[.<state>]` (same rule as `packages/cli/src/commands/resolve.ts` `pick`, but returning `undefined` instead of throwing), with unit tests in `packages/react/test/path.test.ts`
+- [X] T005 Implement `packages/react/src/path.ts`: `pickValue(resolved, path)` for a token path or a component path `<contract>.<part>.<property>[.<state>]` (same rule as `packages/cli/src/commands/resolve.ts` `pick`, but returning `undefined` instead of throwing), with unit tests in `packages/react/test/path.test.ts`
 - [ ] T006 Implement `packages/react/src/store.ts`: a tiny external store `{ subscribe(listener), get(): Snapshot }` that holds `{ result, scope }` and is updated only from `controller.subscribe` callbacks (research RR3: never read `controller.current` in the snapshot getter except once right after attaching)
 
 ## Phase 3: User Story 1 - Theme a React app (P1)

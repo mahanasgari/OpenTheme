@@ -1,4 +1,7 @@
-import { createCore, type Core, type PolicyInput } from "@opentheme/core";
+import { createCore, type Core, type PolicyInput, type ThemeController } from "@opentheme/core";
+import { attachTheme, type SizeClass } from "@opentheme/web";
+import { act, type ReactNode } from "react";
+import { createRoot, type Root } from "react-dom/client";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,6 +14,11 @@ export function read(path: string): string {
 
 export const AURORA = "specification/themes/reference/org.opentheme.aurora.opentheme.json";
 export const GRAPHITE = "specification/themes/reference/org.opentheme.graphite.opentheme.json";
+
+export const LIGHT_CONTEXT = {
+  platform: { colorScheme: "light", contrast: "standard", forcedColors: false, reducedMotion: false, textScale: 1 },
+  environment: { sizeClass: "medium", locale: "en", direction: "ltr" },
+} as const;
 
 export const POLICY: PolicyInput = { preset: "common-personalization", defaultTheme: "org.opentheme.aurora" };
 
@@ -39,4 +47,83 @@ export function reset(): void {
   document.head.innerHTML = "";
   document.body.innerHTML = "";
   localStorage.clear();
+}
+
+// ---- React and Core harness ----
+
+(globalThis as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
+
+export interface Mounted {
+  root: Root;
+  host: HTMLElement;
+  rerender(ui: ReactNode): void;
+  unmount(): void;
+}
+
+const mounted: Mounted[] = [];
+
+export function mount(ui: ReactNode): Mounted {
+  const host = document.createElement("div");
+  document.body.append(host);
+  const root = createRoot(host);
+  act(() => root.render(ui));
+  const m: Mounted = {
+    root,
+    host,
+    rerender: (next) => act(() => root.render(next)),
+    unmount: () => act(() => root.unmount()),
+  };
+  mounted.push(m);
+  return m;
+}
+
+/** Unmounts everything and clears the document; call from afterEach. */
+export function cleanup(): void {
+  for (const m of mounted.splice(0)) {
+    try {
+      m.unmount();
+    } catch {
+      // already unmounted
+    }
+  }
+  reset();
+}
+
+/** A Core whose controllers are recorded, so tests can reach the controller a provider created. */
+export function observed(core: Core): { core: Core; controllers: ThemeController[] } {
+  const controllers: ThemeController[] = [];
+  const proxy = new Proxy(core, {
+    get(target, key) {
+      if (key !== "createController") return Reflect.get(target, key, target);
+      return (options: Parameters<Core["createController"]>[0]) => {
+        const controller = target.createController(options);
+        controllers.push(controller);
+        return controller;
+      };
+    },
+  });
+  return { core: proxy, controllers };
+}
+
+/** What `attachTheme` itself applies for these inputs (detached again before returning). */
+export function referenceDeclarations(options: {
+  core: Core;
+  policy: PolicyInput;
+  sizeClass?: SizeClass;
+  textScale?: number;
+  scope?: string;
+}): Record<string, string> {
+  const scope = options.scope ?? "ref";
+  const s = attachTheme({
+    core: options.core,
+    target: document,
+    scope,
+    policy: options.policy,
+    sizeClass: options.sizeClass ?? "medium",
+    ...(options.textScale !== undefined ? { textScale: options.textScale } : {}),
+    store: false,
+  });
+  const out = declarationsOf(scope);
+  s.detach();
+  return out;
 }
