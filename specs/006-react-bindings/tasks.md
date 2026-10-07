@@ -33,7 +33,7 @@ documentation tests. Write each story's tests before its implementation.
 
 ## Phase 4: User Story 2 - Read and change the theme (P1)
 
-- [ ] T010 [P] [US2] Write `packages/react/test/hooks.test.tsx`: `useOpenTheme` returns Core's resolved theme and outcome after mount; `select` of Graphite re-renders the consumer exactly once with Graphite applied (count renders with a ref counter); `setContext`-equivalent changes that leave the resolution identical (for example setting the same size class) cause zero re-renders; `useThemeValue("color.text.primary")` equals the resolved token and keeps the same reference across unrelated re-renders; an unknown path returns `undefined`; both hooks outside a provider throw the contract's message; actions before attach (server) reject
+- [X] T010 [P] [US2] Write `packages/react/test/hooks.test.tsx`: `useOpenTheme` returns Core's resolved theme and outcome after mount; `select` of Graphite re-renders the consumer exactly once with Graphite applied (count renders with a ref counter); `setContext`-equivalent changes that leave the resolution identical (for example setting the same size class) cause zero re-renders; `useThemeValue("color.text.primary")` equals the resolved token and keeps the same reference across unrelated re-renders; an unknown path returns `undefined`; both hooks outside a provider throw the contract's message; actions before attach (server) reject
 - [ ] T011 [US2] Implement `packages/react/src/hooks.ts` (`useOpenTheme`, `useThemeValue`) with `useSyncExternalStore` over the provider's store (research RR3)
 
 ## Phase 5: User Story 3 - Server rendering (P2)
