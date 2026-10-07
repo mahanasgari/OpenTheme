@@ -11,7 +11,7 @@ function walkTs(dir: string, out: string[]): void {
   for (const name of readdirSync(dir)) {
     const full = join(dir, name);
     if (statSync(full).isDirectory()) walkTs(full, out);
-    else if (name.endsWith(".ts")) out.push(full);
+    else if (name.endsWith(".ts") || name.endsWith(".tsx")) out.push(full);
   }
 }
 
@@ -28,25 +28,36 @@ const CODE_RULES: Array<[RegExp, string]> = [
   [/\.\s*(innerHTML|outerHTML|insertAdjacentHTML)\b|\bdocument\s*\.\s*write\b/, "HTML string injection"],
 ];
 
-export function importAllowed(spec: string): boolean {
-  return spec === "@opentheme/core" || spec.startsWith("./") || spec.startsWith("../");
+/** Extra bare specifiers a package may import besides Core and relative modules. */
+const EXTRA_IMPORTS: Record<string, readonly string[]> = {
+  "packages/react/src": ["react", "react/jsx-runtime", "@opentheme/web"],
+};
+
+export function importAllowed(spec: string, extra: readonly string[] = []): boolean {
+  return spec === "@opentheme/core" || extra.includes(spec) || spec.startsWith("./") || spec.startsWith("../");
 }
 
-/** The Web adapter and the design tokens interchange library share these rules (T003 of 005). */
+/**
+ * The Web adapter, the design tokens interchange library, and the React bindings share these rules
+ * (T003 of 005 and of 006). The React bindings may also import react and @opentheme/web.
+ */
 export function checkWebBoundaries(repoRoot: string): string[] {
-  const files: string[] = [];
-  for (const pkg of ["packages/web/src", "packages/dtcg/src"]) {
+  const files: Array<{ file: string; extra: readonly string[] }> = [];
+  for (const pkg of ["packages/web/src", "packages/dtcg/src", "packages/react/src"]) {
     const srcRoot = join(repoRoot, pkg);
-    if (existsSync(srcRoot)) walkTs(srcRoot, files);
+    const found: string[] = [];
+    if (existsSync(srcRoot)) walkTs(srcRoot, found);
+    for (const file of found) files.push({ file, extra: EXTRA_IMPORTS[pkg] ?? [] });
   }
   const errors: string[] = [];
-  for (const file of files) {
+  for (const { file, extra } of files) {
     const rel = relative(repoRoot, file).replace(/\\/g, "/");
     const raw = readFileSync(file, "utf8");
     for (const m of raw.matchAll(IMPORT)) {
       const spec = m[1]!;
-      if (!importAllowed(spec) || spec.includes("tools/")) {
-        errors.push(`web-boundaries: ${rel}: imports ${spec} (only @opentheme/core and relative modules)`);
+      if (!importAllowed(spec, extra) || spec.includes("tools/")) {
+        const allowed = ["@opentheme/core", ...extra].join(", ");
+        errors.push(`web-boundaries: ${rel}: imports ${spec} (only ${allowed} and relative modules)`);
       }
     }
     const code = stripCommentsAndStrings(raw);
