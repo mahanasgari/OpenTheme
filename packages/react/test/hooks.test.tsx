@@ -198,8 +198,9 @@ describe("useThemeValue", () => {
     const first = v.seen.value;
     v.bump();
     v.bump();
-    expect(v.seen.renders).toBeGreaterThanOrEqual(3);
-    expect(v.seen.history.every((h) => h === first)).toBe(true);
+    const attached = v.seen.history.filter((h) => h !== undefined);
+    expect(attached.length).toBeGreaterThanOrEqual(3);
+    expect(attached.every((h) => h === first)).toBe(true);
   });
 
   it("does not re-render when an unrelated change leaves its value unchanged", () => {

@@ -26,6 +26,9 @@ export interface ThemeStore {
 
 const EMPTY: Snapshot = Object.freeze({ resolved: null, outcome: null, errors: [], report: null, scope: null });
 
+/** What hooks see during server rendering: nothing attached, and the resolution the server supplied. */
+export const serverSnapshot = (resolved: ResolvedTheme | null): Snapshot => (resolved ? { ...EMPTY, resolved } : EMPTY);
+
 type Published = ThemeController["current"];
 
 export function createThemeStore(): ThemeStore {
