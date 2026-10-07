@@ -4,7 +4,8 @@ OpenTheme is an open-source, domain-agnostic theme specification and conformance
 This repository delivers Theme Specification 1.0 artifacts, private verification tooling, and
 the OpenTheme Core runtime (`packages/core`, feature `specs/002-core-runtime`), the first
 platform adapter, the Web adapter (`packages/web`, feature `specs/003-web-adapter`), and the
-`opentheme` command-line tool for theme authors (`packages/cli`, feature `specs/004-theme-author-cli`). Adapters only
+`opentheme` command-line tool for theme authors (`packages/cli`, feature `specs/004-theme-author-cli`),
+and the React bindings (`packages/react`, feature `specs/006-react-bindings`). Adapters only
 translate Core's results; they never re-implement Core behavior.
 
 ## Layout
@@ -14,7 +15,7 @@ translate Core's results; they never re-implement Core behavior.
 | `specification/` | Normative deliverables: prose chapters, JSON Schemas, registries, themes, hosts, examples |
 | `conformance/` | Fixtures, sweeps, and the implementation-agnostic runner |
 | `tools/` | Private, non-normative tooling (reference checker, types, spec-lint, bench, kernel cross-check) |
-| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, the Web adapter `@opentheme/web`, the `opentheme` command-line tool `@opentheme/cli`, the design tokens interchange `@opentheme/dtcg`, and the playground demo |
+| `packages/` | Core runtime `@opentheme/core`, its private conformance harness, the Web adapter `@opentheme/web`, the React bindings `@opentheme/react`, the `opentheme` command-line tool `@opentheme/cli`, the design tokens interchange `@opentheme/dtcg`, and the playground demo |
 | `evaluations/` | Manual protocols for human/AI success criteria (not in CI) |
 | `specs/` | Spec Kit feature docs (plan, research, tasks) |
 
@@ -40,7 +41,7 @@ pnpm release:check
 (`conformance:core`, `sweeps:core`, `crosscheck:core`, `bench:core`, `size:core`) run the same
 conformance suite against `packages/core`. The Web gates (`conformance:web`, `size:web`,
 `bench:web`) check that the CSS output decodes back to Core's result for every resolution fixture,
-that the adapter stays within 10 KB gzip over Core, and its apply and update budgets. Run sweeps against any implementation with
+that the adapter stays within 10 KB gzip over Core, and its apply and update budgets. The React gate (`size:react`) keeps the bindings within 3 KB gzip over React, Core, and the adapter. Run sweeps against any implementation with
 `node conformance/runner/dist/main.js --sweeps --impl "<command>"`. The runner's `--filter`
 glob matches one path segment per `*`; use `**` to match nested fixture ids.
 
