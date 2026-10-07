@@ -10,6 +10,7 @@ export default defineConfig({
       "packages/core",
       "packages/core-conformance",
       "packages/web",
+      "packages/react",
       "packages/playground",
       "packages/cli",
       "packages/dtcg",

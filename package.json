@@ -10,7 +10,7 @@
   },
   "packageManager": "pnpm@10.15.0",
   "scripts": {
-    "build": "pnpm -r --filter @opentheme/types --filter @opentheme/reference-checker --filter @opentheme/conformance-runner --filter @opentheme/spec-lint --filter @opentheme/bench --filter @opentheme/core --filter @opentheme/core-conformance --filter @opentheme/web --filter @opentheme/dtcg --filter @opentheme/playground --filter @opentheme/cli run build",
+    "build": "pnpm -r --filter @opentheme/types --filter @opentheme/reference-checker --filter @opentheme/conformance-runner --filter @opentheme/spec-lint --filter @opentheme/bench --filter @opentheme/core --filter @opentheme/core-conformance --filter @opentheme/web --filter @opentheme/react --filter @opentheme/dtcg --filter @opentheme/playground --filter @opentheme/cli run build",
     "test": "vitest run",
     "spec:check": "pnpm --filter @opentheme/spec-lint run check",
     "conformance": "pnpm --filter @opentheme/conformance-runner run conformance",
@@ -18,7 +18,7 @@
     "kernels:crosscheck": "python3 tools/kernel-crosscheck/crosscheck.py",
     "bench": "pnpm --filter @opentheme/bench run bench",
     "bench:browser": "pnpm --filter @opentheme/bench run bench:browser",
-    "verify": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run bench:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web && pnpm run bench:web && pnpm run bench:cli",
+    "verify": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run bench:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web && pnpm run size:react && pnpm run bench:web && pnpm run bench:cli",
     "release:check": "pnpm --filter @opentheme/spec-lint run release-check",
     "conformance:core": "node conformance/runner/dist/main.js --impl \"node packages/core-conformance/dist/main.js serve-conformance\"",
     "sweeps:core": "node conformance/runner/dist/main.js --sweeps --impl \"node packages/core-conformance/dist/main.js serve-conformance\"",
@@ -34,7 +34,8 @@
     "playground": "pnpm --filter @opentheme/playground run build",
     "bench:cli": "pnpm --filter @opentheme/cli run bench",
     "size:web": "pnpm --filter @opentheme/web run size",
-    "verify:correctness": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web"
+    "size:react": "pnpm --filter @opentheme/react run size",
+    "verify:correctness": "pnpm run spec:check && pnpm run test && pnpm run conformance && pnpm run sweeps && pnpm run kernels:crosscheck && pnpm run api:core && pnpm run size:core && pnpm run conformance:core && pnpm run crosscheck:core && pnpm run crosscheck:core:sweeps && pnpm run conformance:web && pnpm run size:web && pnpm run size:react"
   },
   "devDependencies": {
     "fast-check": "^4.1.1",
