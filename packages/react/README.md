@@ -232,12 +232,25 @@ Pass the same `nonce` to `OpenThemeStyle` and to the provider when you use a Con
 nonce. For an element scope, render `<OpenThemeStyle root={false} … />` and put the same scope
 attribute on the element. The provider never touches browser APIs while rendering on the server.
 
+### Next.js App Router
+
+The package entry begins with the `"use client"` directive, so `OpenThemeProvider` and the hooks can
+be imported from a Server Component file and are treated as client code. `OpenThemeStyle` and
+`serverResolved` keep working for server rendering: render the style in the root layout's `<head>`
+and pass the same resolution to the provider.
+
 ## Strict mode and errors
 
 Under `React.StrictMode` the provider attaches, detaches, and attaches again, and ends with exactly
 one scope. Errors from the adapter (an invalid scope id, a `scope-conflict`) are thrown while
 rendering, so an error boundary can catch them. Operational errors from Core's controller, such as a
 failed preference write, are in `errors` from `useOpenTheme()`.
+
+`errors` is current after each asynchronous action (`select`, `setValue`, `clearValue`, `reset`,
+`acceptPreview`) settles, including a `store-write-failed` recorded while the resolution did not
+change; a component re-renders only when the number of errors changed. An action that rejects still
+rejects to the caller. Errors recorded with no action and no publish, such as a custom store whose
+asynchronous read fails, appear at the next publish or action.
 
 ## License
 

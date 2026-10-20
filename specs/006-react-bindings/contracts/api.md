@@ -26,7 +26,7 @@ export function OpenThemeProvider(props: OpenThemeProviderProps): React.JSX.Elem
 export interface OpenThemeState {
   resolved: ResolvedTheme | null;                  // null until attached (or serverResolved)
   outcome: Outcome | null;
-  errors: readonly OperationalError[];
+  errors: readonly OperationalError[];             // current after each async action settles (FR-R012)
   report: AdapterReport | null;
   controller: ThemeController | null;
   select: ThemeController["select"];               // each action rejects if not attached

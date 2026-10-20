@@ -51,3 +51,12 @@ Recorded 2026-10-07 after T001 to T015.
   SC-R002 hooks.test.tsx (one re-render per published change, none otherwise); SC-R003 ssr.test.tsx
   (zero `setProperty`/`removeProperty` on adoption); SC-R005 size gate; SC-R006 README and
   quickstart run in CI.
+
+### Follow-ups T017 to T020 (FR-R011, FR-R012)
+
+Recorded 2026-10-21.
+
+- `pnpm build`: exit 0. `pnpm verify:correctness`: exit 0.
+- `@opentheme/react` tests: 10 files, 75 tests passed (adds directive 1, errors 3).
+- `pnpm --filter @opentheme/react run size`: minified 4064 B, gzip 1799 B, budget 3072 B.
+- Evidence: FR-R011 directive.test.ts (first line of the built `dist/index.js`); FR-R012 errors.test.tsx.
