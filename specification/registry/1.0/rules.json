@@ -72,12 +72,17 @@
       "id": "R-A11Y-004",
       "chapter": "08-accessibility.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "accessibility/distinguishable-high-contrast-excluded",
+        "accessibility/distinguishable-shortfall"
+      ],
       "description": "Rule R-A11Y-004",
       "summary": "Rule R-A11Y-004",
       "example": {
         "id": "R-A11Y-004",
-        "fixtures": []
+        "fixtures": [
+          "accessibility/distinguishable-shortfall"
+        ]
       }
     },
     {

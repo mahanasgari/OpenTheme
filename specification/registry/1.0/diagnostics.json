@@ -1580,7 +1580,9 @@
       "rules": [
         "R-A11Y-004"
       ],
-      "fixtures": [],
+      "fixtures": [
+        "accessibility/distinguishable-shortfall.json"
+      ],
       "example": {
         "code": "OT-A11Y-004",
         "severity": "warning"
