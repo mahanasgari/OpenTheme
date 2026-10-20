@@ -123,12 +123,12 @@ describe("personalization, preview, persistence (scenario 4)", () => {
     const store = createMemoryStore();
     const { controller } = setup("closed", store);
     await controller.select({ id: "org.opentheme.graphite" });
-    expect(JSON.parse(controller.exportDocument()).previous).toEqual({ id: "org.opentheme.graphite", version: "1.0.0" });
+    expect(JSON.parse(controller.exportDocument()).previous).toEqual({ id: "org.opentheme.graphite", version: "1.0.1" });
     await controller.select({ id: "com.example.missing" });
     const applied = controller.current.resolved.applied as { id: string; fallback: string };
     expect([applied.id, applied.fallback]).toEqual(["org.opentheme.graphite", "previous"]);
     const doc = JSON.parse(controller.exportDocument());
-    expect([doc.selection, doc.previous]).toEqual([{ id: "com.example.missing" }, { id: "org.opentheme.graphite", version: "1.0.0" }]);
+    expect([doc.selection, doc.previous]).toEqual([{ id: "com.example.missing" }, { id: "org.opentheme.graphite", version: "1.0.1" }]);
   });
 
   it("throws disposed after dispose", () => {

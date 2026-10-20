@@ -1,7 +1,7 @@
 {
   "opentheme": "1.0",
   "id": "org.opentheme.graphite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Graphite",
   "description": "Crisp warm-neutral reference theme with amber accent and tight geometry.",
   "author": { "name": "OpenTheme Project" },
@@ -35,6 +35,20 @@
     }
   },
   "contexts": [
+    {
+      "when": { "colorScheme": "light", "contrast": "standard" },
+      "tokens": {
+        "color": {
+          "status": {
+            "warning": {
+              "background": {
+                "$value": { "colorSpace": "oklch", "components": [0.62, 0.14, 75] }
+              }
+            }
+          }
+        }
+      }
+    },
     {
       "when": { "contrast": "high", "colorScheme": "light" },
       "tokens": {
