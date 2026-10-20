@@ -120,6 +120,14 @@ same inputs, and count zero property writes.
 - **FR-R009**: The package MUST have no runtime dependency besides React (peer), `@opentheme/core`
   (peer), and `@opentheme/web`.
 - **FR-R010**: Documentation examples MUST run in continuous integration.
+- **FR-R011**: The published module MUST begin with the `"use client"` directive so frameworks with
+  React Server Components (for example the Next.js App Router) treat the provider and hooks as
+  client code; server rendering of `OpenThemeStyle` and `serverResolved` MUST keep working.
+- **FR-R012**: The errors the hooks expose MUST be current after each asynchronous action
+  (`select`, `setValue`, `clearValue`, `reset`, `acceptPreview`) settles, including a
+  `store-write-failed` recorded while the resolution did not change; a component re-renders only
+  when the error list actually grew. Errors recorded with no action and no publish (a custom store
+  whose asynchronous read fails) appear at the next publish or action; this is documented.
 
 ### Key Entities
 

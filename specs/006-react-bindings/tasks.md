@@ -47,6 +47,13 @@ documentation tests. Write each story's tests before its implementation.
 - [X] T015 Update the root `README.md` "What is here" table and spec list, and `AGENTS.md`'s `packages/` row and opening paragraph, to include `@opentheme/react` and feature 006
 - [X] T016 Run `pnpm build` and `pnpm verify:correctness`; fix anything that fails; record the results (test counts, size) in `specs/006-react-bindings/checklists/requirements.md` under "Implementation Results"; mark every task `[X]`
 
+## Phase 7: Follow-ups (FR-R011, FR-R012)
+
+- [ ] T017 [P] Make `packages/react/src/index.ts` start with `"use client";` and check that `tsc` keeps it as the first statement of `dist/index.js`; add `packages/react/test/directive.test.ts` asserting the built file's first line is `"use client";` (build first, as the docs tests do); confirm `scripts/size.ts` still passes (esbuild may warn about the directive when bundling; silence only that warning, if any)
+- [ ] T018 [P] Write `packages/react/test/errors.test.tsx`: with a custom `PreferenceStore` whose `write` rejects, `await act(() => useOpenTheme().select(Graphite))` leaves `errors` containing `store-write-failed`; then `setValue` of a value that leaves the resolution identical (or a second `select` of the same theme) adds a second error and the consumer re-renders exactly once for it; an action whose write succeeds causes no extra re-render
+- [ ] T019 Implement FR-R012 in `packages/react/src/store.ts` and `hooks.ts`: add `ThemeStore.refresh()` that, when bound, replaces the snapshot only if `scope.errors.length` differs from the snapshot's; the bound asynchronous actions call it after their promise settles (fulfilled or rejected, rethrowing a rejection); do not change Core or the Web adapter
+- [ ] T020 Document both in `packages/react/README.md` (a "Next.js App Router" note under server rendering, and the error timing under errors), update `contracts/api.md` if the snapshot semantics are described there, run `pnpm build` and `pnpm verify:correctness`, record results under "Implementation Results" in `checklists/requirements.md`, and mark T017–T020 `[X]`
+
 ## Dependencies
 
 Setup → Foundational → US1 → US2 → US3 → Polish. Tests before implementation in each story.
