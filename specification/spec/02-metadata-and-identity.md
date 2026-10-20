@@ -12,6 +12,12 @@ Authors without a domain use `uid.` followed by 26 lowercase base32 characters f
 128-bit value. Prefixes `org.opentheme.` and `uid.` are reserved, as is the namespace `std` for
 contracts and customization points. Invalid identifiers produce `OT-META-001` or `OT-META-002`.
 
+`OT-META-002` for the `org.opentheme.` prefix applies to untrusted themes at admission: an
+untrusted theme whose `id` starts with `org.opentheme.` is invalid with `OT-META-002` (error)
+located at `/id`. Trust is assigned by the host in the admission request and never read from the
+document (chapter 12, FR-010). Validation without a trust level (`documents.validate`) does not
+apply this rule, so the official themes validate.
+
 ## Versions
 
 - Theme `version` is a Semantic Version 2.0.0 string (FR-004, FR-005).

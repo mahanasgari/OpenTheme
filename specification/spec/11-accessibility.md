@@ -19,10 +19,14 @@ measured against the mode's thresholds (standard: 4.5:1 text, 3:1 large text and
 see below).
 
 A shortfall in a high-contrast mode, and a seed-pair shortfall, are validity errors
-(`OT-A11Y-002`, `OT-A11Y-001`), so a valid theme has none. Every other shortfall is `OT-A11Y-003`
-(warning). It is located at the theme member that declares the foreground token, or else at
-`/seeds/<scheme>`, with `detail` set to `<foreground>/<background>`. A valid theme with
+(`OT-A11Y-002`, `OT-A11Y-001`), so a valid theme has none. Every other contrast shortfall is
+`OT-A11Y-003` (warning). It is located at the theme member that declares the foreground token,
+or else at `/seeds/<scheme>`, with `detail` set to `<foreground>/<background>`. A valid theme with
 shortfalls is valid but non-conformant; whether it may be used is decided by developer policy.
+
+The report also contains the distinguishable-role findings (`OT-A11Y-004`, see "Distinguishable
+roles"). Only `OT-A11Y-003` can make an accessibility gate refuse an admission; `OT-A11Y-004`
+never does.
 
 ## High contrast (FR-027)
 
@@ -81,8 +85,20 @@ Other invisible or low-contrast focus colors are covered by the `color.focus` co
 
 ## Distinguishable roles (FR-073)
 
-Baseline distinguishable pairs use OKLab ΔE with threshold from the registry (default 0.10).
-Failures are warnings (`OT-A11Y-004`).
+Baseline distinguishable pairs use OKLab ΔE with threshold from the registry
+(`distinguishableThreshold`, 0.10). ΔE is the Euclidean distance between the OKLab coordinates of
+the two quantized colors.
+
+The check is part of the accessibility conformance report. In the standard-contrast mode of every
+supported color scheme, each registry `distinguishable` pair whose ΔE is below the threshold is
+`OT-A11Y-004` (warning). It is located like `OT-A11Y-003`: at the theme member that declares the
+pair's member `a`, or else at `/seeds/<scheme>`, with `detail` set to `<a>/<b>`. It is a warning
+and never makes a theme invalid or an accessibility gate refuse an admission.
+
+High-contrast and forced-colors modes are excluded. This is deliberate: the specification
+baseline's fixed high-contrast status colors place `color.status.success.background` and
+`color.status.danger.background` at ΔE 0.092, so checking them would make the official themes
+non-conformant (finding C4).
 
 ## Literal ranges
 
