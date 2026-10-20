@@ -1,3 +1,4 @@
+"use client";
 /**
  * @opentheme/react — public API (specs/006-react-bindings/contracts/api.md).
  * Only the exports listed in the contract are public.
