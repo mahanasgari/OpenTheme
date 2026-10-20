@@ -8,7 +8,7 @@ All theming behavior lives in [`@opentheme/core`](../core/README.md) and the Web
 trust, validation, resolution, policy, accessibility, and CSS output. This package only connects them
 to React. Supported React versions are 18.3 and 19.
 
-Status: `0.1.0-draft.0`, pre-release, tracking Theme Specification `1.0.0-draft.5`.
+Status: `0.1.0-draft.0`, pre-release, tracking Theme Specification `1.0.0-draft.6`.
 
 ## Install
 
