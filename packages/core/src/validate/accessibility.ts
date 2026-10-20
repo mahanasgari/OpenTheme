@@ -4,11 +4,11 @@
  * operands outside their domain (OT-DRV-004), and the effort budget (OT-DRV-007).
  * Standard-mode pair shortfalls are reported by resolution, not by validity (FR-064).
  */
-import { contrastRatio, quantize } from "../color/index.js";
+import { contrastRatio, quantize, srgbToOklab } from "../color/index.js";
 import type { DiagnosticCollector } from "../diagnostics/collector.js";
 import { declareBase, evaluate, hasAliasedDomainOperand, type HostTokenDef, refsOf, staticEffort } from "../engine/evaluate.js";
 import { buildModel, isRecord } from "../engine/model.js";
-import { BASELINE_PAIRS, EFFORT_BUDGET, type TokenType } from "../engine/registry.js";
+import { BASELINE_PAIRS, DISTINGUISHABLE, DISTINGUISHABLE_THRESHOLD, EFFORT_BUDGET, type TokenType } from "../engine/registry.js";
 import { colorLiteral } from "../engine/values.js";
 import { hostTokenTypes } from "./theme.js";
 import { Prepared } from "../resolve/prepare.js";
@@ -69,6 +69,10 @@ function evaluateNeeded(decls: ReturnType<typeof declareBase>): ReturnType<typeo
   for (const pair of BASELINE_PAIRS) {
     need(pair.foreground);
     need(pair.background);
+  }
+  for (const pair of DISTINGUISHABLE) {
+    need(pair.a);
+    need(pair.b);
   }
   for (const [p, d] of decls) if (hasAliasedDomainOperand(d.raw)) need(p);
   while (pending.length > 0) for (const r of refsOf(decls.get(pending.pop()!)!.raw)) need(r);
@@ -138,10 +142,19 @@ export function checkAccessibility(
   }
 }
 
+/** OKLab distance (Euclidean) between two quantized colors (chapter 11, distinguishable roles). */
+export function quantizedDeltaE(x: ReturnType<typeof quantize>, y: ReturnType<typeof quantize>): number {
+  const [l1, a1, b1] = srgbToOklab(x.srgb8[0] / 255, x.srgb8[1] / 255, x.srgb8[2] / 255);
+  const [l2, a2, b2] = srgbToOklab(y.srgb8[0] / 255, y.srgb8[1] / 255, y.srgb8[2] / 255);
+  return Math.sqrt((l1 - l2) * (l1 - l2) + (a1 - a2) * (a1 - a2) + (b1 - b2) * (b1 - b2));
+}
+
 /**
  * The accessibility conformance report (chapter 11, "Accessibility conformance report"; FR-064),
  * separate from validity: in the standard-contrast mode of every supported color scheme, each
- * registry pair except disabled pairs below its threshold is `OT-A11Y-003` (warning). Seed pairs
+ * registry pair except disabled pairs below its threshold is `OT-A11Y-003` (warning), and each
+ * distinguishable pair closer than the registry threshold in OKLab is `OT-A11Y-004` (warning).
+ * Seed pairs
  * and high-contrast modes are validity checks (`OT-A11Y-001`, `OT-A11Y-002`) and are not repeated.
  * `doc` is a valid theme after inheritance.
  */
@@ -163,6 +176,15 @@ export function conformanceReport(
       const d = decls.get(pair.foreground);
       const pointer = d && d.document === "theme" && d.pointer ? d.pointer : `/seeds/${scheme}`;
       c.add("OT-A11Y-003", { document: "theme", pointer }, { params: { detail: `${pair.foreground}/${pair.background}` } });
+    }
+    for (const pair of DISTINGUISHABLE) {
+      const a = result.values.get(pair.a);
+      const b = result.values.get(pair.b);
+      if (!a || !b || a.k !== "color" || b.k !== "color") continue;
+      if (quantizedDeltaE(quantize(a.lab), quantize(b.lab)) >= DISTINGUISHABLE_THRESHOLD) continue;
+      const d = decls.get(pair.a);
+      const pointer = d && d.document === "theme" && d.pointer ? d.pointer : `/seeds/${scheme}`;
+      c.add("OT-A11Y-004", { document: "theme", pointer }, { params: { detail: `${pair.a}/${pair.b}` } });
     }
   }
 }
