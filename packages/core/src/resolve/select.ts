@@ -10,6 +10,7 @@ import { compareSelectionOrder } from "../versioning/semver.js";
 import type { Prepared } from "./prepare.js";
 
 export const BASELINE_ID = "org.opentheme.baseline";
+const RESERVED_PREFIX = "org.opentheme.";
 
 export type Fallback = "none" | "previous" | "developer-default" | "specification-baseline";
 
@@ -90,6 +91,12 @@ export function selectTheme(input: SelectInput, c: DiagnosticCollector, prepared
     if (input.availableThemes && input.availableThemes.length > 0 && !available.has(tid)) return null;
     const entry = pick(tid, version);
     if (!entry) return null;
+    // Chapter 02 (finding C1): an untrusted theme may not use the reserved prefix. Trust is the
+    // supplied entry's, never the document's.
+    if (entry.trust !== "trusted" && id(entry.document).startsWith(RESERVED_PREFIX)) {
+      c.add("OT-META-002", { document: "theme", pointer: "/id" });
+      return null;
+    }
     const v = validateThemeDocument(entry.document, {
       bases: all.filter((b) => b.document !== entry.document),
       host: input.host,

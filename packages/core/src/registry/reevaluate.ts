@@ -12,6 +12,8 @@ import { type BaseEntry, type ThemeValidation, validateThemeDocument } from "../
 import type { Validity } from "./snapshot.js";
 import type { Prepared } from "../resolve/prepare.js";
 
+const RESERVED_PREFIX = "org.opentheme.";
+
 export interface ThemeEvaluation {
   readonly validity: Validity;
   readonly gate: Gate;
@@ -31,10 +33,17 @@ export function evaluateTheme(
   /** A validation of `document` under the same bases and host, when the caller already has one. */
   validation: ThemeValidation = validateThemeDocument(document, { bases, host, ...(prepared ? { prepared } : {}) }),
 ): ThemeEvaluation {
-  const validity: Validity = validation.valid ? "valid" : validation.unsupported ? "unsupported" : "invalid";
-  const merged = validation.valid ? (validation.merged ?? document) : null;
+  // Chapter 02: the reserved `org.opentheme.` prefix is invalid for an untrusted theme at admission.
+  // Trust is the host's, never read from the document; validation without a trust level does not
+  // apply the rule (finding C1).
+  const claimed = (document as { readonly id?: unknown }).id;
+  const reserved = trust === "untrusted" && typeof claimed === "string" && claimed.startsWith(RESERVED_PREFIX);
+  const valid = validation.valid && !reserved;
+  const validity: Validity = valid ? "valid" : validation.unsupported && !reserved ? "unsupported" : "invalid";
+  const merged = valid ? (validation.merged ?? document) : null;
   const c = new DiagnosticCollector("theme");
   c.addAll(validation.diagnostics);
+  if (reserved) c.add("OT-META-002", { document: "theme", pointer: "/id" });
   const report = new DiagnosticCollector("theme");
   if (merged) conformanceReport(merged, host, report, prepared);
   const shortfalls = report.finish();

@@ -9,7 +9,7 @@
     "specification/registry/1.0/transformations.json": "974a5af53ec7f195da473086af91396b40b0ce981633d771b4ce272f1138019e",
     "specification/registry/1.0/forced-colors.json": "ca82095358eb83c23a9be244a4a8bffbde49e024dff529002776f02e63ff9bdf",
     "specification/registry/1.0/limits.json": "73c2616e08e1b1c58162b1e77ce9754cf6c8fbbd3166b99a3e734e97e99aa379",
-    "specification/registry/1.0/diagnostics.json": "56525bef1452bf9915d6c49952537a571a51179bcb5d374e90ebd1ca6cb0e9fb",
+    "specification/registry/1.0/diagnostics.json": "711f3a82f696988218759b39a3fa1a876291ea33b966a515fbee4381686cbe4b",
     "specification/schemas/1.0/defs/components.schema.json": "0b41b0b294380860caffeb6af894e1d6ac4ea075abc09324ac715dcae1a847a4",
     "specification/schemas/1.0/defs/contexts.schema.json": "59107f571a5f3dd04e3e8a101e8c185811a10871aa3a351d7da4afd04e2e8954",
     "specification/schemas/1.0/defs/customization.schema.json": "22bb3322cbd2aeebf996a717bccf6ec3b2f5afe1c268e482f63db93bcdacf7ec",
