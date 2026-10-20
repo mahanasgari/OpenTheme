@@ -44,7 +44,9 @@ Run `opentheme <command> --help` for every option.
 Files are **untrusted** unless you pass `--trusted`, and nothing inside a file can change that. Use
 `--trusted` only for themes you ship yourself. Untrusted themes come from a source,
 `--source user-created` (the default), `imported`, `shared`, or `ai-generated`, and must pass the
-accessibility gate to be used; `--relaxed-gate` admits them anyway and says so on every run.
+accessibility gate to be used; `--relaxed-gate` admits them anyway and says so on every run. An
+untrusted file whose `id` starts with the reserved prefix `org.opentheme.` is invalid
+(`OT-META-002`), so the official themes need `--trusted` to be resolved or rendered.
 
 ```bash
 opentheme validate my-theme.opentheme.json --source imported

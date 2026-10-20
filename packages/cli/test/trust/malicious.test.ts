@@ -38,17 +38,28 @@ describe("untrusted inputs under every command", () => {
 });
 
 describe("claims inside a document", () => {
-  it("an official id and provenance stay untrusted", async () => {
+  it("a provenance claim stays untrusted", async () => {
     const aurora = JSON.parse(read("specification/themes/reference/org.opentheme.aurora.opentheme.json")) as Record<string, unknown>;
-    const file = tmp.file("claims.json", { ...aurora, provenance: { origin: "user-created" } });
+    const file = tmp.file("claims.json", { ...aurora, id: "com.example.claims", provenance: { origin: "prebuilt" } });
     const r = await cli(["resolve", "--json", file]);
     expect((r.json().applied as { trust: string }).trust).toBe("untrusted");
     const t = await cli(["resolve", "--json", "--trusted", file]);
     expect((t.json().applied as { trust: string }).trust).toBe("trusted");
   });
 
+  it("an untrusted official id is invalid (OT-META-002) and trust is still the flag's", async () => {
+    const aurora = JSON.parse(read("specification/themes/reference/org.opentheme.aurora.opentheme.json")) as Record<string, unknown>;
+    const file = tmp.file("official.json", { ...aurora, provenance: { origin: "prebuilt" } });
+    const r = await cli(["resolve", "--json", file]);
+    expect(r.status).toBe(1);
+    expect(r.stdout).toContain("OT-META-002");
+    const t = await cli(["resolve", "--json", "--trusted", file]);
+    expect(t.status).toBe(0);
+    expect((t.json().applied as { trust: string }).trust).toBe("trusted");
+  });
+
   it("--relaxed-gate is stated on standard error and in JSON", async () => {
-    const file = tmp.file("relaxed.json", read("specification/themes/reference/org.opentheme.aurora.opentheme.json"));
+    const file = tmp.file("relaxed.json", { ...JSON.parse(read("specification/themes/reference/org.opentheme.aurora.opentheme.json")), id: "com.example.relaxed" });
     const human = await cli(["css", "--relaxed-gate", file]);
     expect(human.stderr).toContain("accessibility gate is relaxed");
     expect(human.stdout.startsWith(":root {")).toBe(true);

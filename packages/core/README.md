@@ -60,6 +60,9 @@ document: not from its id, author, provenance, version, `$extensions`, or an AI-
 - An untrusted theme that misses WCAG 2.2 AA in any mode it supports is refused by the
   accessibility gate. Trusted themes are never refused; their shortfalls are only reported.
 - An untrusted document can never replace, shadow, or impersonate a trusted one with the same id.
+  An untrusted theme whose `id` starts with the reserved prefix `org.opentheme.` is invalid
+  (`OT-META-002` at `/id`), so the example below, which admits the official themes' bytes as
+  untrusted, registers them as `invalid`; real untrusted themes use their own identifier.
 - The specification baseline theme is built in and always available as the last fallback.
 
 ```ts

@@ -32,9 +32,11 @@ describe("resolve", () => {
     const file = await cli(["resolve", "--json", "--trusted", AURORA, "--preset", "common-personalization", "--preferences", doc]);
     expect((file.json().resolved as { context: Record<string, unknown> }).context).toMatchObject({ colorScheme: "dark" });
     // An untrusted theme with a preset is still the one resolved (presets alone list trusted themes).
-    const untrusted = await cli(["resolve", "--json", AURORA, "--preset", "common-personalization", "--set", 'std.color-scheme="dark"']);
+    // (its id is not reserved: an untrusted org.opentheme.* theme is invalid, OT-META-002)
+    const copy = tmp.file("copy.json", { ...JSON.parse(read("specification/themes/reference/org.opentheme.aurora.opentheme.json")), id: "com.example.aurora-copy" });
+    const untrusted = await cli(["resolve", "--json", copy, "--preset", "common-personalization", "--set", 'std.color-scheme="dark"']);
     expect(untrusted.status).toBe(0);
-    expect(untrusted.json().applied).toMatchObject({ id: "org.opentheme.aurora", fallback: "none", trust: "untrusted" });
+    expect(untrusted.json().applied).toMatchObject({ id: "com.example.aurora-copy", fallback: "none", trust: "untrusted" });
     expect((await cli(["resolve", "--trusted", AURORA, "--set", "std.text-size=1.5"])).status).toBe(2);
     expect((await cli(["resolve", "--trusted", AURORA, "--preset", "closed", "--set", "std.text-size=oops"])).status).toBe(2);
   });
