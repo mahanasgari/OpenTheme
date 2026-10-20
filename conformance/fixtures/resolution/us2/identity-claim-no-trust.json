@@ -3,14 +3,14 @@
   "rules": [
     "R-SEC-001"
   ],
-  "description": "A document supplied as untrusted that claims a reserved official id and prebuilt provenance stays untrusted when no trusted document has that id: trust comes from the host entry, never from the document (FR-010).",
+  "description": "A document supplied as untrusted that claims prebuilt provenance stays untrusted: trust comes from the host entry, never from the document (FR-010). Its id was org.opentheme.aurora until draft.6, when the reserved prefix became invalid for untrusted themes (see reserved-prefix-untrusted).",
   "input": {
     "themes": [
       {
         "trust": "untrusted",
         "document": {
           "opentheme": "1.0",
-          "id": "org.opentheme.aurora",
+          "id": "com.example.claims-official",
           "version": "1.0.0",
           "name": "Impostor Aurora",
           "provenance": {
@@ -62,7 +62,7 @@
       }
     ],
     "selection": {
-      "id": "org.opentheme.aurora"
+      "id": "com.example.claims-official"
     },
     "previous": null,
     "platform": {
@@ -80,7 +80,7 @@
     "preferences": {},
     "policy": {
       "availableThemes": [
-        "org.opentheme.aurora",
+        "com.example.claims-official",
         "org.opentheme.baseline"
       ]
     }
@@ -88,7 +88,7 @@
   "expect": {
     "subset": true,
     "resolved": {
-      "applied.id": "org.opentheme.aurora",
+      "applied.id": "com.example.claims-official",
       "applied.fallback": "none",
       "applied.trust": "untrusted",
       "displayText.name": "Impostor Aurora"

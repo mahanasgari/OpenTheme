@@ -1149,12 +1149,16 @@
       "id": "R-META-002",
       "chapter": "02-metadata-and-identity.md",
       "requirements": [],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/us2/reserved-prefix-untrusted"
+      ],
       "description": "Rule R-META-002",
       "summary": "Rule R-META-002",
       "example": {
         "id": "R-META-002",
-        "fixtures": []
+        "fixtures": [
+          "resolution/us2/reserved-prefix-untrusted"
+        ]
       }
     },
     {

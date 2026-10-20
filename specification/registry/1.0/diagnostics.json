@@ -143,7 +143,9 @@
       "rules": [
         "R-META-002"
       ],
-      "fixtures": [],
+      "fixtures": [
+        "resolution/us2/reserved-prefix-untrusted.json"
+      ],
       "example": {
         "code": "OT-META-002",
         "severity": "error"
