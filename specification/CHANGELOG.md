@@ -1,5 +1,63 @@
 # Changelog
 
+## 1.0.0-draft.6 (2026-10-21)
+
+Errata to `1.0.0-draft.5`: findings C1 and C4 are resolved, as approved by the project owner on
+2026-10-21. Three new fixtures (`accessibility/distinguishable-shortfall`,
+`accessibility/distinguishable-high-contrast-excluded`, `resolution/us2/reserved-prefix-untrusted`;
+321 in total). Drafts carry no compatibility guarantee.
+
+### Rule errata
+
+- **C1** (`OT-META-002`, reserved identifier prefix): chapter 02 now says when the code applies.
+  An untrusted theme whose `id` starts with `org.opentheme.` is invalid with `OT-META-002` (error)
+  at `/id`, at admission and when selected for resolution. Trust comes only from the host's entry,
+  never from the document (chapter 12, FR-010). Validation without a trust level
+  (`documents.validate`, the reference checker's `validate`) is unchanged, so the official themes
+  still validate. The `uid.` prefix is not affected (finding C10).
+- **C4** (`OT-A11Y-004`, distinguishable roles): chapter 11 makes it part of the accessibility
+  conformance report, next to `OT-A11Y-003`. In the standard-contrast mode of every supported
+  color scheme, each registry `distinguishable` pair whose OKLab ΔE (Euclidean distance between
+  the OKLab coordinates of the quantized colors) is below `distinguishableThreshold` (0.10) is
+  `OT-A11Y-004` (warning), located like `OT-A11Y-003` (the declaration of pair member `a`, else
+  `/seeds/<scheme>`) with `detail` `<a>/<b>`. It never makes a theme invalid and never refuses an
+  admission: the accessibility gate refuses on `OT-A11Y-003` only. High-contrast and forced-colors
+  modes are excluded, on purpose: the specification baseline's fixed high-contrast status colors
+  place `color.status.success.background` and `color.status.danger.background` at ΔE 0.092 in
+  every theme, so checking them would make the official themes non-conformant.
+
+### Reference themes
+
+- Graphite is now `1.0.1`. It measured ΔE 0.070 between `color.status.warning.background` and
+  `color.action.primary.background` in light standard. A context overlay for
+  `{ colorScheme: "light", contrast: "standard" }` sets the warning background to
+  `oklch(0.62 0.14 75)`, giving ΔE 0.140; every contrast pair still passes in every mode, and its
+  report is empty. Aurora and the specification baseline are unchanged (all their standard-mode
+  ΔE values are above 0.19). Graphite's resolution output changes in light standard (the warning
+  background) and carries version `1.0.1` in every mode, so Core's golden determinism hashes for
+  the four `complete-graphite-*` and two `portability-graphite-*` fixtures are regenerated. Their
+  fixture expectations are subsets that do not mention those values and do not change.
+
+### Fixture changes (bug fix)
+
+- `resolution/us2/identity-claim-no-trust`: its untrusted document claimed the reserved id
+  `org.opentheme.aurora`, which C1 now makes invalid, so the original expectation (the document
+  applies, untrusted) no longer holds. The fixture keeps its rule (`R-SEC-001`, FR-010: a claim
+  inside a document never grants trust) with the non-reserved id `com.example.claims-official`;
+  its expectation is otherwise unchanged. The reserved-id case moves to the new
+  `resolution/us2/reserved-prefix-untrusted`, which expects `OT-META-002` at `/id`, `OT-RES-003`,
+  and a fall back to the specification baseline.
+- No other expected result changes. `baseline-impostor`, `identity-collision*`,
+  `base-shadow-untrusted-first`, `us7/*`, and `us8/ai-untrusted` still report `OT-SEC-001`
+  because a trusted document with the same id exists, which is checked before the new rule.
+
+### Findings still open
+
+- **C9** `OT-PREF-009` (see `1.0.0-draft.4`).
+- **C10** Chapter 02 reserves `uid.` as well as `org.opentheme.`, but no rule says that a `uid.`
+  identifier must be followed by exactly 26 lowercase base32 characters. Neither implementation
+  enforces it. A decision is needed on whether to add the rule and which code reports it.
+
 ## 1.0.0-draft.5 (2026-09-30)
 
 Errata to `1.0.0-draft.4`: findings D1 to D3, found while implementing chapter 16
