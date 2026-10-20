@@ -96,6 +96,18 @@ function prepareDocument(
   host?: Record<string, unknown> | null,
 ): { document: Record<string, unknown>; valid: boolean; trust: TrustLevel } {
   const bases = all.filter((t) => t.document !== entry.document);
+  // Chapter 02 (finding C1): an untrusted theme may not use the reserved `org.opentheme.` prefix.
+  // Trust comes from the supplied entry, never from the document.
+  const id = themeId(entry.document);
+  if (entryTrust(entry) === "untrusted" && id !== undefined && id.startsWith("org.opentheme.")) {
+    collector.add({
+      code: "OT-META-002",
+      rule: "R-META-002",
+      location: { document: "theme", pointer: "/id" },
+      params: {},
+    });
+    return { document: entry.document, valid: false, trust: "untrusted" };
+  }
   const result = validateThemeObject(entry.document, {
     bases,
     ...(host ? { host } : {}),
