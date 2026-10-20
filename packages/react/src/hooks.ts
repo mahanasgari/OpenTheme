@@ -42,9 +42,19 @@ function useSnapshot(hook: string): Snapshot {
 
 type Method = "select" | "setValue" | "clearValue" | "reset" | "preview" | "acceptPreview" | "cancelPreview";
 
-function bound<K extends Method>(controller: ThemeController | null, key: K, asynchronous: boolean): ThemeController[K] {
+function bound<K extends Method>(
+  controller: ThemeController | null,
+  key: K,
+  asynchronous: boolean,
+  refresh: () => void,
+): ThemeController[K] {
   return ((...args: unknown[]) => {
-    if (controller) return (controller[key] as (...a: unknown[]) => unknown)(...args);
+    if (controller) {
+      const result = (controller[key] as (...a: unknown[]) => unknown)(...args);
+      if (!asynchronous) return result;
+      // Core records store-write-failed after the write settles without publishing; pick it up.
+      return (result as Promise<unknown>).finally(refresh);
+    }
     const error = new Error("OpenTheme is not attached yet; actions work once <OpenThemeProvider> has mounted in the browser");
     if (asynchronous) return Promise.reject(error);
     throw error;
@@ -53,18 +63,19 @@ function bound<K extends Method>(controller: ThemeController | null, key: K, asy
 
 export function useOpenTheme(): OpenThemeState {
   const snapshot = useSnapshot("useOpenTheme");
+  const { store } = useProvider("useOpenTheme");
   const controller = snapshot.scope?.controller ?? null;
   const actions = useMemo(
     () => ({
-      select: bound(controller, "select", true),
-      setValue: bound(controller, "setValue", true),
-      clearValue: bound(controller, "clearValue", true),
-      reset: bound(controller, "reset", true),
-      preview: bound(controller, "preview", false),
-      acceptPreview: bound(controller, "acceptPreview", true),
-      cancelPreview: bound(controller, "cancelPreview", false),
+      select: bound(controller, "select", true, store.refresh),
+      setValue: bound(controller, "setValue", true, store.refresh),
+      clearValue: bound(controller, "clearValue", true, store.refresh),
+      reset: bound(controller, "reset", true, store.refresh),
+      preview: bound(controller, "preview", false, store.refresh),
+      acceptPreview: bound(controller, "acceptPreview", true, store.refresh),
+      cancelPreview: bound(controller, "cancelPreview", false, store.refresh),
     }),
-    [controller],
+    [controller, store],
   );
   return useMemo(
     () => ({

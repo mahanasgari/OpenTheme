@@ -22,6 +22,8 @@ export interface ThemeStore {
   get(): Snapshot;
   /** Publish the scope's current result, then every later one; the returned function stops it. */
   bind(scope: WebScope): () => void;
+  /** Re-read the bound scope's errors after an action; publishes only when their count changed. */
+  refresh(): void;
 }
 
 const EMPTY: Snapshot = Object.freeze({ resolved: null, outcome: null, errors: [], report: null, scope: null });
@@ -53,6 +55,10 @@ export function createThemeStore(): ThemeStore {
       return () => void listeners.delete(listener);
     },
     get: () => snapshot,
+    refresh() {
+      const scope = snapshot.scope;
+      if (scope && scope.errors.length !== snapshot.errors.length) set({ ...snapshot, errors: scope.errors });
+    },
     bind(scope) {
       set(of(scope, scope.controller.current));
       const stop = scope.controller.subscribe((result) => set(of(scope, result)));

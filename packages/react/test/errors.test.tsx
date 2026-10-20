@@ -31,7 +31,7 @@ const failing = (): PreferenceStore => ({
   write: () => Promise.reject(new Error("disk full")),
 });
 
-const count = (s: OpenThemeState | null) => s!.errors.filter((e) => e.code === "store-write-failed").length;
+const count = (s: OpenThemeState | null) => s!.errors.filter((e) => e.kind === "store-write-failed").length;
 
 describe("errors after asynchronous actions", () => {
   it("exposes store-write-failed after select, and again after a repeated action, one render each", async () => {
