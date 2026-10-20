@@ -1,9 +1,11 @@
 import type { DiagnosticCollector } from "../diagnostics/collector.js";
 import { contrastRatio } from "../color/contrast.js";
+import { srgbToOklab } from "../color/oklab.js";
+import { deltaE } from "../color/oklch.js";
 import { declareTokens } from "../resolve/declare.js";
 import { evaluateDeclarations } from "../resolve/evaluate.js";
 import { quantizeValue } from "../resolve/quantize.js";
-import { loadAccessibilityPairs, thresholdForPair } from "../resolve/check.js";
+import { loadAccessibilityPairs, loadDistinguishable, thresholdForPair } from "../resolve/check.js";
 import type { EffectiveContext } from "../resolve/context.js";
 import { getTransform } from "../transforms/registry.js";
 import { inDomain } from "../transforms/number.js";
@@ -168,6 +170,25 @@ export function accessibilityReport(
           pointer: decls.get(pair.foreground)?.pointer ?? `/seeds/${scheme}`,
         },
         params: { detail: `${pair.foreground}/${pair.background}` },
+      });
+    }
+    const dist = loadDistinguishable();
+    for (const pair of dist.pairs) {
+      const av = values.get(pair.a);
+      const bv = values.get(pair.b);
+      if (av?.kind !== "color" || bv?.kind !== "color") continue;
+      const qa = srgb8(quantizeValue(av));
+      const qb = srgb8(quantizeValue(bv));
+      if (!qa || !qb) continue;
+      if (deltaE(srgbToOklab(qa), srgbToOklab(qb)) >= dist.threshold) continue;
+      collector.add({
+        code: "OT-A11Y-004",
+        rule: "R-A11Y-004",
+        location: {
+          document: "theme",
+          pointer: decls.get(pair.a)?.pointer ?? `/seeds/${scheme}`,
+        },
+        params: { detail: `${pair.a}/${pair.b}` },
       });
     }
   }

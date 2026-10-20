@@ -52,6 +52,31 @@ export function loadAccessibilityPairs(): RegistryPair[] {
   return cachedPairs;
 }
 
+export interface DistinguishableRegistry {
+  pairs: { a: string; b: string }[];
+  threshold: number;
+}
+
+let cachedDistinguishable: DistinguishableRegistry | undefined;
+
+/** The registry's distinguishable pairs and OKLab ΔE threshold (chapter 11). */
+export function loadDistinguishable(): DistinguishableRegistry {
+  if (cachedDistinguishable) return cachedDistinguishable;
+  const path = join(
+    dirname(fileURLToPath(import.meta.url)),
+    "../../../../specification/registry/1.0/semantic-baseline.json",
+  );
+  const data = JSON.parse(readFileSync(path, "utf8")) as {
+    distinguishable?: { a: string; b: string }[];
+    distinguishableThreshold?: number;
+  };
+  cachedDistinguishable = {
+    pairs: data.distinguishable ?? [],
+    threshold: data.distinguishableThreshold ?? 0.1,
+  };
+  return cachedDistinguishable;
+}
+
 /** Test helper: clear the pair cache so registry changes are visible. */
 export function clearAccessibilityPairCache(): void {
   cachedPairs = undefined;
