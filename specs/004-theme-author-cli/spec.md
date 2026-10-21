@@ -284,6 +284,10 @@ identifier, author) changes the outcome.
 - **FR-T070**: `init` MUST write a valid minimal theme with a fresh `uid.` identifier drawn from a
   cryptographically secure random source, the given name, and the current specification version,
   and MUST refuse to overwrite an existing file unless asked.
+- **FR-T071**: The theme `init` writes MUST declare every standard customization point (chapter 09),
+  so a user's preferences apply wherever a policy permits them; `--dark` MUST add a dark color
+  scheme whose every contrast pair conforms. (Added 2026-10-21: without the declarations, a new
+  theme silently ignored the user's color-scheme choice.)
 
 **Quality**
 

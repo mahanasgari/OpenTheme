@@ -14,7 +14,7 @@ Node.js 24 or later.
 ## Quickstart
 
 ```bash
-opentheme init my-theme.opentheme.json --name "Quiet Paper"
+opentheme init my-theme.opentheme.json --name "Quiet Paper" --dark
 opentheme validate my-theme.opentheme.json
 opentheme resolve my-theme.opentheme.json --scheme light --path color.text.primary
 opentheme report my-theme.opentheme.json
@@ -33,7 +33,7 @@ Open `my-theme.html` in any browser to see your theme in every supported mode.
 | `report <theme>` | The accessibility conformance report: every declared pair below its threshold in any mode |
 | `css <theme>` | The Web adapter's CSS custom properties, as a rule or a complete `<style>` element |
 | `preview <theme>` | One self-contained HTML page with sample components in every supported mode |
-| `init <file>` | A new valid minimal theme with a fresh `uid.` identifier |
+| `init <file>` | A new valid minimal theme with a fresh `uid.` identifier; `--dark` adds a dark scheme |
 | `export <theme>` | W3C Design Tokens (2025.10) files, one per mode, with computed values |
 | `import <tokens.json>` | A valid theme from a W3C Design Tokens file; losses are reported |
 
@@ -67,7 +67,8 @@ opentheme resolve my-theme.opentheme.json --trusted --scheme dark --contrast hig
 | `--locale <tag>` | `en` |
 | `--dir ltr\|rtl` | `ltr` |
 
-User preferences need a policy that permits them:
+User preferences need a policy that permits them, and the theme must declare the customization
+point (`init` declares every standard point):
 
 ```bash
 opentheme resolve my-theme.opentheme.json --preset common-personalization --set 'std.color-scheme="dark"' --set std.text-size=1.25 --path text.body

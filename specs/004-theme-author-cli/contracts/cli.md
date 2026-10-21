@@ -12,7 +12,7 @@ Commands:
   report <theme>         Accessibility conformance report (chapter 11)
   css <theme>            CSS custom properties from the Web adapter
   preview <theme>        A self-contained HTML preview of every mode
-  init <file>            Create a new minimal theme
+  init <file>            Create a new minimal theme (--dark adds a dark scheme)
 
 Global options:
   --json                 One JSON document on standard output

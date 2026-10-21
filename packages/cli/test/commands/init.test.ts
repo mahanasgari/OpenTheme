@@ -1,8 +1,9 @@
-/** `init` (US6; FR-T070; T026). */
+/** `init` (US6; FR-T070, FR-T071; T026). */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
 import { newUid } from "../../src/commands/init.js";
+import { STANDARD_POINTS } from "../../src/generated/minimal-theme.js";
 import { cli, tempDir } from "../helpers.js";
 
 const tmp = tempDir();
@@ -39,6 +40,27 @@ describe("init", () => {
   it("encodes 128 bits as 26 base32 characters", () => {
     expect(newUid(new Uint8Array(16))).toBe(`uid.${"a".repeat(26)}`);
     expect(newUid(new Uint8Array(16).fill(255))).toBe(`uid.${"7".repeat(25)}4`); // 3 leftover bits 111, padded to 11100
+  });
+
+  it("declares every standard customization point, so a color-scheme preference applies", async () => {
+    const path = join(tmp.dir, "points.json");
+    await cli(["init", path, "--dark"]);
+    const theme = JSON.parse(readFileSync(path, "utf8")) as { customization: { points: { id: string }[] } };
+    expect(theme.customization.points.map((p) => p.id)).toEqual(STANDARD_POINTS);
+    const r = await cli(["resolve", path, "--trusted", "--preset", "common-personalization", "--set", 'std.color-scheme="dark"', "--json"]);
+    expect(r.status).toBe(0);
+    expect((r.json() as { resolved: { context: { colorScheme: string } } }).resolved.context.colorScheme).toBe("dark");
+  });
+
+  it("without --dark supports light only; with --dark both schemes conform", async () => {
+    const light = join(tmp.dir, "light.json");
+    const both = join(tmp.dir, "both.json");
+    await cli(["init", light]);
+    await cli(["init", both, "--dark"]);
+    const schemes = (p: string) => (JSON.parse(readFileSync(p, "utf8")) as { colorSchemes: { supported: string[] } }).colorSchemes.supported;
+    expect(schemes(light)).toEqual(["light"]);
+    expect(schemes(both)).toEqual(["light", "dark"]);
+    expect((await cli(["report", both, "--strict"])).status).toBe(0);
   });
 
   it("a name that would make the theme invalid is refused", async () => {
